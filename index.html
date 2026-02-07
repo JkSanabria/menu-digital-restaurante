@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Menú Digital | Restaurante</title>
+
+    <!-- Bootstrap 5.3 (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="bg-light">
+
+    <!-- Navegación Superior -->
+    <nav class="navbar navbar-dark bg-dark sticky-top">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1 fw-bold">🍽️ Menú Digital</span>
+        </div>
+    </nav>
+
+    <!-- Contenedor Principal -->
+    <div class="container py-3">
+        <!-- Breadcrumbs / Navigation Title -->
+        <div id="breadcrumb-nav" class="d-flex align-items-center gap-3 mb-4">
+            <!-- JS Rendered -->
+        </div>
+
+        <!-- Renderizado Dinámico del Menú -->
+        <div id="menu-container" class="animate__animated animate__fadeIn">
+            <div class="text-center py-5">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Cargando...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- SKILL: MENU WHATSAPP -->
+    <script src="scripts/menu-whatsapp.js"></script>
+
+    <!-- SKILL: MENU CONTENT -->
+    <script src="scripts/menu-content.js"></script>
+
+    <!-- SKILL: MENU UI MOBILE -->
+    <script src="scripts/menu-ui-mobile.js"></script>
+
+    <!-- SKILL: MENU ADMIN (NO CODE) -->
+    <script src="scripts/menu-admin.js"></script>
+
+    <!-- SKILL: MENU HIERARCHY -->
+    <script src="scripts/menu-hierarchy.js"></script>
+
+    <script>
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', () => {
+            // Expone la instancia globalmente si es necesario, o usa el namespace definido
+            window.MenuHierarchy = MenuHierarchy;
+            MenuHierarchy.initMenu('menu-container', 'data/menu_structure.json');
+        });
+    </script>
+</body>
+
+</html>
