@@ -13,20 +13,20 @@ export default function SectionView() {
 
     return (
         <div className="container mx-auto px-4 py-6 max-w-lg animate-in fade-in slide-in-from-right-8 duration-300">
-            <div className="mb-6 border-b border-primary/20 pb-4">
-                <h1 className="text-3xl text-primary font-heading">{section.name}</h1>
-                <p className="text-gray-500 text-sm mt-1">Selecciona una categoría</p>
+            <div className="flex items-baseline gap-3 mb-4 border-b border-primary/20 pb-2">
+                <h1 className="text-2xl text-primary font-heading font-bold">{section.name}</h1>
+                <span className="text-gray-400 text-xs font-light">Selecciona una categoría</span>
             </div>
 
-            <div className="grid gap-3">
+            <div className="grid gap-2">
                 {section.subcategories.map((sub) => (
                     <Link
                         key={sub.id}
                         to={`/section/${sectionId}/sub/${sub.id}`}
-                        className="flex items-center justify-between p-4 bg-white rounded-xl shadow-sm border border-orange-100 hover:border-primary/30 hover:shadow-md transition-all active:bg-orange-50"
+                        className="flex items-center justify-between py-2 px-3 bg-white rounded-lg shadow-sm border border-orange-100 hover:border-primary/30 hover:shadow-md transition-all active:bg-orange-50"
                     >
-                        <span className="font-heading text-xl text-gray-800">{sub.name}</span>
-                        <ChevronRight className="text-primary/60" size={20} />
+                        <span className="font-heading text-lg text-gray-800 font-medium leading-tight">{sub.name}</span>
+                        <ChevronRight className="text-primary/60" size={18} />
                     </Link>
                 ))}
             </div>

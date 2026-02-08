@@ -713,5 +713,96 @@
                 ]
             }
         ]
+    },
+    {
+        "id": "especialidades",
+        "name": "Especialidades",
+        "image": "https://images.unsplash.com/photo-1544025162-d76690b67f11?w=800&q=80",
+        "subcategories": [
+            {
+                "id": "especialidades-casa",
+                "name": "Especialidades de la Casa",
+                "categories": [
+                    {
+                        "id": "platos-estrella",
+                        "name": "Nuestros Platos Estrella",
+                        "products": [
+                            {
+                                "id": "desgranado-supremo-esp",
+                                "name": "Desgranado Supremo del Gallineral",
+                                "description": "¡Nuestra especialidad! 100 gr de costillitas BBQ, 100 gr de pollo, 150 gr de butifarra y chorizo argentino. Perfecto para compartir",
+                                "price": 44000,
+                                "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80",
+                                "prepTime": "20-25 min",
+                                "spiceLevel": 1,
+                                "attributes": [
+                                    "recomendado",
+                                    "favorito-chef",
+                                    "para-compartir"
+                                ]
+                            },
+                            {
+                                "id": "hamburguesa-doble-carne-esp",
+                                "name": "Hamburguesa Doble Carne",
+                                "description": "Doble carne de res (400 gr total), doble queso mozzarella, tocineta ahumada, cebolla caramelizada y salsa BBQ en pan brioche",
+                                "price": 34000,
+                                "image": "https://images.unsplash.com/photo-1550547660-d9450f859349?w=400&q=80",
+                                "prepTime": "15-18 min",
+                                "spiceLevel": 0,
+                                "attributes": [
+                                    "recomendado",
+                                    "favorito-chef"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "recomendaciones",
+        "name": "Recomendaciones",
+        "image": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80",
+        "subcategories": [
+            {
+                "id": "sugerencias-chef",
+                "name": "Sugerencias del Chef",
+                "categories": [
+                    {
+                        "id": "seleccion-chef",
+                        "name": "Selección del Chef",
+                        "products": [
+                            {
+                                "id": "perro-supremo-rec",
+                                "name": "Perro Supremo Argentino",
+                                "description": "Chorizo argentino premium, queso mozzarella, chimichurri casero, cebolla caramelizada y pimentón asado",
+                                "price": 24000,
+                                "image": "https://images.unsplash.com/photo-1612392062798-2c9e6d9e6a9c?w=400&q=80",
+                                "prepTime": "10-12 min",
+                                "spiceLevel": 1,
+                                "attributes": [
+                                    "recomendado",
+                                    "favorito-chef"
+                                ]
+                            },
+                            {
+                                "id": "desgranado-costillitas-rec",
+                                "name": "Desgranado de Costillitas BBQ",
+                                "description": "200 gr de costillitas BBQ glaseadas con salsa de la casa, sobre maíz tierno desgranado, queso mozzarella fundido y vegetales frescos",
+                                "price": 34000,
+                                "image": "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=400&q=80",
+                                "prepTime": "15-20 min",
+                                "spiceLevel": 0,
+                                "attributes": [
+                                    "recomendado",
+                                    "favorito-chef"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
     }
 ]
