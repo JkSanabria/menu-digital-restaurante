@@ -54,9 +54,9 @@ export default {
                 sm: "calc(var(--radius) - 4px)",
             },
             fontFamily: {
-                heading: ['"Lobster Two"', 'cursive'],
-                body: ['Lato', 'sans-serif'],
-                sans: ['Lato', 'sans-serif'],
+                heading: ['"Playfair Display"', 'serif'],
+                body: ['Poppins', 'sans-serif'],
+                sans: ['Poppins', 'sans-serif'],
             },
             boxShadow: {
                 card: "0 4px 12px rgba(0, 0, 0, 0.08)",

@@ -70,7 +70,8 @@ export default function ProductList() {
                                 {category.products.map((product) => (
                                     <div
                                         key={product.id}
-                                        className="group bg-white rounded-xl p-4 shadow-sm border border-gray-100 flex gap-4 transition-all hover:shadow-md active:scale-[0.99] relative overflow-hidden"
+                                        onClick={() => openModal(product)}
+                                        className="group bg-white rounded-xl p-4 shadow-sm border border-gray-100 flex gap-4 transition-all hover:shadow-md active:scale-[0.99] relative overflow-hidden cursor-pointer"
                                     >
                                         {/* Image Placeholder or Actual Image */}
                                         <div className="w-24 h-24 shrink-0 rounded-lg bg-gray-100 overflow-hidden relative">
@@ -83,18 +84,6 @@ export default function ProductList() {
                                                     </svg>
                                                 </div>
                                             )}
-
-                                            {/* Attributes Badges */}
-                                            {product.attributes && product.attributes.length > 0 && (
-                                                <div className="absolute top-0 left-0 p-1 flex flex-wrap gap-1">
-                                                    {product.attributes.includes('recomendado') && (
-                                                        <span className="w-2 h-2 rounded-full bg-accent shadow-sm" title="Recomendado"></span>
-                                                    )}
-                                                    {product.attributes.includes('vegetariano') && (
-                                                        <span className="w-2 h-2 rounded-full bg-organic shadow-sm" title="Vegetariano"></span>
-                                                    )}
-                                                </div>
-                                            )}
                                         </div>
 
                                         <div className="flex flex-col flex-1 justify-between py-1 relative z-10">
@@ -105,7 +94,49 @@ export default function ProductList() {
                                                 <p className="text-sm text-gray-500 line-clamp-2 leading-relaxed h-10 overflow-hidden">
                                                     {product.description}
                                                 </p>
+
+                                                {/* Additional Info */}
+                                                <div className="flex gap-3 mt-2 text-xs text-gray-400">
+                                                    {product.prepTime && (
+                                                        <span className="flex items-center gap-1">
+                                                            ⏱️ {product.prepTime}
+                                                        </span>
+                                                    )}
+                                                    {product.spiceLevel !== undefined && product.spiceLevel > 0 && (
+                                                        <span className="flex items-center gap-1">
+                                                            {'🌶️'.repeat(product.spiceLevel)}
+                                                        </span>
+                                                    )}
+                                                    {product.size && (
+                                                        <span className="flex items-center gap-1">
+                                                            📏 {product.size}
+                                                        </span>
+                                                    )}
+                                                </div>
                                             </div>
+                                            {/* Badges */}
+                                            {product.attributes.length > 0 && (
+                                                <div className="flex flex-wrap gap-1 mb-2">
+                                                    {product.attributes.includes('recomendado') && (
+                                                        <span className="text-xs px-2 py-0.5 rounded-full bg-accent/20 text-accent-foreground font-semibold">⭐ Recomendado</span>
+                                                    )}
+                                                    {product.attributes.includes('favorito-chef') && (
+                                                        <span className="text-xs px-2 py-0.5 rounded-full bg-primary/20 text-primary font-semibold">👨‍🍳 Chef</span>
+                                                    )}
+                                                    {product.attributes.includes('nuevo') && (
+                                                        <span className="text-xs px-2 py-0.5 rounded-full bg-green-100 text-green-700 font-semibold">🆕 Nuevo</span>
+                                                    )}
+                                                    {product.attributes.includes('vegetariano') && (
+                                                        <span className="text-xs px-2 py-0.5 rounded-full bg-organic/20 text-organic font-semibold">🥗 Vegetariano</span>
+                                                    )}
+                                                    {product.attributes.includes('picante') && (
+                                                        <span className="text-xs px-2 py-0.5 rounded-full bg-red-100 text-red-600 font-semibold">🌶️ Picante</span>
+                                                    )}
+                                                    {product.attributes.includes('para-compartir') && (
+                                                        <span className="text-xs px-2 py-0.5 rounded-full bg-blue-100 text-blue-600 font-semibold">👥 Compartir</span>
+                                                    )}
+                                                </div>
+                                            )}
                                             <div className="flex justify-between items-end mt-2">
                                                 <span className="font-bold text-lg text-primary">
                                                     {formatPrice(product.price)}

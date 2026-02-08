@@ -5,6 +5,10 @@ export interface Product {
     description: string;
     image: string;
     attributes: string[];
+    prepTime?: string;
+    spiceLevel?: number;
+    size?: string;
+    sizes?: string[];
 }
 
 export interface Category {
