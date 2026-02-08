@@ -88,7 +88,7 @@ export default function Home() {
 
             {/* WhatsApp Floating Button */}
             <a
-                href="https://wa.me/message/2QMO6X5GAF3AE1"
+                href="https://wa.me/573195997515"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="fixed bottom-6 right-6 bg-organic text-white p-4 rounded-full shadow-lg z-50 hover:bg-green-700 transition-colors active:scale-90 flex items-center gap-2 animate-in zoom-in duration-300"

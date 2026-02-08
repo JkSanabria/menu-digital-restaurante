@@ -4,7 +4,7 @@ import { Trash2, Plus, Minus, ArrowLeft, Send, User, MapPin } from 'lucide-react
 import { useNavigate } from 'react-router-dom';
 
 export default function CartPage() {
-    const { items, updateQuantity, removeFromCart, total } = useCart();
+    const { items, updateQuantity, removeFromCart, total, clearCart } = useCart();
     const navigate = useNavigate();
     const [tipPercentage, setTipPercentage] = useState<number>(0);
     const [note, setNote] = useState("");
@@ -53,9 +53,9 @@ export default function CartPage() {
             message += `\n\n📝 *Nota adicional:* ${note}`;
         }
 
-        // WhatsApp direct link
-        const whatsappLink = "https://wa.me/message/2QMO6X5GAF3AE1";
-        const url = `${whatsappLink}?text=${encodeURIComponent(message)}`;
+        // WhatsApp with Colombian phone number
+        const phoneNumber = "573195997515";
+        const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
         window.open(url, '_blank');
     };
@@ -80,11 +80,38 @@ export default function CartPage() {
 
     return (
         <div className="container mx-auto px-4 py-6 max-w-lg pb-[400px] animate-in fade-in slide-in-from-bottom-8 duration-300">
-            <div className="flex items-center gap-4 mb-6">
-                <button onClick={() => navigate(-1)} className="p-2 hover:bg-gray-100 rounded-full">
-                    <ArrowLeft size={24} className="text-primary" />
-                </button>
-                <h1 className="text-3xl font-heading text-gray-900">Tu Pedido</h1>
+            <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center gap-4">
+                    <button onClick={() => navigate(-1)} className="p-2 hover:bg-gray-100 rounded-full">
+                        <ArrowLeft size={24} className="text-primary" />
+                    </button>
+                    <h1 className="text-3xl font-heading text-gray-900">Tu Pedido</h1>
+                </div>
+
+                <div className="flex items-center gap-2">
+                    <button
+                        onClick={() => navigate('/')}
+                        className="p-2 hover:bg-gray-100 rounded-full text-gray-600 hover:text-primary transition-colors"
+                        title="Ir al inicio"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
+                    </button>
+                    <button
+                        onClick={() => {
+                            if (window.confirm('¿Estás seguro de que quieres vaciar el carrito?')) {
+                                clearCart();
+                                navigate('/');
+                            }
+                        }}
+                        className="p-2 hover:bg-red-50 rounded-full text-gray-400 hover:text-red-500 transition-colors"
+                        title="Vaciar carrito"
+                    >
+                        <Trash2 size={20} />
+                    </button>
+                </div>
             </div>
 
             {/* Customer Info Section */}
