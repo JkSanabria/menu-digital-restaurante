@@ -1,107 +1,85 @@
 [
     {
-        "id": "bebidas",
-        "name": "Bebidas",
-        "image": "https://img.freepik.com/foto-gratis/bebidas-cocteles-verano-frescos_144627-30374.jpg",
+        "id": "comidas",
+        "name": "Comidas",
+        "image": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80",
         "subcategories": [
             {
-                "id": "beb-no-alc",
-                "name": "Bebidas No Alcohólicas",
+                "id": "desgranados",
+                "name": "Desgranados",
                 "categories": [
                     {
-                        "id": "agua",
-                        "name": "Agua",
+                        "id": "desgranados-principales",
+                        "name": "Platos Principales",
                         "products": [
                             {
-                                "id": "h2o-1",
-                                "name": "Agua Manantial (500ml)",
-                                "price": 4000,
-                                "description": "Sin gas.",
-                                "image": "",
-                                "attributes": []
-                            },
-                            {
-                                "id": "h2o-2",
-                                "name": "Agua con Gas",
-                                "price": 4500,
-                                "description": "Carbonatada.",
-                                "image": "",
-                                "attributes": []
-                            }
-                        ]
-                    },
-                    {
-                        "id": "gaseosas",
-                        "name": "Gaseosas",
-                        "products": [
-                            {
-                                "id": "gas-1",
-                                "name": "Coca-Cola Original",
-                                "price": 5000,
-                                "description": "400ml",
-                                "image": "",
-                                "attributes": []
-                            },
-                            {
-                                "id": "gas-2",
-                                "name": "Coca-Cola Zero",
-                                "price": 5000,
-                                "description": "400ml",
-                                "image": "",
-                                "attributes": []
-                            }
-                        ]
-                    },
-                    {
-                        "id": "jugos-nat",
-                        "name": "Jugos Naturales",
-                        "products": [
-                            {
-                                "id": "jn-1",
-                                "name": "Limonada Natural",
-                                "price": 7000,
-                                "description": "Recién exprimida.",
-                                "image": "",
+                                "id": "desgranado-costillitas",
+                                "name": "Desgranado de Costillitas BBQ",
+                                "description": "200 gr de costillitas BBQ",
+                                "price": 34000,
+                                "image": "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=400&q=80",
                                 "attributes": [
-                                    "fresco"
+                                    "recomendado"
                                 ]
                             },
                             {
-                                "id": "jn-2",
-                                "name": "Jugo de Mandarina",
-                                "price": 8000,
-                                "description": "De temporada.",
-                                "image": "",
-                                "attributes": [
-                                    "fresco"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "id": "jugos-az",
-                        "name": "Jugos Azucarados",
-                        "products": [
-                            {
-                                "id": "ja-1",
-                                "name": "Jugos Hit (Caja)",
-                                "price": 3500,
-                                "description": "Sabores variados.",
-                                "image": "",
+                                "id": "desgranado-pollo-tocineta",
+                                "name": "Desgranado de Pollo con Tocineta",
+                                "description": "150 gr de pollo y 150 gr de tocineta ahumada",
+                                "price": 34000,
+                                "image": "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=400&q=80",
                                 "attributes": []
-                            }
-                        ]
-                    },
-                    {
-                        "id": "energ",
-                        "name": "Bebidas Energéticas",
-                        "products": [
+                            },
                             {
-                                "id": "en-1",
-                                "name": "Red Bull",
-                                "price": 12000,
-                                "description": "Lata 250ml",
-                                "image": "",
+                                "id": "desgranado-carne",
+                                "name": "Desgranado de Carne",
+                                "description": "100 gr de pollo, 150 gr de butifarra y chorizo argentino",
+                                "price": 28000,
+                                "image": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&q=80",
+                                "attributes": []
+                            },
+                            {
+                                "id": "desgranado-pollo",
+                                "name": "Desgranado de Pollo",
+                                "description": "150 gr de pollo",
+                                "price": 28000,
+                                "image": "https://images.unsplash.com/photo-1562967914-608f82629710?w=400&q=80",
+                                "attributes": []
+                            },
+                            {
+                                "id": "desgranado-vegetariano",
+                                "name": "Desgranado Vegetariano",
+                                "description": "150 gr de vegetales salteados (champiñones, pimentones asados, cebolla caramelizada, maíz)",
+                                "price": 28000,
+                                "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&q=80",
+                                "attributes": [
+                                    "vegetariano"
+                                ]
+                            },
+                            {
+                                "id": "desgranado-supremo",
+                                "name": "Desgranado Supremo del Gallineral",
+                                "description": "100 gr de costillitas BBQ, 100 gr de pollo, 150 gr de butifarra y chorizo argentino",
+                                "price": 44000,
+                                "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80",
+                                "attributes": [
+                                    "recomendado"
+                                ]
+                            },
+                            {
+                                "id": "desgranado-master",
+                                "name": "Desgranado Master del Gallineral",
+                                "description": "50 gr de costillitas BBQ, 100 gr de pollo y 100 gr de tocineta ahumada",
+                                "price": 40000,
+                                "image": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&q=80",
+                                "attributes": []
+                            },
+                            {
+                                "id": "desgranado-mixto",
+                                "name": "Desgranado Mixto",
+                                "description": "100 gr de carne Burger y 100 gr de pollo",
+                                "price": 34000,
+                                "image": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80",
                                 "attributes": []
                             }
                         ]
@@ -109,110 +87,27 @@
                 ]
             },
             {
-                "id": "beb-alc",
-                "name": "Bebidas Alcohólicas",
+                "id": "hamburguesas",
+                "name": "Hamburguesas",
                 "categories": [
                     {
-                        "id": "cerveza",
-                        "name": "Cerveza",
+                        "id": "hamburguesas-clasicas",
+                        "name": "Hamburguesas Clásicas",
                         "products": [
                             {
-                                "id": "cer-1",
-                                "name": "Cerveza Nacional",
-                                "price": 8000,
-                                "description": "Águila, Club Colombia.",
-                                "image": "",
+                                "id": "hamburguesa-res",
+                                "name": "Hamburguesa de Res",
+                                "description": "200 gr de res seleccionada, mezclada con cebolla, tocineta, queso mozzarella, pan artesano, salsa de la casa, tocineta, queso mozzarella, tomate, pepinillos, lechuga crespa",
+                                "price": 28000,
+                                "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&q=80",
                                 "attributes": []
                             },
                             {
-                                "id": "cer-2",
-                                "name": "Cerveza Importada",
-                                "price": 12000,
-                                "description": "Corona, Stella.",
-                                "image": "",
-                                "attributes": []
-                            }
-                        ]
-                    },
-                    {
-                        "id": "vino",
-                        "name": "Vino",
-                        "products": [
-                            {
-                                "id": "vin-1",
-                                "name": "Copa de Vino Tinto",
-                                "price": 18000,
-                                "description": "Cabernet Sauvignon",
-                                "image": "",
-                                "attributes": []
-                            }
-                        ]
-                    },
-                    {
-                        "id": "whisky",
-                        "name": "Whisky",
-                        "products": [
-                            {
-                                "id": "whi-1",
-                                "name": "Old Parr (Trago)",
-                                "price": 25000,
-                                "description": "12 años.",
-                                "image": "",
-                                "attributes": []
-                            }
-                        ]
-                    },
-                    {
-                        "id": "ron",
-                        "name": "Ron",
-                        "products": [
-                            {
-                                "id": "ron-1",
-                                "name": "Ron Viejo de Caldas",
-                                "price": 15000,
-                                "description": "Trago doble.",
-                                "image": "",
-                                "attributes": []
-                            }
-                        ]
-                    },
-                    {
-                        "id": "coctel",
-                        "name": "Cócteles",
-                        "products": [
-                            {
-                                "id": "coc-1",
-                                "name": "Mojito",
-                                "price": 22000,
-                                "description": "Ron blanco, hierbabuena, limón.",
-                                "image": "",
-                                "attributes": []
-                            }
-                        ]
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "id": "alimentos",
-        "name": "Alimentos",
-        "image": "https://img.freepik.com/foto-gratis/vista-superior-pizza-pepperoni-rodajas-salchicha-hojas-rucula_23-2148765330.jpg",
-        "subcategories": [
-            {
-                "id": "especialidades",
-                "name": "Especialidades de la Casa",
-                "categories": [
-                    {
-                        "id": "esp-cat",
-                        "name": "Nuestras Especialidades",
-                        "products": [
-                            {
-                                "id": "esp-1",
-                                "name": "Plato Mar y Tierra",
-                                "price": 45000,
-                                "description": "Lomo fino y langostinos.",
-                                "image": "",
+                                "id": "hamburguesa-doble-carne",
+                                "name": "Hamburguesa Doble Carne",
+                                "description": "200 gr de exclusiva carne de res seleccionada, mezclada con cebollino y especias de temporada, pan artesano, salsa de la casa, tocineta, queso mozzarella, tomate, pepinillos, lechuga crespa",
+                                "price": 34000,
+                                "image": "https://images.unsplash.com/photo-1550547660-d9450f859349?w=400&q=80",
                                 "attributes": [
                                     "recomendado"
                                 ]
@@ -222,87 +117,27 @@
                 ]
             },
             {
-                "id": "comida-rapida",
-                "name": "Comida Rápida",
+                "id": "francesas",
+                "name": "Francesas del Gallineral",
                 "categories": [
                     {
-                        "id": "hamburguesas",
-                        "name": "Hamburguesas",
+                        "id": "salchipapas",
+                        "name": "Salchipapas",
                         "products": [
                             {
-                                "id": "ham-1",
-                                "name": "Hamburguesa Clásica",
+                                "id": "churripapa",
+                                "name": "Churripapa",
+                                "description": "200 gr de chorizo argentino, papas a la francesa, queso cheddar y salsas a su elección",
                                 "price": 20000,
-                                "description": "Carne 150g, queso, vegetales.",
-                                "image": "",
+                                "image": "https://images.unsplash.com/photo-1639024471283-03518883512d?w=400&q=80",
                                 "attributes": []
                             },
                             {
-                                "id": "ham-2",
-                                "name": "Hamburguesa Napoli",
-                                "price": 25000,
-                                "description": "Queso mozzarella y pepperoni.",
-                                "image": "",
-                                "attributes": []
-                            }
-                        ]
-                    },
-                    {
-                        "id": "pizzas",
-                        "name": "Pizzas",
-                        "products": [
-                            {
-                                "id": "piz-1",
-                                "name": "Pizza Margarita",
-                                "price": 32000,
-                                "description": "Tomate, albahaca, mozzarella.",
-                                "image": "",
-                                "attributes": [
-                                    "vegetariano"
-                                ]
-                            },
-                            {
-                                "id": "piz-2",
-                                "name": "Pizza Pepperoni",
-                                "price": 35000,
-                                "description": "Clásica americana.",
-                                "image": "",
-                                "attributes": []
-                            }
-                        ]
-                    },
-                    {
-                        "id": "perros",
-                        "name": "Perros Calientes",
-                        "products": [
-                            {
-                                "id": "per-1",
-                                "name": "Perro Caliente Especial",
+                                "id": "salchipapa-infantil",
+                                "name": "Salchipapa Infantil",
+                                "description": "Salchicha americana, papas a la francesa, queso y salsas. Incluye: bebida pequeña + sorpresa",
                                 "price": 18000,
-                                "description": "Con tocineta y queso fundido.",
-                                "image": "",
-                                "attributes": []
-                            }
-                        ]
-                    },
-                    {
-                        "id": "papas",
-                        "name": "Papas",
-                        "products": [
-                            {
-                                "id": "pap-1",
-                                "name": "Papas a la Francesa",
-                                "price": 8000,
-                                "description": "Porción personal.",
-                                "image": "",
-                                "attributes": []
-                            },
-                            {
-                                "id": "pap-2",
-                                "name": "Papas Locas",
-                                "price": 15000,
-                                "description": "Con queso, tocineta y salsas.",
-                                "image": "",
+                                "image": "https://images.unsplash.com/photo-1625869016774-3a92be2ae2cd?w=400&q=80",
                                 "attributes": []
                             }
                         ]
@@ -310,184 +145,72 @@
                 ]
             },
             {
-                "id": "proteinas",
-                "name": "Proteínas",
+                "id": "perros",
+                "name": "Perros Gallineral",
                 "categories": [
                     {
-                        "id": "pollo",
-                        "name": "Pollo",
+                        "id": "hot-dogs",
+                        "name": "Hot Dogs",
                         "products": [
                             {
-                                "id": "pol-1",
-                                "name": "Pechuga a la Plancha",
+                                "id": "perro-tradicional",
+                                "name": "Perro Tradicional",
+                                "description": "Con salchicha americana y queso mozzarella",
+                                "price": 18000,
+                                "image": "https://images.unsplash.com/photo-1612392062798-2c9e6d9e6a9c?w=400&q=80",
+                                "attributes": []
+                            },
+                            {
+                                "id": "perro-hawaiano",
+                                "name": "Perro Hawaiano",
+                                "description": "Con salchicha americana y queso mozzarella + piña caramelizada",
                                 "price": 24000,
-                                "description": "250g de pechuga marinada.",
-                                "image": "",
-                                "attributes": [
-                                    "saludable"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "id": "carne",
-                        "name": "Carne",
-                        "products": [
-                            {
-                                "id": "car-1",
-                                "name": "Churrasco",
-                                "price": 32000,
-                                "description": "Corte de res asado al término.",
-                                "image": "",
-                                "attributes": []
-                            }
-                        ]
-                    },
-                    {
-                        "id": "cerdo",
-                        "name": "Cerdo",
-                        "products": [
-                            {
-                                "id": "cerd-1",
-                                "name": "Costillas BBQ",
-                                "price": 30000,
-                                "description": "Costillas de cerdo en salsa BBQ casera.",
-                                "image": "",
-                                "attributes": []
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                "id": "mariscos",
-                "name": "Mariscos",
-                "categories": [
-                    {
-                        "id": "camarones",
-                        "name": "Camarones",
-                        "products": [
-                            {
-                                "id": "cam-1",
-                                "name": "Coctel de Camarón",
-                                "price": 25000,
-                                "description": "Salsa rosada, cebolla, cilantro.",
-                                "image": "",
-                                "attributes": []
-                            }
-                        ]
-                    },
-                    {
-                        "id": "pescado",
-                        "name": "Pescado",
-                        "products": [
-                            {
-                                "id": "pes-1",
-                                "name": "Filete de Pescado",
-                                "price": 28000,
-                                "description": "Apanado o al ajillo.",
-                                "image": "",
-                                "attributes": []
-                            }
-                        ]
-                    },
-                    {
-                        "id": "mixtos",
-                        "name": "Mariscos Mixtos",
-                        "products": [
-                            {
-                                "id": "mix-1",
-                                "name": "Cazuela de Mariscos",
-                                "price": 38000,
-                                "description": "Con leche de coco y patacón.",
-                                "image": "",
-                                "attributes": []
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                "id": "pastas",
-                "name": "Pastas",
-                "categories": [
-                    {
-                        "id": "pas-cat",
-                        "name": "Nuestras Pastas",
-                        "products": [
-                            {
-                                "id": "pas-1",
-                                "name": "Spaghetti Carbonara",
-                                "price": 28000,
-                                "description": "Receta clásica italiana.",
-                                "image": "",
+                                "image": "https://images.unsplash.com/photo-1619894991209-e2ed0a19c2b0?w=400&q=80",
                                 "attributes": []
                             },
                             {
-                                "id": "pas-2",
-                                "name": "Lasagna",
-                                "price": 30000,
-                                "description": "Carne o Pollo.",
-                                "image": "",
-                                "attributes": []
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                "id": "acompanamientos",
-                "name": "Acompañamientos",
-                "categories": [
-                    {
-                        "id": "aco-cat",
-                        "name": "Guarniciones",
-                        "products": [
-                            {
-                                "id": "aco-1",
-                                "name": "Patacones",
-                                "price": 6000,
-                                "description": "3 unidades.",
-                                "image": "",
-                                "attributes": []
-                            },
-                            {
-                                "id": "aco-2",
-                                "name": "Ensalada de la Casa",
-                                "price": 7000,
-                                "description": "Fresca y ligera.",
-                                "image": "",
+                                "id": "perro-supremo",
+                                "name": "Perro Supremo",
+                                "description": "Chorizo argentino, queso mozzarella y salsa chimichurri",
+                                "price": 24000,
+                                "image": "https://images.unsplash.com/photo-1612392062798-2c9e6d9e6a9c?w=400&q=80",
                                 "attributes": [
-                                    "vegetariano",
-                                    "saludable"
+                                    "recomendado"
                                 ]
                             }
                         ]
                     }
                 ]
-            },
+            }
+        ]
+    },
+    {
+        "id": "bebidas",
+        "name": "Bebidas",
+        "image": "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=800&q=80",
+        "subcategories": [
             {
-                "id": "postres",
-                "name": "Postres",
+                "id": "jugos-naturales",
+                "name": "Jugos Naturales",
                 "categories": [
                     {
-                        "id": "pos-cat",
-                        "name": "Para terminar",
+                        "id": "jugos",
+                        "name": "Jugos en Leche o Agua",
                         "products": [
                             {
-                                "id": "pos-1",
-                                "name": "Tiramisú",
-                                "price": 12000,
-                                "description": "Postre de café italiano.",
-                                "image": "",
-                                "attributes": []
-                            },
-                            {
-                                "id": "pos-2",
-                                "name": "Brownie con Helado",
+                                "id": "jugo-natural",
+                                "name": "Jugo Natural",
+                                "description": "Mora, maracuyá, fresa, mango, lulo, piña, zapote, maracuyá, mora, lulo, piña",
                                 "price": 10000,
-                                "description": "Caliente con bola de vainilla.",
-                                "image": "",
+                                "image": "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=400&q=80",
+                                "attributes": []
+                            },
+                            {
+                                "id": "jugo-leche",
+                                "name": "Jugo en Leche",
+                                "description": "Adición de leche",
+                                "price": 3000,
+                                "image": "https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=400&q=80",
                                 "attributes": []
                             }
                         ]
