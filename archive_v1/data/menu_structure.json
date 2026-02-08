@@ -1,0 +1,499 @@
+[
+    {
+        "id": "bebidas",
+        "name": "Bebidas",
+        "image": "https://img.freepik.com/foto-gratis/bebidas-cocteles-verano-frescos_144627-30374.jpg",
+        "subcategories": [
+            {
+                "id": "beb-no-alc",
+                "name": "Bebidas No Alcohólicas",
+                "categories": [
+                    {
+                        "id": "agua",
+                        "name": "Agua",
+                        "products": [
+                            {
+                                "id": "h2o-1",
+                                "name": "Agua Manantial (500ml)",
+                                "price": 4000,
+                                "description": "Sin gas.",
+                                "image": "",
+                                "attributes": []
+                            },
+                            {
+                                "id": "h2o-2",
+                                "name": "Agua con Gas",
+                                "price": 4500,
+                                "description": "Carbonatada.",
+                                "image": "",
+                                "attributes": []
+                            }
+                        ]
+                    },
+                    {
+                        "id": "gaseosas",
+                        "name": "Gaseosas",
+                        "products": [
+                            {
+                                "id": "gas-1",
+                                "name": "Coca-Cola Original",
+                                "price": 5000,
+                                "description": "400ml",
+                                "image": "",
+                                "attributes": []
+                            },
+                            {
+                                "id": "gas-2",
+                                "name": "Coca-Cola Zero",
+                                "price": 5000,
+                                "description": "400ml",
+                                "image": "",
+                                "attributes": []
+                            }
+                        ]
+                    },
+                    {
+                        "id": "jugos-nat",
+                        "name": "Jugos Naturales",
+                        "products": [
+                            {
+                                "id": "jn-1",
+                                "name": "Limonada Natural",
+                                "price": 7000,
+                                "description": "Recién exprimida.",
+                                "image": "",
+                                "attributes": [
+                                    "fresco"
+                                ]
+                            },
+                            {
+                                "id": "jn-2",
+                                "name": "Jugo de Mandarina",
+                                "price": 8000,
+                                "description": "De temporada.",
+                                "image": "",
+                                "attributes": [
+                                    "fresco"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "jugos-az",
+                        "name": "Jugos Azucarados",
+                        "products": [
+                            {
+                                "id": "ja-1",
+                                "name": "Jugos Hit (Caja)",
+                                "price": 3500,
+                                "description": "Sabores variados.",
+                                "image": "",
+                                "attributes": []
+                            }
+                        ]
+                    },
+                    {
+                        "id": "energ",
+                        "name": "Bebidas Energéticas",
+                        "products": [
+                            {
+                                "id": "en-1",
+                                "name": "Red Bull",
+                                "price": 12000,
+                                "description": "Lata 250ml",
+                                "image": "",
+                                "attributes": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "beb-alc",
+                "name": "Bebidas Alcohólicas",
+                "categories": [
+                    {
+                        "id": "cerveza",
+                        "name": "Cerveza",
+                        "products": [
+                            {
+                                "id": "cer-1",
+                                "name": "Cerveza Nacional",
+                                "price": 8000,
+                                "description": "Águila, Club Colombia.",
+                                "image": "",
+                                "attributes": []
+                            },
+                            {
+                                "id": "cer-2",
+                                "name": "Cerveza Importada",
+                                "price": 12000,
+                                "description": "Corona, Stella.",
+                                "image": "",
+                                "attributes": []
+                            }
+                        ]
+                    },
+                    {
+                        "id": "vino",
+                        "name": "Vino",
+                        "products": [
+                            {
+                                "id": "vin-1",
+                                "name": "Copa de Vino Tinto",
+                                "price": 18000,
+                                "description": "Cabernet Sauvignon",
+                                "image": "",
+                                "attributes": []
+                            }
+                        ]
+                    },
+                    {
+                        "id": "whisky",
+                        "name": "Whisky",
+                        "products": [
+                            {
+                                "id": "whi-1",
+                                "name": "Old Parr (Trago)",
+                                "price": 25000,
+                                "description": "12 años.",
+                                "image": "",
+                                "attributes": []
+                            }
+                        ]
+                    },
+                    {
+                        "id": "ron",
+                        "name": "Ron",
+                        "products": [
+                            {
+                                "id": "ron-1",
+                                "name": "Ron Viejo de Caldas",
+                                "price": 15000,
+                                "description": "Trago doble.",
+                                "image": "",
+                                "attributes": []
+                            }
+                        ]
+                    },
+                    {
+                        "id": "coctel",
+                        "name": "Cócteles",
+                        "products": [
+                            {
+                                "id": "coc-1",
+                                "name": "Mojito",
+                                "price": 22000,
+                                "description": "Ron blanco, hierbabuena, limón.",
+                                "image": "",
+                                "attributes": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "alimentos",
+        "name": "Alimentos",
+        "image": "https://img.freepik.com/foto-gratis/vista-superior-pizza-pepperoni-rodajas-salchicha-hojas-rucula_23-2148765330.jpg",
+        "subcategories": [
+            {
+                "id": "especialidades",
+                "name": "Especialidades de la Casa",
+                "categories": [
+                    {
+                        "id": "esp-cat",
+                        "name": "Nuestras Especialidades",
+                        "products": [
+                            {
+                                "id": "esp-1",
+                                "name": "Plato Mar y Tierra",
+                                "price": 45000,
+                                "description": "Lomo fino y langostinos.",
+                                "image": "",
+                                "attributes": [
+                                    "recomendado"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "comida-rapida",
+                "name": "Comida Rápida",
+                "categories": [
+                    {
+                        "id": "hamburguesas",
+                        "name": "Hamburguesas",
+                        "products": [
+                            {
+                                "id": "ham-1",
+                                "name": "Hamburguesa Clásica",
+                                "price": 20000,
+                                "description": "Carne 150g, queso, vegetales.",
+                                "image": "",
+                                "attributes": []
+                            },
+                            {
+                                "id": "ham-2",
+                                "name": "Hamburguesa Napoli",
+                                "price": 25000,
+                                "description": "Queso mozzarella y pepperoni.",
+                                "image": "",
+                                "attributes": []
+                            }
+                        ]
+                    },
+                    {
+                        "id": "pizzas",
+                        "name": "Pizzas",
+                        "products": [
+                            {
+                                "id": "piz-1",
+                                "name": "Pizza Margarita",
+                                "price": 32000,
+                                "description": "Tomate, albahaca, mozzarella.",
+                                "image": "",
+                                "attributes": [
+                                    "vegetariano"
+                                ]
+                            },
+                            {
+                                "id": "piz-2",
+                                "name": "Pizza Pepperoni",
+                                "price": 35000,
+                                "description": "Clásica americana.",
+                                "image": "",
+                                "attributes": []
+                            }
+                        ]
+                    },
+                    {
+                        "id": "perros",
+                        "name": "Perros Calientes",
+                        "products": [
+                            {
+                                "id": "per-1",
+                                "name": "Perro Caliente Especial",
+                                "price": 18000,
+                                "description": "Con tocineta y queso fundido.",
+                                "image": "",
+                                "attributes": []
+                            }
+                        ]
+                    },
+                    {
+                        "id": "papas",
+                        "name": "Papas",
+                        "products": [
+                            {
+                                "id": "pap-1",
+                                "name": "Papas a la Francesa",
+                                "price": 8000,
+                                "description": "Porción personal.",
+                                "image": "",
+                                "attributes": []
+                            },
+                            {
+                                "id": "pap-2",
+                                "name": "Papas Locas",
+                                "price": 15000,
+                                "description": "Con queso, tocineta y salsas.",
+                                "image": "",
+                                "attributes": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "proteinas",
+                "name": "Proteínas",
+                "categories": [
+                    {
+                        "id": "pollo",
+                        "name": "Pollo",
+                        "products": [
+                            {
+                                "id": "pol-1",
+                                "name": "Pechuga a la Plancha",
+                                "price": 24000,
+                                "description": "250g de pechuga marinada.",
+                                "image": "",
+                                "attributes": [
+                                    "saludable"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "carne",
+                        "name": "Carne",
+                        "products": [
+                            {
+                                "id": "car-1",
+                                "name": "Churrasco",
+                                "price": 32000,
+                                "description": "Corte de res asado al término.",
+                                "image": "",
+                                "attributes": []
+                            }
+                        ]
+                    },
+                    {
+                        "id": "cerdo",
+                        "name": "Cerdo",
+                        "products": [
+                            {
+                                "id": "cerd-1",
+                                "name": "Costillas BBQ",
+                                "price": 30000,
+                                "description": "Costillas de cerdo en salsa BBQ casera.",
+                                "image": "",
+                                "attributes": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "mariscos",
+                "name": "Mariscos",
+                "categories": [
+                    {
+                        "id": "camarones",
+                        "name": "Camarones",
+                        "products": [
+                            {
+                                "id": "cam-1",
+                                "name": "Coctel de Camarón",
+                                "price": 25000,
+                                "description": "Salsa rosada, cebolla, cilantro.",
+                                "image": "",
+                                "attributes": []
+                            }
+                        ]
+                    },
+                    {
+                        "id": "pescado",
+                        "name": "Pescado",
+                        "products": [
+                            {
+                                "id": "pes-1",
+                                "name": "Filete de Pescado",
+                                "price": 28000,
+                                "description": "Apanado o al ajillo.",
+                                "image": "",
+                                "attributes": []
+                            }
+                        ]
+                    },
+                    {
+                        "id": "mixtos",
+                        "name": "Mariscos Mixtos",
+                        "products": [
+                            {
+                                "id": "mix-1",
+                                "name": "Cazuela de Mariscos",
+                                "price": 38000,
+                                "description": "Con leche de coco y patacón.",
+                                "image": "",
+                                "attributes": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "pastas",
+                "name": "Pastas",
+                "categories": [
+                    {
+                        "id": "pas-cat",
+                        "name": "Nuestras Pastas",
+                        "products": [
+                            {
+                                "id": "pas-1",
+                                "name": "Spaghetti Carbonara",
+                                "price": 28000,
+                                "description": "Receta clásica italiana.",
+                                "image": "",
+                                "attributes": []
+                            },
+                            {
+                                "id": "pas-2",
+                                "name": "Lasagna",
+                                "price": 30000,
+                                "description": "Carne o Pollo.",
+                                "image": "",
+                                "attributes": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "acompanamientos",
+                "name": "Acompañamientos",
+                "categories": [
+                    {
+                        "id": "aco-cat",
+                        "name": "Guarniciones",
+                        "products": [
+                            {
+                                "id": "aco-1",
+                                "name": "Patacones",
+                                "price": 6000,
+                                "description": "3 unidades.",
+                                "image": "",
+                                "attributes": []
+                            },
+                            {
+                                "id": "aco-2",
+                                "name": "Ensalada de la Casa",
+                                "price": 7000,
+                                "description": "Fresca y ligera.",
+                                "image": "",
+                                "attributes": [
+                                    "vegetariano",
+                                    "saludable"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "postres",
+                "name": "Postres",
+                "categories": [
+                    {
+                        "id": "pos-cat",
+                        "name": "Para terminar",
+                        "products": [
+                            {
+                                "id": "pos-1",
+                                "name": "Tiramisú",
+                                "price": 12000,
+                                "description": "Postre de café italiano.",
+                                "image": "",
+                                "attributes": []
+                            },
+                            {
+                                "id": "pos-2",
+                                "name": "Brownie con Helado",
+                                "price": 10000,
+                                "description": "Caliente con bola de vainilla.",
+                                "image": "",
+                                "attributes": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]
