@@ -153,17 +153,15 @@ export default function PizzaBuilderModal({ onClose, initialFlavor }: PizzaBuild
                     </section>
 
                     {/* Step 2: Sabores */}
-                    <section className="mb-20">
-                        <div className="flex justify-between items-end mb-2 sticky top-0 bg-gray-50/95 backdrop-blur py-3 border-b border-gray-100 z-10">
-                            <h3 className="text-sm font-bold text-gray-800 flex items-center gap-2 uppercase tracking-wide">
-                                <span className="bg-primary text-white w-5 h-5 rounded-full flex items-center justify-center text-[10px]">2</span>
-                                Elige 2 Sabores ({selectedFlavors.length}/2)
+                    <section className="mb-8">
+                        <div className="sticky top-0 bg-gray-50/95 backdrop-blur z-10 py-3 flex items-center justify-between border-b border-transparent">
+                            <h3 className="text-xs font-black text-gray-400 uppercase tracking-widest flex items-center gap-2">
+                                <span className="bg-gray-800 text-white w-5 h-5 rounded-full flex items-center justify-center text-[10px] shadow-sm">2</span>
+                                Elige tus Sabores
                             </h3>
-                            {selectedFlavors.length < 2 && (
-                                <span className="text-xs text-orange-600 font-bold animate-pulse">
-                                    Elige {2 - selectedFlavors.length} más
-                                </span>
-                            )}
+                            <div className={`text-xs font-bold px-2 py-1 rounded-md transition-colors ${selectedFlavors.length === 2 ? 'bg-green-100 text-green-700' : 'bg-orange-100 text-orange-700'}`}>
+                                {selectedFlavors.length}/2 Seleccionados
+                            </div>
                         </div>
 
                         <div className="bg-white rounded-xl shadow-sm border border-gray-100 divide-y divide-gray-100">
@@ -208,32 +206,39 @@ export default function PizzaBuilderModal({ onClose, initialFlavor }: PizzaBuild
                 </div>
 
                 {/* Footer */}
-                <div className="p-4 border-t border-gray-100 bg-white shrink-0 z-20">
-                    <div className="flex items-center justify-between gap-4 max-w-4xl mx-auto">
-                        <div className="flex items-center gap-3 bg-gray-100 rounded-lg p-1 border border-gray-200">
-                            <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="w-10 h-10 flex items-center justify-center bg-white rounded-md shadow-sm hover:text-primary">
-                                <Minus size={18} />
-                            </button>
-                            <span className="w-8 text-center font-bold text-gray-800">{quantity}</span>
-                            <button onClick={() => setQuantity(quantity + 1)} className="w-10 h-10 flex items-center justify-center bg-white rounded-md shadow-sm hover:text-primary">
-                                <Plus size={18} />
-                            </button>
-                        </div>
+                <div className="p-4 border-t border-gray-100 bg-white shrink-0 z-20 safe-area-bottom">
+                    <div className="flex flex-col gap-4 max-w-4xl mx-auto">
+                        <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-3 bg-gray-100 rounded-lg p-1 border border-gray-200">
+                                <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="w-10 h-10 flex items-center justify-center bg-white rounded-md shadow-sm hover:text-primary active:scale-95 transition-transform">
+                                    <Minus size={18} />
+                                </button>
+                                <span className="w-8 text-center font-bold text-gray-800 tabular-nums">{quantity}</span>
+                                <button onClick={() => setQuantity(quantity + 1)} className="w-10 h-10 flex items-center justify-center bg-white rounded-md shadow-sm hover:text-primary active:scale-95 transition-transform">
+                                    <Plus size={18} />
+                                </button>
+                            </div>
 
-                        <div className="flex flex-col items-end mr-auto ml-4">
-                            <span className="text-xs text-gray-500">Total</span>
-                            <span className="font-black text-xl text-primary">{formatPrice(currentPrice * quantity)}</span>
+                            <div className="flex flex-col items-end">
+                                <span className="text-xs text-gray-500 font-medium">Total Estimado</span>
+                                <span className="font-heading font-black text-2xl text-primary leading-none">
+                                    {formatPrice(currentPrice * quantity)}
+                                </span>
+                            </div>
                         </div>
 
                         <button
                             onClick={handleAddToCart}
                             disabled={!isValid}
                             className={`
-                                px-6 md:px-8 py-3 rounded-xl font-bold text-white shadow-lg transition-all
-                                ${isValid ? 'bg-primary hover:bg-red-700 active:scale-[0.98]' : 'bg-gray-300 cursor-not-allowed'}
+                                w-full py-4 rounded-xl font-bold text-lg text-white shadow-lg transition-all flex items-center justify-center gap-2
+                                ${isValid
+                                    ? 'bg-primary hover:bg-red-700 active:scale-[0.98] shadow-primary/25'
+                                    : 'bg-gray-200 text-gray-400 cursor-not-allowed'}
                             `}
                         >
-                            Agregar Combinación
+                            <span>Agregar Combinación</span>
+                            {isValid && <Check size={20} strokeWidth={3} />}
                         </button>
                     </div>
                 </div>
