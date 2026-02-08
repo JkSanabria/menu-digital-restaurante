@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useCart } from '../context/CartContext';
-import { Trash2, Plus, Minus, ArrowLeft, Send, User, MapPin } from 'lucide-react';
+import { Trash2, Plus, Minus, Send, User, MapPin } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 export default function CartPage() {
@@ -81,12 +81,7 @@ export default function CartPage() {
     return (
         <div className="container mx-auto px-4 py-6 max-w-lg pb-[400px] animate-in fade-in slide-in-from-bottom-8 duration-300">
             <div className="flex items-center justify-between mb-6">
-                <div className="flex items-center gap-4">
-                    <button onClick={() => navigate(-1)} className="p-2 hover:bg-gray-100 rounded-full">
-                        <ArrowLeft size={24} className="text-primary" />
-                    </button>
-                    <h1 className="text-3xl font-heading text-gray-900">Tu Pedido</h1>
-                </div>
+                <h1 className="text-3xl font-heading text-gray-900">Tu Pedido</h1>
 
                 <div className="flex items-center gap-2">
                     <button
