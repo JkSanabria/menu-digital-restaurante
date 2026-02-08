@@ -409,16 +409,20 @@ export default function CartPage() {
                         {/* Mobile: Collapsible */}
                         <div className="lg:hidden">
                             {(!note || note.trim() === "") && (
-                                <div className="mb-4 text-center">
+                                <div className="mb-4 bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
                                     <button
                                         onClick={() => setNote(" ")}
-                                        className="text-sm font-bold text-primary hover:text-primary/80 flex items-center justify-center gap-1 mx-auto transition-colors"
+                                        className="w-full text-left font-bold text-primary hover:text-primary/80 flex items-center gap-2 transition-colors py-2"
                                     >
-                                        <span>+</span> Agregar nota al pedido
+                                        <span className="text-xl">📝</span>
+                                        <div className="flex-1">
+                                            <div className="text-sm">Agregar nota al pedido</div>
+                                            <p className="text-[10px] text-gray-400 mt-0.5 leading-tight">
+                                                (Detalles de dirección, sin cebolla, salsa aparte, etc.)
+                                            </p>
+                                        </div>
+                                        <span className="text-2xl text-gray-300">+</span>
                                     </button>
-                                    <p className="text-[10px] text-gray-400 mt-1 max-w-[250px] mx-auto leading-tight">
-                                        (Detalles de dirección, sin cebolla, salsa aparte, etc.)
-                                    </p>
                                 </div>
                             )}
                             {(note && note.trim() !== "") && (
