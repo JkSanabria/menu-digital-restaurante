@@ -24,7 +24,12 @@ export default function Home() {
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
     const [quantity, setQuantity] = useState(1);
 
-
+    // Enhanced search function: matches if all search words are found in the text
+    const matchesSearch = (text: string, searchQuery: string): boolean => {
+        const searchWords = searchQuery.toLowerCase().trim().split(/\s+/);
+        const targetText = text.toLowerCase();
+        return searchWords.every(word => targetText.includes(word));
+    };
 
     // Search Logic
     const { matchedProducts, matchedSections } = useMemo(() => {
@@ -33,7 +38,7 @@ export default function Home() {
 
         // Search Sections First
         const sections = data.filter(section =>
-            section.name.toLowerCase().includes(term)
+            matchesSearch(section.name, term)
         );
 
         // Map of matched section IDs for efficient lookup
@@ -45,13 +50,13 @@ export default function Home() {
             const isSectionMatch = matchedSectionIds.has(section.id);
 
             section.subcategories.forEach(sub => {
-                const isSubMatch = sub.name.toLowerCase().includes(term);
+                const isSubMatch = matchesSearch(sub.name, term);
 
                 sub.categories.forEach(cat => {
-                    const isCatMatch = cat.name.toLowerCase().includes(term);
+                    const isCatMatch = matchesSearch(cat.name, term);
 
                     cat.products.forEach(prod => {
-                        const isDirectMatch = prod.name.toLowerCase().includes(term) || prod.description.toLowerCase().includes(term);
+                        const isDirectMatch = matchesSearch(prod.name, term) || matchesSearch(prod.description, term);
 
                         if (isDirectMatch || isSectionMatch || isSubMatch || isCatMatch) {
                             products.push(prod);

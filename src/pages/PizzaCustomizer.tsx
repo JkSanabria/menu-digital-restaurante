@@ -35,14 +35,21 @@ export default function PizzaMenu() {
     const [showBuilder, setShowBuilder] = useState(false);
     const [builderInitialFlavor, setBuilderInitialFlavor] = useState<Product | undefined>(undefined);
 
+    // Enhanced search function: matches if all search words are found in the text
+    const matchesSearch = (text: string, searchQuery: string): boolean => {
+        const searchWords = searchQuery.toLowerCase().trim().split(/\s+/);
+        const targetText = text.toLowerCase();
+        return searchWords.every(word => targetText.includes(word));
+    };
+
     // Data Extraction
     const pizzaSection = data.find(s => s.id === 'pizzas');
     // Get all traditional pizzas flat list
     const allTraditionalPizzas = pizzaSection?.subcategories.find(s => s.id === 'pizzas-tradicionales')?.categories.flatMap(c => c.products) || [];
 
-    // Filter pizzas based on search query
+    // Filter pizzas based on search query with enhanced matching
     const traditionalPizzas = allTraditionalPizzas.filter(pizza =>
-        pizza.name.toLowerCase().includes(searchQuery.toLowerCase())
+        matchesSearch(pizza.name, searchQuery)
     );
 
     // Get Active Pizzas from Cart (Combined + Traditional)
