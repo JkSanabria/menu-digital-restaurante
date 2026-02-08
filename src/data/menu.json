@@ -1,1257 +1,2101 @@
 [
-    {
-        "id": "comidas",
-        "name": "Comidas",
-        "image": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&q=80",
-        "subcategories": [
-            {
-                "id": "desgranados",
-                "name": "Desgranados",
-                "categories": [
-                    {
-                        "id": "desgranados-principales",
-                        "name": "Platos Principales",
-                        "products": [
-                            {
-                                "id": "desgranado-costillitas",
-                                "name": "Desgranado de Costillitas BBQ",
-                                "description": "200 gr de costillitas BBQ glaseadas con salsa de la casa, sobre maíz tierno desgranado, queso mozzarella fundido y vegetales frescos",
-                                "price": 34000,
-                                "image": "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=400&q=80",
-                                "prepTime": "15-20 min",
-                                "spiceLevel": 0,
-                                "attributes": [
-                                    "recomendado",
-                                    "favorito-chef"
-                                ]
-                            },
-                            {
-                                "id": "desgranado-pollo-tocineta",
-                                "name": "Desgranado de Pollo con Tocineta",
-                                "description": "150 gr de pechuga de pollo a la plancha y 150 gr de tocineta ahumada crujiente, sobre maíz desgranado con queso fundido y salsas especiales",
-                                "price": 34000,
-                                "image": "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=400&q=80",
-                                "prepTime": "15-20 min",
-                                "spiceLevel": 0,
-                                "attributes": []
-                            },
-                            {
-                                "id": "desgranado-carne",
-                                "name": "Desgranado de Carne Mixta",
-                                "description": "100 gr de pollo jugoso, 150 gr de butifarra artesanal y chorizo argentino premium, con maíz tierno, queso gratinado y chimichurri",
-                                "price": 28000,
-                                "image": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&q=80",
-                                "prepTime": "15-20 min",
-                                "spiceLevel": 1,
-                                "attributes": []
-                            },
-                            {
-                                "id": "desgranado-pollo",
-                                "name": "Desgranado de Pollo",
-                                "description": "150 gr de pechuga de pollo marinada en especias y asada a la perfección, con maíz desgranado, queso mozzarella y tu elección de salsas",
-                                "price": 28000,
-                                "image": "https://images.unsplash.com/photo-1562967914-608f82629710?w=400&q=80",
-                                "prepTime": "12-15 min",
-                                "spiceLevel": 0,
-                                "attributes": []
-                            },
-                            {
-                                "id": "desgranado-vegetariano",
-                                "name": "Desgranado Vegetariano",
-                                "description": "Selección de vegetales salteados: champiñones portobello, pimentones asados, cebolla caramelizada, sobre maíz tierno con queso fundido",
-                                "price": 28000,
-                                "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&q=80",
-                                "prepTime": "12-15 min",
-                                "spiceLevel": 0,
-                                "attributes": [
-                                    "vegetariano",
-                                    "sin-carne"
-                                ]
-                            },
-                            {
-                                "id": "desgranado-supremo",
-                                "name": "Desgranado Supremo del Gallineral",
-                                "description": "¡Nuestra especialidad! 100 gr de costillitas BBQ, 100 gr de pollo, 150 gr de butifarra y chorizo argentino. Perfecto para compartir",
-                                "price": 44000,
-                                "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80",
-                                "prepTime": "20-25 min",
-                                "spiceLevel": 1,
-                                "size": "Para compartir",
-                                "attributes": [
-                                    "recomendado",
-                                    "favorito-chef",
-                                    "para-compartir"
-                                ]
-                            },
-                            {
-                                "id": "desgranado-master",
-                                "name": "Desgranado Master del Gallineral",
-                                "description": "Combinación premium: 50 gr de costillitas BBQ glaseadas, 100 gr de pollo marinado y 100 gr de tocineta ahumada crujiente",
-                                "price": 40000,
-                                "image": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&q=80",
-                                "prepTime": "18-22 min",
-                                "spiceLevel": 0,
-                                "attributes": []
-                            },
-                            {
-                                "id": "desgranado-mixto",
-                                "name": "Desgranado Mixto",
-                                "description": "100 gr de carne de res premium y 100 gr de pechuga de pollo, con maíz desgranado, queso fundido y salsas de la casa",
-                                "price": 34000,
-                                "image": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80",
-                                "prepTime": "15-18 min",
-                                "spiceLevel": 0,
-                                "attributes": []
-                            }
-                        ]
-                    }
+  {
+    "id": "comidas",
+    "name": "Comidas",
+    "image": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&q=80",
+    "subcategories": [
+      {
+        "id": "desgranados",
+        "name": "Desgranados",
+        "categories": [
+          {
+            "id": "desgranados-principales",
+            "name": "Platos Principales",
+            "products": [
+              {
+                "id": "desgranado-costillitas",
+                "name": "Desgranado de Costillitas BBQ",
+                "description": "200 gr de costillitas BBQ glaseadas con salsa de la casa, sobre maíz tierno desgranado, queso mozzarella fundido y vegetales frescos",
+                "price": 34000,
+                "image": "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=400&q=80",
+                "prepTime": "15-20 min",
+                "spiceLevel": 0,
+                "attributes": [
+                  "recomendado",
+                  "favorito-chef"
                 ]
-            },
-            {
-                "id": "hamburguesas",
-                "name": "Hamburguesas",
-                "categories": [
-                    {
-                        "id": "hamburguesas-clasicas",
-                        "name": "Hamburguesas Artesanales",
-                        "products": [
-                            {
-                                "id": "hamburguesa-res",
-                                "name": "Hamburguesa Clásica de Res",
-                                "description": "200 gr de carne de res premium, tocineta crujiente, queso mozzarella fundido, vegetales frescos y salsa especial en pan artesanal",
-                                "price": 22000,
-                                "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&q=80",
-                                "prepTime": "12-15 min",
-                                "spiceLevel": 0,
-                                "attributes": []
-                            },
-                            {
-                                "id": "hamburguesa-doble-carne",
-                                "name": "Hamburguesa Doble Carne",
-                                "description": "Doble carne de res (400 gr total), doble queso mozzarella, tocineta ahumada, cebolla caramelizada y salsa BBQ en pan brioche",
-                                "price": 34000,
-                                "image": "https://images.unsplash.com/photo-1550547660-d9450f859349?w=400&q=80",
-                                "prepTime": "15-18 min",
-                                "spiceLevel": 0,
-                                "attributes": [
-                                    "recomendado",
-                                    "favorito-chef"
-                                ]
-                            },
-                            {
-                                "id": "hamburguesa-pollo",
-                                "name": "Hamburguesa de Pollo Crispy",
-                                "description": "Pechuga de pollo empanizada crujiente, queso cheddar, lechuga fresca, tomate, salsa ranch y pepinillos en pan artesanal",
-                                "price": 24000,
-                                "image": "https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=400&q=80",
-                                "prepTime": "12-15 min",
-                                "spiceLevel": 0,
-                                "attributes": [
-                                    "nuevo"
-                                ]
-                            },
-                            {
-                                "id": "hamburguesa-bbq",
-                                "name": "Hamburguesa BBQ Premium",
-                                "description": "250 gr de carne de res, aros de cebolla crujientes, queso cheddar, tocineta y generosa salsa BBQ ahumada en pan brioche",
-                                "price": 28000,
-                                "image": "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=400&q=80",
-                                "prepTime": "15-18 min",
-                                "spiceLevel": 0,
-                                "attributes": [
-                                    "nuevo"
-                                ]
-                            },
-                            {
-                                "id": "hamburguesa-vegetariana",
-                                "name": "Hamburguesa Vegetariana",
-                                "description": "Medallón de lentejas y quinoa, queso mozzarella, aguacate fresco, tomate, lechuga y mayonesa de cilantro en pan integral",
-                                "price": 24000,
-                                "image": "https://images.unsplash.com/photo-1520072959219-c595dc870360?w=400&q=80",
-                                "prepTime": "12-15 min",
-                                "spiceLevel": 0,
-                                "attributes": [
-                                    "vegetariano",
-                                    "sin-carne",
-                                    "nuevo"
-                                ]
-                            },
-                            {
-                                "id": "hamburguesa-picante",
-                                "name": "Hamburguesa Picante Jalapeño",
-                                "description": "200 gr de carne de res, jalapeños frescos, queso pepper jack, tocineta, cebolla morada y salsa chipotle picante",
-                                "price": 26000,
-                                "image": "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400&q=80",
-                                "prepTime": "12-15 min",
-                                "spiceLevel": 3,
-                                "attributes": [
-                                    "picante",
-                                    "nuevo"
-                                ]
-                            }
-                        ]
-                    }
+              },
+              {
+                "id": "desgranado-pollo-tocineta",
+                "name": "Desgranado de Pollo con Tocineta",
+                "description": "150 gr de pechuga de pollo a la plancha y 150 gr de tocineta ahumada crujiente, sobre maíz desgranado con queso fundido y salsas especiales",
+                "price": 34000,
+                "image": "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=400&q=80",
+                "prepTime": "15-20 min",
+                "spiceLevel": 0,
+                "attributes": []
+              },
+              {
+                "id": "desgranado-carne",
+                "name": "Desgranado de Carne Mixta",
+                "description": "100 gr de pollo jugoso, 150 gr de butifarra artesanal y chorizo argentino premium, con maíz tierno, queso gratinado y chimichurri",
+                "price": 28000,
+                "image": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&q=80",
+                "prepTime": "15-20 min",
+                "spiceLevel": 1,
+                "attributes": []
+              },
+              {
+                "id": "desgranado-pollo",
+                "name": "Desgranado de Pollo",
+                "description": "150 gr de pechuga de pollo marinada en especias y asada a la perfección, con maíz desgranado, queso mozzarella y tu elección de salsas",
+                "price": 28000,
+                "image": "https://images.unsplash.com/photo-1562967914-608f82629710?w=400&q=80",
+                "prepTime": "12-15 min",
+                "spiceLevel": 0,
+                "attributes": []
+              },
+              {
+                "id": "desgranado-vegetariano",
+                "name": "Desgranado Vegetariano",
+                "description": "Selección de vegetales salteados: champiñones portobello, pimentones asados, cebolla caramelizada, sobre maíz tierno con queso fundido",
+                "price": 28000,
+                "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&q=80",
+                "prepTime": "12-15 min",
+                "spiceLevel": 0,
+                "attributes": [
+                  "vegetariano",
+                  "sin-carne"
                 ]
-            },
-            {
-                "id": "francesas",
-                "name": "Papas & Acompañamientos",
-                "categories": [
-                    {
-                        "id": "papas-francesas",
-                        "name": "Papas Especiales",
-                        "products": [
-                            {
-                                "id": "churripapa",
-                                "name": "Churripapa",
-                                "description": "200 gr de chorizo argentino premium, papas a la francesa crujientes, queso cheddar fundido y tu elección de salsas",
-                                "price": 20000,
-                                "image": "https://images.unsplash.com/photo-1639024471283-03518883512d?w=400&q=80",
-                                "prepTime": "10-12 min",
-                                "spiceLevel": 0,
-                                "attributes": []
-                            },
-                            {
-                                "id": "papas-cheddar-tocineta",
-                                "name": "Papas con Cheddar y Tocineta",
-                                "description": "Papas a la francesa cubiertas con queso cheddar fundido, tocineta crujiente, cebollín fresco y crema agria",
-                                "price": 22000,
-                                "image": "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=400&q=80",
-                                "prepTime": "10-12 min",
-                                "spiceLevel": 0,
-                                "attributes": [
-                                    "nuevo",
-                                    "recomendado"
-                                ]
-                            },
-                            {
-                                "id": "papas-rusticas",
-                                "name": "Papas Rústicas con Especias",
-                                "description": "Papas en gajos con piel, sazonadas con hierbas aromáticas, servidas con salsa de ajo y perejil",
-                                "price": 18000,
-                                "image": "https://images.unsplash.com/photo-1518013431117-eb1465fa5752?w=400&q=80",
-                                "prepTime": "12-15 min",
-                                "spiceLevel": 0,
-                                "attributes": [
-                                    "nuevo"
-                                ]
-                            },
-                            {
-                                "id": "aros-cebolla",
-                                "name": "Aros de Cebolla Crujientes",
-                                "description": "Aros de cebolla empanizados y fritos hasta dorar, servidos con salsa ranch y BBQ",
-                                "price": 16000,
-                                "image": "https://images.unsplash.com/photo-1639024471283-03518883512d?w=400&q=80",
-                                "prepTime": "8-10 min",
-                                "spiceLevel": 0,
-                                "attributes": [
-                                    "nuevo"
-                                ]
-                            },
-                            {
-                                "id": "yuca-frita",
-                                "name": "Yuca Frita con Suero",
-                                "description": "Yuca dorada y crujiente por fuera, suave por dentro, acompañada de suero costeño y hogao",
-                                "price": 18000,
-                                "image": "https://images.unsplash.com/photo-1598511726623-d2e9996892f0?w=400&q=80",
-                                "prepTime": "10-12 min",
-                                "spiceLevel": 0,
-                                "attributes": [
-                                    "nuevo",
-                                    "tradicional"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "id": "menu-infantil",
-                        "name": "Menú Infantil",
-                        "products": [
-                            {
-                                "id": "salchipapa-infantil",
-                                "name": "Salchipapa Infantil",
-                                "description": "Salchicha americana, papas a la francesa, queso mozzarella y salsas. Incluye bebida pequeña y sorpresa",
-                                "price": 18000,
-                                "image": "https://images.unsplash.com/photo-1625869016774-3a92be2ae2cd?w=400&q=80",
-                                "prepTime": "8-10 min",
-                                "spiceLevel": 0,
-                                "attributes": [
-                                    "infantil"
-                                ]
-                            },
-                            {
-                                "id": "nuggets-infantil",
-                                "name": "Nuggets de Pollo Infantil",
-                                "description": "6 nuggets de pollo crujientes, papas a la francesa y salsa BBQ. Incluye bebida pequeña y sorpresa",
-                                "price": 18000,
-                                "image": "https://images.unsplash.com/photo-1562967914-608f82629710?w=400&q=80",
-                                "prepTime": "8-10 min",
-                                "spiceLevel": 0,
-                                "attributes": [
-                                    "infantil",
-                                    "nuevo"
-                                ]
-                            }
-                        ]
-                    }
+              },
+              {
+                "id": "desgranado-supremo",
+                "name": "Desgranado Supremo del Gallineral",
+                "description": "¡Nuestra especialidad! 100 gr de costillitas BBQ, 100 gr de pollo, 150 gr de butifarra y chorizo argentino. Perfecto para compartir",
+                "price": 44000,
+                "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80",
+                "prepTime": "20-25 min",
+                "spiceLevel": 1,
+                "size": "Para compartir",
+                "attributes": [
+                  "recomendado",
+                  "favorito-chef",
+                  "para-compartir"
                 ]
-            },
-            {
-                "id": "perros",
-                "name": "Perros Gallineral",
-                "categories": [
-                    {
-                        "id": "hot-dogs",
-                        "name": "Hot Dogs Especiales",
-                        "products": [
-                            {
-                                "id": "perro-tradicional",
-                                "name": "Perro Tradicional",
-                                "description": "Salchicha americana premium, queso mozzarella fundido, salsas de la casa, papas chip y vegetales frescos en pan suave",
-                                "price": 18000,
-                                "image": "https://images.unsplash.com/photo-1612392062798-2c9e6d9e6a9c?w=400&q=80",
-                                "prepTime": "8-10 min",
-                                "spiceLevel": 0,
-                                "attributes": []
-                            },
-                            {
-                                "id": "perro-hawaiano",
-                                "name": "Perro Hawaiano",
-                                "description": "Salchicha americana, queso mozzarella, piña caramelizada, tocineta crujiente y salsa BBQ dulce",
-                                "price": 24000,
-                                "image": "https://images.unsplash.com/photo-1619894991209-e2ed0a19c2b0?w=400&q=80",
-                                "prepTime": "10-12 min",
-                                "spiceLevel": 0,
-                                "attributes": []
-                            },
-                            {
-                                "id": "perro-supremo",
-                                "name": "Perro Supremo Argentino",
-                                "description": "Chorizo argentino premium, queso mozzarella, chimichurri casero, cebolla caramelizada y pimentón asado",
-                                "price": 24000,
-                                "image": "https://images.unsplash.com/photo-1612392062798-2c9e6d9e6a9c?w=400&q=80",
-                                "prepTime": "10-12 min",
-                                "spiceLevel": 1,
-                                "attributes": [
-                                    "recomendado",
-                                    "favorito-chef"
-                                ]
-                            },
-                            {
-                                "id": "perro-mexicano",
-                                "name": "Perro Mexicano Picante",
-                                "description": "Salchicha americana, jalapeños, guacamole, queso cheddar, pico de gallo y salsa chipotle picante",
-                                "price": 26000,
-                                "image": "https://images.unsplash.com/photo-1619894991209-e2ed0a19c2b0?w=400&q=80",
-                                "prepTime": "10-12 min",
-                                "spiceLevel": 3,
-                                "attributes": [
-                                    "picante",
-                                    "nuevo"
-                                ]
-                            },
-                            {
-                                "id": "perro-italiano",
-                                "name": "Perro Italiano",
-                                "description": "Salchicha italiana con especias, queso mozzarella, pimentones asados, cebolla salteada y salsa marinara",
-                                "price": 24000,
-                                "image": "https://images.unsplash.com/photo-1612392062798-2c9e6d9e6a9c?w=400&q=80",
-                                "prepTime": "10-12 min",
-                                "spiceLevel": 0,
-                                "attributes": [
-                                    "nuevo"
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            }
+              },
+              {
+                "id": "desgranado-master",
+                "name": "Desgranado Master del Gallineral",
+                "description": "Combinación premium: 50 gr de costillitas BBQ glaseadas, 100 gr de pollo marinado y 100 gr de tocineta ahumada crujiente",
+                "price": 40000,
+                "image": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&q=80",
+                "prepTime": "18-22 min",
+                "spiceLevel": 0,
+                "attributes": []
+              },
+              {
+                "id": "desgranado-mixto",
+                "name": "Desgranado Mixto",
+                "description": "100 gr de carne de res premium y 100 gr de pechuga de pollo, con maíz desgranado, queso fundido y salsas de la casa",
+                "price": 34000,
+                "image": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80",
+                "prepTime": "15-18 min",
+                "spiceLevel": 0,
+                "attributes": []
+              }
+            ]
+          }
         ]
-    },
-    {
-        "id": "bebidas",
-        "name": "Bebidas",
-        "image": "https://images.unsplash.com/photo-1544145945-f90425340c7e?w=800&q=80",
-        "subcategories": [
-            {
-                "id": "jugos-naturales",
-                "name": "Jugos Naturales",
-                "categories": [
-                    {
-                        "id": "jugos-frescos",
-                        "name": "Jugos Frescos",
-                        "products": [
-                            {
-                                "id": "jugo-natural-agua",
-                                "name": "Jugo Natural en Agua",
-                                "description": "Preparado al momento con frutas frescas. Elige: Mora, Maracuyá, Fresa, Mango, Lulo, Piña o Zapote",
-                                "price": 10000,
-                                "image": "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=400&q=80",
-                                "sizes": [
-                                    "12 oz",
-                                    "16 oz"
-                                ],
-                                "attributes": [
-                                    "natural",
-                                    "sin-azucar-agregada"
-                                ]
-                            },
-                            {
-                                "id": "jugo-natural-leche",
-                                "name": "Jugo Natural en Leche",
-                                "description": "Delicioso jugo de fruta con leche. Elige: Mora, Fresa, Mango, Lulo o Zapote",
-                                "price": 13000,
-                                "image": "https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=400&q=80",
-                                "sizes": [
-                                    "12 oz",
-                                    "16 oz"
-                                ],
-                                "attributes": [
-                                    "natural"
-                                ]
-                            },
-                            {
-                                "id": "limonada-natural",
-                                "name": "Limonada Natural",
-                                "description": "Refrescante limonada preparada con limones frescos y hierbabuena",
-                                "price": 8000,
-                                "image": "https://images.unsplash.com/photo-1523677011781-c91d1bbe2f9d?w=400&q=80",
-                                "sizes": [
-                                    "12 oz",
-                                    "16 oz"
-                                ],
-                                "attributes": [
-                                    "natural",
-                                    "refrescante"
-                                ]
-                            },
-                            {
-                                "id": "limonada-cerezada",
-                                "name": "Limonada de Cereza",
-                                "description": "Limonada natural con toque de cereza y hierbabuena fresca",
-                                "price": 10000,
-                                "image": "https://images.unsplash.com/photo-1556881286-fc6915169721?w=400&q=80",
-                                "sizes": [
-                                    "12 oz",
-                                    "16 oz"
-                                ],
-                                "attributes": [
-                                    "natural",
-                                    "refrescante"
-                                ]
-                            },
-                            {
-                                "id": "limonada-coco",
-                                "name": "Limonada de Coco",
-                                "description": "Exótica combinación de limón con coco rallado y leche de coco",
-                                "price": 12000,
-                                "image": "https://images.unsplash.com/photo-1546173159-315724a31696?w=400&q=80",
-                                "sizes": [
-                                    "12 oz",
-                                    "16 oz"
-                                ],
-                                "attributes": [
-                                    "natural",
-                                    "refrescante",
-                                    "nuevo"
-                                ]
-                            }
-                        ]
-                    }
+      },
+      {
+        "id": "hamburguesas",
+        "name": "Hamburguesas",
+        "categories": [
+          {
+            "id": "hamburguesas-clasicas",
+            "name": "Hamburguesas Artesanales",
+            "products": [
+              {
+                "id": "hamburguesa-res",
+                "name": "Hamburguesa Clásica de Res",
+                "description": "200 gr de carne de res premium, tocineta crujiente, queso mozzarella fundido, vegetales frescos y salsa especial en pan artesanal",
+                "price": 22000,
+                "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&q=80",
+                "prepTime": "12-15 min",
+                "spiceLevel": 0,
+                "attributes": []
+              },
+              {
+                "id": "hamburguesa-doble-carne",
+                "name": "Hamburguesa Doble Carne",
+                "description": "Doble carne de res (400 gr total), doble queso mozzarella, tocineta ahumada, cebolla caramelizada y salsa BBQ en pan brioche",
+                "price": 34000,
+                "image": "https://images.unsplash.com/photo-1550547660-d9450f859349?w=400&q=80",
+                "prepTime": "15-18 min",
+                "spiceLevel": 0,
+                "attributes": [
+                  "recomendado",
+                  "favorito-chef"
                 ]
-            },
-            {
-                "id": "gaseosas",
-                "name": "Gaseosas",
-                "categories": [
-                    {
-                        "id": "gaseosas-nacionales",
-                        "name": "Bebidas Gaseosas",
-                        "products": [
-                            {
-                                "id": "coca-cola",
-                                "name": "Coca-Cola",
-                                "description": "Coca-Cola original en lata o botella",
-                                "price": 5000,
-                                "image": "https://images.unsplash.com/photo-1554866585-cd94860890b7?w=400&q=80",
-                                "sizes": [
-                                    "Lata 350ml",
-                                    "Botella 400ml",
-                                    "Botella 1.5L"
-                                ],
-                                "attributes": []
-                            },
-                            {
-                                "id": "coca-cola-zero",
-                                "name": "Coca-Cola Zero",
-                                "description": "Coca-Cola sin azúcar",
-                                "price": 5000,
-                                "image": "https://images.unsplash.com/photo-1629203851122-3726ecdf080e?w=400&q=80",
-                                "sizes": [
-                                    "Lata 350ml",
-                                    "Botella 400ml"
-                                ],
-                                "attributes": [
-                                    "sin-azucar"
-                                ]
-                            },
-                            {
-                                "id": "sprite",
-                                "name": "Sprite",
-                                "description": "Refrescante bebida de limón",
-                                "price": 5000,
-                                "image": "https://images.unsplash.com/photo-1625772299848-391b6a87d7b3?w=400&q=80",
-                                "sizes": [
-                                    "Lata 350ml",
-                                    "Botella 400ml"
-                                ],
-                                "attributes": []
-                            },
-                            {
-                                "id": "colombiana",
-                                "name": "Colombiana",
-                                "description": "La tradicional gaseosa colombiana",
-                                "price": 5000,
-                                "image": "https://images.unsplash.com/photo-1629203849820-fdd70d49d38e?w=400&q=80",
-                                "sizes": [
-                                    "Botella 400ml"
-                                ],
-                                "attributes": [
-                                    "tradicional"
-                                ]
-                            },
-                            {
-                                "id": "agua-botella",
-                                "name": "Agua Embotellada",
-                                "description": "Agua purificada",
-                                "price": 3000,
-                                "image": "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=400&q=80",
-                                "sizes": [
-                                    "500ml",
-                                    "1L"
-                                ],
-                                "attributes": []
-                            },
-                            {
-                                "id": "agua-con-gas",
-                                "name": "Agua con Gas",
-                                "description": "Agua mineral con gas",
-                                "price": 4000,
-                                "image": "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=400&q=80",
-                                "sizes": [
-                                    "500ml"
-                                ],
-                                "attributes": []
-                            }
-                        ]
-                    }
+              },
+              {
+                "id": "hamburguesa-pollo",
+                "name": "Hamburguesa de Pollo Crispy",
+                "description": "Pechuga de pollo empanizada crujiente, queso cheddar, lechuga fresca, tomate, salsa ranch y pepinillos en pan artesanal",
+                "price": 24000,
+                "image": "https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=400&q=80",
+                "prepTime": "12-15 min",
+                "spiceLevel": 0,
+                "attributes": [
+                  "nuevo"
                 ]
-            },
-            {
-                "id": "cervezas",
-                "name": "Cervezas",
-                "categories": [
-                    {
-                        "id": "cervezas-nacionales",
-                        "name": "Cervezas Nacionales",
-                        "products": [
-                            {
-                                "id": "aguila",
-                                "name": "Águila",
-                                "description": "Cerveza colombiana clásica",
-                                "price": 6000,
-                                "image": "https://images.unsplash.com/photo-1608270586620-248524c67de9?w=400&q=80",
-                                "sizes": [
-                                    "Botella 330ml",
-                                    "Lata 355ml"
-                                ],
-                                "attributes": [
-                                    "nacional"
-                                ]
-                            },
-                            {
-                                "id": "aguila-light",
-                                "name": "Águila Light",
-                                "description": "Cerveza ligera baja en calorías",
-                                "price": 6000,
-                                "image": "https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=400&q=80",
-                                "sizes": [
-                                    "Botella 330ml"
-                                ],
-                                "attributes": [
-                                    "nacional",
-                                    "light"
-                                ]
-                            },
-                            {
-                                "id": "club-colombia",
-                                "name": "Club Colombia",
-                                "description": "Cerveza premium colombiana",
-                                "price": 8000,
-                                "image": "https://images.unsplash.com/photo-1618885472179-5e474019f2a9?w=400&q=80",
-                                "sizes": [
-                                    "Botella 330ml"
-                                ],
-                                "attributes": [
-                                    "nacional",
-                                    "premium"
-                                ]
-                            },
-                            {
-                                "id": "poker",
-                                "name": "Póker",
-                                "description": "Cerveza colombiana tradicional",
-                                "price": 6000,
-                                "image": "https://images.unsplash.com/photo-1608270586620-248524c67de9?w=400&q=80",
-                                "sizes": [
-                                    "Botella 330ml",
-                                    "Lata 355ml"
-                                ],
-                                "attributes": [
-                                    "nacional",
-                                    "tradicional"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "id": "cervezas-artesanales",
-                        "name": "Cervezas Artesanales",
-                        "products": [
-                            {
-                                "id": "bbc-monserrate",
-                                "name": "BBC Monserrate",
-                                "description": "Cerveza artesanal colombiana tipo Lager",
-                                "price": 10000,
-                                "image": "https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=400&q=80",
-                                "sizes": [
-                                    "Botella 330ml"
-                                ],
-                                "attributes": [
-                                    "artesanal",
-                                    "premium"
-                                ]
-                            },
-                            {
-                                "id": "bbc-negra",
-                                "name": "BBC Negra",
-                                "description": "Cerveza artesanal oscura con notas de café",
-                                "price": 10000,
-                                "image": "https://images.unsplash.com/photo-1618885472179-5e474019f2a9?w=400&q=80",
-                                "sizes": [
-                                    "Botella 330ml"
-                                ],
-                                "attributes": [
-                                    "artesanal",
-                                    "premium"
-                                ]
-                            },
-                            {
-                                "id": "3-cordilleras",
-                                "name": "3 Cordilleras",
-                                "description": "Cerveza artesanal colombiana",
-                                "price": 10000,
-                                "image": "https://images.unsplash.com/photo-1608270586620-248524c67de9?w=400&q=80",
-                                "sizes": [
-                                    "Botella 330ml"
-                                ],
-                                "attributes": [
-                                    "artesanal",
-                                    "premium"
-                                ]
-                            }
-                        ]
-                    }
+              },
+              {
+                "id": "hamburguesa-bbq",
+                "name": "Hamburguesa BBQ Premium",
+                "description": "250 gr de carne de res, aros de cebolla crujientes, queso cheddar, tocineta y generosa salsa BBQ ahumada en pan brioche",
+                "price": 28000,
+                "image": "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=400&q=80",
+                "prepTime": "15-18 min",
+                "spiceLevel": 0,
+                "attributes": [
+                  "nuevo"
                 ]
-            },
-            {
-                "id": "cocteles",
-                "name": "Cócteles Sin Alcohol",
-                "categories": [
-                    {
-                        "id": "mocktails",
-                        "name": "Mocktails",
-                        "products": [
-                            {
-                                "id": "mojito-sin-alcohol",
-                                "name": "Mojito Sin Alcohol",
-                                "description": "Refrescante mezcla de limón, hierbabuena, azúcar y soda",
-                                "price": 12000,
-                                "image": "https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=400&q=80",
-                                "attributes": [
-                                    "sin-alcohol",
-                                    "refrescante",
-                                    "nuevo"
-                                ]
-                            },
-                            {
-                                "id": "piña-colada-virgen",
-                                "name": "Piña Colada Virgen",
-                                "description": "Cremosa mezcla de piña y coco",
-                                "price": 14000,
-                                "image": "https://images.unsplash.com/photo-1546171753-97d7676e4602?w=400&q=80",
-                                "attributes": [
-                                    "sin-alcohol",
-                                    "cremoso",
-                                    "nuevo"
-                                ]
-                            },
-                            {
-                                "id": "michelada-sin-alcohol",
-                                "name": "Michelada Sin Alcohol",
-                                "description": "Bebida refrescante con limón, sal, salsa y especias",
-                                "price": 10000,
-                                "image": "https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?w=400&q=80",
-                                "attributes": [
-                                    "sin-alcohol",
-                                    "refrescante",
-                                    "nuevo"
-                                ]
-                            }
-                        ]
-                    }
+              },
+              {
+                "id": "hamburguesa-vegetariana",
+                "name": "Hamburguesa Vegetariana",
+                "description": "Medallón de lentejas y quinoa, queso mozzarella, aguacate fresco, tomate, lechuga y mayonesa de cilantro en pan integral",
+                "price": 24000,
+                "image": "https://images.unsplash.com/photo-1520072959219-c595dc870360?w=400&q=80",
+                "prepTime": "12-15 min",
+                "spiceLevel": 0,
+                "attributes": [
+                  "vegetariano",
+                  "sin-carne",
+                  "nuevo"
                 ]
-            }
+              },
+              {
+                "id": "hamburguesa-picante",
+                "name": "Hamburguesa Picante Jalapeño",
+                "description": "200 gr de carne de res, jalapeños frescos, queso pepper jack, tocineta, cebolla morada y salsa chipotle picante",
+                "price": 26000,
+                "image": "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400&q=80",
+                "prepTime": "12-15 min",
+                "spiceLevel": 3,
+                "attributes": [
+                  "picante",
+                  "nuevo"
+                ]
+              }
+            ]
+          }
         ]
-    },
-    {
-        "id": "especialidades",
-        "name": "Especialidad",
-        "image": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80",
-        "subcategories": [
-            {
-                "id": "especialidades-casa",
-                "name": "Especialidades de la Casa",
-                "categories": [
-                    {
-                        "id": "platos-estrella",
-                        "name": "Nuestros Platos Estrella",
-                        "products": [
-                            {
-                                "id": "desgranado-supremo-esp",
-                                "name": "Desgranado Supremo del Gallineral",
-                                "description": "¡Nuestra especialidad! 100 gr de costillitas BBQ, 100 gr de pollo, 150 gr de butifarra y chorizo argentino. Perfecto para compartir",
-                                "price": 44000,
-                                "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80",
-                                "prepTime": "20-25 min",
-                                "spiceLevel": 1,
-                                "attributes": [
-                                    "recomendado",
-                                    "favorito-chef",
-                                    "para-compartir"
-                                ]
-                            },
-                            {
-                                "id": "hamburguesa-doble-carne-esp",
-                                "name": "Hamburguesa Doble Carne",
-                                "description": "Doble carne de res (400 gr total), doble queso mozzarella, tocineta ahumada, cebolla caramelizada y salsa BBQ en pan brioche",
-                                "price": 34000,
-                                "image": "https://images.unsplash.com/photo-1550547660-d9450f859349?w=400&q=80",
-                                "prepTime": "15-18 min",
-                                "spiceLevel": 0,
-                                "attributes": [
-                                    "recomendado",
-                                    "favorito-chef"
-                                ]
-                            }
-                        ]
-                    }
+      },
+      {
+        "id": "francesas",
+        "name": "Papas & Acompañamientos",
+        "categories": [
+          {
+            "id": "papas-francesas",
+            "name": "Papas Especiales",
+            "products": [
+              {
+                "id": "churripapa",
+                "name": "Churripapa",
+                "description": "200 gr de chorizo argentino premium, papas a la francesa crujientes, queso cheddar fundido y tu elección de salsas",
+                "price": 20000,
+                "image": "https://images.unsplash.com/photo-1639024471283-03518883512d?w=400&q=80",
+                "prepTime": "10-12 min",
+                "spiceLevel": 0,
+                "attributes": []
+              },
+              {
+                "id": "papas-cheddar-tocineta",
+                "name": "Papas con Cheddar y Tocineta",
+                "description": "Papas a la francesa cubiertas con queso cheddar fundido, tocineta crujiente, cebollín fresco y crema agria",
+                "price": 22000,
+                "image": "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=400&q=80",
+                "prepTime": "10-12 min",
+                "spiceLevel": 0,
+                "attributes": [
+                  "nuevo",
+                  "recomendado"
                 ]
-            }
+              },
+              {
+                "id": "papas-rusticas",
+                "name": "Papas Rústicas con Especias",
+                "description": "Papas en gajos con piel, sazonadas con hierbas aromáticas, servidas con salsa de ajo y perejil",
+                "price": 18000,
+                "image": "https://images.unsplash.com/photo-1518013431117-eb1465fa5752?w=400&q=80",
+                "prepTime": "12-15 min",
+                "spiceLevel": 0,
+                "attributes": [
+                  "nuevo"
+                ]
+              },
+              {
+                "id": "aros-cebolla",
+                "name": "Aros de Cebolla Crujientes",
+                "description": "Aros de cebolla empanizados y fritos hasta dorar, servidos con salsa ranch y BBQ",
+                "price": 16000,
+                "image": "https://images.unsplash.com/photo-1639024471283-03518883512d?w=400&q=80",
+                "prepTime": "8-10 min",
+                "spiceLevel": 0,
+                "attributes": [
+                  "nuevo"
+                ]
+              },
+              {
+                "id": "yuca-frita",
+                "name": "Yuca Frita con Suero",
+                "description": "Yuca dorada y crujiente por fuera, suave por dentro, acompañada de suero costeño y hogao",
+                "price": 18000,
+                "image": "https://images.unsplash.com/photo-1598511726623-d2e9996892f0?w=400&q=80",
+                "prepTime": "10-12 min",
+                "spiceLevel": 0,
+                "attributes": [
+                  "nuevo",
+                  "tradicional"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "menu-infantil",
+            "name": "Menú Infantil",
+            "products": [
+              {
+                "id": "salchipapa-infantil",
+                "name": "Salchipapa Infantil",
+                "description": "Salchicha americana, papas a la francesa, queso mozzarella y salsas. Incluye bebida pequeña y sorpresa",
+                "price": 18000,
+                "image": "https://images.unsplash.com/photo-1625869016774-3a92be2ae2cd?w=400&q=80",
+                "prepTime": "8-10 min",
+                "spiceLevel": 0,
+                "attributes": [
+                  "infantil"
+                ]
+              },
+              {
+                "id": "nuggets-infantil",
+                "name": "Nuggets de Pollo Infantil",
+                "description": "6 nuggets de pollo crujientes, papas a la francesa y salsa BBQ. Incluye bebida pequeña y sorpresa",
+                "price": 18000,
+                "image": "https://images.unsplash.com/photo-1562967914-608f82629710?w=400&q=80",
+                "prepTime": "8-10 min",
+                "spiceLevel": 0,
+                "attributes": [
+                  "infantil",
+                  "nuevo"
+                ]
+              }
+            ]
+          }
         ]
-    },
-    {
-        "id": "pizzas",
-        "name": "Pizzas",
-        "image": "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&q=80",
-        "subcategories": [
-            {
-                "id": "pizzas-tradicionales",
-                "name": "Pizzas Tradicionales",
-                "categories": [
-                    {
-                        "id": "clasicas",
-                        "name": "Sabores Clásicos",
-                        "products": [
-                            {
-                                "id": "pizza-hawaiana",
-                                "name": "Pizza Hawaiana",
-                                "description": "Nuestra famosa salsa de tomate, mozzarella fundida, jamón premium y piña caramelizada",
-                                "price": 16900,
-                                "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&q=80",
-                                "prepTime": "15-20 min",
-                                "spiceLevel": 0,
-                                "attributes": [
-                                    "favorito"
-                                ],
-                                "sizes": [
-                                    "Personal",
-                                    "Mediana",
-                                    "Familiar"
-                                ],
-                                "sizePrices": {
-                                    "Personal": 16900,
-                                    "Mediana": 28900,
-                                    "Familiar": 45900
-                                }
-                            },
-                            {
-                                "id": "pizza-jamon",
-                                "name": "Pizza Jamón y Queso",
-                                "description": "Clásica combinación de jamón seleccionado y abundante queso mozzarella",
-                                "price": 15900,
-                                "image": "https://images.unsplash.com/photo-1593560708920-6316e4e6d0d9?w=400&q=80",
-                                "prepTime": "15-20 min",
-                                "spiceLevel": 0,
-                                "attributes": [],
-                                "sizes": [
-                                    "Personal",
-                                    "Mediana",
-                                    "Familiar"
-                                ],
-                                "sizePrices": {
-                                    "Personal": 15900,
-                                    "Mediana": 27900,
-                                    "Familiar": 44900
-                                }
-                            },
-                            {
-                                "id": "pizza-pepperoni",
-                                "name": "Pizza de Pepperoni",
-                                "description": "Salsa de tomate, queso mozzarella y rodajas de pepperoni americano crujiente",
-                                "price": 17900,
-                                "image": "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=400&q=80",
-                                "prepTime": "15-20 min",
-                                "spiceLevel": 1,
-                                "attributes": [
-                                    "recomendado"
-                                ],
-                                "sizes": [
-                                    "Personal",
-                                    "Mediana",
-                                    "Familiar"
-                                ],
-                                "sizePrices": {
-                                    "Personal": 17900,
-                                    "Mediana": 29900,
-                                    "Familiar": 47900
-                                }
-                            },
-                            {
-                                "id": "pizza-pollo-champinones",
-                                "name": "Pizza Pollo con Champiñones",
-                                "description": "Base cremosa, pollo desmenuzado, champiñones frescos y queso mozzarella",
-                                "price": 18900,
-                                "image": "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&q=80",
-                                "prepTime": "15-20 min",
-                                "spiceLevel": 0,
-                                "attributes": [],
-                                "sizes": [
-                                    "Personal",
-                                    "Mediana",
-                                    "Familiar"
-                                ],
-                                "sizePrices": {
-                                    "Personal": 18900,
-                                    "Mediana": 30900,
-                                    "Familiar": 48900
-                                }
-                            },
-                            {
-                                "id": "pizza-vegetariana",
-                                "name": "Pizza Vegetariana",
-                                "description": "Selección de vegetales frescos: pimentón, cebolla, maíz, champiñones y aceitunas negras",
-                                "price": 16900,
-                                "image": "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400&q=80",
-                                "prepTime": "15-20 min",
-                                "spiceLevel": 0,
-                                "attributes": [
-                                    "vegetariano"
-                                ],
-                                "sizes": [
-                                    "Personal",
-                                    "Mediana",
-                                    "Familiar"
-                                ],
-                                "sizePrices": {
-                                    "Personal": 16900,
-                                    "Mediana": 28900,
-                                    "Familiar": 45900
-                                }
-                            },
-                            {
-                                "id": "pizza-mexicana",
-                                "name": "Pizza Mexicana",
-                                "description": "Carne molida, jalapeños, pimentón, cebolla, maíz tierno y un toque picante",
-                                "price": 19900,
-                                "image": "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=400&q=80",
-                                "prepTime": "18-22 min",
-                                "spiceLevel": 2,
-                                "attributes": [
-                                    "picante"
-                                ],
-                                "sizes": [
-                                    "Personal",
-                                    "Mediana",
-                                    "Familiar"
-                                ],
-                                "sizePrices": {
-                                    "Personal": 19900,
-                                    "Mediana": 31900,
-                                    "Familiar": 49900
-                                }
-                            },
-                            {
-                                "id": "pizza-carnes",
-                                "name": "Pizza Carnes",
-                                "description": "Para los amantes de la carne: Salami, peperoni, jamón, pollo y tocineta",
-                                "price": 20900,
-                                "image": "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&q=80",
-                                "prepTime": "18-22 min",
-                                "spiceLevel": 0,
-                                "attributes": [
-                                    "premium"
-                                ],
-                                "sizes": [
-                                    "Personal",
-                                    "Mediana",
-                                    "Familiar"
-                                ],
-                                "sizePrices": {
-                                    "Personal": 20900,
-                                    "Mediana": 32900,
-                                    "Familiar": 50900
-                                }
-                            },
-                            {
-                                "id": "pizza-pollo",
-                                "name": "Pizza de Pollo",
-                                "description": "Pollo desmechado sazonado sobre nuestra base de tomate y queso",
-                                "price": 16900,
-                                "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&q=80",
-                                "prepTime": "15-20 min",
-                                "spiceLevel": 0,
-                                "attributes": [],
-                                "sizes": [
-                                    "Personal",
-                                    "Mediana",
-                                    "Familiar"
-                                ],
-                                "sizePrices": {
-                                    "Personal": 16900,
-                                    "Mediana": 28900,
-                                    "Familiar": 45900
-                                }
-                            },
-                            {
-                                "id": "pizza-criolla",
-                                "name": "Pizza Criolla",
-                                "description": "Maíz tierno, tocineta crujiente, carne desmechada y hogao",
-                                "price": 18900,
-                                "image": "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=400&q=80",
-                                "prepTime": "18-22 min",
-                                "spiceLevel": 1,
-                                "attributes": [],
-                                "sizes": [
-                                    "Personal",
-                                    "Mediana",
-                                    "Familiar"
-                                ],
-                                "sizePrices": {
-                                    "Personal": 18900,
-                                    "Mediana": 30900,
-                                    "Familiar": 48900
-                                }
-                            },
-                            {
-                                "id": "pizza-ranchera",
-                                "name": "Pizza Ranchera",
-                                "description": "Salchicha, cebolla larga, maíz y salsa BBQ especial",
-                                "price": 17900,
-                                "image": "https://images.unsplash.com/photo-1593560708920-6316e4e6d0d9?w=400&q=80",
-                                "prepTime": "15-20 min",
-                                "spiceLevel": 0,
-                                "attributes": [],
-                                "sizes": [
-                                    "Personal",
-                                    "Mediana",
-                                    "Familiar"
-                                ],
-                                "sizePrices": {
-                                    "Personal": 17900,
-                                    "Mediana": 29900,
-                                    "Familiar": 47900
-                                }
-                            }
-                        ]
-                    }
+      },
+      {
+        "id": "perros",
+        "name": "Perros Gallineral",
+        "categories": [
+          {
+            "id": "hot-dogs",
+            "name": "Hot Dogs Especiales",
+            "products": [
+              {
+                "id": "perro-tradicional",
+                "name": "Perro Tradicional",
+                "description": "Salchicha americana premium, queso mozzarella fundido, salsas de la casa, papas chip y vegetales frescos en pan suave",
+                "price": 18000,
+                "image": "https://images.unsplash.com/photo-1612392062798-2c9e6d9e6a9c?w=400&q=80",
+                "prepTime": "8-10 min",
+                "spiceLevel": 0,
+                "attributes": []
+              },
+              {
+                "id": "perro-hawaiano",
+                "name": "Perro Hawaiano",
+                "description": "Salchicha americana, queso mozzarella, piña caramelizada, tocineta crujiente y salsa BBQ dulce",
+                "price": 24000,
+                "image": "https://images.unsplash.com/photo-1619894991209-e2ed0a19c2b0?w=400&q=80",
+                "prepTime": "10-12 min",
+                "spiceLevel": 0,
+                "attributes": []
+              },
+              {
+                "id": "perro-supremo",
+                "name": "Perro Supremo Argentino",
+                "description": "Chorizo argentino premium, queso mozzarella, chimichurri casero, cebolla caramelizada y pimentón asado",
+                "price": 24000,
+                "image": "https://images.unsplash.com/photo-1612392062798-2c9e6d9e6a9c?w=400&q=80",
+                "prepTime": "10-12 min",
+                "spiceLevel": 1,
+                "attributes": [
+                  "recomendado",
+                  "favorito-chef"
                 ]
-            },
-            {
-                "id": "pizzas-combinadas",
-                "name": "Pizzas Combinadas",
-                "categories": [
-                    {
-                        "id": "arma-tu-pizza",
-                        "name": "Combina tus Sabores",
-                        "products": [
-                            {
-                                "id": "pizza-mitad-mitad",
-                                "name": "Pizza Mitad y Mitad",
-                                "description": "¡Lo mejor de dos mundos! Elige tus 2 sabores favoritos para crear tu pizza perfecta.",
-                                "price": 30900,
-                                "image": "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&q=80",
-                                "prepTime": "20-25 min",
-                                "spiceLevel": 0,
-                                "attributes": [
-                                    "personalizable",
-                                    "recomendado"
-                                ],
-                                "sizes": [
-                                    "Mediana",
-                                    "Familiar"
-                                ],
-                                "sizePrices": {
-                                    "Mediana": 30900,
-                                    "Familiar": 48900
-                                },
-                                "maxOptions": 2,
-                                "options": [
-                                    "Hawaiana",
-                                    "Jamón y Queso",
-                                    "Pepperoni",
-                                    "Pollo con Champiñones",
-                                    "Vegetariana",
-                                    "Mexicana (+ $2.000)",
-                                    "Carnes (+ $3.000)",
-                                    "Pollo",
-                                    "Criolla",
-                                    "Ranchera"
-                                ]
-                            }
-                        ]
-                    }
+              },
+              {
+                "id": "perro-mexicano",
+                "name": "Perro Mexicano Picante",
+                "description": "Salchicha americana, jalapeños, guacamole, queso cheddar, pico de gallo y salsa chipotle picante",
+                "price": 26000,
+                "image": "https://images.unsplash.com/photo-1619894991209-e2ed0a19c2b0?w=400&q=80",
+                "prepTime": "10-12 min",
+                "spiceLevel": 3,
+                "attributes": [
+                  "picante",
+                  "nuevo"
                 ]
-            }
+              },
+              {
+                "id": "perro-italiano",
+                "name": "Perro Italiano",
+                "description": "Salchicha italiana con especias, queso mozzarella, pimentones asados, cebolla salteada y salsa marinara",
+                "price": 24000,
+                "image": "https://images.unsplash.com/photo-1612392062798-2c9e6d9e6a9c?w=400&q=80",
+                "prepTime": "10-12 min",
+                "spiceLevel": 0,
+                "attributes": [
+                  "nuevo"
+                ]
+              }
+            ]
+          }
         ]
-    },
-    {
-        "id": "entradas",
-        "name": "Entradas",
-        "image": "https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=800&q=80",
-        "subcategories": [
-            {
-                "id": "ensaladas",
-                "name": "Ensaladas",
-                "categories": [
-                    {
-                        "id": "ensaladas-frescas",
-                        "name": "Ensaladas Frescas",
-                        "products": [
-                            {
-                                "id": "ensalada-cesar",
-                                "name": "Ensalada César",
-                                "description": "Lechuga romana fresca, crutones artesanales, queso parmesano, pollo a la parrilla y aderezo césar casero",
-                                "price": 18000,
-                                "image": "https://images.unsplash.com/photo-1546793665-c74683f339c1?w=400&q=80",
-                                "prepTime": "8-10 min",
-                                "spiceLevel": 0,
-                                "attributes": [
-                                    "saludable"
-                                ]
-                            },
-                            {
-                                "id": "ensalada-mediterranea",
-                                "name": "Ensalada Mediterránea",
-                                "description": "Mix de lechugas, tomate cherry, pepino, aceitunas negras, queso feta, cebolla morada y vinagreta balsámica",
-                                "price": 16000,
-                                "image": "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=400&q=80",
-                                "prepTime": "8-10 min",
-                                "spiceLevel": 0,
-                                "attributes": [
-                                    "vegetariano",
-                                    "saludable"
-                                ]
-                            },
-                            {
-                                "id": "ensalada-napoli",
-                                "name": "Ensalada Napoli Especial",
-                                "description": "Mezcla de lechugas gourmet, tomate, aguacate, maíz tierno, queso mozzarella, pollo o atún y aderezo de la casa",
-                                "price": 20000,
-                                "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&q=80",
-                                "prepTime": "10-12 min",
-                                "spiceLevel": 0,
-                                "attributes": [
-                                    "recomendado",
-                                    "saludable"
-                                ]
-                            }
-                        ]
-                    }
+      }
+    ]
+  },
+  {
+    "id": "bebidas",
+    "name": "Bebidas",
+    "image": "https://images.unsplash.com/photo-1544145945-f90425340c7e?w=800&q=80",
+    "subcategories": [
+      {
+        "id": "jugos-naturales",
+        "name": "Jugos Naturales",
+        "categories": [
+          {
+            "id": "jugos-frescos",
+            "name": "Jugos Frescos",
+            "products": [
+              {
+                "id": "jugo-natural-agua",
+                "name": "Jugo Natural en Agua",
+                "description": "Preparado al momento con frutas frescas. Elige: Mora, Maracuyá, Fresa, Mango, Lulo, Piña o Zapote",
+                "price": 10000,
+                "image": "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=400&q=80",
+                "sizes": [
+                  "12 oz",
+                  "16 oz"
+                ],
+                "attributes": [
+                  "natural",
+                  "sin-azucar-agregada"
                 ]
-            },
-            {
-                "id": "sopas",
-                "name": "Sopas",
-                "categories": [
-                    {
-                        "id": "sopas-calientes",
-                        "name": "Sopas Calientes",
-                        "products": [
-                            {
-                                "id": "sopa-pollo",
-                                "name": "Sopa de Pollo Casera",
-                                "description": "Caldo de pollo con verduras frescas, papa, zanahoria, apio y trozos de pollo deshilachado",
-                                "price": 12000,
-                                "image": "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400&q=80",
-                                "prepTime": "5-8 min",
-                                "spiceLevel": 0,
-                                "attributes": [
-                                    "reconfortante"
-                                ]
-                            },
-                            {
-                                "id": "crema-tomate",
-                                "name": "Crema de Tomate",
-                                "description": "Suave crema de tomate con albahaca fresca, crutones y un toque de crema de leche",
-                                "price": 14000,
-                                "image": "https://images.unsplash.com/photo-1547592180-85f173990554?w=400&q=80",
-                                "prepTime": "5-8 min",
-                                "spiceLevel": 0,
-                                "attributes": [
-                                    "vegetariano"
-                                ]
-                            },
-                            {
-                                "id": "sancocho-napoli",
-                                "name": "Sancocho Napoli",
-                                "description": "Sancocho tradicional con costilla de res, pollo, yuca, plátano, papa criolla y mazorca. Servido con arroz y aguacate",
-                                "price": 22000,
-                                "image": "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=400&q=80",
-                                "prepTime": "8-10 min",
-                                "spiceLevel": 1,
-                                "attributes": [
-                                    "recomendado",
-                                    "favorito-chef"
-                                ]
-                            }
-                        ]
-                    }
+              },
+              {
+                "id": "jugo-natural-leche",
+                "name": "Jugo Natural en Leche",
+                "description": "Delicioso jugo de fruta con leche. Elige: Mora, Fresa, Mango, Lulo o Zapote",
+                "price": 13000,
+                "image": "https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=400&q=80",
+                "sizes": [
+                  "12 oz",
+                  "16 oz"
+                ],
+                "attributes": [
+                  "natural"
                 ]
-            }
+              },
+              {
+                "id": "limonada-natural",
+                "name": "Limonada Natural",
+                "description": "Refrescante limonada preparada con limones frescos y hierbabuena",
+                "price": 8000,
+                "image": "https://images.unsplash.com/photo-1523677011781-c91d1bbe2f9d?w=400&q=80",
+                "sizes": [
+                  "12 oz",
+                  "16 oz"
+                ],
+                "attributes": [
+                  "natural",
+                  "refrescante"
+                ]
+              },
+              {
+                "id": "limonada-cerezada",
+                "name": "Limonada de Cereza",
+                "description": "Limonada natural con toque de cereza y hierbabuena fresca",
+                "price": 10000,
+                "image": "https://images.unsplash.com/photo-1556881286-fc6915169721?w=400&q=80",
+                "sizes": [
+                  "12 oz",
+                  "16 oz"
+                ],
+                "attributes": [
+                  "natural",
+                  "refrescante"
+                ]
+              },
+              {
+                "id": "limonada-coco",
+                "name": "Limonada de Coco",
+                "description": "Exótica combinación de limón con coco rallado y leche de coco",
+                "price": 12000,
+                "image": "https://images.unsplash.com/photo-1546173159-315724a31696?w=400&q=80",
+                "sizes": [
+                  "12 oz",
+                  "16 oz"
+                ],
+                "attributes": [
+                  "natural",
+                  "refrescante",
+                  "nuevo"
+                ]
+              }
+            ]
+          }
         ]
-    },
-    {
-        "id": "postres",
-        "name": "Postres",
-        "image": "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=800&q=80",
-        "subcategories": [
-            {
-                "id": "helados",
-                "name": "Helados",
-                "categories": [
-                    {
-                        "id": "helados-artesanales",
-                        "name": "Helados Artesanales",
-                        "products": [
-                            {
-                                "id": "helado-vainilla",
-                                "name": "Helado de Vainilla Premium",
-                                "description": "Helado artesanal de vainilla de Madagascar con salsa de chocolate caliente y chispas de colores",
-                                "price": 10000,
-                                "image": "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400&q=80",
-                                "prepTime": "2-3 min",
-                                "spiceLevel": 0,
-                                "attributes": []
-                            },
-                            {
-                                "id": "helado-chocolate",
-                                "name": "Helado de Chocolate Belga",
-                                "description": "Helado cremoso de chocolate belga con trozos de brownie y salsa de caramelo",
-                                "price": 12000,
-                                "image": "https://images.unsplash.com/photo-1570197788417-0e82375c9371?w=400&q=80",
-                                "prepTime": "2-3 min",
-                                "spiceLevel": 0,
-                                "attributes": [
-                                    "recomendado"
-                                ]
-                            },
-                            {
-                                "id": "copa-napoli",
-                                "name": "Copa Napoli Especial",
-                                "description": "Tres bolas de helado (vainilla, fresa y chocolate), salsa de frutos rojos, crema chantilly, galleta y cereza",
-                                "price": 16000,
-                                "image": "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=400&q=80",
-                                "prepTime": "3-5 min",
-                                "spiceLevel": 0,
-                                "attributes": [
-                                    "favorito-chef"
-                                ]
-                            }
-                        ]
-                    }
+      },
+      {
+        "id": "gaseosas",
+        "name": "Gaseosas",
+        "categories": [
+          {
+            "id": "gaseosas-nacionales",
+            "name": "Bebidas Gaseosas",
+            "products": [
+              {
+                "id": "coca-cola",
+                "name": "Coca-Cola",
+                "description": "Coca-Cola original en lata o botella",
+                "price": 5000,
+                "image": "https://images.unsplash.com/photo-1554866585-cd94860890b7?w=400&q=80",
+                "sizes": [
+                  "Lata 350ml",
+                  "Botella 400ml",
+                  "Botella 1.5L"
+                ],
+                "attributes": []
+              },
+              {
+                "id": "coca-cola-zero",
+                "name": "Coca-Cola Zero",
+                "description": "Coca-Cola sin azúcar",
+                "price": 5000,
+                "image": "https://images.unsplash.com/photo-1629203851122-3726ecdf080e?w=400&q=80",
+                "sizes": [
+                  "Lata 350ml",
+                  "Botella 400ml"
+                ],
+                "attributes": [
+                  "sin-azucar"
                 ]
-            },
-            {
-                "id": "tortas",
-                "name": "Tortas y Pasteles",
-                "categories": [
-                    {
-                        "id": "tortas-caseras",
-                        "name": "Tortas Caseras",
-                        "products": [
-                            {
-                                "id": "torta-tres-leches",
-                                "name": "Torta Tres Leches",
-                                "description": "Esponjoso bizcocho bañado en tres leches, cubierto con merengue italiano y canela",
-                                "price": 14000,
-                                "image": "https://images.unsplash.com/photo-1621303837174-89787a7d4729?w=400&q=80",
-                                "prepTime": "3-5 min",
-                                "spiceLevel": 0,
-                                "attributes": [
-                                    "recomendado"
-                                ]
-                            },
-                            {
-                                "id": "cheesecake-frutos",
-                                "name": "Cheesecake de Frutos Rojos",
-                                "description": "Suave cheesecake con base de galleta, cubierto con salsa de frutos rojos naturales",
-                                "price": 16000,
-                                "image": "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=400&q=80",
-                                "prepTime": "3-5 min",
-                                "spiceLevel": 0,
-                                "attributes": [
-                                    "favorito-chef"
-                                ]
-                            },
-                            {
-                                "id": "brownie-helado",
-                                "name": "Brownie con Helado",
-                                "description": "Brownie de chocolate tibio con helado de vainilla, salsa de chocolate caliente y nueces",
-                                "price": 15000,
-                                "image": "https://images.unsplash.com/photo-1607920591413-4ec007e70023?w=400&q=80",
-                                "prepTime": "5-7 min",
-                                "spiceLevel": 0,
-                                "attributes": [
-                                    "recomendado"
-                                ]
-                            },
-                            {
-                                "id": "tiramisu",
-                                "name": "Tiramisú Clásico",
-                                "description": "Postre italiano con capas de bizcocho embebido en café, crema de mascarpone y cacao en polvo",
-                                "price": 17000,
-                                "image": "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=400&q=80",
-                                "prepTime": "3-5 min",
-                                "spiceLevel": 0,
-                                "attributes": [
-                                    "favorito-chef"
-                                ]
-                            }
-                        ]
-                    }
+              },
+              {
+                "id": "sprite",
+                "name": "Sprite",
+                "description": "Refrescante bebida de limón",
+                "price": 5000,
+                "image": "https://images.unsplash.com/photo-1625772299848-391b6a87d7b3?w=400&q=80",
+                "sizes": [
+                  "Lata 350ml",
+                  "Botella 400ml"
+                ],
+                "attributes": []
+              },
+              {
+                "id": "colombiana",
+                "name": "Colombiana",
+                "description": "La tradicional gaseosa colombiana",
+                "price": 5000,
+                "image": "https://images.unsplash.com/photo-1629203849820-fdd70d49d38e?w=400&q=80",
+                "sizes": [
+                  "Botella 400ml"
+                ],
+                "attributes": [
+                  "tradicional"
                 ]
-            }
+              },
+              {
+                "id": "agua-botella",
+                "name": "Agua Embotellada",
+                "description": "Agua purificada",
+                "price": 3000,
+                "image": "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=400&q=80",
+                "sizes": [
+                  "500ml",
+                  "1L"
+                ],
+                "attributes": []
+              },
+              {
+                "id": "agua-con-gas",
+                "name": "Agua con Gas",
+                "description": "Agua mineral con gas",
+                "price": 4000,
+                "image": "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=400&q=80",
+                "sizes": [
+                  "500ml"
+                ],
+                "attributes": []
+              }
+            ]
+          }
         ]
-    }
+      },
+      {
+        "id": "cervezas",
+        "name": "Cervezas",
+        "categories": [
+          {
+            "id": "cervezas-nacionales",
+            "name": "Cervezas Nacionales",
+            "products": [
+              {
+                "id": "aguila",
+                "name": "Águila",
+                "description": "Cerveza colombiana clásica",
+                "price": 6000,
+                "image": "https://images.unsplash.com/photo-1608270586620-248524c67de9?w=400&q=80",
+                "sizes": [
+                  "Botella 330ml",
+                  "Lata 355ml"
+                ],
+                "attributes": [
+                  "nacional"
+                ]
+              },
+              {
+                "id": "aguila-light",
+                "name": "Águila Light",
+                "description": "Cerveza ligera baja en calorías",
+                "price": 6000,
+                "image": "https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=400&q=80",
+                "sizes": [
+                  "Botella 330ml"
+                ],
+                "attributes": [
+                  "nacional",
+                  "light"
+                ]
+              },
+              {
+                "id": "club-colombia",
+                "name": "Club Colombia",
+                "description": "Cerveza premium colombiana",
+                "price": 8000,
+                "image": "https://images.unsplash.com/photo-1618885472179-5e474019f2a9?w=400&q=80",
+                "sizes": [
+                  "Botella 330ml"
+                ],
+                "attributes": [
+                  "nacional",
+                  "premium"
+                ]
+              },
+              {
+                "id": "poker",
+                "name": "Póker",
+                "description": "Cerveza colombiana tradicional",
+                "price": 6000,
+                "image": "https://images.unsplash.com/photo-1608270586620-248524c67de9?w=400&q=80",
+                "sizes": [
+                  "Botella 330ml",
+                  "Lata 355ml"
+                ],
+                "attributes": [
+                  "nacional",
+                  "tradicional"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "cervezas-artesanales",
+            "name": "Cervezas Artesanales",
+            "products": [
+              {
+                "id": "bbc-monserrate",
+                "name": "BBC Monserrate",
+                "description": "Cerveza artesanal colombiana tipo Lager",
+                "price": 10000,
+                "image": "https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=400&q=80",
+                "sizes": [
+                  "Botella 330ml"
+                ],
+                "attributes": [
+                  "artesanal",
+                  "premium"
+                ]
+              },
+              {
+                "id": "bbc-negra",
+                "name": "BBC Negra",
+                "description": "Cerveza artesanal oscura con notas de café",
+                "price": 10000,
+                "image": "https://images.unsplash.com/photo-1618885472179-5e474019f2a9?w=400&q=80",
+                "sizes": [
+                  "Botella 330ml"
+                ],
+                "attributes": [
+                  "artesanal",
+                  "premium"
+                ]
+              },
+              {
+                "id": "3-cordilleras",
+                "name": "3 Cordilleras",
+                "description": "Cerveza artesanal colombiana",
+                "price": 10000,
+                "image": "https://images.unsplash.com/photo-1608270586620-248524c67de9?w=400&q=80",
+                "sizes": [
+                  "Botella 330ml"
+                ],
+                "attributes": [
+                  "artesanal",
+                  "premium"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "cocteles",
+        "name": "Cócteles Sin Alcohol",
+        "categories": [
+          {
+            "id": "mocktails",
+            "name": "Mocktails",
+            "products": [
+              {
+                "id": "mojito-sin-alcohol",
+                "name": "Mojito Sin Alcohol",
+                "description": "Refrescante mezcla de limón, hierbabuena, azúcar y soda",
+                "price": 12000,
+                "image": "https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=400&q=80",
+                "attributes": [
+                  "sin-alcohol",
+                  "refrescante",
+                  "nuevo"
+                ]
+              },
+              {
+                "id": "piña-colada-virgen",
+                "name": "Piña Colada Virgen",
+                "description": "Cremosa mezcla de piña y coco",
+                "price": 14000,
+                "image": "https://images.unsplash.com/photo-1546171753-97d7676e4602?w=400&q=80",
+                "attributes": [
+                  "sin-alcohol",
+                  "cremoso",
+                  "nuevo"
+                ]
+              },
+              {
+                "id": "michelada-sin-alcohol",
+                "name": "Michelada Sin Alcohol",
+                "description": "Bebida refrescante con limón, sal, salsa y especias",
+                "price": 10000,
+                "image": "https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?w=400&q=80",
+                "attributes": [
+                  "sin-alcohol",
+                  "refrescante",
+                  "nuevo"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "especialidades",
+    "name": "Especialidad",
+    "image": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80",
+    "subcategories": [
+      {
+        "id": "especialidades-casa",
+        "name": "Especialidades de la Casa",
+        "categories": [
+          {
+            "id": "platos-estrella",
+            "name": "Nuestros Platos Estrella",
+            "products": [
+              {
+                "id": "desgranado-supremo-esp",
+                "name": "Desgranado Supremo del Gallineral",
+                "description": "¡Nuestra especialidad! 100 gr de costillitas BBQ, 100 gr de pollo, 150 gr de butifarra y chorizo argentino. Perfecto para compartir",
+                "price": 44000,
+                "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80",
+                "prepTime": "20-25 min",
+                "spiceLevel": 1,
+                "attributes": [
+                  "recomendado",
+                  "favorito-chef",
+                  "para-compartir"
+                ]
+              },
+              {
+                "id": "hamburguesa-doble-carne-esp",
+                "name": "Hamburguesa Doble Carne",
+                "description": "Doble carne de res (400 gr total), doble queso mozzarella, tocineta ahumada, cebolla caramelizada y salsa BBQ en pan brioche",
+                "price": 34000,
+                "image": "https://images.unsplash.com/photo-1550547660-d9450f859349?w=400&q=80",
+                "prepTime": "15-18 min",
+                "spiceLevel": 0,
+                "attributes": [
+                  "recomendado",
+                  "favorito-chef"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pizzas",
+    "name": "Pizzas",
+    "image": "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&q=80",
+    "subcategories": [
+      {
+        "id": "pizzas-tradicionales",
+        "name": "Pizzas Tradicionales",
+        "categories": [
+          {
+            "id": "clasicas",
+            "name": "Sabores Clásicos",
+            "products": [
+              {
+                "id": "pizza-4-quesos",
+                "name": "Pizza 4 Quesos",
+                "price": 55000,
+                "description": "Deliciosa pizza con una mezcla especial de quesos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 27000,
+                  "Mediana": 55000,
+                  "Familiar": 69000
+                }
+              },
+              {
+                "id": "pizza-4-quesos---gourmet",
+                "name": "Pizza 4 Quesos - Gourmet",
+                "price": 59000,
+                "description": "Deliciosa pizza con una mezcla especial de quesos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 30000,
+                  "Mediana": 59000,
+                  "Familiar": 73000
+                }
+              },
+              {
+                "id": "pizza-5-carnes",
+                "name": "Pizza 5 Carnes",
+                "price": 75000,
+                "description": "Exquisita combinación de carnes selectas. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 40000,
+                  "Mediana": 75000,
+                  "Familiar": 95000
+                }
+              },
+              {
+                "id": "pizza-5-carnes---queso-azul",
+                "name": "Pizza 5 Carnes - Queso Azul",
+                "price": 75000,
+                "description": "Deliciosa pizza con una mezcla especial de quesos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 40000,
+                  "Mediana": 75000,
+                  "Familiar": 95000
+                }
+              },
+              {
+                "id": "pizza-anchoas",
+                "name": "Pizza Anchoas",
+                "price": 59000,
+                "description": "Pizza artesanal con ingredientes frescos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 30000,
+                  "Mediana": 59000,
+                  "Familiar": 73000
+                }
+              },
+              {
+                "id": "pizza-bianca-especial",
+                "name": "Pizza Bianca Especial",
+                "price": 55000,
+                "description": "Pizza artesanal con ingredientes frescos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 25000,
+                  "Mediana": 55000,
+                  "Familiar": 69000
+                }
+              },
+              {
+                "id": "pizza-bocadillo---4-quesos",
+                "name": "Pizza Bocadillo - 4 Quesos",
+                "price": 59000,
+                "description": "Deliciosa pizza con una mezcla especial de quesos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 30000,
+                  "Mediana": 59000,
+                  "Familiar": 73000
+                }
+              },
+              {
+                "id": "pizza-bocadillo-tocineta",
+                "name": "Pizza Bocadillo-Tocineta",
+                "price": 55000,
+                "description": "Pizza artesanal con ingredientes frescos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 25000,
+                  "Mediana": 55000,
+                  "Familiar": 69000
+                }
+              },
+              {
+                "id": "pizza-bolonia",
+                "name": "Pizza Bolonia",
+                "price": 59000,
+                "description": "Pizza artesanal con ingredientes frescos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 30000,
+                  "Mediana": 59000,
+                  "Familiar": 73000
+                }
+              },
+              {
+                "id": "pizza-camarones-cebolla",
+                "name": "Pizza Camarones-Cebolla",
+                "price": 75000,
+                "description": "Pizza artesanal con ingredientes frescos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 40000,
+                  "Mediana": 75000,
+                  "Familiar": 95000
+                }
+              },
+              {
+                "id": "pizza-camarones-queso-azul",
+                "name": "Pizza Camarones-Queso Azul",
+                "price": 75000,
+                "description": "Deliciosa pizza con una mezcla especial de quesos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 40000,
+                  "Mediana": 75000,
+                  "Familiar": 95000
+                }
+              },
+              {
+                "id": "pizza-cebolla-cabano",
+                "name": "Pizza Cebolla-Cabano",
+                "price": 55000,
+                "description": "Pizza artesanal con ingredientes frescos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 27000,
+                  "Mediana": 55000,
+                  "Familiar": 69000
+                }
+              },
+              {
+                "id": "pizza-cebolla-pollo",
+                "name": "Pizza Cebolla-Pollo",
+                "price": 55000,
+                "description": "Jugoso pollo con ingredientes frescos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 27000,
+                  "Mediana": 55000,
+                  "Familiar": 69000
+                }
+              },
+              {
+                "id": "pizza-cebolla-pollo-especial",
+                "name": "Pizza Cebolla-Pollo Especial",
+                "price": 68000,
+                "description": "Jugoso pollo con ingredientes frescos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 35000,
+                  "Mediana": 68000,
+                  "Familiar": 82000
+                }
+              },
+              {
+                "id": "pizza-cebolla-tocineta",
+                "name": "Pizza Cebolla-Tocineta",
+                "price": 55000,
+                "description": "Pizza artesanal con ingredientes frescos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 27000,
+                  "Mediana": 55000,
+                  "Familiar": 69000
+                }
+              },
+              {
+                "id": "pizza-cebolla-tocineta-pepperoni",
+                "name": "Pizza Cebolla-Tocineta-Pepperoni",
+                "price": 68000,
+                "description": "Tradicional pizza con pepperoni premium. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 35000,
+                  "Mediana": 68000,
+                  "Familiar": 82000
+                }
+              },
+              {
+                "id": "pizza-chicago",
+                "name": "Pizza Chicago",
+                "price": 75000,
+                "description": "Pizza artesanal con ingredientes frescos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 40000,
+                  "Mediana": 75000,
+                  "Familiar": 95000
+                }
+              },
+              {
+                "id": "pizza-chorizo-argentino",
+                "name": "Pizza Chorizo Argentino",
+                "price": 55000,
+                "description": "Pizza artesanal con ingredientes frescos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 27000,
+                  "Mediana": 55000,
+                  "Familiar": 69000
+                }
+              },
+              {
+                "id": "pizza-chorizo-argentino-especial",
+                "name": "Pizza Chorizo Argentino Especial",
+                "price": 59000,
+                "description": "Pizza artesanal con ingredientes frescos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 30000,
+                  "Mediana": 59000,
+                  "Familiar": 73000
+                }
+              },
+              {
+                "id": "pizza-chorizo-espaol-queso-azul",
+                "name": "Pizza Chorizo Español-Queso Azul",
+                "price": 75000,
+                "description": "Deliciosa pizza con una mezcla especial de quesos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 40000,
+                  "Mediana": 75000,
+                  "Familiar": 95000
+                }
+              },
+              {
+                "id": "pizza-chorizo-napoli",
+                "name": "Pizza Chorizo Napoli",
+                "price": 68000,
+                "description": "Pizza artesanal con ingredientes frescos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 35000,
+                  "Mediana": 68000,
+                  "Familiar": 82000
+                }
+              },
+              {
+                "id": "pizza-ciruela-y-tocineta",
+                "name": "Pizza Ciruela Y Tocineta",
+                "price": 57000,
+                "description": "Pizza artesanal con ingredientes frescos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 28000,
+                  "Mediana": 57000,
+                  "Familiar": 71000
+                }
+              },
+              {
+                "id": "pizza-colombiana",
+                "name": "Pizza Colombiana",
+                "price": 59000,
+                "description": "Pizza artesanal con ingredientes frescos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 30000,
+                  "Mediana": 59000,
+                  "Familiar": 73000
+                }
+              },
+              {
+                "id": "pizza-costillitas-bbq",
+                "name": "Pizza Costillitas Bbq",
+                "price": 68000,
+                "description": "Pizza artesanal con ingredientes frescos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 35000,
+                  "Mediana": 68000,
+                  "Familiar": 82000
+                }
+              },
+              {
+                "id": "pizza-creta",
+                "name": "Pizza Creta",
+                "price": 55000,
+                "description": "Pizza artesanal con ingredientes frescos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 25000,
+                  "Mediana": 55000,
+                  "Familiar": 69000
+                }
+              },
+              {
+                "id": "pizza-del-campo",
+                "name": "Pizza Del Campo",
+                "price": 55000,
+                "description": "Pizza artesanal con ingredientes frescos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 25000,
+                  "Mediana": 55000,
+                  "Familiar": 69000
+                }
+              },
+              {
+                "id": "pizza-del-campo-especial",
+                "name": "Pizza Del Campo Especial",
+                "price": 59000,
+                "description": "Pizza artesanal con ingredientes frescos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 30000,
+                  "Mediana": 59000,
+                  "Familiar": 73000
+                }
+              },
+              {
+                "id": "pizza-dulce-de-leche-y-queso",
+                "name": "Pizza Dulce De Leche Y Queso",
+                "price": 35000,
+                "description": "Deliciosa pizza con una mezcla especial de quesos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 22000,
+                  "Mediana": 35000,
+                  "Familiar": 49000
+                }
+              },
+              {
+                "id": "pizza-espaola",
+                "name": "Pizza Española",
+                "price": 75000,
+                "description": "Pizza artesanal con ingredientes frescos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 40000,
+                  "Mediana": 75000,
+                  "Familiar": 95000
+                }
+              },
+              {
+                "id": "pizza-favorita-americana",
+                "name": "Pizza Favorita Americana",
+                "price": 55000,
+                "description": "Pizza artesanal con ingredientes frescos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 25000,
+                  "Mediana": 55000,
+                  "Familiar": 69000
+                }
+              },
+              {
+                "id": "pizza-hawaiana",
+                "name": "Pizza Hawaiana",
+                "price": 55000,
+                "description": "Clásica combinación de jamón y piña. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 25000,
+                  "Mediana": 55000,
+                  "Familiar": 69000
+                }
+              },
+              {
+                "id": "pizza-hawaiana-especial",
+                "name": "Pizza Hawaiana Especial",
+                "price": 59000,
+                "description": "Clásica combinación de jamón y piña. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 30000,
+                  "Mediana": 59000,
+                  "Familiar": 73000
+                }
+              },
+              {
+                "id": "pizza-hawaiana-cereza",
+                "name": "Pizza Hawaiana-Cereza",
+                "price": 55000,
+                "description": "Clásica combinación de jamón y piña. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 25000,
+                  "Mediana": 55000,
+                  "Familiar": 69000
+                }
+              },
+              {
+                "id": "pizza-italiana",
+                "name": "Pizza Italiana",
+                "price": 55000,
+                "description": "Pizza artesanal con ingredientes frescos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 25000,
+                  "Mediana": 55000,
+                  "Familiar": 69000
+                }
+              },
+              {
+                "id": "pizza-italiana---4-quesos",
+                "name": "Pizza Italiana - 4 Quesos",
+                "price": 68000,
+                "description": "Deliciosa pizza con una mezcla especial de quesos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 35000,
+                  "Mediana": 68000,
+                  "Familiar": 82000
+                }
+              },
+              {
+                "id": "pizza-jamon-y-championes",
+                "name": "Pizza Jamon Y Champiñones",
+                "price": 55000,
+                "description": "Pizza artesanal con ingredientes frescos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 25000,
+                  "Mediana": 55000,
+                  "Familiar": 69000
+                }
+              },
+              {
+                "id": "pizza-jamon-y-queso",
+                "name": "Pizza Jamon Y Queso",
+                "price": 45000,
+                "description": "Deliciosa pizza con una mezcla especial de quesos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 22000,
+                  "Mediana": 45000,
+                  "Familiar": 59000
+                }
+              },
+              {
+                "id": "pizza-maiz-tocineta",
+                "name": "Pizza Maiz-Tocineta",
+                "price": 57000,
+                "description": "Pizza artesanal con ingredientes frescos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 28000,
+                  "Mediana": 57000,
+                  "Familiar": 71000
+                }
+              },
+              {
+                "id": "pizza-maiz-tocineta-pollo",
+                "name": "Pizza Maiz-Tocineta Pollo",
+                "price": 59000,
+                "description": "Jugoso pollo con ingredientes frescos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 30000,
+                  "Mediana": 59000,
+                  "Familiar": 73000
+                }
+              },
+              {
+                "id": "pizza-margarita",
+                "name": "Pizza Margarita",
+                "price": 35000,
+                "description": "Pizza artesanal con ingredientes frescos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 22000,
+                  "Mediana": 35000,
+                  "Familiar": 49000
+                }
+              },
+              {
+                "id": "pizza-napoli",
+                "name": "Pizza Napoli",
+                "price": 40000,
+                "description": "Pizza artesanal con ingredientes frescos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 22000,
+                  "Mediana": 40000,
+                  "Familiar": 50000
+                }
+              },
+              {
+                "id": "pizza-napoli-especial",
+                "name": "Pizza Napoli Especial",
+                "price": 68000,
+                "description": "Pizza artesanal con ingredientes frescos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 35000,
+                  "Mediana": 68000,
+                  "Familiar": 82000
+                }
+              },
+              {
+                "id": "pizza-palermo",
+                "name": "Pizza Palermo",
+                "price": 59000,
+                "description": "Pizza artesanal con ingredientes frescos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 30000,
+                  "Mediana": 59000,
+                  "Familiar": 73000
+                }
+              },
+              {
+                "id": "pizza-pepperoni",
+                "name": "Pizza Pepperoni",
+                "price": 55000,
+                "description": "Tradicional pizza con pepperoni premium. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 27000,
+                  "Mediana": 55000,
+                  "Familiar": 69000
+                }
+              },
+              {
+                "id": "pizza-pepperoni---3-quesos",
+                "name": "Pizza Pepperoni - 3 Quesos",
+                "price": 55000,
+                "description": "Deliciosa pizza con una mezcla especial de quesos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 25000,
+                  "Mediana": 55000,
+                  "Familiar": 69000
+                }
+              },
+              {
+                "id": "pizza-pizza-bianca",
+                "name": "Pizza Pizza Bianca",
+                "price": 45000,
+                "description": "Pizza artesanal con ingredientes frescos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 22000,
+                  "Mediana": 45000,
+                  "Familiar": 59000
+                }
+              },
+              {
+                "id": "pizza-pizza-burguer",
+                "name": "Pizza Pizza Burguer",
+                "price": 55000,
+                "description": "Pizza artesanal con ingredientes frescos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 25000,
+                  "Mediana": 55000,
+                  "Familiar": 69000
+                }
+              },
+              {
+                "id": "pizza-pollo-bbq-pia",
+                "name": "Pizza Pollo Bbq-Piña",
+                "price": 59000,
+                "description": "Jugoso pollo con ingredientes frescos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 30000,
+                  "Mediana": 59000,
+                  "Familiar": 73000
+                }
+              },
+              {
+                "id": "pizza-pollo-championes",
+                "name": "Pizza Pollo-Champiñones",
+                "price": 55000,
+                "description": "Jugoso pollo con ingredientes frescos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 27000,
+                  "Mediana": 55000,
+                  "Familiar": 69000
+                }
+              },
+              {
+                "id": "pizza-pollo-tocineta",
+                "name": "Pizza Pollo-Tocineta",
+                "price": 55000,
+                "description": "Jugoso pollo con ingredientes frescos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 27000,
+                  "Mediana": 55000,
+                  "Familiar": 69000
+                }
+              },
+              {
+                "id": "pizza-queso-championes",
+                "name": "Pizza Queso-Champiñones",
+                "price": 45000,
+                "description": "Deliciosa pizza con una mezcla especial de quesos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 22000,
+                  "Mediana": 45000,
+                  "Familiar": 59000
+                }
+              },
+              {
+                "id": "pizza-queso-pollo",
+                "name": "Pizza Queso-Pollo",
+                "price": 47000,
+                "description": "Deliciosa pizza con una mezcla especial de quesos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 25000,
+                  "Mediana": 47000,
+                  "Familiar": 61000
+                }
+              },
+              {
+                "id": "pizza-salami",
+                "name": "Pizza Salami",
+                "price": 55000,
+                "description": "Pizza artesanal con ingredientes frescos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 27000,
+                  "Mediana": 55000,
+                  "Familiar": 69000
+                }
+              },
+              {
+                "id": "pizza-salami-genoves---queso-azul",
+                "name": "Pizza Salami Genoves - Queso Azul",
+                "price": 55000,
+                "description": "Deliciosa pizza con una mezcla especial de quesos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 25000,
+                  "Mediana": 55000,
+                  "Familiar": 69000
+                }
+              },
+              {
+                "id": "pizza-salami-queso-azul",
+                "name": "Pizza Salami-Queso Azul",
+                "price": 59000,
+                "description": "Deliciosa pizza con una mezcla especial de quesos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 30000,
+                  "Mediana": 59000,
+                  "Familiar": 73000
+                }
+              },
+              {
+                "id": "pizza-solo-queso",
+                "name": "Pizza Solo Queso",
+                "price": 33000,
+                "description": "Deliciosa pizza con una mezcla especial de quesos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 20000,
+                  "Mediana": 33000,
+                  "Familiar": 45000
+                }
+              },
+              {
+                "id": "pizza-tocineta-salami-championes",
+                "name": "Pizza Tocineta Salami Champiñones",
+                "price": 59000,
+                "description": "Pizza artesanal con ingredientes frescos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 30000,
+                  "Mediana": 59000,
+                  "Familiar": 73000
+                }
+              },
+              {
+                "id": "pizza-tres-quesos---jamon",
+                "name": "Pizza Tres Quesos - Jamon",
+                "price": 55000,
+                "description": "Deliciosa pizza con una mezcla especial de quesos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 25000,
+                  "Mediana": 55000,
+                  "Familiar": 69000
+                }
+              },
+              {
+                "id": "pizza-vegetales---5-carnes",
+                "name": "Pizza Vegetales - 5 Carnes",
+                "price": 68000,
+                "description": "Exquisita combinación de carnes selectas. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 40000,
+                  "Mediana": 68000,
+                  "Familiar": 82000
+                }
+              },
+              {
+                "id": "pizza-vegetales-pollo",
+                "name": "Pizza Vegetales-Pollo",
+                "price": 68000,
+                "description": "Fresca selección de vegetales de temporada. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 35000,
+                  "Mediana": 68000,
+                  "Familiar": 82000
+                }
+              },
+              {
+                "id": "pizza-vegetales-queso-azul",
+                "name": "Pizza Vegetales-Queso Azul",
+                "price": 68000,
+                "description": "Deliciosa pizza con una mezcla especial de quesos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 35000,
+                  "Mediana": 68000,
+                  "Familiar": 82000
+                }
+              },
+              {
+                "id": "pizza-vegetariana",
+                "name": "Pizza Vegetariana ",
+                "price": 55000,
+                "description": "Fresca selección de vegetales de temporada. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 27000,
+                  "Mediana": 55000,
+                  "Familiar": 69000
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "pizzas-combinadas",
+        "name": "Pizzas Combinadas",
+        "categories": [
+          {
+            "id": "arma-tu-pizza",
+            "name": "Combina tus Sabores",
+            "products": [
+              {
+                "id": "pizza-mitad-mitad",
+                "name": "Pizza Mitad y Mitad",
+                "description": "¡Lo mejor de dos mundos! Elige tus 2 sabores favoritos para crear tu pizza perfecta.",
+                "price": 30900,
+                "image": "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&q=80",
+                "prepTime": "20-25 min",
+                "spiceLevel": 0,
+                "attributes": [
+                  "personalizable",
+                  "recomendado"
+                ],
+                "sizes": [
+                  "Mediana",
+                  "Familiar"
+                ],
+                "sizePrices": {
+                  "Mediana": 30900,
+                  "Familiar": 48900
+                },
+                "maxOptions": 2,
+                "options": [
+                  "Hawaiana",
+                  "Jamón y Queso",
+                  "Pepperoni",
+                  "Pollo con Champiñones",
+                  "Vegetariana",
+                  "Mexicana (+ $2.000)",
+                  "Carnes (+ $3.000)",
+                  "Pollo",
+                  "Criolla",
+                  "Ranchera"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "entradas",
+    "name": "Entradas",
+    "image": "https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=800&q=80",
+    "subcategories": [
+      {
+        "id": "ensaladas",
+        "name": "Ensaladas",
+        "categories": [
+          {
+            "id": "ensaladas-frescas",
+            "name": "Ensaladas Frescas",
+            "products": [
+              {
+                "id": "ensalada-cesar",
+                "name": "Ensalada César",
+                "description": "Lechuga romana fresca, crutones artesanales, queso parmesano, pollo a la parrilla y aderezo césar casero",
+                "price": 18000,
+                "image": "https://images.unsplash.com/photo-1546793665-c74683f339c1?w=400&q=80",
+                "prepTime": "8-10 min",
+                "spiceLevel": 0,
+                "attributes": [
+                  "saludable"
+                ]
+              },
+              {
+                "id": "ensalada-mediterranea",
+                "name": "Ensalada Mediterránea",
+                "description": "Mix de lechugas, tomate cherry, pepino, aceitunas negras, queso feta, cebolla morada y vinagreta balsámica",
+                "price": 16000,
+                "image": "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=400&q=80",
+                "prepTime": "8-10 min",
+                "spiceLevel": 0,
+                "attributes": [
+                  "vegetariano",
+                  "saludable"
+                ]
+              },
+              {
+                "id": "ensalada-napoli",
+                "name": "Ensalada Napoli Especial",
+                "description": "Mezcla de lechugas gourmet, tomate, aguacate, maíz tierno, queso mozzarella, pollo o atún y aderezo de la casa",
+                "price": 20000,
+                "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&q=80",
+                "prepTime": "10-12 min",
+                "spiceLevel": 0,
+                "attributes": [
+                  "recomendado",
+                  "saludable"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sopas",
+        "name": "Sopas",
+        "categories": [
+          {
+            "id": "sopas-calientes",
+            "name": "Sopas Calientes",
+            "products": [
+              {
+                "id": "sopa-pollo",
+                "name": "Sopa de Pollo Casera",
+                "description": "Caldo de pollo con verduras frescas, papa, zanahoria, apio y trozos de pollo deshilachado",
+                "price": 12000,
+                "image": "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400&q=80",
+                "prepTime": "5-8 min",
+                "spiceLevel": 0,
+                "attributes": [
+                  "reconfortante"
+                ]
+              },
+              {
+                "id": "crema-tomate",
+                "name": "Crema de Tomate",
+                "description": "Suave crema de tomate con albahaca fresca, crutones y un toque de crema de leche",
+                "price": 14000,
+                "image": "https://images.unsplash.com/photo-1547592180-85f173990554?w=400&q=80",
+                "prepTime": "5-8 min",
+                "spiceLevel": 0,
+                "attributes": [
+                  "vegetariano"
+                ]
+              },
+              {
+                "id": "sancocho-napoli",
+                "name": "Sancocho Napoli",
+                "description": "Sancocho tradicional con costilla de res, pollo, yuca, plátano, papa criolla y mazorca. Servido con arroz y aguacate",
+                "price": 22000,
+                "image": "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=400&q=80",
+                "prepTime": "8-10 min",
+                "spiceLevel": 1,
+                "attributes": [
+                  "recomendado",
+                  "favorito-chef"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "postres",
+    "name": "Postres",
+    "image": "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=800&q=80",
+    "subcategories": [
+      {
+        "id": "helados",
+        "name": "Helados",
+        "categories": [
+          {
+            "id": "helados-artesanales",
+            "name": "Helados Artesanales",
+            "products": [
+              {
+                "id": "helado-vainilla",
+                "name": "Helado de Vainilla Premium",
+                "description": "Helado artesanal de vainilla de Madagascar con salsa de chocolate caliente y chispas de colores",
+                "price": 10000,
+                "image": "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400&q=80",
+                "prepTime": "2-3 min",
+                "spiceLevel": 0,
+                "attributes": []
+              },
+              {
+                "id": "helado-chocolate",
+                "name": "Helado de Chocolate Belga",
+                "description": "Helado cremoso de chocolate belga con trozos de brownie y salsa de caramelo",
+                "price": 12000,
+                "image": "https://images.unsplash.com/photo-1570197788417-0e82375c9371?w=400&q=80",
+                "prepTime": "2-3 min",
+                "spiceLevel": 0,
+                "attributes": [
+                  "recomendado"
+                ]
+              },
+              {
+                "id": "copa-napoli",
+                "name": "Copa Napoli Especial",
+                "description": "Tres bolas de helado (vainilla, fresa y chocolate), salsa de frutos rojos, crema chantilly, galleta y cereza",
+                "price": 16000,
+                "image": "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=400&q=80",
+                "prepTime": "3-5 min",
+                "spiceLevel": 0,
+                "attributes": [
+                  "favorito-chef"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "tortas",
+        "name": "Tortas y Pasteles",
+        "categories": [
+          {
+            "id": "tortas-caseras",
+            "name": "Tortas Caseras",
+            "products": [
+              {
+                "id": "torta-tres-leches",
+                "name": "Torta Tres Leches",
+                "description": "Esponjoso bizcocho bañado en tres leches, cubierto con merengue italiano y canela",
+                "price": 14000,
+                "image": "https://images.unsplash.com/photo-1621303837174-89787a7d4729?w=400&q=80",
+                "prepTime": "3-5 min",
+                "spiceLevel": 0,
+                "attributes": [
+                  "recomendado"
+                ]
+              },
+              {
+                "id": "cheesecake-frutos",
+                "name": "Cheesecake de Frutos Rojos",
+                "description": "Suave cheesecake con base de galleta, cubierto con salsa de frutos rojos naturales",
+                "price": 16000,
+                "image": "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=400&q=80",
+                "prepTime": "3-5 min",
+                "spiceLevel": 0,
+                "attributes": [
+                  "favorito-chef"
+                ]
+              },
+              {
+                "id": "brownie-helado",
+                "name": "Brownie con Helado",
+                "description": "Brownie de chocolate tibio con helado de vainilla, salsa de chocolate caliente y nueces",
+                "price": 15000,
+                "image": "https://images.unsplash.com/photo-1607920591413-4ec007e70023?w=400&q=80",
+                "prepTime": "5-7 min",
+                "spiceLevel": 0,
+                "attributes": [
+                  "recomendado"
+                ]
+              },
+              {
+                "id": "tiramisu",
+                "name": "Tiramisú Clásico",
+                "description": "Postre italiano con capas de bizcocho embebido en café, crema de mascarpone y cacao en polvo",
+                "price": 17000,
+                "image": "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=400&q=80",
+                "prepTime": "3-5 min",
+                "spiceLevel": 0,
+                "attributes": [
+                  "favorito-chef"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 ]
