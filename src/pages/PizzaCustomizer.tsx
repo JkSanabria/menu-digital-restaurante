@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ChevronRight, Plus, Minus, X, Spline, ArrowLeft, GitMerge } from 'lucide-react';
+import { ChevronRight, Plus, Minus, X, Spline, ArrowLeft, GitMerge, Search } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import menuData from '../data/menu.json';
 import { MenuData, Product } from '../types/menu';
@@ -29,6 +29,7 @@ export default function PizzaMenu() {
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
     const [selectedSize, setSelectedSize] = useState<PizzaSize>('Mediana');
     const [quantity, setQuantity] = useState(1);
+    const [searchQuery, setSearchQuery] = useState('');
 
     // Builder State
     const [showBuilder, setShowBuilder] = useState(false);
@@ -37,11 +38,16 @@ export default function PizzaMenu() {
     // Data Extraction
     const pizzaSection = data.find(s => s.id === 'pizzas');
     // Get all traditional pizzas flat list
-    const traditionalPizzas = pizzaSection?.subcategories.find(s => s.id === 'pizzas-tradicionales')?.categories.flatMap(c => c.products) || [];
+    const allTraditionalPizzas = pizzaSection?.subcategories.find(s => s.id === 'pizzas-tradicionales')?.categories.flatMap(c => c.products) || [];
+
+    // Filter pizzas based on search query
+    const traditionalPizzas = allTraditionalPizzas.filter(pizza =>
+        pizza.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
 
     // Get Active Pizzas from Cart (Combined + Traditional)
     // Create a Set of base IDs for fast lookup, but we need to check startsWith for variants
-    const traditionalPizzaIds = traditionalPizzas.map(p => p.id);
+    const traditionalPizzaIds = allTraditionalPizzas.map(p => p.id);
 
     const userPizzas = items.filter(item => {
         // 1. Combined pizzas
@@ -246,9 +252,33 @@ export default function PizzaMenu() {
                         </div>
                     </div>
 
+                    {/* Search Bar */}
+                    <div className="p-4 bg-white border-b border-gray-100">
+                        <div className="relative">
+                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+                            <input
+                                type="text"
+                                placeholder="Buscar pizza por nombre..."
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                className="w-full pl-10 pr-10 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm"
+                            />
+                            {searchQuery && (
+                                <button
+                                    onClick={() => setSearchQuery('')}
+                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                                >
+                                    <X size={18} />
+                                </button>
+                            )}
+                        </div>
+                    </div>
+
                     {/* Traditional List */}
                     <div className="bg-gray-50/50 px-4 py-2 border-b border-gray-100">
-                        <h3 className="font-heading text-xs font-bold text-gray-500 uppercase tracking-wider">Pizzas Tradicionales</h3>
+                        <h3 className="font-heading text-xs font-bold text-gray-500 uppercase tracking-wider">
+                            {searchQuery ? `Resultados (${traditionalPizzas.length})` : `Pizzas Tradicionales (${traditionalPizzas.length})`}
+                        </h3>
                     </div>
 
                     <div className="divide-y divide-gray-100">
