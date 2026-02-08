@@ -10,7 +10,9 @@ export default function CartPage() {
     const [note, setNote] = useState("");
     const [customerName, setCustomerName] = useState("");
     const [address, setAddress] = useState("");
+    const [showConfirmation, setShowConfirmation] = useState(false);
 
+    const itemCount = items.reduce((sum, item) => sum + item.quantity, 0);
     const tipAmount = total * (tipPercentage / 100);
     const finalTotal = total + tipAmount;
 
@@ -33,7 +35,12 @@ export default function CartPage() {
             return;
         }
 
-        let message = "*🍕 NUEVO PEDIDO - NAPOLI*\n\n";
+        // Show confirmation modal instead of sending directly
+        setShowConfirmation(true);
+    };
+
+    const confirmAndSend = () => {
+        let message = "*🍽️ NUEVO PEDIDO - EL GALLINERAL*\n\n";
 
         message += `👤 *Nombre:* ${customerName}\n`;
         message += `📍 *Dirección:* ${address}\n\n`;
@@ -58,6 +65,7 @@ export default function CartPage() {
         const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
         window.open(url, '_blank');
+        setShowConfirmation(false);
     };
 
     if (items.length === 0) {
@@ -245,6 +253,111 @@ export default function CartPage() {
                     </button>
                 </div>
             </div>
+
+            {/* Confirmation Modal */}
+            {showConfirmation && (
+                <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 animate-in fade-in duration-200">
+                    <div className="bg-white rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto animate-in zoom-in slide-in-from-bottom-8 duration-300">
+                        {/* Header */}
+                        <div className="bg-gradient-to-r from-primary to-red-600 text-white p-6 rounded-t-2xl">
+                            <h2 className="text-2xl font-heading mb-2">¡Confirma tu Pedido!</h2>
+                            <p className="text-white/90 text-sm">Revisa los detalles antes de enviar</p>
+                        </div>
+
+                        {/* Order Summary */}
+                        <div className="p-6 space-y-4">
+                            {/* Customer Info */}
+                            <div className="bg-gray-50 p-4 rounded-xl">
+                                <h3 className="font-bold text-gray-800 mb-2 flex items-center gap-2">
+                                    <User size={16} className="text-primary" />
+                                    Información de Entrega
+                                </h3>
+                                <p className="text-sm text-gray-600"><strong>Nombre:</strong> {customerName}</p>
+                                <p className="text-sm text-gray-600"><strong>Dirección:</strong> {address}</p>
+                            </div>
+
+                            {/* Items */}
+                            <div>
+                                <h3 className="font-bold text-gray-800 mb-3">Tu Pedido ({itemCount} items)</h3>
+                                <div className="space-y-2">
+                                    {items.map((item) => (
+                                        <div key={item.id} className="flex justify-between items-center text-sm bg-gray-50 p-3 rounded-lg">
+                                            <span className="flex-1">
+                                                <strong>{item.quantity}x</strong> {item.name}
+                                            </span>
+                                            <span className="font-bold text-primary">
+                                                {formatPrice(item.price * item.quantity)}
+                                            </span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Totals */}
+                            <div className="border-t border-gray-200 pt-4 space-y-2">
+                                <div className="flex justify-between text-sm text-gray-600">
+                                    <span>Subtotal</span>
+                                    <span>{formatPrice(total)}</span>
+                                </div>
+                                {tipPercentage > 0 && (
+                                    <div className="flex justify-between text-sm text-green-600">
+                                        <span>Propina ({tipPercentage}%)</span>
+                                        <span>{formatPrice(tipAmount)}</span>
+                                    </div>
+                                )}
+                                <div className="flex justify-between text-xl font-bold text-gray-900 pt-2 border-t border-dashed">
+                                    <span>Total</span>
+                                    <span className="text-primary">{formatPrice(finalTotal)}</span>
+                                </div>
+                            </div>
+
+                            {note.trim() && (
+                                <div className="bg-yellow-50 p-3 rounded-lg border border-yellow-200">
+                                    <p className="text-xs font-bold text-yellow-800 mb-1">📝 Nota:</p>
+                                    <p className="text-sm text-yellow-700">{note}</p>
+                                </div>
+                            )}
+
+                            {/* Thank You Message */}
+                            <div className="bg-green-50 p-4 rounded-xl border border-green-200 text-center">
+                                <p className="text-green-800 font-bold mb-1">¡Gracias por tu pedido!</p>
+                                <p className="text-sm text-green-600">
+                                    Estamos listos para preparar tu deliciosa comida 🍽️
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* Actions */}
+                        <div className="p-6 bg-gray-50 rounded-b-2xl space-y-3">
+                            <button
+                                onClick={confirmAndSend}
+                                className="w-full bg-organic hover:bg-green-700 text-white font-bold py-4 rounded-xl shadow-lg flex items-center justify-center gap-2 transition-all active:scale-[0.98]"
+                            >
+                                <Send size={20} />
+                                <span>Confirmar y Enviar por WhatsApp</span>
+                            </button>
+
+                            <div className="flex gap-3">
+                                <button
+                                    onClick={() => setShowConfirmation(false)}
+                                    className="flex-1 bg-white hover:bg-gray-50 text-gray-700 font-bold py-3 rounded-xl border-2 border-gray-300 transition-all active:scale-[0.98]"
+                                >
+                                    Hacer Cambios
+                                </button>
+                                <button
+                                    onClick={() => {
+                                        setShowConfirmation(false);
+                                        navigate('/');
+                                    }}
+                                    className="flex-1 bg-white hover:bg-gray-50 text-primary font-bold py-3 rounded-xl border-2 border-primary transition-all active:scale-[0.98]"
+                                >
+                                    Agregar Más
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

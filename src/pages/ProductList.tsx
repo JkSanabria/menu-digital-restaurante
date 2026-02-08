@@ -19,9 +19,11 @@ const formatPrice = (price: number) => {
 
 export default function ProductList() {
     const { sectionId, subId } = useParams();
-    const { addToCart } = useCart();
+    const { addToCart, total, items } = useCart();
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
     const [quantity, setQuantity] = useState(1);
+
+    const itemCount = items.reduce((sum, item) => sum + item.quantity, 0);
 
     const section = data.find(s => s.id === sectionId);
     const subcategory = section?.subcategories.find(sub => sub.id === subId);
@@ -128,7 +130,7 @@ export default function ProductList() {
 
             {/* Quantity Modal */}
             {selectedProduct && (
-                <div className="fixed inset-0 bg-black/50 z-50 flex items-end sm:items-center justify-center p-4 animate-in fade-in duration-200">
+                <div className="fixed inset-0 bg-black/50 z-[60] flex items-end sm:items-center justify-center p-4 animate-in fade-in duration-200">
                     <div className="bg-white rounded-t-3xl sm:rounded-3xl w-full max-w-md p-6 animate-in slide-in-from-bottom-8 duration-300 sm:slide-in-from-bottom-0">
                         <div className="flex justify-between items-start mb-4">
                             <div className="flex-1 pr-4">
@@ -170,6 +172,20 @@ export default function ProductList() {
                             <span className="text-gray-600">Precio unitario</span>
                             <span className="font-bold text-lg text-gray-900">{formatPrice(selectedProduct.price)}</span>
                         </div>
+
+                        {/* Current Cart Summary */}
+                        {itemCount > 0 && (
+                            <div className="bg-gradient-to-r from-primary/10 to-orange-50 p-4 rounded-xl mb-4 border border-primary/20">
+                                <div className="flex items-center justify-between text-sm mb-1">
+                                    <span className="text-gray-600 font-medium">🛒 Carrito actual:</span>
+                                    <span className="font-bold text-gray-900">{itemCount} items</span>
+                                </div>
+                                <div className="flex items-center justify-between">
+                                    <span className="text-gray-600 font-medium">Total acumulado:</span>
+                                    <span className="font-bold text-primary text-lg">{formatPrice(total)}</span>
+                                </div>
+                            </div>
+                        )}
 
                         <button
                             onClick={handleAddToCart}

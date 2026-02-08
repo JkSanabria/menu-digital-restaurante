@@ -7,8 +7,8 @@ export default function FloatingNavigation() {
     const isHome = location.pathname === '/';
     const isCart = location.pathname === '/cart';
 
-    // Don't show on home page
-    if (isHome) return null;
+    // Don't show on home page or cart page
+    if (isHome || isCart) return null;
 
     return (
         <div className="fixed bottom-6 left-0 right-0 z-40 px-4">
