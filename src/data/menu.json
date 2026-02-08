@@ -2,7 +2,7 @@
     {
         "id": "comidas",
         "name": "Comidas",
-        "image": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80",
+        "image": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&q=80",
         "subcategories": [
             {
                 "id": "desgranados",
@@ -371,7 +371,7 @@
     {
         "id": "bebidas",
         "name": "Bebidas",
-        "image": "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=800&q=80",
+        "image": "https://images.unsplash.com/photo-1544145945-f90425340c7e?w=800&q=80",
         "subcategories": [
             {
                 "id": "jugos-naturales",
@@ -716,8 +716,8 @@
     },
     {
         "id": "especialidades",
-        "name": "Especialidades",
-        "image": "https://images.unsplash.com/photo-1544025162-d76690b67f11?w=800&q=80",
+        "name": "Especialidad",
+        "image": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80",
         "subcategories": [
             {
                 "id": "especialidades-casa",
@@ -763,7 +763,7 @@
     {
         "id": "recomendacion",
         "name": "Recomendación",
-        "image": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80",
+        "image": "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?w=800&q=80",
         "subcategories": [
             {
                 "id": "sugerencias-chef",
@@ -808,7 +808,7 @@
     {
         "id": "entradas",
         "name": "Entradas",
-        "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80",
+        "image": "https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=800&q=80",
         "subcategories": [
             {
                 "id": "ensaladas",
@@ -914,7 +914,7 @@
     {
         "id": "postres",
         "name": "Postres",
-        "image": "https://images.unsplash.com/photo-1551024506-0bccd828d307?w=800&q=80",
+        "image": "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=800&q=80",
         "subcategories": [
             {
                 "id": "helados",

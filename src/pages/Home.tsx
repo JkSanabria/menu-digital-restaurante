@@ -82,11 +82,12 @@ export default function Home() {
     }, [searchTerm]);
 
     // Extract sections with proper null handling
-    // Extract sections with proper null handling
     const comidasSection = data.find(section => section.id === 'comidas');
     const bebidasSection = data.find(section => section.id === 'bebidas');
     const especialidadesSection = data.find(section => section.id === 'especialidades');
-    const recomendacionesSection = data.find(section => section.id === 'recomendaciones');
+    const recomendacionesSection = data.find(section => section.id === 'recomendacion');
+    const entradasSection = data.find(section => section.id === 'entradas');
+    const postresSection = data.find(section => section.id === 'postres');
 
     return (
         <div className="container mx-auto px-4 py-6 max-w-md md:max-w-5xl animate-in fade-in slide-in-from-bottom-4 duration-500 pb-32">
@@ -304,6 +305,48 @@ export default function Home() {
                                     {recomendacionesSection.name}
                                 </span>
                                 <span className="text-gray-300 text-xs md:text-sm font-bold tracking-widest uppercase mt-1 opacity-80">del Chef</span>
+                            </div>
+                        </Link>
+                    )}
+
+                    {/* Entradas Section */}
+                    {entradasSection && (
+                        <Link
+                            to={`/section/${entradasSection.id}`}
+                            className="group relative h-24 md:h-36 lg:h-40 rounded-xl overflow-hidden bg-black shadow-md border border-gray-800 hover:border-gray-600 transition-all active:scale-[0.98]"
+                            aria-label="Ver entradas"
+                        >
+                            <img
+                                src={entradasSection.image}
+                                alt=""
+                                className="w-full h-full object-cover opacity-40 group-hover:opacity-50 transition-all duration-500 grayscale-[20%]"
+                                loading="lazy"
+                            />
+                            <div className="absolute inset-0 flex items-center justify-center">
+                                <span className="text-white font-heading text-xl md:text-3xl font-black tracking-widest uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] group-hover:scale-105 transition-transform duration-300">
+                                    {entradasSection.name}
+                                </span>
+                            </div>
+                        </Link>
+                    )}
+
+                    {/* Postres Section */}
+                    {postresSection && (
+                        <Link
+                            to={`/section/${postresSection.id}`}
+                            className="group relative h-24 md:h-36 lg:h-40 rounded-xl overflow-hidden bg-black shadow-md border border-gray-800 hover:border-gray-600 transition-all active:scale-[0.98]"
+                            aria-label="Ver postres"
+                        >
+                            <img
+                                src={postresSection.image}
+                                alt=""
+                                className="w-full h-full object-cover opacity-40 group-hover:opacity-50 transition-all duration-500 grayscale-[20%]"
+                                loading="lazy"
+                            />
+                            <div className="absolute inset-0 flex items-center justify-center">
+                                <span className="text-white font-heading text-xl md:text-3xl font-black tracking-widest uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] group-hover:scale-105 transition-transform duration-300">
+                                    {postresSection.name}
+                                </span>
                             </div>
                         </Link>
                     )}
