@@ -4,8 +4,8 @@ import FloatingNavigation from '../components/FloatingNavigation';
 
 export default function Layout() {
     return (
-        <div className="min-h-screen flex flex-col bg-surface font-body text-gray-800 antialiased">
-            <div className="w-full max-w-md mx-auto bg-white min-h-screen shadow-xl overflow-hidden relative">
+        <div className="min-h-screen flex flex-col bg-surface font-body text-gray-800 antialiased bg-gray-100">
+            <div className="w-full max-w-md md:max-w-5xl mx-auto bg-white min-h-screen shadow-xl overflow-hidden relative transition-all duration-300">
                 <Header />
 
                 <main className="flex-1 w-full pb-24">

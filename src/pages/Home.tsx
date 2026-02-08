@@ -20,6 +20,7 @@ const formatPrice = (price: number) => {
 export default function Home() {
     const { itemCount, total, addToCart, updateQuantity, items } = useCart();
     const [searchTerm, setSearchTerm] = useState('');
+    const [showOffers, setShowOffers] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
     const [quantity, setQuantity] = useState(1);
 
@@ -88,48 +89,154 @@ export default function Home() {
     const recomendacionesSection = data.find(section => section.id === 'recomendaciones');
 
     return (
-        <div className="container mx-auto px-4 py-6 max-w-lg animate-in fade-in slide-in-from-bottom-4 duration-500 pb-32">
+        <div className="container mx-auto px-4 py-6 max-w-md md:max-w-5xl animate-in fade-in slide-in-from-bottom-4 duration-500 pb-32">
 
             {/* Search Bar */}
-            <div className="relative mb-6 sticky top-2 z-40">
-                <div className="relative">
+            <div className="relative mb-10 sticky top-6 z-50 mx-auto max-w-2xl px-2">
+                <div className="relative group">
+                    <div className="absolute inset-0 bg-white/80 backdrop-blur-xl rounded-2xl shadow-lg border border-white/50 -z-10 transition-all duration-300 group-hover:shadow-xl group-hover:bg-white/90"></div>
                     <input
                         type="text"
                         placeholder="¿Qué se te antoja hoy?"
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className="w-full pl-10 pr-10 py-3 rounded-xl border border-gray-200 shadow-sm focus:ring-2 focus:ring-primary focus:border-transparent text-gray-800 placeholder:text-gray-400 bg-white/95 backdrop-blur"
+                        className="block w-full pl-12 pr-12 py-4 bg-transparent border-0 rounded-2xl text-gray-800 placeholder:text-gray-500 font-medium focus:ring-0 text-lg shadow-none"
                     />
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+                    <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                        <Search className="text-primary/70" size={24} />
+                    </div>
                     {searchTerm && (
                         <button
                             onClick={() => setSearchTerm('')}
-                            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 bg-gray-100 rounded-full p-1"
+                            className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-red-500 p-1.5 hover:bg-red-50 rounded-full transition-all"
                         >
-                            <X size={14} />
+                            <X size={20} />
                         </button>
                     )}
                 </div>
             </div>
 
+            {!searchTerm && (
+                /* Ofertas Section - Toggleable */
+                <div onClick={() => setShowOffers(!showOffers)} className="cursor-pointer block mb-8 relative group mx-2 md:mx-0 select-none transition-transform active:scale-[0.98]">
+                    <div className="absolute -inset-0.5 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 rounded-2xl blur opacity-60 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
+                    <div className="relative h-36 md:h-44 bg-zinc-900 rounded-2xl overflow-hidden shadow-2xl flex items-center justify-between p-6 hover:-translate-y-1 transition-transform duration-300">
+                        {/* Content */}
+                        <div className="z-10 flex-1 pr-4">
+                            <div className="flex items-center gap-2 mb-2">
+                                <span className="inline-block py-1 px-2 rounded-lg bg-orange-500/20 text-orange-400 text-[10px] md:text-xs font-black tracking-widest uppercase border border-orange-500/30">
+                                    ¡Oferta Flash!
+                                </span>
+                                <span className="animate-bounce">🔥</span>
+                            </div>
+                            <h2 className="text-3xl md:text-5xl font-black text-white italic tracking-tighter mb-1 leading-none drop-shadow-xl">
+                                HAPPY <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">HOUR</span>
+                            </h2>
+                            <p className="text-gray-400 text-xs md:text-sm font-medium">2x1 en Cocteles seleccionados • 4pm - 8pm</p>
+                        </div>
+
+                        {/* Image */}
+                        <div className="absolute top-0 right-0 w-3/5 h-full">
+                            <div className="absolute inset-0 bg-gradient-to-r from-zinc-900 via-zinc-900/40 to-transparent z-10 block"></div>
+                            <img
+                                src="https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Bebidas.jpg"
+                                className="w-full h-full object-cover object-center opacity-80 group-hover:scale-105 transition-transform duration-700 mix-blend-overlay group-hover:mix-blend-normal"
+                                alt="Oferta"
+                            />
+                        </div>
+
+                        {/* Floating Toggle */}
+                        <div className="absolute top-4 right-4 z-20 flex flex-col items-end gap-2">
+                            <div className={`bg-white text-black p-2 rounded-full shadow-lg transition-transform duration-300 ${showOffers ? 'rotate-45 bg-gray-100' : 'rotate-0'}`}>
+                                <Plus size={20} className="stroke-[3]" />
+                            </div>
+                            {!showOffers && (
+                                <div className="bg-white text-black text-[10px] font-black px-2 py-1 rounded-md shadow-lg -rotate-3 group-hover:rotate-0 transition-transform animate-in fade-in zoom-in border border-yellow-400">
+                                    VER 30% OFF
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Promo Products Grid */}
+            {!searchTerm && bebidasSection && showOffers && (
+                <div className="mb-12 mx-2 md:mx-0 animate-in fade-in slide-in-from-bottom-6 duration-700 delay-100">
+                    <div className="flex items-center justify-between mb-4 pl-1">
+                        <div className="flex items-center gap-2">
+                            <div className="bg-red-100 p-1.5 rounded-full">
+                                <span className="text-xl leading-none">⚡</span>
+                            </div>
+                            <h3 className="font-heading text-xl font-black text-gray-900 tracking-tight">
+                                Ofertas Relámpago
+                            </h3>
+                        </div>
+                        <Link to="/section/bebidas" className="text-primary text-xs font-bold uppercase tracking-wider hover:underline bg-primary/5 px-3 py-1.5 rounded-full hover:bg-primary/10 transition-colors">
+                            Ver todas
+                        </Link>
+                    </div>
+
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                        {bebidasSection.subcategories.flatMap(s => s.categories).flatMap(c => c.products).slice(0, 4).map(product => {
+                            const originalPrice = product.price;
+                            const promoPrice = Math.floor(product.price * 0.7); // 30% off
+
+                            return (
+                                <div key={product.id} className="bg-white rounded-2xl p-3 shadow-sm border border-orange-100 relative group overflow-hidden hover:shadow-md transition-all hover:-translate-y-1">
+                                    <div className="absolute top-3 left-3 bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded-lg z-10 shadow-sm transform -rotate-2 group-hover:rotate-0 transition-transform">
+                                        AHORRA 30%
+                                    </div>
+
+                                    <div onClick={() => openModal({ ...product, price: promoPrice })} className="cursor-pointer mb-3">
+                                        <div className="aspect-[4/3] rounded-xl overflow-hidden mb-3 bg-gray-50 relative">
+                                            <img src={product.image} alt={product.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors"></div>
+                                        </div>
+                                        <h4 className="font-heading font-bold text-sm text-gray-900 line-clamp-1 mb-1 leading-tight">{product.name}</h4>
+                                        <p className="text-[10px] text-gray-400 line-clamp-1 mb-2">Oferta por tiempo limitado</p>
+
+                                        <div className="flex items-baseline gap-2">
+                                            <span className="text-red-600 font-black text-lg">{formatPrice(promoPrice)}</span>
+                                            <span className="text-xs text-gray-400 line-through font-medium Decoration-1">{formatPrice(originalPrice)}</span>
+                                        </div>
+                                    </div>
+
+                                    <button
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            addToCart({ ...product, price: promoPrice });
+                                        }}
+                                        className="w-full bg-orange-50 text-orange-600 hover:bg-orange-500 hover:text-white font-bold py-2.5 rounded-xl text-xs transition-all flex items-center justify-center gap-2 active:scale-95"
+                                    >
+                                        <Plus size={16} strokeWidth={3} />
+                                        AGREGAR
+                                    </button>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+            )}
+
             {!searchTerm ? (
-                /* Menu Sections - Ultra Compact Grid */
-                <nav className="grid grid-cols-2 gap-3" aria-label="Menú principal">
+                /* Menu Sections - High Contrast Wide Grid */
+                <nav className="grid grid-cols-2 gap-3 lg:gap-6" aria-label="Menú principal">
                     {/* Comidas Section */}
                     {comidasSection && (
                         <Link
                             to={`/section/${comidasSection.id}`}
-                            className="group relative h-16 rounded-lg overflow-hidden bg-gray-900 shadow-sm border border-gray-100/50 hover:border-gray-200 transition-all active:scale-[0.98]"
+                            className="group relative h-24 md:h-36 lg:h-40 rounded-xl overflow-hidden bg-black shadow-md border border-gray-800 hover:border-gray-600 transition-all active:scale-[0.98]"
                             aria-label="Ver menú de comidas"
                         >
                             <img
                                 src={comidasSection.image}
                                 alt=""
-                                className="w-full h-full object-cover opacity-60 group-hover:opacity-70 transition-all duration-300 grayscale-[20%]"
+                                className="w-full h-full object-cover opacity-40 group-hover:opacity-50 transition-all duration-500 grayscale-[20%]"
                                 loading="lazy"
                             />
                             <div className="absolute inset-0 flex items-center justify-center">
-                                <span className="text-white font-heading text-xl font-bold tracking-wider uppercase drop-shadow-lg group-hover:scale-105 transition-transform duration-300">
+                                <span className="text-white font-heading text-xl md:text-3xl font-black tracking-widest uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] group-hover:scale-105 transition-transform duration-300">
                                     {comidasSection.name}
                                 </span>
                             </div>
@@ -140,17 +247,17 @@ export default function Home() {
                     {bebidasSection && (
                         <Link
                             to={`/section/${bebidasSection.id}`}
-                            className="group relative h-16 rounded-lg overflow-hidden bg-gray-900 shadow-sm border border-gray-100/50 hover:border-gray-200 transition-all active:scale-[0.98]"
+                            className="group relative h-24 md:h-36 lg:h-40 rounded-xl overflow-hidden bg-black shadow-md border border-gray-800 hover:border-gray-600 transition-all active:scale-[0.98]"
                             aria-label="Ver menú de bebidas"
                         >
                             <img
                                 src={bebidasSection.image}
                                 alt=""
-                                className="w-full h-full object-cover opacity-60 group-hover:opacity-70 transition-all duration-300 grayscale-[20%]"
+                                className="w-full h-full object-cover opacity-40 group-hover:opacity-50 transition-all duration-500 grayscale-[20%]"
                                 loading="lazy"
                             />
                             <div className="absolute inset-0 flex items-center justify-center">
-                                <span className="text-white font-heading text-xl font-bold tracking-wider uppercase drop-shadow-lg group-hover:scale-105 transition-transform duration-300">
+                                <span className="text-white font-heading text-xl md:text-3xl font-black tracking-widest uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] group-hover:scale-105 transition-transform duration-300">
                                     {bebidasSection.name}
                                 </span>
                             </div>
@@ -161,19 +268,20 @@ export default function Home() {
                     {especialidadesSection && (
                         <Link
                             to={`/section/${especialidadesSection.id}`}
-                            className="group relative h-16 rounded-lg overflow-hidden bg-gray-900 shadow-sm border border-gray-100/50 hover:border-gray-200 transition-all active:scale-[0.98]"
+                            className="group relative h-24 md:h-36 lg:h-40 rounded-xl overflow-hidden bg-black shadow-md border border-gray-800 hover:border-gray-600 transition-all active:scale-[0.98]"
                             aria-label="Ver especialidades"
                         >
                             <img
                                 src={especialidadesSection.image}
                                 alt=""
-                                className="w-full h-full object-cover opacity-60 group-hover:opacity-70 transition-all duration-300 grayscale-[20%]"
+                                className="w-full h-full object-cover opacity-30 group-hover:opacity-40 transition-all duration-500 grayscale-[20%]"
                                 loading="lazy"
                             />
-                            <div className="absolute inset-0 flex items-center justify-center text-center px-1">
-                                <span className="text-white font-heading text-sm font-bold tracking-wider uppercase drop-shadow-lg group-hover:scale-105 transition-transform duration-300 leading-tight">
-                                    {especialidadesSection.name} de la Casa
+                            <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-2">
+                                <span className="text-white font-heading text-lg md:text-2xl font-black tracking-widest uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] group-hover:scale-105 transition-transform duration-300 leading-tight">
+                                    {especialidadesSection.name}
                                 </span>
+                                <span className="text-gray-300 text-xs md:text-sm font-bold tracking-widest uppercase mt-1 opacity-80">de la Casa</span>
                             </div>
                         </Link>
                     )}
@@ -182,19 +290,20 @@ export default function Home() {
                     {recomendacionesSection && (
                         <Link
                             to={`/section/${recomendacionesSection.id}`}
-                            className="group relative h-16 rounded-lg overflow-hidden bg-gray-900 shadow-sm border border-gray-100/50 hover:border-gray-200 transition-all active:scale-[0.98]"
+                            className="group relative h-24 md:h-36 lg:h-40 rounded-xl overflow-hidden bg-black shadow-md border border-gray-800 hover:border-gray-600 transition-all active:scale-[0.98]"
                             aria-label="Ver recomendaciones"
                         >
                             <img
                                 src={recomendacionesSection.image}
                                 alt=""
-                                className="w-full h-full object-cover opacity-60 group-hover:opacity-70 transition-all duration-300 grayscale-[20%]"
+                                className="w-full h-full object-cover opacity-30 group-hover:opacity-40 transition-all duration-500 grayscale-[20%]"
                                 loading="lazy"
                             />
-                            <div className="absolute inset-0 flex items-center justify-center text-center px-1">
-                                <span className="text-white font-heading text-sm font-bold tracking-wider uppercase drop-shadow-lg group-hover:scale-105 transition-transform duration-300 leading-tight">
-                                    {recomendacionesSection.name} del Chef
+                            <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-1">
+                                <span className="text-white font-heading text-lg md:text-2xl font-black tracking-widest uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] group-hover:scale-105 transition-transform duration-300 leading-tight">
+                                    {recomendacionesSection.name}
                                 </span>
+                                <span className="text-gray-300 text-xs md:text-sm font-bold tracking-widest uppercase mt-1 opacity-80">del Chef</span>
                             </div>
                         </Link>
                     )}
@@ -209,12 +318,12 @@ export default function Home() {
                             <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2 pl-1">
                                 Secciones ({matchedSections.length})
                             </p>
-                            <div className="grid grid-cols-2 gap-2">
+                            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2">
                                 {matchedSections.map(section => (
                                     <Link
                                         key={section.id}
                                         to={`/section/${section.id}`}
-                                        className="group relative h-14 rounded-lg overflow-hidden bg-gray-900 shadow-sm border border-gray-100/50 hover:border-primary transition-all active:scale-[0.98]"
+                                        className="group relative h-14 md:h-20 lg:h-24 rounded-lg overflow-hidden bg-gray-900 shadow-sm border border-gray-100/50 hover:border-primary transition-all active:scale-[0.98]"
                                     >
                                         <img
                                             src={section.image}
@@ -247,71 +356,74 @@ export default function Home() {
                             </button>
                         </div>
                     ) : (
-                        matchedProducts.map(product => {
-                            const cartItem = items.find(item => item.id === product.id);
-                            const itemQuantity = cartItem ? cartItem.quantity : 0;
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                            {matchedProducts.map(product => {
+                                const cartItem = items.find(item => item.id === product.id);
+                                const itemQuantity = cartItem ? cartItem.quantity : 0;
 
-                            return (
-                                <div
-                                    key={product.id}
-                                    className="group bg-white rounded-lg py-2 px-3 shadow-sm border border-gray-100 flex items-center justify-between gap-3 transition-all hover:border-primary/30 hover:shadow-md active:bg-gray-50"
-                                >
+                                return (
                                     <div
-                                        onClick={() => openModal(product)}
-                                        className="flex-1 cursor-pointer flex items-center gap-2"
+                                        key={product.id}
+                                        className="group bg-white rounded-lg py-2 px-3 shadow-sm border border-gray-100 flex items-center justify-between gap-3 transition-all hover:border-primary/30 hover:shadow-md active:bg-gray-50"
                                     >
-                                        <h3 className="font-heading text-base font-bold text-gray-800 leading-tight group-hover:text-primary transition-colors">
-                                            {product.name}
-                                        </h3>
-                                        <div className="text-gray-300 group-hover:text-primary/50 transition-colors">
-                                            <span className="sr-only">Ver detalle</span>
-                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" /></svg>
+                                        <div
+                                            onClick={() => openModal(product)}
+                                            className="flex-1 cursor-pointer flex items-center gap-2"
+                                        >
+                                            <h3 className="font-heading text-base font-bold text-gray-800 leading-tight group-hover:text-primary transition-colors">
+                                                {product.name}
+                                            </h3>
+                                            <div className="text-gray-400 group-hover:text-primary transition-all p-1 rounded-full hover:bg-orange-50 ml-1" title="Ver detalle">
+                                                <span className="sr-only">Ver detalle</span>
+                                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><line x1="12" y1="16" x2="12" y2="12" /><line x1="12" y1="8" x2="12.01" y2="8" /></svg>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div className="flex items-center gap-3 shrink-0">
-                                        <span className="font-bold text-base text-primary whitespace-nowrap">
-                                            {formatPrice(product.price)}
-                                        </span>
+                                        <div className="flex items-center gap-3 shrink-0">
+                                            <span className="font-bold text-base text-primary whitespace-nowrap">
+                                                {formatPrice(product.price)}
+                                            </span>
 
-                                        {itemQuantity > 0 ? (
-                                            <div className="flex items-center bg-gray-100 rounded-lg p-0.5 border border-gray-200">
-                                                <button
-                                                    onClick={(e) => {
-                                                        e.stopPropagation();
-                                                        updateQuantity(product.id, itemQuantity - 1);
-                                                    }}
-                                                    className="w-7 h-7 flex items-center justify-center bg-white rounded-md text-gray-600 shadow-sm hover:text-red-500 active:scale-95 transition-all"
-                                                >
-                                                    <Minus size={14} />
-                                                </button>
-                                                <span className="w-8 text-center font-bold text-sm text-gray-800">{itemQuantity}</span>
+                                            {itemQuantity > 0 ? (
+                                                <div className="flex items-center bg-gray-100 rounded-lg p-0.5 border border-gray-200">
+                                                    <button
+                                                        onClick={(e) => {
+                                                            e.stopPropagation();
+                                                            updateQuantity(product.id, itemQuantity - 1);
+                                                        }}
+                                                        className="w-7 h-7 flex items-center justify-center bg-white rounded-md text-gray-600 shadow-sm hover:text-red-500 active:scale-95 transition-all"
+                                                    >
+                                                        <Minus size={14} />
+                                                    </button>
+                                                    <span className="w-8 text-center font-bold text-sm text-gray-800">{itemQuantity}</span>
+                                                    <button
+                                                        onClick={(e) => {
+                                                            e.stopPropagation();
+                                                            addToCart(product);
+                                                        }}
+                                                        className="w-7 h-7 flex items-center justify-center bg-primary text-white rounded-md shadow-sm hover:bg-red-700 active:scale-95 transition-all"
+                                                    >
+                                                        <Plus size={14} />
+                                                    </button>
+                                                </div>
+                                            ) : (
                                                 <button
                                                     onClick={(e) => {
                                                         e.stopPropagation();
                                                         addToCart(product);
                                                     }}
-                                                    className="w-7 h-7 flex items-center justify-center bg-primary text-white rounded-md shadow-sm hover:bg-red-700 active:scale-95 transition-all"
+                                                    className="w-8 h-8 rounded-full bg-gray-50 text-primary flex items-center justify-center hover:bg-primary hover:text-white transition-all shadow-sm border border-gray-100 active:scale-90"
+                                                    aria-label="Agregar al carrito"
                                                 >
-                                                    <Plus size={14} />
+                                                    <Plus size={18} />
                                                 </button>
-                                            </div>
-                                        ) : (
-                                            <button
-                                                onClick={(e) => {
-                                                    e.stopPropagation();
-                                                    addToCart(product);
-                                                }}
-                                                className="w-8 h-8 rounded-full bg-gray-50 text-primary flex items-center justify-center hover:bg-primary hover:text-white transition-all shadow-sm border border-gray-100 active:scale-90"
-                                                aria-label="Agregar al carrito"
-                                            >
-                                                <Plus size={18} />
-                                            </button>
-                                        )}
+                                            )}
+                                        </div>
                                     </div>
-                                </div>
-                            );
-                        })
+                                );
+                            })
+                            }
+                        </div>
                     )}
                 </div>
             )}

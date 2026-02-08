@@ -5,7 +5,7 @@ export default function Header() {
     const isHome = location.pathname === '/';
 
     return (
-        <header className={`relative w-full bg-white border-b-[3px] border-primary z-40 sticky top-0 shadow-sm transition-all duration-300 ${isHome ? 'h-24' : 'h-16'}`}>
+        <header className={`relative w-full bg-white border-b-[3px] border-primary z-40 sticky top-0 shadow-sm transition-all duration-300 ${isHome ? 'h-24 md:h-48' : 'h-16 md:h-20'}`}>
             {isHome ? (
                 // Home Header (Original Style)
                 <img

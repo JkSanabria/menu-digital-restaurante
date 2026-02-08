@@ -136,9 +136,9 @@ export default function CartPage() {
     }
 
     return (
-        <div className="container mx-auto px-4 py-4 max-w-lg pb-[400px] animate-in fade-in slide-in-from-bottom-8 duration-300">
-            <div className="flex items-center justify-between mb-4 border-b border-gray-100 pb-3">
-                <h1 className="text-2xl font-heading text-gray-900">Tu Pedido</h1>
+        <div className="container mx-auto px-4 py-4 lg:py-8 max-w-lg md:max-w-6xl pb-[400px] lg:pb-12 animate-in fade-in slide-in-from-bottom-8 duration-300">
+            <div className="flex items-center justify-between mb-4 lg:mb-8 border-b border-gray-100 lg:border-b-2 lg:border-primary/10 pb-3 lg:pb-4">
+                <h1 className="text-2xl lg:text-5xl font-heading lg:font-black text-gray-900 lg:uppercase">Tu Pedido</h1>
 
                 <div className="flex items-center gap-2">
                     <button
@@ -166,213 +166,287 @@ export default function CartPage() {
                 </div>
             </div>
 
-            {/* Customer Info Section - Standardized p-3 mb-4 rounded-lg */}
-            <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-100 mb-4">
-                <h3 className="font-bold text-gray-800 mb-2 flex items-center gap-2 text-sm">
-                    <User size={16} className="text-primary" />
-                    Información de entrega
-                </h3>
+            {/* Desktop: 2-column grid layout */}
+            <div className="lg:grid lg:grid-cols-3 lg:gap-8 lg:items-start">
+                <div className="lg:col-span-2 space-y-4 lg:space-y-8">
 
-                <div className="space-y-2">
-                    <div>
-                        <label className="block text-xs font-medium text-gray-700 mb-0.5">Nombre completo *</label>
-                        <input
-                            type="text"
-                            value={customerName}
-                            onChange={(e) => setCustomerName(e.target.value)}
-                            placeholder="Ej: Juan Pérez"
-                            className="w-full p-2 border border-gray-300 rounded-lg focus:ring-1 focus:ring-primary focus:border-transparent text-sm"
-                        />
-                    </div>
+                    {/* Customer Info Section */}
+                    <div className="bg-white p-3 lg:p-6 rounded-lg lg:rounded-3xl shadow-sm border border-gray-100 mb-4 lg:mb-0">
+                        <h3 className="font-bold text-gray-800 lg:text-gray-900 mb-2 lg:mb-6 flex items-center gap-2 text-sm lg:text-xl">
+                            <User size={16} className="text-primary lg:hidden" />
+                            <div className="hidden lg:block p-2 bg-primary/10 rounded-full text-primary">
+                                <User size={20} />
+                            </div>
+                            Información de entrega
+                        </h3>
 
-                    <div>
-                        <label className="block text-xs font-medium text-gray-700 mb-0.5 flex items-center gap-1">
-                            <MapPin size={12} />
-                            Dirección de entrega *
-                        </label>
-                        <input
-                            type="text"
-                            value={address}
-                            onChange={(e) => setAddress(e.target.value)}
-                            placeholder="Ej: Calle 123 #45-67, Apto 301"
-                            className="w-full p-2 border border-gray-300 rounded-lg focus:ring-1 focus:ring-primary focus:border-transparent text-sm"
-                        />
-                    </div>
-                </div>
-            </div>
-
-            {/* Cart Items - Standardized mb-4 */}
-            <div className="flex flex-col gap-3 mb-4">
-                {items.map((item) => (
-                    <div key={item.id} className="bg-white p-3 rounded-lg shadow-sm border border-gray-100 flex items-center justify-between gap-2">
-                        <h3 className="font-bold text-gray-800 text-sm truncate flex-1 min-w-0">{item.name}</h3>
-
-                        <div className="flex items-center gap-2 shrink-0">
-                            <div className="flex items-center bg-gray-50 rounded-md border border-gray-200 h-8">
-                                <button
-                                    onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                                    className="px-2 h-full text-gray-500 hover:text-primary hover:bg-gray-100 rounded-l-md transition-colors"
-                                >
-                                    <Minus size={14} />
-                                </button>
-                                <span className="text-sm font-bold w-6 text-center text-gray-900">{item.quantity}</span>
-                                <button
-                                    onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                                    className="px-2 h-full text-gray-500 hover:text-primary hover:bg-gray-100 rounded-r-md transition-colors"
-                                >
-                                    <Plus size={14} />
-                                </button>
+                        <div className="space-y-2 lg:grid lg:grid-cols-2 lg:gap-6">
+                            <div>
+                                <label className="block text-xs font-medium text-gray-700 mb-0.5">Nombre completo *</label>
+                                <input
+                                    type="text"
+                                    value={customerName}
+                                    onChange={(e) => setCustomerName(e.target.value)}
+                                    placeholder="Ej: Juan Pérez"
+                                    className="w-full p-2 lg:p-4 border border-gray-300 lg:bg-gray-50 lg:border-gray-100 rounded-lg lg:rounded-2xl focus:ring-1 focus:ring-primary focus:border-transparent text-sm lg:text-base"
+                                />
                             </div>
 
-                            <span className="font-bold text-primary text-sm w-[70px] text-right whitespace-nowrap">
-                                {formatPrice(item.price * item.quantity)}
-                            </span>
-
-                            <button
-                                onClick={() => removeFromCart(item.id)}
-                                className="p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-full transition-colors ml-1"
-                                title="Eliminar"
-                            >
-                                <Trash2 size={16} />
-                            </button>
+                            <div>
+                                <label className="block text-xs font-medium text-gray-700 mb-0.5 flex items-center gap-1">
+                                    <MapPin size={12} />
+                                    Dirección de entrega *
+                                </label>
+                                <input
+                                    type="text"
+                                    value={address}
+                                    onChange={(e) => setAddress(e.target.value)}
+                                    placeholder="Ej: Calle 123 #45-67, Apto 301"
+                                    className="w-full p-2 lg:p-4 border border-gray-300 lg:bg-gray-50 lg:border-gray-100 rounded-lg lg:rounded-2xl focus:ring-1 focus:ring-primary focus:border-transparent text-sm lg:text-base"
+                                />
+                            </div>
                         </div>
                     </div>
-                ))}
-            </div>
 
-            {/* Tipping Section */}
-            <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-100 mb-4">
-                <div className="flex flex-col gap-2">
-                    <div className="flex items-center justify-between gap-2">
-                        <h3 className="font-bold text-gray-800 text-sm whitespace-nowrap">Propina</h3>
-                        <div className="flex gap-2 flex-1">
-                            {[0, 10, 15].map((pct) => (
-                                <button
-                                    key={pct}
-                                    onClick={() => {
-                                        setTipPercentage(pct);
-                                        setCustomTip(null);
-                                    }}
-                                    className={`flex-1 py-1.5 rounded-lg text-xs font-bold border transition-colors ${tipPercentage === pct && customTip === null
-                                        ? 'bg-primary text-white border-primary'
-                                        : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
-                                        }`}
-                                >
-                                    {pct === 0 ? 'No' : `${pct}%`}
-                                </button>
-                            ))}
+                    {/* Cart Items */}
+                    <div className="flex flex-col gap-3 lg:gap-4 mb-4 lg:mb-0">
+                        {items.map((item) => (
+                            <div key={item.id} className="bg-white p-3 lg:p-6 rounded-lg lg:rounded-3xl shadow-sm border border-gray-100 flex items-center justify-between gap-2 lg:gap-4 lg:hover:shadow-md lg:hover:border-primary/20 transition-all">
+                                <h3 className="font-bold text-gray-800 lg:text-gray-900 text-sm lg:text-xl truncate lg:whitespace-normal flex-1 min-w-0">{item.name}</h3>
+
+                                <div className="flex items-center gap-2 lg:gap-6 shrink-0">
+                                    <div className="flex items-center bg-gray-50 rounded-md lg:rounded-xl border border-gray-200 h-8 lg:h-auto lg:p-1 lg:shadow-inner">
+                                        <button
+                                            onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                                            className="px-2 lg:w-10 lg:h-10 h-full lg:bg-white lg:rounded-lg text-gray-500 hover:text-primary hover:bg-gray-100 lg:hover:shadow-sm rounded-l-md lg:rounded-l-lg transition-colors lg:transition-all"
+                                        >
+                                            <Minus size={14} />
+                                        </button>
+                                        <span className="text-sm lg:text-lg font-bold w-6 lg:w-10 text-center text-gray-900 lg:text-gray-800">{item.quantity}</span>
+                                        <button
+                                            onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                                            className="px-2 lg:w-10 lg:h-10 h-full lg:bg-white lg:rounded-lg text-gray-500 hover:text-primary hover:bg-gray-100 lg:hover:shadow-sm rounded-r-md lg:rounded-r-lg transition-colors lg:transition-all"
+                                        >
+                                            <Plus size={14} />
+                                        </button>
+                                    </div>
+
+                                    <span className="font-bold text-primary text-sm lg:text-xl lg:font-black w-[70px] lg:w-[80px] text-right whitespace-nowrap">
+                                        {formatPrice(item.price * item.quantity)}
+                                    </span>
+
+                                    <button
+                                        onClick={() => removeFromCart(item.id)}
+                                        className="p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-full transition-colors ml-1"
+                                        title="Eliminar"
+                                    >
+                                        <Trash2 size={16} className="lg:w-[20px] lg:h-[20px]" />
+                                    </button>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                </div> {/* Close lg:col-span-2 for left column */}
+
+                {/* RIGHT COLUMN: Desktop Sidebar */}
+                <div className="lg:col-span-1 lg:sticky lg:top-24 space-y-4 lg:space-y-6">
+
+                    {/* Tipping Section */}
+                    <div className="bg-white p-3 lg:p-6 rounded-lg lg:rounded-3xl shadow-sm border border-gray-100 mb-4 lg:mb-0">
+                        <div className="flex flex-col gap-2">
+                            <div className="flex items-center justify-between gap-2 mb-0 lg:mb-4">
+                                <h3 className="font-bold text-gray-800 lg:text-gray-900 text-sm lg:text-base whitespace-nowrap lg:whitespace-normal">Propina <span className="lg:hidden">❤️</span><span className="hidden lg:inline">para el Staff ❤️</span></h3>
+                                <div className="flex gap-2 flex-1 lg:hidden">
+                                    {[0, 10, 15].map((pct) => (
+                                        <button
+                                            key={pct}
+                                            onClick={() => {
+                                                setTipPercentage(pct);
+                                                setCustomTip(null);
+                                            }}
+                                            className={`flex-1 py-1.5 rounded-lg text-xs font-bold border transition-colors ${tipPercentage === pct && customTip === null
+                                                ? 'bg-primary text-white border-primary'
+                                                : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
+                                                }`}
+                                        >
+                                            {pct === 0 ? 'No' : `${pct}%`}
+                                        </button>
+                                    ))}
+                                    <button
+                                        onClick={() => {
+                                            setTipPercentage(0);
+                                            setCustomTip(0);
+                                        }}
+                                        className={`flex-1 py-1.5 rounded-lg text-xs font-bold border transition-colors ${customTip !== null
+                                            ? 'bg-primary text-white border-primary'
+                                            : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
+                                            }`}
+                                    >
+                                        Otro
+                                    </button>
+                                </div>
+
+                                {/* Desktop Tip Buttons */}
+                                <div className="hidden lg:flex gap-2">
+                                    {[0, 10, 15].map((pct) => (
+                                        <button key={pct} onClick={() => { setTipPercentage(pct); setCustomTip(null); }} className={`flex-1 py-2 rounded-xl font-bold text-sm transition-all border-2 ${tipPercentage === pct && customTip === null ? 'border-primary bg-primary text-white shadow-md transform scale-105' : 'border-gray-100 bg-white text-gray-600 hover:bg-gray-50'}`}>{pct === 0 ? 'No' : `${pct}%`}</button>
+                                    ))}
+                                    <button onClick={() => { setTipPercentage(0); setCustomTip(0); }} className={`flex-1 py-2 rounded-xl font-bold text-sm transition-all border-2 ${customTip !== null ? 'border-primary bg-primary text-white shadow-md' : 'border-gray-100 bg-white text-gray-600 hover:bg-gray-50'}`}>Otro</button>
+                                </div>
+                            </div>
+
+                            {customTip !== null && (
+                                <div className="animate-in fade-in slide-in-from-top-1 duration-200">
+                                    <div className="relative">
+                                        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm">$</span>
+                                        <input
+                                            type="number"
+                                            value={customTip || ''}
+                                            onChange={(e) => setCustomTip(Number(e.target.value))}
+                                            placeholder="Ingresa el valor"
+                                            className="w-full p-2 lg:p-3 pl-6 lg:pl-8 border border-primary lg:border-primary/20 rounded-lg lg:rounded-xl text-sm lg:text-lg focus:ring-1 lg:focus:ring-0 focus:ring-primary focus:border-primary font-medium lg:font-bold text-center"
+                                            autoFocus
+                                        />
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+
+                    {/* Payment Method Section */}
+                    <div className="bg-white p-2 lg:p-6 rounded-lg lg:rounded-3xl shadow-sm border border-gray-100 mb-4 lg:mb-0">
+                        {/* Mobile: Compact Row */}
+                        <div className="flex items-center gap-2 h-9 lg:hidden">
+                            {/* Col 1: Cash */}
                             <button
-                                onClick={() => {
-                                    setTipPercentage(0);
-                                    setCustomTip(0);
-                                }}
-                                className={`flex-1 py-1.5 rounded-lg text-xs font-bold border transition-colors ${customTip !== null
+                                onClick={() => handlePaymentSelection('efectivo')}
+                                className={`px-3 h-full rounded-md text-xs font-bold border flex items-center gap-1 transition-colors ${paymentMethod === 'efectivo'
                                     ? 'bg-primary text-white border-primary'
                                     : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
                                     }`}
                             >
-                                Otro
+                                <span>💵</span> Efectivo
                             </button>
-                        </div>
-                    </div>
 
-                    {customTip !== null && (
-                        <div className="animate-in fade-in slide-in-from-top-1 duration-200">
-                            <div className="relative">
-                                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm">$</span>
-                                <input
-                                    type="number"
-                                    value={customTip || ''}
-                                    onChange={(e) => setCustomTip(Number(e.target.value))}
-                                    placeholder="Ingresa el valor"
-                                    className="w-full p-2 pl-6 border border-primary rounded-lg text-sm focus:ring-1 focus:ring-primary focus:border-primary"
-                                    autoFocus
-                                />
+                            {/* Col 2: Transfer */}
+                            <button
+                                onClick={() => handlePaymentSelection('transferencia')}
+                                className={`px-3 h-full rounded-md text-xs font-bold border flex items-center gap-1 transition-colors ${paymentMethod === 'transferencia'
+                                    ? 'bg-primary text-white border-primary'
+                                    : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
+                                    }`}
+                            >
+                                <span>📱</span> Transf.
+                            </button>
+
+                            {/* Col 3: Details (The "Third Space") */}
+                            <div className="flex-1 h-full bg-gray-50 rounded-md border border-gray-100 flex items-center justify-center px-2 text-[10px] text-gray-500 text-center leading-tight overflow-hidden">
+                                {paymentMethod === 'efectivo' && (
+                                    <span className="font-medium text-gray-700 truncate w-full">
+                                        {paymentDetails.needsChange
+                                            ? `Cambio de: ${formatPrice(paymentDetails.billAmount || 0)}`
+                                            : 'Pago Exacto'}
+                                    </span>
+                                )}
+                                {paymentMethod === 'transferencia' && (
+                                    <span className="font-medium text-gray-700 truncate w-full">
+                                        {paymentDetails.bank || 'Selecciona Banco'}
+                                    </span>
+                                )}
+                                {!paymentMethod && <span>Selecciona método</span>}
                             </div>
                         </div>
-                    )}
-                </div>
-            </div>
 
-            {/* Payment Method Section - Single Row 3 Columns */}
-            <div className="bg-white p-2 rounded-lg shadow-sm border border-gray-100 mb-4">
-                <div className="flex items-center gap-2 h-9">
-                    {/* Col 1: Cash */}
-                    <button
-                        onClick={() => handlePaymentSelection('efectivo')}
-                        className={`px-3 h-full rounded-md text-xs font-bold border flex items-center gap-1 transition-colors ${paymentMethod === 'efectivo'
-                            ? 'bg-primary text-white border-primary'
-                            : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
-                            }`}
-                    >
-                        <span>💵</span> Efectivo
-                    </button>
-
-                    {/* Col 2: Transfer */}
-                    <button
-                        onClick={() => handlePaymentSelection('transferencia')}
-                        className={`px-3 h-full rounded-md text-xs font-bold border flex items-center gap-1 transition-colors ${paymentMethod === 'transferencia'
-                            ? 'bg-primary text-white border-primary'
-                            : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
-                            }`}
-                    >
-                        <span>📱</span> Transf.
-                    </button>
-
-                    {/* Col 3: Details (The "Third Space") */}
-                    <div className="flex-1 h-full bg-gray-50 rounded-md border border-gray-100 flex items-center justify-center px-2 text-[10px] text-gray-500 text-center leading-tight overflow-hidden">
-                        {paymentMethod === 'efectivo' && (
-                            <span className="font-medium text-gray-700 truncate w-full">
-                                {paymentDetails.needsChange
-                                    ? `Cambio de: ${formatPrice(paymentDetails.billAmount || 0)}`
-                                    : 'Pago Exacto'}
-                            </span>
-                        )}
-                        {paymentMethod === 'transferencia' && (
-                            <span className="font-medium text-gray-700 truncate w-full">
-                                {paymentDetails.bank || 'Selecciona Banco'}
-                            </span>
-                        )}
-                        {!paymentMethod && <span>Selecciona método</span>}
+                        {/* Desktop: Card Grid */}
+                        <div className="hidden lg:block">
+                            <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                                <span className="bg-green-100 text-green-600 p-1.5 rounded-lg text-lg">💳</span>
+                                Método de Pago
+                            </h3>
+                            <div className="grid grid-cols-2 gap-3 mb-4">
+                                <button onClick={() => handlePaymentSelection('efectivo')} className={`p-4 rounded-2xl flex flex-col items-center gap-2 border-2 transition-all ${paymentMethod === 'efectivo' ? 'border-primary bg-primary/5 text-primary' : 'border-gray-100 bg-gray-50 text-gray-500 hover:border-gray-200'}`}><span className="text-2xl">💵</span><span className="font-bold text-sm">Efectivo</span></button>
+                                <button onClick={() => handlePaymentSelection('transferencia')} className={`p-4 rounded-2xl flex flex-col items-center gap-2 border-2 transition-all ${paymentMethod === 'transferencia' ? 'border-primary bg-primary/5 text-primary' : 'border-gray-100 bg-gray-50 text-gray-500 hover:border-gray-200'}`}><span className="text-2xl">📱</span><span className="font-bold text-sm">Transf.</span></button>
+                            </div>
+                            <div className="bg-gray-50 p-3 rounded-xl border border-gray-100 text-center text-sm text-gray-600 font-medium">
+                                {paymentMethod === 'efectivo' && (paymentDetails.needsChange ? `Cambio de: ${formatPrice(paymentDetails.billAmount || 0)}` : 'Pago Exacto')}
+                                {paymentMethod === 'transferencia' && (paymentDetails.bank || 'Selecciona Banco')}
+                                {!paymentMethod && 'Selecciona un método para continuar'}
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
 
-            {/* Note Section - Collapsible */}
-            <div className="mb-24">
-                {(!note || note.trim() === "") && (
-                    <div className="mb-4 text-center">
-                        <button
-                            onClick={() => setNote(" ")}
-                            className="text-sm font-bold text-primary hover:text-primary/80 flex items-center justify-center gap-1 mx-auto transition-colors"
-                        >
-                            <span>+</span> Agregar nota al pedido
+                    {/* Note Section */}
+                    <div className="mb-24 lg:mb-0">
+                        {/* Mobile: Collapsible */}
+                        <div className="lg:hidden">
+                            {(!note || note.trim() === "") && (
+                                <div className="mb-4 text-center">
+                                    <button
+                                        onClick={() => setNote(" ")}
+                                        className="text-sm font-bold text-primary hover:text-primary/80 flex items-center justify-center gap-1 mx-auto transition-colors"
+                                    >
+                                        <span>+</span> Agregar nota al pedido
+                                    </button>
+                                    <p className="text-[10px] text-gray-400 mt-1 max-w-[250px] mx-auto leading-tight">
+                                        (Detalles de dirección, sin cebolla, salsa aparte, etc.)
+                                    </p>
+                                </div>
+                            )}
+                            {(note && note.trim() !== "") && (
+                                <div className="animate-in fade-in slide-in-from-top-2 duration-300">
+                                    <label className="block text-sm font-bold text-gray-700 mb-1 flex justify-between items-center">
+                                        Notas adicionales
+                                        <button onClick={() => setNote("")} className="text-xs text-red-500 font-normal hover:text-red-700">Cancelar</button>
+                                    </label>
+                                    <textarea
+                                        value={note}
+                                        onChange={(e) => setNote(e.target.value)}
+                                        placeholder="Ej: Casa esquinera puerta blanca... o Sin cebolla en la hamburguesa..."
+                                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-1 focus:ring-primary focus:border-transparent text-sm resize-none h-20 placeholder:text-gray-400"
+                                        autoFocus
+                                    ></textarea>
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Desktop: Always Visible */}
+                        <div className="hidden lg:block">
+                            <textarea value={note} onChange={(e) => setNote(e.target.value)} placeholder="Notas adicionales para el pedido..." className="w-full p-4 bg-white border border-gray-200 rounded-2xl text-sm focus:border-primary focus:ring-1 focus:ring-primary/20 min-h-[100px] resize-none"></textarea>
+                        </div>
+                    </div>
+
+                    {/* Desktop Summary - Integrated in sidebar */}
+                    <section className="hidden lg:block bg-white p-6 rounded-3xl shadow-sm border border-gray-100">
+                        <div className="space-y-2 mb-6">
+                            <div className="flex justify-between text-base text-gray-500">
+                                <span>Subtotal</span>
+                                <span className="font-bold">{formatPrice(total)}</span>
+                            </div>
+                            {tipAmount > 0 && (
+                                <div className="flex justify-between text-base text-green-600">
+                                    <span>{customTip !== null ? "Propina (Voluntaria)" : `Propina (${tipPercentage}%)`}</span>
+                                    <span className="font-bold">{formatPrice(tipAmount)}</span>
+                                </div>
+                            )}
+                            <div className="border-t border-dashed border-gray-200 my-4"></div>
+                            <div className="flex justify-between items-end">
+                                <span className="text-xl font-bold text-gray-900">Total</span>
+                                <span className="text-3xl font-black text-primary">{formatPrice(finalTotal)}</span>
+                            </div>
+                        </div>
+
+                        <button onClick={handleWhatsAppOrder} className="w-full bg-organic hover:bg-green-700 text-white font-bold py-4 rounded-xl shadow-xl shadow-green-200 flex items-center justify-center gap-3 transition-transform hover:scale-[1.02] active:scale-[0.98] group">
+                            <span className="p-1 bg-white/20 rounded-full group-hover:rotate-12 transition-transform"><Send size={20} /></span>
+                            <span className="text-lg">Enviar Pedido por WhatsApp</span>
                         </button>
-                        <p className="text-[10px] text-gray-400 mt-1 max-w-[250px] mx-auto leading-tight">
-                            (Detalles de dirección, sin cebolla, salsa aparte, etc.)
-                        </p>
-                    </div>
-                )}
+                    </section>
 
-                {(note && note.trim() !== "") && (
-                    <div className="animate-in fade-in slide-in-from-top-2 duration-300">
-                        <label className="block text-sm font-bold text-gray-700 mb-1 flex justify-between items-center">
-                            Notas adicionales
-                            <button onClick={() => setNote("")} className="text-xs text-red-500 font-normal hover:text-red-700">Cancelar</button>
-                        </label>
-                        <textarea
-                            value={note}
-                            onChange={(e) => setNote(e.target.value)}
-                            placeholder="Ej: Casa esquinera puerta blanca... o Sin cebolla en la hamburguesa..."
-                            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-1 focus:ring-primary focus:border-transparent text-sm resize-none h-20 placeholder:text-gray-400"
-                            autoFocus
-                        ></textarea>
-                    </div>
-                )}
-            </div>
+                </div> {/* Close right column lg:col-span-1 */}
+            </div> {/* Close lg:grid */}
 
-            {/* Summary Footer - Standardized p-3 */}
-            <div className="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 p-3 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-40">
+            {/* Summary Footer - Mobile: Fixed Bottom | Desktop: Integrated in right column above */}
+            <div className="fixed bottom-0 left-0 w-full lg:hidden bg-white border-t border-gray-200 p-3 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-40">
                 <div className="max-w-lg mx-auto">
                     <div className="flex justify-between mb-1 text-xs text-gray-500">
                         <span>Subtotal</span>

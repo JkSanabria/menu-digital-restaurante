@@ -12,21 +12,34 @@ export default function SectionView() {
     if (!section) return <Navigate to="/" replace />;
 
     return (
-        <div className="container mx-auto px-4 py-6 max-w-lg animate-in fade-in slide-in-from-right-8 duration-300">
-            <div className="flex items-baseline gap-3 mb-4 border-b border-primary/20 pb-2">
-                <h1 className="text-2xl text-primary font-heading font-bold">{section.name}</h1>
-                <span className="text-gray-400 text-xs font-light">Selecciona una categoría</span>
+        <div className="container mx-auto px-4 py-8 max-w-lg md:max-w-5xl animate-in fade-in slide-in-from-right-8 duration-300 pb-24">
+            <div className="flex items-center gap-4 mb-6 md:mb-8 border-b border-gray-200 md:border-b-2 md:border-primary/10 pb-3 md:pb-4">
+                <Link to="/" className="p-2 -ml-2 hover:bg-gray-100 rounded-full transition-colors text-gray-400 hover:text-primary lg:hidden">
+                    <ChevronRight className="rotate-180" size={24} />
+                </Link>
+                <div className="flex-1">
+                    <h1 className="text-2xl md:text-5xl text-gray-900 font-heading font-black tracking-tight uppercase inline">
+                        {section.name}
+                    </h1>
+                    <span className="text-gray-400 text-sm md:text-lg font-normal md:font-medium ml-2 md:block md:ml-0 md:mt-1">
+                        Selecciona una categoría
+                    </span>
+                </div>
             </div>
 
-            <div className="grid gap-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-6">
                 {section.subcategories.map((sub) => (
                     <Link
                         key={sub.id}
                         to={`/section/${sectionId}/sub/${sub.id}`}
-                        className="flex items-center justify-between py-2 px-3 bg-white rounded-lg shadow-sm border border-orange-100 hover:border-primary/30 hover:shadow-md transition-all active:bg-orange-50"
+                        className="group flex items-center justify-between p-3 md:p-8 bg-white rounded-xl md:rounded-2xl shadow-sm border border-gray-100 hover:border-primary hover:shadow-lg transition-all active:scale-[0.99] relative overflow-hidden"
                     >
-                        <span className="font-heading text-lg text-gray-800 font-medium leading-tight">{sub.name}</span>
-                        <ChevronRight className="text-primary/60" size={18} />
+                        <div className="absolute right-0 top-0 w-16 h-16 md:w-24 md:h-24 bg-primary/5 rounded-bl-full -mr-6 -mt-6 md:-mr-8 md:-mt-8 transition-transform group-hover:scale-150 duration-500"></div>
+
+                        <span className="font-heading text-xl md:text-3xl text-gray-800 font-bold group-hover:text-primary transition-colors z-10">{sub.name}</span>
+                        <div className="bg-gray-50 p-1.5 md:p-3 rounded-full group-hover:bg-primary group-hover:text-white transition-all z-10 shadow-sm">
+                            <ChevronRight size={20} className="md:w-6 md:h-6" />
+                        </div>
                     </Link>
                 ))}
             </div>

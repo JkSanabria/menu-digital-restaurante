@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { useParams, Navigate } from 'react-router-dom';
+import { useParams, Navigate, Link } from 'react-router-dom';
 import menuData from '../data/menu.json';
 import { MenuData, Product } from '../types/menu';
 import { useCart } from '../context/CartContext';
-import { Plus, Minus, X } from 'lucide-react';
+import { Plus, Minus, X, ChevronRight } from 'lucide-react';
 
 const data: MenuData = menuData as unknown as MenuData;
 
@@ -50,69 +50,76 @@ export default function ProductList() {
 
     return (
         <>
-            <div className="container mx-auto px-4 py-6 max-w-lg animate-in fade-in slide-in-from-right-8 duration-300 pb-32">
-                {/* Header Compacto Alineado */}
-                <div className="flex items-baseline gap-3 mb-4 border-b border-primary/20 pb-2">
-                    <h1 className="text-2xl font-heading font-bold text-gray-900">{subcategory.name}</h1>
-                    <span className="text-xs font-bold text-primary/60 uppercase tracking-wider font-light">
-                        {section.name}
-                    </span>
+            <div className="container mx-auto px-4 py-8 max-w-lg md:max-w-5xl animate-in fade-in slide-in-from-right-8 duration-300 pb-32">
+                {/* Header Compacto */}
+                <div className="flex items-center gap-4 mb-6 md:mb-8 border-b border-gray-200 md:border-b-2 md:border-primary/10 pb-3 md:pb-4">
+                    <Link to={`/section/${sectionId}`} className="p-2 -ml-2 hover:bg-gray-100 rounded-full transition-colors text-gray-400 hover:text-primary">
+                        <ChevronRight className="rotate-180" size={24} />
+                    </Link>
+                    <div className="flex-1">
+                        <h1 className="text-2xl md:text-5xl font-heading font-black text-gray-900 tracking-tight uppercase inline">
+                            {subcategory.name}
+                        </h1>
+                        <span className="text-gray-400 text-sm md:text-lg font-normal md:font-bold uppercase tracking-widest ml-2 md:block md:ml-0 md:mt-1">
+                            {section.name}
+                        </span>
+                    </div>
                 </div>
 
-                <div className="flex flex-col gap-8">
+                <div className="flex flex-col gap-2 md:gap-6">
                     {subcategory.categories.map((category) => (
-                        <div key={category.id} className="scroll-mt-20" id={category.id}>
-                            {/* Titulo de categoria eliminado como se solicito */}
+                        <div key={category.id} className="scroll-mt-24" id={category.id}>
+                            {category.products.map((product) => {
+                                const cartItem = items.find(item => item.id === product.id);
+                                const quantity = cartItem ? cartItem.quantity : 0;
 
-                            <div className="grid gap-4">
-                                {category.products.map((product) => {
-                                    const cartItem = items.find(item => item.id === product.id);
-                                    const quantity = cartItem ? cartItem.quantity : 0;
+                                return (
+                                    <div
+                                        key={product.id}
+                                        onClick={() => openModal(product)}
+                                        className="group bg-white rounded-xl md:rounded-2xl p-3 md:p-8 shadow-sm border border-gray-100 flex items-center justify-between gap-3 md:gap-4 transition-all hover:border-primary hover:shadow-lg active:scale-[0.99] cursor-pointer"
+                                    >
+                                        <div className="flex items-center gap-2 md:gap-3 flex-1 min-w-0">
+                                            <h3 className="font-heading text-base md:text-xl font-bold text-gray-800 leading-tight line-clamp-2 flex-1">
+                                                {product.name}
+                                            </h3>
 
-                                    return (
-                                        <div
-                                            key={product.id}
-                                            className="group bg-white rounded-lg py-2 px-3 shadow-sm border border-gray-100 flex items-center justify-between gap-3 transition-all hover:border-primary/30 hover:shadow-md active:bg-gray-50"
-                                        >
-                                            <div
-                                                onClick={() => openModal(product)}
-                                                className="flex-1 cursor-pointer flex items-center gap-2"
-                                            >
-                                                <h3 className="font-heading text-base font-bold text-gray-800 leading-tight group-hover:text-primary transition-colors">
-                                                    {product.name}
-                                                </h3>
-                                                {/* Visual affordance for details */}
-                                                <div className="text-gray-300 group-hover:text-primary/50 transition-colors">
-                                                    <span className="sr-only">Ver detalle</span>
-                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" /></svg>
-                                                </div>
+                                            {/* Info Icon */}
+                                            <div className="text-gray-300 group-hover:text-primary transition-colors p-1 shrink-0">
+                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="md:w-6 md:h-6">
+                                                    <circle cx="12" cy="12" r="10" />
+                                                    <line x1="12" y1="16" x2="12" y2="12" />
+                                                    <line x1="12" y1="8" x2="12.01" y2="8" />
+                                                </svg>
                                             </div>
+                                        </div>
 
-                                            <div className="flex items-center gap-3 shrink-0">
-                                                <span className="font-bold text-base text-primary whitespace-nowrap">
-                                                    {formatPrice(product.price)}
-                                                </span>
+                                        <div className="flex items-center gap-2 md:gap-3 shrink-0" onClick={(e) => e.stopPropagation()}>
+                                            <span className="font-black text-lg md:text-2xl text-primary whitespace-nowrap">
+                                                {formatPrice(product.price)}
+                                            </span>
 
+                                            <div className="shrink-0">
                                                 {quantity > 0 ? (
-                                                    <div className="flex items-center bg-gray-100 rounded-lg p-0.5 border border-gray-200">
+                                                    <div className="flex items-center bg-gray-50 rounded-lg p-0.5 md:p-1 border border-gray-200 gap-1 md:gap-2">
                                                         <button
                                                             onClick={(e) => {
                                                                 e.stopPropagation();
                                                                 updateQuantity(product.id, quantity - 1);
                                                             }}
-                                                            className="w-7 h-7 flex items-center justify-center bg-white rounded-md text-gray-600 shadow-sm hover:text-red-500 active:scale-95 transition-all"
+                                                            className="w-7 h-7 md:w-10 md:h-10 flex items-center justify-center bg-white rounded-md text-gray-600 shadow-sm hover:text-red-500 active:scale-95 transition-all"
                                                         >
-                                                            <Minus size={14} />
+                                                            <Minus size={16} className="md:w-5 md:h-5" />
                                                         </button>
-                                                        <span className="w-8 text-center font-bold text-sm text-gray-800">{quantity}</span>
+                                                        <span className="w-6 md:w-8 text-center font-bold text-sm md:text-xl text-gray-800">{quantity}</span>
                                                         <button
                                                             onClick={(e) => {
                                                                 e.stopPropagation();
                                                                 addToCart(product);
                                                             }}
-                                                            className="w-7 h-7 flex items-center justify-center bg-primary text-white rounded-md shadow-sm hover:bg-red-700 active:scale-95 transition-all"
+                                                            className="w-7 h-7 md:w-10 md:h-10 flex items-center justify-center bg-primary text-white rounded-md shadow-sm hover:bg-red-700 active:scale-95 transition-all"
                                                         >
-                                                            <Plus size={14} />
+                                                            <Plus size={16} className="md:w-5 md:h-5" />
                                                         </button>
                                                     </div>
                                                 ) : (
@@ -121,17 +128,17 @@ export default function ProductList() {
                                                             e.stopPropagation();
                                                             addToCart(product);
                                                         }}
-                                                        className="w-8 h-8 rounded-full bg-gray-50 text-primary flex items-center justify-center hover:bg-primary hover:text-white transition-all shadow-sm border border-gray-100 active:scale-90"
+                                                        className="w-8 h-8 md:w-12 md:h-12 rounded-full bg-gray-50 text-primary flex items-center justify-center hover:bg-primary hover:text-white transition-all shadow-sm border border-gray-100 active:scale-90"
                                                         aria-label="Agregar al carrito"
                                                     >
-                                                        <Plus size={18} />
+                                                        <Plus size={20} className="md:w-7 md:h-7" strokeWidth={3} />
                                                     </button>
                                                 )}
                                             </div>
                                         </div>
-                                    );
-                                })}
-                            </div>
+                                    </div>
+                                );
+                            })}
                         </div>
                     ))}
                 </div>
