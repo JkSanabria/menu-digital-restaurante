@@ -761,8 +761,8 @@
         ]
     },
     {
-        "id": "recomendaciones",
-        "name": "Recomendaciones",
+        "id": "recomendacion",
+        "name": "Recomendación",
         "image": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80",
         "subcategories": [
             {
@@ -796,6 +796,225 @@
                                 "spiceLevel": 0,
                                 "attributes": [
                                     "recomendado",
+                                    "favorito-chef"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "entradas",
+        "name": "Entradas",
+        "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80",
+        "subcategories": [
+            {
+                "id": "ensaladas",
+                "name": "Ensaladas",
+                "categories": [
+                    {
+                        "id": "ensaladas-frescas",
+                        "name": "Ensaladas Frescas",
+                        "products": [
+                            {
+                                "id": "ensalada-cesar",
+                                "name": "Ensalada César",
+                                "description": "Lechuga romana fresca, crutones artesanales, queso parmesano, pollo a la parrilla y aderezo césar casero",
+                                "price": 18000,
+                                "image": "https://images.unsplash.com/photo-1546793665-c74683f339c1?w=400&q=80",
+                                "prepTime": "8-10 min",
+                                "spiceLevel": 0,
+                                "attributes": [
+                                    "saludable"
+                                ]
+                            },
+                            {
+                                "id": "ensalada-mediterranea",
+                                "name": "Ensalada Mediterránea",
+                                "description": "Mix de lechugas, tomate cherry, pepino, aceitunas negras, queso feta, cebolla morada y vinagreta balsámica",
+                                "price": 16000,
+                                "image": "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=400&q=80",
+                                "prepTime": "8-10 min",
+                                "spiceLevel": 0,
+                                "attributes": [
+                                    "vegetariano",
+                                    "saludable"
+                                ]
+                            },
+                            {
+                                "id": "ensalada-napoli",
+                                "name": "Ensalada Napoli Especial",
+                                "description": "Mezcla de lechugas gourmet, tomate, aguacate, maíz tierno, queso mozzarella, pollo o atún y aderezo de la casa",
+                                "price": 20000,
+                                "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&q=80",
+                                "prepTime": "10-12 min",
+                                "spiceLevel": 0,
+                                "attributes": [
+                                    "recomendado",
+                                    "saludable"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "sopas",
+                "name": "Sopas",
+                "categories": [
+                    {
+                        "id": "sopas-calientes",
+                        "name": "Sopas Calientes",
+                        "products": [
+                            {
+                                "id": "sopa-pollo",
+                                "name": "Sopa de Pollo Casera",
+                                "description": "Caldo de pollo con verduras frescas, papa, zanahoria, apio y trozos de pollo deshilachado",
+                                "price": 12000,
+                                "image": "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400&q=80",
+                                "prepTime": "5-8 min",
+                                "spiceLevel": 0,
+                                "attributes": [
+                                    "reconfortante"
+                                ]
+                            },
+                            {
+                                "id": "crema-tomate",
+                                "name": "Crema de Tomate",
+                                "description": "Suave crema de tomate con albahaca fresca, crutones y un toque de crema de leche",
+                                "price": 14000,
+                                "image": "https://images.unsplash.com/photo-1547592180-85f173990554?w=400&q=80",
+                                "prepTime": "5-8 min",
+                                "spiceLevel": 0,
+                                "attributes": [
+                                    "vegetariano"
+                                ]
+                            },
+                            {
+                                "id": "sancocho-napoli",
+                                "name": "Sancocho Napoli",
+                                "description": "Sancocho tradicional con costilla de res, pollo, yuca, plátano, papa criolla y mazorca. Servido con arroz y aguacate",
+                                "price": 22000,
+                                "image": "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=400&q=80",
+                                "prepTime": "8-10 min",
+                                "spiceLevel": 1,
+                                "attributes": [
+                                    "recomendado",
+                                    "favorito-chef"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "postres",
+        "name": "Postres",
+        "image": "https://images.unsplash.com/photo-1551024506-0bccd828d307?w=800&q=80",
+        "subcategories": [
+            {
+                "id": "helados",
+                "name": "Helados",
+                "categories": [
+                    {
+                        "id": "helados-artesanales",
+                        "name": "Helados Artesanales",
+                        "products": [
+                            {
+                                "id": "helado-vainilla",
+                                "name": "Helado de Vainilla Premium",
+                                "description": "Helado artesanal de vainilla de Madagascar con salsa de chocolate caliente y chispas de colores",
+                                "price": 10000,
+                                "image": "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400&q=80",
+                                "prepTime": "2-3 min",
+                                "spiceLevel": 0,
+                                "attributes": []
+                            },
+                            {
+                                "id": "helado-chocolate",
+                                "name": "Helado de Chocolate Belga",
+                                "description": "Helado cremoso de chocolate belga con trozos de brownie y salsa de caramelo",
+                                "price": 12000,
+                                "image": "https://images.unsplash.com/photo-1570197788417-0e82375c9371?w=400&q=80",
+                                "prepTime": "2-3 min",
+                                "spiceLevel": 0,
+                                "attributes": [
+                                    "recomendado"
+                                ]
+                            },
+                            {
+                                "id": "copa-napoli",
+                                "name": "Copa Napoli Especial",
+                                "description": "Tres bolas de helado (vainilla, fresa y chocolate), salsa de frutos rojos, crema chantilly, galleta y cereza",
+                                "price": 16000,
+                                "image": "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=400&q=80",
+                                "prepTime": "3-5 min",
+                                "spiceLevel": 0,
+                                "attributes": [
+                                    "favorito-chef"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "tortas",
+                "name": "Tortas y Pasteles",
+                "categories": [
+                    {
+                        "id": "tortas-caseras",
+                        "name": "Tortas Caseras",
+                        "products": [
+                            {
+                                "id": "torta-tres-leches",
+                                "name": "Torta Tres Leches",
+                                "description": "Esponjoso bizcocho bañado en tres leches, cubierto con merengue italiano y canela",
+                                "price": 14000,
+                                "image": "https://images.unsplash.com/photo-1621303837174-89787a7d4729?w=400&q=80",
+                                "prepTime": "3-5 min",
+                                "spiceLevel": 0,
+                                "attributes": [
+                                    "recomendado"
+                                ]
+                            },
+                            {
+                                "id": "cheesecake-frutos",
+                                "name": "Cheesecake de Frutos Rojos",
+                                "description": "Suave cheesecake con base de galleta, cubierto con salsa de frutos rojos naturales",
+                                "price": 16000,
+                                "image": "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=400&q=80",
+                                "prepTime": "3-5 min",
+                                "spiceLevel": 0,
+                                "attributes": [
+                                    "favorito-chef"
+                                ]
+                            },
+                            {
+                                "id": "brownie-helado",
+                                "name": "Brownie con Helado",
+                                "description": "Brownie de chocolate tibio con helado de vainilla, salsa de chocolate caliente y nueces",
+                                "price": 15000,
+                                "image": "https://images.unsplash.com/photo-1607920591413-4ec007e70023?w=400&q=80",
+                                "prepTime": "5-7 min",
+                                "spiceLevel": 0,
+                                "attributes": [
+                                    "recomendado"
+                                ]
+                            },
+                            {
+                                "id": "tiramisu",
+                                "name": "Tiramisú Clásico",
+                                "description": "Postre italiano con capas de bizcocho embebido en café, crema de mascarpone y cacao en polvo",
+                                "price": 17000,
+                                "image": "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=400&q=80",
+                                "prepTime": "3-5 min",
+                                "spiceLevel": 0,
+                                "attributes": [
                                     "favorito-chef"
                                 ]
                             }
