@@ -9,6 +9,9 @@ export interface Product {
     spiceLevel?: number;
     size?: string;
     sizes?: string[];
+    options?: string[];
+    maxOptions?: number;
+    sizePrices?: { [key: string]: number };
 }
 
 export interface Category {

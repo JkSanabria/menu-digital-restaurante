@@ -3,6 +3,7 @@ import Layout from './layouts/Layout';
 import Home from './pages/Home';
 import SectionView from './pages/SectionView';
 import ProductList from './pages/ProductList';
+import PizzaCustomizer from './pages/PizzaCustomizer';
 import CartPage from './pages/CartPage.tsx';
 import FloatingCart from './components/FloatingCart';
 import { CartProvider } from './context/CartContext';
@@ -15,6 +16,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Layout />}>
                         <Route index element={<Home />} />
+                        <Route path="pizzas" element={<PizzaCustomizer />} />
                         <Route path="section/:sectionId" element={<SectionView />} />
                         <Route path="section/:sectionId/sub/:subId" element={<ProductList />} />
                         <Route path="cart" element={<CartPage />} />

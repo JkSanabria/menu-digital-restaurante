@@ -20,27 +20,11 @@ const formatPrice = (price: number) => {
 export default function Home() {
     const { itemCount, total, addToCart, updateQuantity, items } = useCart();
     const [searchTerm, setSearchTerm] = useState('');
-    const [showOffers, setShowOffers] = useState(false);
+
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
     const [quantity, setQuantity] = useState(1);
 
-    const handleAddToCart = () => {
-        if (!selectedProduct) return;
 
-        // Add the product multiple times based on quantity
-        for (let i = 0; i < quantity; i++) {
-            addToCart(selectedProduct);
-        }
-
-        // Reset modal
-        setSelectedProduct(null);
-        setQuantity(1);
-    };
-
-    const openModal = (product: Product) => {
-        setSelectedProduct(product);
-        setQuantity(1);
-    };
 
     // Search Logic
     const { matchedProducts, matchedSections } = useMemo(() => {
@@ -77,17 +61,99 @@ export default function Home() {
             });
         });
 
-        // Remove duplicates if any (though logic ensures unique iteration)
-        return { matchedProducts: products, matchedSections: sections };
+        // Deduplicate products by ID to allow same product in multiple categories without UI dupes
+        const uniqueProducts = Array.from(new Map(products.map(item => [item.id, item])).values());
+
+        return { matchedProducts: uniqueProducts, matchedSections: sections };
     }, [searchTerm]);
 
     // Extract sections with proper null handling
     const comidasSection = data.find(section => section.id === 'comidas');
     const bebidasSection = data.find(section => section.id === 'bebidas');
     const especialidadesSection = data.find(section => section.id === 'especialidades');
-    const recomendacionesSection = data.find(section => section.id === 'recomendacion');
+    const pizzasSection = data.find(section => section.id === 'pizzas');
     const entradasSection = data.find(section => section.id === 'entradas');
     const postresSection = data.find(section => section.id === 'postres');
+
+    // Modal Option Logic
+    const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+    const [selectedSize, setSelectedSize] = useState<string>('');
+
+    // Reset options when opening modal
+    const openModal = (product: Product) => {
+        setSelectedProduct(product);
+        setQuantity(1);
+        setSelectedOptions([]);
+
+        // Auto-select first size if available
+        if (product.sizes && product.sizes.length > 0) {
+            setSelectedSize(product.sizes[0]);
+        } else {
+            setSelectedSize('');
+        }
+    };
+
+    const toggleOption = (option: string, max: number) => {
+        if (selectedOptions.includes(option)) {
+            setSelectedOptions(prev => prev.filter(o => o !== option));
+        } else {
+            if (selectedOptions.length < max) {
+                setSelectedOptions(prev => [...prev, option]);
+            }
+        }
+    };
+
+    const handleAddToCart = () => {
+        if (!selectedProduct) return;
+
+        // Clone product to avoid mutating original data
+        const productToAdd = { ...selectedProduct };
+        let uniqueIdSuffix = '';
+
+        // Handle Size Logic
+        if (selectedSize && productToAdd.sizePrices) {
+            productToAdd.size = selectedSize;
+            productToAdd.price = productToAdd.sizePrices[selectedSize];
+            uniqueIdSuffix += `-${selectedSize}`;
+            productToAdd.name = `${productToAdd.name} (${selectedSize})`;
+        }
+
+        // Handle Options Logic (e.g. for Combined Pizzas)
+        if (selectedOptions.length > 0) {
+            const optionsKey = selectedOptions.sort().join('-');
+            uniqueIdSuffix += `-${optionsKey}`;
+
+            // Append options directly to name for simple cart display
+            if (selectedSize) {
+                productToAdd.name = `${productToAdd.name} - ${selectedOptions.join(' / ')}`;
+            } else {
+                productToAdd.name = `${productToAdd.name} (${selectedOptions.join(' / ')})`;
+            }
+
+            productToAdd.attributes = [...(productToAdd.attributes || []), ...selectedOptions];
+        }
+
+        // Apply unique ID
+        if (uniqueIdSuffix) {
+            productToAdd.id = `${productToAdd.id}${uniqueIdSuffix}`;
+        }
+
+        // Add the product multiple times based on quantity
+        for (let i = 0; i < quantity; i++) {
+            addToCart(productToAdd);
+        }
+
+        // Reset modal
+        setSelectedProduct(null);
+        setQuantity(1);
+        setSelectedOptions([]);
+        setSelectedSize('');
+    };
+
+    // Calculate current display price based on size selection
+    const currentPrice = selectedProduct?.sizePrices && selectedSize
+        ? selectedProduct.sizePrices[selectedSize]
+        : selectedProduct?.price || 0;
 
     return (
         <div className="container mx-auto px-4 py-6 max-w-md md:max-w-5xl animate-in fade-in slide-in-from-bottom-4 duration-500 pb-32">
@@ -117,239 +183,50 @@ export default function Home() {
                 </div>
             </div>
 
-            {!searchTerm && (
-                /* Ofertas Section - Toggleable */
-                <div onClick={() => setShowOffers(!showOffers)} className="cursor-pointer block mb-8 relative group mx-2 md:mx-0 select-none transition-transform active:scale-[0.98]">
-                    <div className="absolute -inset-0.5 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 rounded-2xl blur opacity-60 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
-                    <div className="relative h-36 md:h-44 bg-zinc-900 rounded-2xl overflow-hidden shadow-2xl flex items-center justify-between p-6 hover:-translate-y-1 transition-transform duration-300">
-                        {/* Content */}
-                        <div className="z-10 flex-1 pr-4">
-                            <div className="flex items-center gap-2 mb-2">
-                                <span className="inline-block py-1 px-2 rounded-lg bg-orange-500/20 text-orange-400 text-[10px] md:text-xs font-black tracking-widest uppercase border border-orange-500/30">
-                                    ¡Oferta Flash!
-                                </span>
-                                <span className="animate-bounce">🔥</span>
-                            </div>
-                            <h2 className="text-3xl md:text-5xl font-black text-white italic tracking-tighter mb-1 leading-none drop-shadow-xl">
-                                HAPPY <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">HOUR</span>
-                            </h2>
-                            <p className="text-gray-400 text-xs md:text-sm font-medium">2x1 en Cocteles seleccionados • 4pm - 8pm</p>
-                        </div>
+            {/* Ofertas Section Hidden */}
 
-                        {/* Image */}
-                        <div className="absolute top-0 right-0 w-3/5 h-full">
-                            <div className="absolute inset-0 bg-gradient-to-r from-zinc-900 via-zinc-900/40 to-transparent z-10 block"></div>
-                            <img
-                                src="https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Bebidas.jpg"
-                                className="w-full h-full object-cover object-center opacity-80 group-hover:scale-105 transition-transform duration-700 mix-blend-overlay group-hover:mix-blend-normal"
-                                alt="Oferta"
-                            />
-                        </div>
 
-                        {/* Floating Toggle */}
-                        <div className="absolute top-4 right-4 z-20 flex flex-col items-end gap-2">
-                            <div className={`bg-white text-black p-2 rounded-full shadow-lg transition-transform duration-300 ${showOffers ? 'rotate-45 bg-gray-100' : 'rotate-0'}`}>
-                                <Plus size={20} className="stroke-[3]" />
-                            </div>
-                            {!showOffers && (
-                                <div className="bg-white text-black text-[10px] font-black px-2 py-1 rounded-md shadow-lg -rotate-3 group-hover:rotate-0 transition-transform animate-in fade-in zoom-in border border-yellow-400">
-                                    VER 30% OFF
-                                </div>
-                            )}
-                        </div>
-                    </div>
-                </div>
-            )}
-
-            {/* Promo Products Grid */}
-            {!searchTerm && bebidasSection && showOffers && (
-                <div className="mb-12 mx-2 md:mx-0 animate-in fade-in slide-in-from-bottom-6 duration-700 delay-100">
-                    <div className="flex items-center justify-between mb-4 pl-1">
-                        <div className="flex items-center gap-2">
-                            <div className="bg-red-100 p-1.5 rounded-full">
-                                <span className="text-xl leading-none">⚡</span>
-                            </div>
-                            <h3 className="font-heading text-xl font-black text-gray-900 tracking-tight">
-                                Ofertas Relámpago
-                            </h3>
-                        </div>
-                        <Link to="/section/bebidas" className="text-primary text-xs font-bold uppercase tracking-wider hover:underline bg-primary/5 px-3 py-1.5 rounded-full hover:bg-primary/10 transition-colors">
-                            Ver todas
-                        </Link>
-                    </div>
-
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                        {bebidasSection.subcategories.flatMap(s => s.categories).flatMap(c => c.products).slice(0, 4).map(product => {
-                            const originalPrice = product.price;
-                            const promoPrice = Math.floor(product.price * 0.7); // 30% off
-
-                            return (
-                                <div key={product.id} className="bg-white rounded-2xl p-3 shadow-sm border border-orange-100 relative group overflow-hidden hover:shadow-md transition-all hover:-translate-y-1">
-                                    <div className="absolute top-3 left-3 bg-red-500 text-white text-[10px] font-black px-2 py-1 rounded-lg z-10 shadow-sm transform -rotate-2 group-hover:rotate-0 transition-transform">
-                                        AHORRA 30%
-                                    </div>
-
-                                    <div onClick={() => openModal({ ...product, price: promoPrice })} className="cursor-pointer mb-3">
-                                        <div className="aspect-[4/3] rounded-xl overflow-hidden mb-3 bg-gray-50 relative">
-                                            <img src={product.image} alt={product.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors"></div>
-                                        </div>
-                                        <h4 className="font-heading font-bold text-sm text-gray-900 line-clamp-1 mb-1 leading-tight">{product.name}</h4>
-                                        <p className="text-[10px] text-gray-400 line-clamp-1 mb-2">Oferta por tiempo limitado</p>
-
-                                        <div className="flex items-baseline gap-2">
-                                            <span className="text-red-600 font-black text-lg">{formatPrice(promoPrice)}</span>
-                                            <span className="text-xs text-gray-400 line-through font-medium Decoration-1">{formatPrice(originalPrice)}</span>
-                                        </div>
-                                    </div>
-
-                                    <button
-                                        onClick={(e) => {
-                                            e.stopPropagation();
-                                            addToCart({ ...product, price: promoPrice });
-                                        }}
-                                        className="w-full bg-orange-50 text-orange-600 hover:bg-orange-500 hover:text-white font-bold py-2.5 rounded-xl text-xs transition-all flex items-center justify-center gap-2 active:scale-95"
-                                    >
-                                        <Plus size={16} strokeWidth={3} />
-                                        AGREGAR
-                                    </button>
-                                </div>
-                            );
-                        })}
-                    </div>
-                </div>
-            )}
 
             {!searchTerm ? (
                 /* Menu Sections - High Contrast Wide Grid */
                 <nav className="grid grid-cols-2 gap-3 lg:gap-6" aria-label="Menú principal">
-                    {/* Comidas Section */}
-                    {comidasSection && (
-                        <Link
-                            to={`/section/${comidasSection.id}`}
-                            className="group relative h-24 md:h-36 lg:h-40 rounded-xl overflow-hidden bg-black shadow-md border border-gray-800 hover:border-gray-600 transition-all active:scale-[0.98]"
-                            aria-label="Ver menú de comidas"
-                        >
-                            <img
-                                src={comidasSection.image}
-                                alt=""
-                                className="w-full h-full object-cover opacity-40 group-hover:opacity-50 transition-all duration-500 grayscale-[20%]"
-                                loading="lazy"
-                            />
-                            <div className="absolute inset-0 flex items-center justify-center">
-                                <span className="text-white font-heading text-xl md:text-3xl font-black tracking-widest uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] group-hover:scale-105 transition-transform duration-300">
-                                    {comidasSection.name}
-                                </span>
-                            </div>
-                        </Link>
-                    )}
+                    {[
+                        { section: comidasSection, path: `/section/${comidasSection?.id}`, label: '' },
+                        { section: bebidasSection, path: `/section/${bebidasSection?.id}`, label: '' },
+                        { section: especialidadesSection, path: `/section/${especialidadesSection?.id}`, label: 'de la Casa' },
+                        { section: pizzasSection, path: '/pizzas', label: 'Tradicionales y Combinadas' }, // Custom path for Pizzas
+                        { section: entradasSection, path: `/section/${entradasSection?.id}`, label: '' },
+                        { section: postresSection, path: `/section/${postresSection?.id}`, label: '' }
+                    ].map(({ section, path, label }) => {
+                        if (!section) return null;
+                        return (
+                            <Link
+                                key={section.id}
+                                to={path}
+                                className="group relative h-24 md:h-32 rounded-xl overflow-hidden bg-gray-100 shadow-sm border border-gray-200 hover:shadow-lg hover:border-primary/20 transition-all duration-300 active:scale-[0.98]"
+                            >
+                                <img
+                                    src={section.image}
+                                    alt=""
+                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-90"
+                                    loading="lazy"
+                                />
+                                {/* Stronger Gradient for Readability */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
 
-                    {/* Bebidas Section */}
-                    {bebidasSection && (
-                        <Link
-                            to={`/section/${bebidasSection.id}`}
-                            className="group relative h-24 md:h-36 lg:h-40 rounded-xl overflow-hidden bg-black shadow-md border border-gray-800 hover:border-gray-600 transition-all active:scale-[0.98]"
-                            aria-label="Ver menú de bebidas"
-                        >
-                            <img
-                                src={bebidasSection.image}
-                                alt=""
-                                className="w-full h-full object-cover opacity-40 group-hover:opacity-50 transition-all duration-500 grayscale-[20%]"
-                                loading="lazy"
-                            />
-                            <div className="absolute inset-0 flex items-center justify-center">
-                                <span className="text-white font-heading text-xl md:text-3xl font-black tracking-widest uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] group-hover:scale-105 transition-transform duration-300">
-                                    {bebidasSection.name}
-                                </span>
-                            </div>
-                        </Link>
-                    )}
-
-                    {/* Especialidades Section */}
-                    {especialidadesSection && (
-                        <Link
-                            to={`/section/${especialidadesSection.id}`}
-                            className="group relative h-24 md:h-36 lg:h-40 rounded-xl overflow-hidden bg-black shadow-md border border-gray-800 hover:border-gray-600 transition-all active:scale-[0.98]"
-                            aria-label="Ver especialidades"
-                        >
-                            <img
-                                src={especialidadesSection.image}
-                                alt=""
-                                className="w-full h-full object-cover opacity-30 group-hover:opacity-40 transition-all duration-500 grayscale-[20%]"
-                                loading="lazy"
-                            />
-                            <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-2">
-                                <span className="text-white font-heading text-lg md:text-2xl font-black tracking-widest uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] group-hover:scale-105 transition-transform duration-300 leading-tight">
-                                    {especialidadesSection.name}
-                                </span>
-                                <span className="text-gray-300 text-xs md:text-sm font-bold tracking-widest uppercase mt-1 opacity-80">de la Casa</span>
-                            </div>
-                        </Link>
-                    )}
-
-                    {/* Recomendaciones Section */}
-                    {recomendacionesSection && (
-                        <Link
-                            to={`/section/${recomendacionesSection.id}`}
-                            className="group relative h-24 md:h-36 lg:h-40 rounded-xl overflow-hidden bg-black shadow-md border border-gray-800 hover:border-gray-600 transition-all active:scale-[0.98]"
-                            aria-label="Ver recomendaciones"
-                        >
-                            <img
-                                src={recomendacionesSection.image}
-                                alt=""
-                                className="w-full h-full object-cover opacity-30 group-hover:opacity-40 transition-all duration-500 grayscale-[20%]"
-                                loading="lazy"
-                            />
-                            <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-1">
-                                <span className="text-white font-heading text-lg md:text-2xl font-black tracking-widest uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] group-hover:scale-105 transition-transform duration-300 leading-tight">
-                                    {recomendacionesSection.name}
-                                </span>
-                                <span className="text-gray-300 text-xs md:text-sm font-bold tracking-widest uppercase mt-1 opacity-80">del Chef</span>
-                            </div>
-                        </Link>
-                    )}
-
-                    {/* Entradas Section */}
-                    {entradasSection && (
-                        <Link
-                            to={`/section/${entradasSection.id}`}
-                            className="group relative h-24 md:h-36 lg:h-40 rounded-xl overflow-hidden bg-black shadow-md border border-gray-800 hover:border-gray-600 transition-all active:scale-[0.98]"
-                            aria-label="Ver entradas"
-                        >
-                            <img
-                                src={entradasSection.image}
-                                alt=""
-                                className="w-full h-full object-cover opacity-40 group-hover:opacity-50 transition-all duration-500 grayscale-[20%]"
-                                loading="lazy"
-                            />
-                            <div className="absolute inset-0 flex items-center justify-center">
-                                <span className="text-white font-heading text-xl md:text-3xl font-black tracking-widest uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] group-hover:scale-105 transition-transform duration-300">
-                                    {entradasSection.name}
-                                </span>
-                            </div>
-                        </Link>
-                    )}
-
-                    {/* Postres Section */}
-                    {postresSection && (
-                        <Link
-                            to={`/section/${postresSection.id}`}
-                            className="group relative h-24 md:h-36 lg:h-40 rounded-xl overflow-hidden bg-black shadow-md border border-gray-800 hover:border-gray-600 transition-all active:scale-[0.98]"
-                            aria-label="Ver postres"
-                        >
-                            <img
-                                src={postresSection.image}
-                                alt=""
-                                className="w-full h-full object-cover opacity-40 group-hover:opacity-50 transition-all duration-500 grayscale-[20%]"
-                                loading="lazy"
-                            />
-                            <div className="absolute inset-0 flex items-center justify-center">
-                                <span className="text-white font-heading text-xl md:text-3xl font-black tracking-widest uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] group-hover:scale-105 transition-transform duration-300">
-                                    {postresSection.name}
-                                </span>
-                            </div>
-                        </Link>
-                    )}
+                                <div className="absolute inset-0 flex flex-col items-center justify-center p-2 text-center z-10">
+                                    <span className="text-white font-heading text-2xl md:text-4xl font-black tracking-tight uppercase drop-shadow-lg leading-none mb-1 group-hover:-translate-y-1 transition-transform duration-300">
+                                        {section.name}
+                                    </span>
+                                    {label && (
+                                        <span className="text-orange-200 text-[10px] md:text-xs font-bold tracking-widest uppercase bg-black/40 px-2 py-0.5 rounded-full backdrop-blur-sm border border-white/10 group-hover:-translate-y-1 transition-transform duration-300 delay-75">
+                                            {label}
+                                        </span>
+                                    )}
+                                </div>
+                            </Link>
+                        );
+                    })}
                 </nav>
             ) : (
                 /* Search Results */
@@ -474,7 +351,7 @@ export default function Home() {
             {/* Quantity Modal */}
             {selectedProduct && (
                 <div className="fixed inset-0 bg-black/50 z-[60] flex items-end sm:items-center justify-center p-4 animate-in fade-in duration-200">
-                    <div className="bg-white rounded-t-3xl sm:rounded-3xl w-full max-w-md p-6 animate-in slide-in-from-bottom-8 duration-300 sm:slide-in-from-bottom-0">
+                    <div className="bg-white rounded-t-3xl sm:rounded-3xl w-full max-w-md p-6 animate-in slide-in-from-bottom-8 duration-300 sm:slide-in-from-bottom-0 max-h-[90vh] overflow-y-auto">
                         <div className="flex justify-between items-start mb-4">
                             <div className="flex-1 pr-4">
                                 <h3 className="font-heading text-2xl text-gray-900 leading-tight mb-1">
@@ -497,6 +374,74 @@ export default function Home() {
                                     alt={selectedProduct.name}
                                     className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
                                 />
+                            </div>
+                        )}
+
+                        {/* Size Selection */}
+                        {selectedProduct.sizes && selectedProduct.sizes.length > 0 && (
+                            <div className="mb-6">
+                                <h4 className="font-bold text-gray-800 mb-2">Tamaño</h4>
+                                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                                    {selectedProduct.sizes.map(size => (
+                                        <button
+                                            key={size}
+                                            onClick={() => setSelectedSize(size)}
+                                            className={`
+                                                py-2 px-3 rounded-xl text-sm font-bold border-2 transition-all
+                                                ${selectedSize === size
+                                                    ? 'border-primary bg-primary text-white shadow-md transform scale-[1.02]'
+                                                    : 'border-gray-100 bg-gray-50 text-gray-600 hover:border-gray-300'}
+                                            `}
+                                        >
+                                            {size}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Options Selection (Checkbox List) */}
+                        {selectedProduct.options && selectedProduct.maxOptions && (
+                            <div className="mb-6">
+                                <h4 className="font-bold text-gray-800 mb-2 flex justify-between items-center">
+                                    <span>Elige tus sabores</span>
+                                    <span className="text-xs bg-orange-100 text-orange-700 px-2 py-1 rounded-full">
+                                        {selectedOptions.length}/{selectedProduct.maxOptions} seleccionados
+                                    </span>
+                                </h4>
+                                <div className="space-y-2 max-h-40 overflow-y-auto pr-1">
+                                    {selectedProduct.options.map(option => {
+                                        const isSelected = selectedOptions.includes(option);
+                                        const isDisabled = !isSelected && selectedOptions.length >= (selectedProduct.maxOptions || 0);
+
+                                        return (
+                                            <div
+                                                key={option}
+                                                onClick={() => !isDisabled && toggleOption(option, selectedProduct.maxOptions || 0)}
+                                                className={`
+                                                    flex items-center p-3 rounded-xl border cursor-pointer transition-all
+                                                    ${isSelected ? 'border-primary bg-red-50' : 'border-gray-100 bg-gray-50 hover:bg-gray-100'}
+                                                    ${isDisabled ? 'opacity-50 cursor-not-allowed' : ''}
+                                                `}
+                                            >
+                                                <div className={`
+                                                    w-5 h-5 rounded-full border-2 flex items-center justify-center mr-3 transition-colors
+                                                    ${isSelected ? 'border-primary bg-primary' : 'border-gray-300 bg-white'}
+                                                `}>
+                                                    {isSelected && <div className="w-2 h-2 bg-white rounded-full"></div>}
+                                                </div>
+                                                <span className={`text-sm font-medium ${isSelected ? 'text-primary' : 'text-gray-700'}`}>
+                                                    {option}
+                                                </span>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                                {selectedOptions.length < (selectedProduct.maxOptions || 0) && (
+                                    <p className="text-xs text-orange-600 mt-2 font-medium animate-pulse">
+                                        * Debes elegir {selectedProduct.maxOptions} sabores para continuar
+                                    </p>
+                                )}
                             </div>
                         )}
 
@@ -523,7 +468,7 @@ export default function Home() {
 
                         <div className="flex items-center justify-between mb-6">
                             <span className="text-gray-600">Precio unitario</span>
-                            <span className="font-bold text-lg text-gray-900">{formatPrice(selectedProduct.price)}</span>
+                            <span className="font-bold text-lg text-gray-900">{formatPrice(currentPrice)}</span>
                         </div>
 
                         {/* Current Cart Summary */}
@@ -542,11 +487,21 @@ export default function Home() {
 
                         <button
                             onClick={handleAddToCart}
-                            className="w-full bg-primary hover:bg-red-700 text-white font-bold py-4 rounded-xl shadow-lg transition-all active:scale-[0.98] flex items-center justify-center gap-3"
+                            disabled={selectedProduct.maxOptions ? selectedOptions.length !== selectedProduct.maxOptions : false}
+                            className={`
+                                w-full font-bold py-4 rounded-xl shadow-lg transition-all active:scale-[0.98] flex items-center justify-center gap-3
+                                ${selectedProduct.maxOptions && selectedOptions.length !== selectedProduct.maxOptions
+                                    ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                                    : 'bg-primary hover:bg-red-700 text-white'}
+                            `}
                         >
-                            <span>Agregar al pedido</span>
-                            <span className="bg-white/20 px-3 py-1 rounded-full text-sm">
-                                {formatPrice(selectedProduct.price * quantity)}
+                            <span>
+                                {selectedProduct.maxOptions && selectedOptions.length !== selectedProduct.maxOptions
+                                    ? `Elige ${selectedProduct.maxOptions - selectedOptions.length} más`
+                                    : 'Agregar al pedido'}
+                            </span>
+                            <span className={`px-3 py-1 rounded-full text-sm ${selectedProduct.maxOptions && selectedOptions.length !== selectedProduct.maxOptions ? 'bg-gray-400/20' : 'bg-white/20'}`}>
+                                {formatPrice(currentPrice * quantity)}
                             </span>
                         </button>
                     </div>

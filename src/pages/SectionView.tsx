@@ -7,6 +7,12 @@ const data: MenuData = menuData as unknown as MenuData;
 
 export default function SectionView() {
     const { sectionId } = useParams();
+
+    // Redirect Pizza Section to Custom Pizza Page
+    if (sectionId === 'pizzas') {
+        return <Navigate to="/pizzas" replace />;
+    }
+
     const section = data.find(s => s.id === sectionId);
 
     if (!section) return <Navigate to="/" replace />;

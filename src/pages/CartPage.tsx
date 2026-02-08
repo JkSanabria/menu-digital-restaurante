@@ -18,6 +18,7 @@ export default function CartPage() {
     const [paymentDetails, setPaymentDetails] = useState<any>({});
     const [showPaymentModal, setShowPaymentModal] = useState(false);
     const [paymentStep, setPaymentStep] = useState<'bank' | 'change_q' | 'change_bill'>('bank');
+    const [customPayment, setCustomPayment] = useState<string>('');
 
     const itemCount = items.reduce((sum, item) => sum + item.quantity, 0);
     const tipAmount = customTip !== null ? customTip : total * (tipPercentage / 100);
@@ -30,6 +31,33 @@ export default function CartPage() {
             minimumFractionDigits: 0,
             maximumFractionDigits: 0,
         }).format(price);
+    };
+
+    const getSmartPaymentOptions = (amount: number) => {
+        const options = new Set<number>();
+
+        // Basic Colombian Bills
+        const bills = [2000, 5000, 10000, 20000, 50000, 100000];
+
+        // 1. Add standard bills that cover the amount
+        bills.forEach(bill => {
+            if (bill > amount) options.add(bill);
+        });
+
+        // 2. Round up to nearest logical denominations (Smart Suggestions)
+        // Next 10k (e.g. 125k -> 130k)
+        const next10k = Math.ceil(amount / 10000) * 10000;
+        if (next10k > amount) options.add(next10k);
+
+        // Next 50k (e.g. 125k -> 150k)
+        const next50k = Math.ceil(amount / 50000) * 50000;
+        if (next50k > amount) options.add(next50k);
+
+        // Next 100k (e.g. 125k -> 200k)
+        const next100k = Math.ceil(amount / 100000) * 100000;
+        if (next100k > amount) options.add(next100k);
+
+        return Array.from(options).filter(opt => opt > amount).sort((a, b) => a - b).slice(0, 4);
     };
 
     const handleWhatsAppOrder = () => {
@@ -614,18 +642,57 @@ export default function CartPage() {
 
                         {/* Bill Selection */}
                         {paymentStep === 'change_bill' && (
-                            <div className="space-y-3">
-                                <p className="text-sm text-gray-600 text-center mb-2">Total a pagar: <span className="font-bold text-primary">{formatPrice(finalTotal)}</span></p>
+                            <div className="space-y-4">
+                                <div className="text-center mb-2">
+                                    <p className="text-sm text-gray-600">Total a pagar</p>
+                                    <p className="text-2xl font-black text-primary">{formatPrice(finalTotal)}</p>
+                                </div>
+
+                                <p className="text-sm font-bold text-gray-800">Sugerencias rápidas:</p>
                                 <div className="grid grid-cols-2 gap-2">
-                                    {[5000, 10000, 20000, 50000, 100000].map(bill => (
+                                    {getSmartPaymentOptions(finalTotal).map(bill => (
                                         <button
                                             key={bill}
                                             onClick={() => confirmPaymentDetails({ needsChange: true, billAmount: bill })}
-                                            className="p-3 rounded-lg bg-gray-50 hover:bg-primary/10 hover:text-primary font-bold transition-colors text-sm"
+                                            className="p-3 rounded-xl bg-gray-50 border border-gray-200 hover:border-primary hover:bg-primary/5 hover:text-primary font-bold transition-all text-sm flex flex-col items-center justify-center"
                                         >
-                                            {formatPrice(bill)}
+                                            <span>{formatPrice(bill)}</span>
+                                            <span className="text-[10px] text-gray-400 font-normal">Vuelto: {formatPrice(bill - finalTotal)}</span>
                                         </button>
                                     ))}
+                                </div>
+
+                                <div className="relative pt-2 border-t border-gray-100">
+                                    <p className="text-xs text-gray-500 mb-1">O ingresa con cuánto pagas:</p>
+                                    <div className="flex gap-2">
+                                        <div className="relative flex-1">
+                                            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 font-bold">$</span>
+                                            <input
+                                                type="number"
+                                                value={customPayment}
+                                                onChange={(e) => setCustomPayment(e.target.value)}
+                                                className="w-full p-2 pl-6 border border-gray-300 rounded-lg text-sm font-bold focus:ring-1 focus:ring-primary focus:border-primary"
+                                                placeholder="Ej: 135000"
+                                            />
+                                        </div>
+                                        <button
+                                            onClick={() => {
+                                                const val = Number(customPayment);
+                                                if (val > finalTotal) {
+                                                    confirmPaymentDetails({ needsChange: true, billAmount: val });
+                                                }
+                                            }}
+                                            disabled={!customPayment || Number(customPayment) <= finalTotal}
+                                            className="bg-primary text-white px-4 rounded-lg font-bold text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                                        >
+                                            OK
+                                        </button>
+                                    </div>
+                                    {customPayment && Number(customPayment) > finalTotal && (
+                                        <p className="text-xs text-green-600 font-bold mt-1 text-right">
+                                            Vuelto: {formatPrice(Number(customPayment) - finalTotal)}
+                                        </p>
+                                    )}
                                 </div>
                             </div>
                         )}

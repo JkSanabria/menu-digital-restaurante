@@ -9,7 +9,7 @@ export default function Header() {
             {isHome ? (
                 // Home Header (Original Style)
                 <img
-                    src="https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Perfil_Principal.jpg"
+                    src="https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Oficial.jpeg"
                     alt="Napoli"
                     className="w-full h-full object-cover object-center"
                 />
@@ -17,7 +17,7 @@ export default function Header() {
                 // Compact Header for other pages - Now also object-cover
                 <div className="w-full h-full flex items-center justify-center bg-white overflow-hidden">
                     <img
-                        src="https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Perfil_Principal.jpg"
+                        src="https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Oficial.jpeg"
                         alt="Napoli"
                         className="w-full h-full object-cover object-center"
                     />
