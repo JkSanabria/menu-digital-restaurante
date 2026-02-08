@@ -53,9 +53,9 @@ export default function CartPage() {
             message += `\n\n📝 *Nota adicional:* ${note}`;
         }
 
-        // Phone number - replace with actual restaurant number
-        const phoneNumber = "573000000000";
-        const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+        // WhatsApp direct link
+        const whatsappLink = "https://wa.me/message/2QMO6X5GAF3AE1";
+        const url = `${whatsappLink}?text=${encodeURIComponent(message)}`;
 
         window.open(url, '_blank');
     };
@@ -175,8 +175,8 @@ export default function CartPage() {
                             key={pct}
                             onClick={() => setTipPercentage(pct)}
                             className={`flex-1 py-2 rounded-lg text-sm font-bold border transition-colors ${tipPercentage === pct
-                                    ? 'bg-primary text-white border-primary'
-                                    : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
+                                ? 'bg-primary text-white border-primary'
+                                : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
                                 }`}
                         >
                             {pct === 0 ? 'No incluir' : `${pct}%`}
