@@ -4,6 +4,7 @@ import { ShoppingCart, Search, X, Plus, Minus } from 'lucide-react';
 import menuData from '../data/menu.json';
 import { MenuData, Product } from '../types/menu';
 import { useCart } from '../context/CartContext';
+import { matchesSearch } from '../utils/searchUtils';
 
 const data: MenuData = menuData as unknown as MenuData;
 
@@ -23,13 +24,6 @@ export default function Home() {
 
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
     const [quantity, setQuantity] = useState(1);
-
-    // Enhanced search function: matches if all search words are found in the text
-    const matchesSearch = (text: string, searchQuery: string): boolean => {
-        const searchWords = searchQuery.toLowerCase().trim().split(/\s+/);
-        const targetText = text.toLowerCase();
-        return searchWords.every(word => targetText.includes(word));
-    };
 
     // Search Logic
     const { matchedProducts, matchedSections } = useMemo(() => {
@@ -163,28 +157,32 @@ export default function Home() {
     return (
         <div className="container mx-auto px-4 py-6 max-w-md md:max-w-5xl animate-in fade-in slide-in-from-bottom-4 duration-500 pb-32">
 
-            {/* Search Bar */}
+            {/* Search Bar - Enhanced Visibility */}
             <div className="relative mb-10 sticky top-6 z-50 mx-auto max-w-2xl px-2">
                 <div className="relative group">
-                    <div className="absolute inset-0 bg-white/80 backdrop-blur-xl rounded-2xl shadow-lg border border-white/50 -z-10 transition-all duration-300 group-hover:shadow-xl group-hover:bg-white/90"></div>
-                    <input
-                        type="text"
-                        placeholder="¿Qué se te antoja hoy?"
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                        className="block w-full pl-12 pr-12 py-4 bg-transparent border-0 rounded-2xl text-gray-800 placeholder:text-gray-500 font-medium focus:ring-0 text-lg shadow-none"
-                    />
-                    <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none">
-                        <Search className="text-primary/70" size={24} />
+                    {/* Animated gradient border effect */}
+                    <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-orange-400 to-primary rounded-2xl opacity-30 group-hover:opacity-50 blur-sm transition-all duration-300 animate-pulse"></div>
+
+                    <div className="relative bg-white rounded-2xl shadow-xl border-2 border-primary/30 group-hover:border-primary/50 transition-all duration-300">
+                        <input
+                            type="text"
+                            placeholder="🔍 Busca tu platillo favorito... (ej: Jamón, Jamon)"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            className="block w-full pl-14 pr-12 py-5 bg-transparent border-0 rounded-2xl text-gray-800 placeholder:text-gray-500 font-medium focus:ring-2 focus:ring-primary/30 text-lg"
+                        />
+                        <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                            <Search className="text-primary animate-pulse" size={28} strokeWidth={2.5} />
+                        </div>
+                        {searchTerm && (
+                            <button
+                                onClick={() => setSearchTerm('')}
+                                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-red-500 p-2 hover:bg-red-50 rounded-full transition-all active:scale-90"
+                            >
+                                <X size={22} strokeWidth={2.5} />
+                            </button>
+                        )}
                     </div>
-                    {searchTerm && (
-                        <button
-                            onClick={() => setSearchTerm('')}
-                            className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-red-500 p-1.5 hover:bg-red-50 rounded-full transition-all"
-                        >
-                            <X size={20} />
-                        </button>
-                    )}
                 </div>
             </div>
 
