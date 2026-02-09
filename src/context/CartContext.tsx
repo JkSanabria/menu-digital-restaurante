@@ -13,29 +13,67 @@ interface CartContextType {
     clearCart: () => void;
     total: number;
     itemCount: number;
+    customerName: string;
+    setCustomerName: (name: string) => void;
+    customerAddress: string;
+    setCustomerAddress: (address: string) => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({ children }: { children: ReactNode }) {
     const [items, setItems] = useState<CartItem[]>([]);
+    const [customerName, setCustomerName] = useState('');
+    const [customerAddress, setCustomerAddress] = useState('');
+    const [storageLoaded, setStorageLoaded] = useState(false);
 
-    // Optional: Load from localStorage on mount
+    const getCookie = (key: string) => {
+        return document.cookie
+            .split('; ')
+            .find(row => row.startsWith(`${key}=`))
+            ?.split('=')[1] || '';
+    };
+
+    const setCookie = (key: string, value: string, days = 365) => {
+        const expires = new Date(Date.now() + days * 86400000).toUTCString();
+        document.cookie = `${key}=${value}; Expires=${expires}; Path=/; SameSite=Lax`;
+    };
+
+    const removeCookie = (key: string) => {
+        document.cookie = `${key}=; Expires=Thu, 01 Jan 1970 00:00:00 GMT; Path=/; SameSite=Lax`;
+    };
+
     useEffect(() => {
-        const savedCart = localStorage.getItem("cart");
-        if (savedCart) {
-            try {
-                setItems(JSON.parse(savedCart));
-            } catch (e) {
-                console.error("Failed to parse cart", e);
-            }
-        }
+        const storedName = localStorage.getItem("cartCustomerName") || decodeURIComponent(getCookie('cartCustomerName'));
+        const storedAddress = localStorage.getItem("cartCustomerAddress") || decodeURIComponent(getCookie('cartCustomerAddress'));
+
+        if (storedName) setCustomerName(storedName);
+        if (storedAddress) setCustomerAddress(storedAddress);
+
+        setStorageLoaded(true);
     }, []);
 
-    // Save to localStorage on change
     useEffect(() => {
-        localStorage.setItem("cart", JSON.stringify(items));
-    }, [items]);
+        if (!storageLoaded) return;
+        if (customerName) {
+            localStorage.setItem("cartCustomerName", customerName);
+            setCookie('cartCustomerName', encodeURIComponent(customerName));
+        } else {
+            localStorage.removeItem("cartCustomerName");
+            removeCookie('cartCustomerName');
+        }
+    }, [customerName, storageLoaded]);
+
+    useEffect(() => {
+        if (!storageLoaded) return;
+        if (customerAddress) {
+            localStorage.setItem("cartCustomerAddress", customerAddress);
+            setCookie('cartCustomerAddress', encodeURIComponent(customerAddress));
+        } else {
+            localStorage.removeItem("cartCustomerAddress");
+            removeCookie('cartCustomerAddress');
+        }
+    }, [customerAddress, storageLoaded]);
 
     const addToCart = (product: Product) => {
         setItems((prev) => {
@@ -82,6 +120,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
                 clearCart,
                 total,
                 itemCount,
+                customerName,
+                setCustomerName,
+                customerAddress,
+                setCustomerAddress,
             }}
         >
             {children}

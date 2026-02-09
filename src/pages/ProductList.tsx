@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useParams, Navigate, Link } from 'react-router-dom';
 import menuData from '../data/menu.json';
 import { MenuData, Product } from '../types/menu';
 import { useCart } from '../context/CartContext';
-import { Plus, Minus, X, ChevronRight } from 'lucide-react';
+import { Plus, Minus, X, ChevronRight, Search, Home } from 'lucide-react';
+import { matchesSearch } from '../utils/searchUtils';
 
 const data: MenuData = menuData as unknown as MenuData;
 
@@ -22,6 +23,7 @@ export default function ProductList() {
     const { addToCart, updateQuantity, total, items } = useCart();
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
     const [quantity, setQuantity] = useState(1);
+    const [searchTerm, setSearchTerm] = useState('');
 
     const itemCount = items.reduce((sum, item) => sum + item.quantity, 0);
 
@@ -29,6 +31,25 @@ export default function ProductList() {
     const subcategory = section?.subcategories.find(sub => sub.id === subId);
 
     if (!section || !subcategory) return <Navigate to="/" replace />;
+
+    const filteredCategories = useMemo(() => {
+        if (!searchTerm.trim()) return subcategory.categories;
+
+        const term = searchTerm.toLowerCase();
+
+        return subcategory.categories
+            .map(category => ({
+                ...category,
+                products: category.products.filter(product =>
+                    matchesSearch(product.name, term) || matchesSearch(product.description, term)
+                )
+            }))
+            .filter(category => category.products.length > 0);
+    }, [searchTerm, subcategory]);
+
+    const filteredCount = useMemo(() => {
+        return filteredCategories.reduce((sum, category) => sum + category.products.length, 0);
+    }, [filteredCategories]);
 
     const handleAddToCart = () => {
         if (!selectedProduct) return;
@@ -53,8 +74,8 @@ export default function ProductList() {
             <div className="container mx-auto px-4 py-8 max-w-lg md:max-w-5xl animate-in fade-in slide-in-from-right-8 duration-300 pb-32">
                 {/* Header Compacto */}
                 <div className="flex items-center gap-4 mb-6 md:mb-8 border-b border-gray-200 md:border-b-2 md:border-primary/10 pb-3 md:pb-4">
-                    <Link to={`/section/${sectionId}`} className="p-2 -ml-2 hover:bg-gray-100 rounded-full transition-colors text-gray-400 hover:text-primary">
-                        <ChevronRight className="rotate-180" size={24} />
+                    <Link to={`/section/${sectionId}`} className="p-2 md:p-3 lg:p-4 -ml-2 hover:bg-gray-100 rounded-full transition-all text-gray-400 hover:text-primary active:scale-95">
+                        <ChevronRight className="rotate-180 w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8" />
                     </Link>
                     <div className="flex-1">
                         <h1 className="text-2xl md:text-5xl font-heading font-black text-gray-900 tracking-tight uppercase inline">
@@ -64,10 +85,53 @@ export default function ProductList() {
                             {section.name}
                         </span>
                     </div>
+                    <Link
+                        to="/"
+                        className="shrink-0 inline-flex items-center gap-2 px-3 py-2 md:px-4 md:py-3 rounded-full border border-primary/20 bg-white text-primary hover:bg-primary hover:text-white transition-all active:scale-95"
+                        aria-label="Ir al menú principal"
+                    >
+                        <Home className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" />
+                        <span className="text-xs md:text-sm font-bold">Inicio</span>
+                    </Link>
                 </div>
 
-                <div className="flex flex-col gap-2 md:gap-6">
-                    {subcategory.categories.map((category) => (
+                <div className="relative mb-6 sticky top-6 z-50 mx-auto max-w-2xl">
+                    <div className="relative group">
+                        <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-orange-400 to-primary rounded-2xl opacity-30 group-hover:opacity-50 blur-sm transition-all duration-300 animate-pulse"></div>
+
+                        <div className="relative bg-white rounded-2xl shadow-xl border-2 border-primary/30 group-hover:border-primary/50 transition-all duration-300">
+                            <input
+                                type="text"
+                                placeholder={`🔍 Busca en ${subcategory.name}...`}
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                                className="block w-full pl-14 pr-12 py-5 bg-transparent border-0 rounded-2xl text-gray-800 placeholder:text-gray-500 font-medium focus:ring-2 focus:ring-primary/30 text-lg"
+                            />
+                            <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                                <Search className="text-primary animate-pulse" size={28} strokeWidth={2.5} />
+                            </div>
+                            {searchTerm && (
+                                <button
+                                    onClick={() => setSearchTerm('')}
+                                    className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-red-500 p-2 hover:bg-red-50 rounded-full transition-all active:scale-90"
+                                >
+                                    <X size={22} strokeWidth={2.5} />
+                                </button>
+                            )}
+                        </div>
+                    </div>
+                </div>
+
+                {searchTerm && filteredCount === 0 ? (
+                    <div className="text-center py-12 px-4 rounded-xl border border-dashed border-gray-200 bg-gray-50/50">
+                        <p className="text-gray-500 font-medium">No encontramos "{searchTerm}"</p>
+                        <button onClick={() => setSearchTerm('')} className="text-primary text-sm font-bold mt-2 hover:underline">
+                            Ver todos los productos
+                        </button>
+                    </div>
+                ) : (
+                    <div className="flex flex-col gap-2 md:gap-6">
+                        {filteredCategories.map((category) => (
                         <div key={category.id} className="scroll-mt-24" id={category.id}>
                             {category.products.map((product) => {
                                 const cartItem = items.find(item => item.id === product.id);
@@ -140,8 +204,9 @@ export default function ProductList() {
                                 );
                             })}
                         </div>
-                    ))}
-                </div>
+                        ))}
+                    </div>
+                )}
             </div>
 
             {/* Quantity Modal */}

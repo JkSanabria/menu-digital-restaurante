@@ -1,6 +1,7 @@
 
 import { useState, useMemo } from 'react';
-import { ArrowLeft, Check, Plus, Minus, X } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { ArrowLeft, Check, Plus, Minus, X, Home } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import menuData from '../data/menu.json';
 import { Product, MenuData } from '../types/menu';
@@ -23,6 +24,7 @@ const formatPrice = (price: number) => {
 };
 
 export default function PizzaBuilderModal({ onClose, initialFlavor }: PizzaBuilderModalProps) {
+    const navigate = useNavigate();
     const { addToCart } = useCart();
 
     // Initial State - COMBINED ONLY
@@ -102,15 +104,24 @@ export default function PizzaBuilderModal({ onClose, initialFlavor }: PizzaBuild
 
                 {/* Header */}
                 <div className="flex items-center justify-between p-4 border-b border-gray-100 bg-white z-10 shrink-0">
-                    <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-full transition-colors md:hidden">
-                        <ArrowLeft size={24} />
+                    <button onClick={onClose} className="p-2 md:p-3 lg:p-4 hover:bg-gray-100 rounded-full transition-all hover:text-primary active:scale-95 md:flex">
+                        <ArrowLeft className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8" />
                     </button>
                     <h2 className="text-xl font-heading font-bold text-gray-900 flex-1 text-center md:text-left md:ml-4">
                         Armar Pizza Combinada
                     </h2>
-                    <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
-                        <X size={24} className="text-gray-500" />
-                    </button>
+                    <div className="flex items-center gap-2">
+                        <button
+                            onClick={() => navigate('/')}
+                            className="p-2 md:p-3 lg:p-4 hover:bg-gray-100 rounded-full transition-all text-gray-400 hover:text-primary active:scale-95"
+                            aria-label="Ir al menú principal"
+                        >
+                            <Home className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8" />
+                        </button>
+                        <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-full transition-colors" aria-label="Cerrar">
+                            <X size={24} className="text-gray-500" />
+                        </button>
+                    </div>
                 </div>
 
                 {/* Content - Scrollable */}

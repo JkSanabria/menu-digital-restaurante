@@ -1,11 +1,12 @@
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ChevronRight, Plus, Minus, X, Spline, ArrowLeft, GitMerge, Search } from 'lucide-react';
+import { ChevronRight, Plus, Minus, X, Spline, ArrowLeft, GitMerge, Search, Home } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import menuData from '../data/menu.json';
 import { MenuData, Product } from '../types/menu';
 import PizzaBuilderModal from './PizzaBuilder';
+import { matchesSearch } from '../utils/searchUtils';
 
 const data: MenuData = menuData as unknown as MenuData;
 
@@ -34,13 +35,6 @@ export default function PizzaMenu() {
     // Builder State
     const [showBuilder, setShowBuilder] = useState(false);
     const [builderInitialFlavor, setBuilderInitialFlavor] = useState<Product | undefined>(undefined);
-
-    // Enhanced search function: matches if all search words are found in the text
-    const matchesSearch = (text: string, searchQuery: string): boolean => {
-        const searchWords = searchQuery.toLowerCase().trim().split(/\s+/);
-        const targetText = text.toLowerCase();
-        return searchWords.every(word => targetText.includes(word));
-    };
 
     // Data Extraction
     const pizzaSection = data.find(s => s.id === 'pizzas');
@@ -198,11 +192,18 @@ export default function PizzaMenu() {
             {/* Header */}
             <div className="bg-white sticky top-0 z-40 shadow-sm border-b border-gray-100 mb-6">
                 <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-                    <button onClick={() => navigate('/')} className="p-2 -ml-2 hover:bg-gray-100 rounded-full text-gray-600 transition-colors">
-                        <ArrowLeft size={24} />
+                    <button onClick={() => navigate('/')} className="p-2 md:p-3 lg:p-4 -ml-2 hover:bg-gray-100 rounded-full text-gray-600 hover:text-primary transition-all active:scale-95">
+                        <ArrowLeft className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8" />
                     </button>
                     <h1 className="font-heading text-xl font-bold text-gray-900">Menú de Pizzas</h1>
-                    <div className="w-10"></div>
+                    <button
+                        onClick={() => navigate('/')}
+                        className="shrink-0 inline-flex items-center gap-2 px-3 py-2 md:px-4 md:py-3 rounded-full border border-primary/20 bg-white text-primary hover:bg-primary hover:text-white transition-all active:scale-95"
+                        aria-label="Ir al menú principal"
+                    >
+                        <Home className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" />
+                        <span className="text-xs md:text-sm font-bold">Inicio</span>
+                    </button>
                 </div>
             </div>
 
@@ -259,25 +260,30 @@ export default function PizzaMenu() {
                         </div>
                     </div>
 
-                    {/* Search Bar */}
+                    {/* Search Bar - Enhanced Visibility */}
                     <div className="p-4 bg-white border-b border-gray-100">
-                        <div className="relative">
-                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
-                            <input
-                                type="text"
-                                placeholder="Buscar pizza por nombre..."
-                                value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
-                                className="w-full pl-10 pr-10 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm"
-                            />
-                            {searchQuery && (
-                                <button
-                                    onClick={() => setSearchQuery('')}
-                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
-                                >
-                                    <X size={18} />
-                                </button>
-                            )}
+                        <div className="relative group">
+                            {/* Animated gradient border effect */}
+                            <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-orange-400 to-primary rounded-xl opacity-20 group-hover:opacity-40 blur-sm transition-all duration-300 animate-pulse"></div>
+
+                            <div className="relative bg-white rounded-xl shadow-lg border-2 border-primary/30 group-hover:border-primary/50 transition-all duration-300">
+                                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-primary animate-pulse" size={22} strokeWidth={2.5} />
+                                <input
+                                    type="text"
+                                    placeholder="🔍 Buscar pizza... (ej: Hawaiana, Hawaiiana)"
+                                    value={searchQuery}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                    className="w-full pl-11 pr-10 py-4 bg-transparent border-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all text-base font-medium text-gray-800 placeholder:text-gray-500"
+                                />
+                                {searchQuery && (
+                                    <button
+                                        onClick={() => setSearchQuery('')}
+                                        className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-red-500 transition-colors p-1.5 hover:bg-red-50 rounded-full active:scale-90"
+                                    >
+                                        <X size={20} strokeWidth={2.5} />
+                                    </button>
+                                )}
+                            </div>
                         </div>
                     </div>
 

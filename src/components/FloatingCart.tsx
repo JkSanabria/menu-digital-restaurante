@@ -46,7 +46,7 @@ export default function FloatingCart() {
 
             {/* Floating Cart Container */}
             <div className="fixed bottom-6 left-0 right-0 z-50 px-4 pointer-events-none">
-                <div className="max-w-md mx-auto flex items-center justify-center">
+                <div className="max-w-md lg:max-w-3xl mx-auto flex items-center justify-center">
                     <div className="relative pointer-events-auto">
                         {/* Context Menu - Appears above cart */}
                         {showMenu && (
@@ -87,7 +87,7 @@ export default function FloatingCart() {
                         {/* Main Cart Button */}
                         <button
                             onClick={() => setShowMenu(!showMenu)}
-                            className="bg-primary text-white px-6 py-4 rounded-full shadow-xl flex items-center gap-3 hover:bg-red-700 active:scale-95 transition-all min-w-[200px] justify-between"
+                            className="bg-primary text-white px-6 py-4 lg:h-16 rounded-full shadow-xl flex items-center gap-3 hover:bg-red-700 active:scale-95 transition-all min-w-[200px] lg:min-w-[240px] justify-between"
                             aria-label={`Carrito con ${itemCount} productos - ${formatPrice(total)}`}
                             aria-expanded={showMenu}
                             aria-haspopup="true"

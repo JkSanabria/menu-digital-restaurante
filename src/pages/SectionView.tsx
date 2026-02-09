@@ -1,5 +1,5 @@
 import { useParams, Link, Navigate } from 'react-router-dom';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, Home } from 'lucide-react';
 import menuData from '../data/menu.json';
 import { MenuData } from '../types/menu';
 
@@ -20,8 +20,8 @@ export default function SectionView() {
     return (
         <div className="container mx-auto px-4 py-8 max-w-lg md:max-w-5xl animate-in fade-in slide-in-from-right-8 duration-300 pb-24">
             <div className="flex items-center gap-4 mb-6 md:mb-8 border-b border-gray-200 md:border-b-2 md:border-primary/10 pb-3 md:pb-4">
-                <Link to="/" className="p-2 -ml-2 hover:bg-gray-100 rounded-full transition-colors text-gray-400 hover:text-primary lg:hidden">
-                    <ChevronRight className="rotate-180" size={24} />
+                <Link to="/" className="p-2 md:p-3 lg:p-4 -ml-2 hover:bg-gray-100 rounded-full transition-all text-gray-400 hover:text-primary active:scale-95 lg:flex">
+                    <ChevronRight className="rotate-180 w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8" />
                 </Link>
                 <div className="flex-1">
                     <h1 className="text-2xl md:text-5xl text-gray-900 font-heading font-black tracking-tight uppercase inline">
@@ -31,6 +31,14 @@ export default function SectionView() {
                         Selecciona una categoría
                     </span>
                 </div>
+                <Link
+                    to="/"
+                    className="shrink-0 inline-flex items-center gap-2 px-3 py-2 md:px-4 md:py-3 rounded-full border border-primary/20 bg-white text-primary hover:bg-primary hover:text-white transition-all active:scale-95"
+                    aria-label="Ir al menú principal"
+                >
+                    <Home className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" />
+                    <span className="text-xs md:text-sm font-bold">Inicio</span>
+                </Link>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-6">

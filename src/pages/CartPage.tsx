@@ -1,16 +1,14 @@
 import { useState } from 'react';
 import { useCart } from '../context/CartContext';
-import { Trash2, Plus, Minus, Send, User, MapPin } from 'lucide-react';
+import { Trash2, Plus, Minus, Send, User, MapPin, ArrowLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 export default function CartPage() {
-    const { items, updateQuantity, removeFromCart, total, clearCart } = useCart();
+    const { items, updateQuantity, removeFromCart, total, clearCart, customerName, setCustomerName, customerAddress, setCustomerAddress } = useCart();
     const navigate = useNavigate();
     const [tipPercentage, setTipPercentage] = useState<number>(0);
     const [customTip, setCustomTip] = useState<number | null>(null);
     const [note, setNote] = useState("");
-    const [customerName, setCustomerName] = useState("");
-    const [address, setAddress] = useState("");
     const [showConfirmation, setShowConfirmation] = useState(false);
 
     // Payment State
@@ -23,6 +21,7 @@ export default function CartPage() {
     const itemCount = items.reduce((sum, item) => sum + item.quantity, 0);
     const tipAmount = customTip !== null ? customTip : total * (tipPercentage / 100);
     const finalTotal = total + tipAmount;
+
 
     const formatPrice = (price: number) => {
         return new Intl.NumberFormat('es-CO', {
@@ -65,7 +64,7 @@ export default function CartPage() {
             alert("Por favor ingresa tu nombre");
             return;
         }
-        if (!address.trim()) {
+        if (!customerAddress.trim()) {
             alert("Por favor ingresa tu dirección de entrega");
             return;
         }
@@ -101,7 +100,7 @@ export default function CartPage() {
 
         message += `*CLIENTE*\n`;
         message += `Nombre: ${customerName}\n`;
-        message += `Dir: ${address}\n\n`;
+        message += `Dir: ${customerAddress}\n\n`;
 
         message += `*PEDIDO*\n`;
         items.forEach(item => {
@@ -166,9 +165,24 @@ export default function CartPage() {
     return (
         <div className="container mx-auto px-4 py-4 lg:py-8 max-w-lg md:max-w-6xl pb-[400px] lg:pb-12 animate-in fade-in slide-in-from-bottom-8 duration-300">
             <div className="flex items-center justify-between mb-4 lg:mb-8 border-b border-gray-100 lg:border-b-2 lg:border-primary/10 pb-3 lg:pb-4">
-                <h1 className="text-2xl lg:text-5xl font-heading lg:font-black text-gray-900 lg:uppercase">Tu Pedido</h1>
+                <div className="flex items-center gap-3">
+                    <button
+                        onClick={() => navigate(-1)}
+                        className="p-2 md:p-3 lg:p-4 -ml-2 hover:bg-gray-100 rounded-full transition-all text-gray-600 hover:text-primary active:scale-95"
+                        aria-label="Volver"
+                    >
+                        <ArrowLeft className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8" />
+                    </button>
+                    <h1 className="text-2xl lg:text-5xl font-heading lg:font-black text-gray-900 lg:uppercase">Tu Pedido</h1>
+                </div>
 
                 <div className="flex items-center gap-2">
+                    <button
+                        onClick={() => navigate('/')}
+                        className="px-3 py-1.5 md:px-4 md:py-2 rounded-full border border-primary/20 text-primary hover:bg-primary hover:text-white transition-all text-xs md:text-sm font-bold"
+                    >
+                        Seguir comprando
+                    </button>
                     <button
                         onClick={() => navigate('/')}
                         className="p-1.5 hover:bg-gray-100 rounded-full text-gray-600 hover:text-primary transition-colors"
@@ -227,8 +241,8 @@ export default function CartPage() {
                                 </label>
                                 <input
                                     type="text"
-                                    value={address}
-                                    onChange={(e) => setAddress(e.target.value)}
+                                    value={customerAddress}
+                                    onChange={(e) => setCustomerAddress(e.target.value)}
                                     placeholder="Ej: Calle 123 #45-67, Apto 301"
                                     className="w-full p-2 lg:p-4 border border-gray-300 lg:bg-gray-50 lg:border-gray-100 rounded-lg lg:rounded-2xl focus:ring-1 focus:ring-primary focus:border-transparent text-sm lg:text-base"
                                 />
@@ -524,7 +538,7 @@ export default function CartPage() {
                                     Información de Entrega
                                 </h3>
                                 <p className="text-xs text-gray-600"><strong>Nombre:</strong> {customerName}</p>
-                                <p className="text-xs text-gray-600"><strong>Dirección:</strong> {address}</p>
+                                <p className="text-xs text-gray-600"><strong>Dirección:</strong> {customerAddress}</p>
                             </div>
 
                             {/* Items */}
@@ -578,6 +592,16 @@ export default function CartPage() {
                             >
                                 <Send size={18} />
                                 <span>Confirmar y Enviar</span>
+                            </button>
+
+                            <button
+                                onClick={() => {
+                                    setShowConfirmation(false);
+                                    navigate('/');
+                                }}
+                                className="w-full bg-white hover:bg-gray-50 text-primary font-bold py-2.5 rounded-lg border border-primary text-sm transition-all active:scale-[0.98]"
+                            >
+                                Seguir comprando
                             </button>
 
                             <div className="flex gap-2">

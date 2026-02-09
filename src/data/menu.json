@@ -1,105 +1,94 @@
 [
   {
     "id": "comidas",
-    "name": "Comidas",
-    "image": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&q=80",
+    "name": "EL GALLINERAL",
+    "image": "/images/Gallineral_Perfil_Principal.jpg",
     "subcategories": [
       {
-        "id": "desgranados",
-        "name": "Desgranados",
+        "id": "desgranado",
+        "name": "Desgranado",
         "categories": [
           {
-            "id": "desgranados-principales",
-            "name": "Platos Principales",
+            "id": "desgranado-productos",
+            "name": "Productos",
             "products": [
               {
-                "id": "desgranado-costillitas",
-                "name": "Desgranado de Costillitas BBQ",
-                "description": "200 gr de costillitas BBQ glaseadas con salsa de la casa, sobre maíz tierno desgranado, queso mozzarella fundido y vegetales frescos",
-                "price": 34000,
-                "image": "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=400&q=80",
-                "prepTime": "15-20 min",
-                "spiceLevel": 0,
-                "attributes": [
-                  "recomendado",
-                  "favorito-chef"
-                ]
-              },
-              {
-                "id": "desgranado-pollo-tocineta",
-                "name": "Desgranado de Pollo con Tocineta",
-                "description": "150 gr de pechuga de pollo a la plancha y 150 gr de tocineta ahumada crujiente, sobre maíz desgranado con queso fundido y salsas especiales",
-                "price": 34000,
-                "image": "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=400&q=80",
-                "prepTime": "15-20 min",
-                "spiceLevel": 0,
-                "attributes": []
-              },
-              {
-                "id": "desgranado-carne",
-                "name": "Desgranado de Carne Mixta",
-                "description": "100 gr de pollo jugoso, 150 gr de butifarra artesanal y chorizo argentino premium, con maíz tierno, queso gratinado y chimichurri",
-                "price": 28000,
-                "image": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&q=80",
-                "prepTime": "15-20 min",
-                "spiceLevel": 1,
-                "attributes": []
-              },
-              {
-                "id": "desgranado-pollo",
-                "name": "Desgranado de Pollo",
-                "description": "150 gr de pechuga de pollo marinada en especias y asada a la perfección, con maíz desgranado, queso mozzarella y tu elección de salsas",
-                "price": 28000,
-                "image": "https://images.unsplash.com/photo-1562967914-608f82629710?w=400&q=80",
-                "prepTime": "12-15 min",
-                "spiceLevel": 0,
-                "attributes": []
-              },
-              {
-                "id": "desgranado-vegetariano",
-                "name": "Desgranado Vegetariano",
-                "description": "Selección de vegetales salteados: champiñones portobello, pimentones asados, cebolla caramelizada, sobre maíz tierno con queso fundido",
-                "price": 28000,
-                "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&q=80",
-                "prepTime": "12-15 min",
-                "spiceLevel": 0,
-                "attributes": [
-                  "vegetariano",
-                  "sin-carne"
-                ]
-              },
-              {
-                "id": "desgranado-supremo",
+                "id": "desgranado-supremo-del-gallineral",
                 "name": "Desgranado Supremo del Gallineral",
-                "description": "¡Nuestra especialidad! 100 gr de costillitas BBQ, 100 gr de pollo, 150 gr de butifarra y chorizo argentino. Perfecto para compartir",
+                "description": "100 g de costillitas BBQ, 100 g de pollo desmechado, 150 g de butifarra y chorizo argentino, acompañados de papas fritas y maíz.",
                 "price": 44000,
-                "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80",
-                "prepTime": "20-25 min",
-                "spiceLevel": 1,
-                "size": "Para compartir",
-                "attributes": [
-                  "recomendado",
-                  "favorito-chef",
-                  "para-compartir"
-                ]
+                "image": "https://image.pollinations.ai/prompt/Desgranado%20Supremo%20del%20Gallineral%20plato%20colombiano%20restaurante%2C%20comida%20apetecible%2C%20fotografia%20de%20comida%2C%20alta%20calidad",
+                "prepTime": "15-20 min",
+                "spiceLevel": 0,
+                "attributes": []
               },
               {
-                "id": "desgranado-master",
+                "id": "desgranado-master-del-gallineral",
                 "name": "Desgranado Master del Gallineral",
-                "description": "Combinación premium: 50 gr de costillitas BBQ glaseadas, 100 gr de pollo marinado y 100 gr de tocineta ahumada crujiente",
+                "description": "50 g de costillitas BBQ, 100 g de pollo y 100 g de tocineta ahumada, acompañados de papas fritas y maíz.",
                 "price": 40000,
-                "image": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&q=80",
-                "prepTime": "18-22 min",
+                "image": "https://image.pollinations.ai/prompt/Desgranado%20Master%20del%20Gallineral%20plato%20colombiano%20restaurante%2C%20comida%20apetecible%2C%20fotografia%20de%20comida%2C%20alta%20calidad",
+                "prepTime": "15-20 min",
                 "spiceLevel": 0,
                 "attributes": []
               },
               {
                 "id": "desgranado-mixto",
                 "name": "Desgranado Mixto",
-                "description": "100 gr de carne de res premium y 100 gr de pechuga de pollo, con maíz desgranado, queso fundido y salsas de la casa",
+                "description": "100 g de carne tipo burger y 100 g de pollo desmechado, acompañados de papas fritas y maíz.",
                 "price": 34000,
-                "image": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80",
-                "prepTime": "15-18 min",
+                "image": "https://image.pollinations.ai/prompt/Desgranado%20Mixto%20plato%20colombiano%20restaurante%2C%20comida%20apetecible%2C%20fotografia%20de%20comida%2C%20alta%20calidad",
+                "prepTime": "15-20 min",
+                "spiceLevel": 0,
+                "attributes": []
+              },
+              {
+                "id": "desgranado-de-costillitas-bbq",
+                "name": "Desgranado de Costillitas BBQ",
+                "description": "200 g de costillitas BBQ, acompañadas de papas fritas y maíz.",
+                "price": 34000,
+                "image": "https://image.pollinations.ai/prompt/Desgranado%20de%20Costillitas%20BBQ%20plato%20colombiano%20restaurante%2C%20comida%20apetecible%2C%20fotografia%20de%20comida%2C%20alta%20calidad",
+                "prepTime": "15-20 min",
+                "spiceLevel": 0,
+                "attributes": []
+              },
+              {
+                "id": "desgranado-de-pollo-con-tocineta",
+                "name": "Desgranado de Pollo con Tocineta",
+                "description": "150 g de pollo desmechado y 150 g de tocineta ahumada, acompañados de papas fritas y maíz.",
+                "price": 34000,
+                "image": "https://image.pollinations.ai/prompt/Desgranado%20de%20Pollo%20con%20Tocineta%20plato%20colombiano%20restaurante%2C%20comida%20apetecible%2C%20fotografia%20de%20comida%2C%20alta%20calidad",
+                "prepTime": "15-20 min",
+                "spiceLevel": 0,
+                "attributes": []
+              },
+              {
+                "id": "desgranado-caribe",
+                "name": "Desgranado Caribe",
+                "description": "100 g de pollo, 150 g de butifarra y chorizo argentino, acompañados de papas fritas y maíz.",
+                "price": 28000,
+                "image": "https://image.pollinations.ai/prompt/Desgranado%20Caribe%20plato%20colombiano%20restaurante%2C%20comida%20apetecible%2C%20fotografia%20de%20comida%2C%20alta%20calidad",
+                "prepTime": "15-20 min",
+                "spiceLevel": 0,
+                "attributes": []
+              },
+              {
+                "id": "desgranado-de-pollo",
+                "name": "Desgranado de Pollo",
+                "description": "150 g de pollo desmechado, acompañados de papas fritas y maíz.",
+                "price": 28000,
+                "image": "https://image.pollinations.ai/prompt/Desgranado%20de%20Pollo%20plato%20colombiano%20restaurante%2C%20comida%20apetecible%2C%20fotografia%20de%20comida%2C%20alta%20calidad",
+                "prepTime": "15-20 min",
+                "spiceLevel": 0,
+                "attributes": []
+              },
+              {
+                "id": "desgranado-vegetariano",
+                "name": "Desgranado Vegetariano",
+                "description": "150 g de vegetales salteados que incluyen champiñones, pimentones encurtidos, cebolla blanca, aceitunas y maíz.",
+                "price": 28000,
+                "image": "https://image.pollinations.ai/prompt/Desgranado%20Vegetariano%20plato%20colombiano%20restaurante%2C%20comida%20apetecible%2C%20fotografia%20de%20comida%2C%20alta%20calidad",
+                "prepTime": "15-20 min",
                 "spiceLevel": 0,
                 "attributes": []
               }
@@ -112,255 +101,144 @@
         "name": "Hamburguesas",
         "categories": [
           {
-            "id": "hamburguesas-clasicas",
-            "name": "Hamburguesas Artesanales",
+            "id": "hamburguesas-productos",
+            "name": "Productos",
             "products": [
               {
-                "id": "hamburguesa-res",
-                "name": "Hamburguesa Clásica de Res",
-                "description": "200 gr de carne de res premium, tocineta crujiente, queso mozzarella fundido, vegetales frescos y salsa especial en pan artesanal",
-                "price": 22000,
-                "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&q=80",
-                "prepTime": "12-15 min",
+                "id": "hamburguesa-de-res",
+                "name": "Hamburguesa de Res",
+                "description": "100 g de carne de res seleccionada, mezclada con aderezos y especias, pan artesanal, queso mozzarella, vegetales frescos y salsas de la casa.",
+                "price": 28000,
+                "image": "https://image.pollinations.ai/prompt/Hamburguesa%20de%20Res%20plato%20colombiano%20restaurante%2C%20comida%20apetecible%2C%20fotografia%20de%20comida%2C%20alta%20calidad",
+                "prepTime": "12-18 min",
                 "spiceLevel": 0,
                 "attributes": []
               },
               {
                 "id": "hamburguesa-doble-carne",
                 "name": "Hamburguesa Doble Carne",
-                "description": "Doble carne de res (400 gr total), doble queso mozzarella, tocineta ahumada, cebolla caramelizada y salsa BBQ en pan brioche",
+                "description": "320 g de carne de res seleccionada, mezclada con aderezos y especias, pan artesanal, queso mozzarella, vegetales frescos y salsas de la casa.",
                 "price": 34000,
-                "image": "https://images.unsplash.com/photo-1550547660-d9450f859349?w=400&q=80",
-                "prepTime": "15-18 min",
-                "spiceLevel": 0,
-                "attributes": [
-                  "recomendado",
-                  "favorito-chef"
-                ]
-              },
-              {
-                "id": "hamburguesa-pollo",
-                "name": "Hamburguesa de Pollo Crispy",
-                "description": "Pechuga de pollo empanizada crujiente, queso cheddar, lechuga fresca, tomate, salsa ranch y pepinillos en pan artesanal",
-                "price": 24000,
-                "image": "https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=400&q=80",
-                "prepTime": "12-15 min",
-                "spiceLevel": 0,
-                "attributes": [
-                  "nuevo"
-                ]
-              },
-              {
-                "id": "hamburguesa-bbq",
-                "name": "Hamburguesa BBQ Premium",
-                "description": "250 gr de carne de res, aros de cebolla crujientes, queso cheddar, tocineta y generosa salsa BBQ ahumada en pan brioche",
-                "price": 28000,
-                "image": "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=400&q=80",
-                "prepTime": "15-18 min",
-                "spiceLevel": 0,
-                "attributes": [
-                  "nuevo"
-                ]
-              },
-              {
-                "id": "hamburguesa-vegetariana",
-                "name": "Hamburguesa Vegetariana",
-                "description": "Medallón de lentejas y quinoa, queso mozzarella, aguacate fresco, tomate, lechuga y mayonesa de cilantro en pan integral",
-                "price": 24000,
-                "image": "https://images.unsplash.com/photo-1520072959219-c595dc870360?w=400&q=80",
-                "prepTime": "12-15 min",
-                "spiceLevel": 0,
-                "attributes": [
-                  "vegetariano",
-                  "sin-carne",
-                  "nuevo"
-                ]
-              },
-              {
-                "id": "hamburguesa-picante",
-                "name": "Hamburguesa Picante Jalapeño",
-                "description": "200 gr de carne de res, jalapeños frescos, queso pepper jack, tocineta, cebolla morada y salsa chipotle picante",
-                "price": 26000,
-                "image": "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400&q=80",
-                "prepTime": "12-15 min",
-                "spiceLevel": 3,
-                "attributes": [
-                  "picante",
-                  "nuevo"
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id": "francesas",
-        "name": "Papas & Acompañamientos",
-        "categories": [
-          {
-            "id": "papas-francesas",
-            "name": "Papas Especiales",
-            "products": [
-              {
-                "id": "churripapa",
-                "name": "Churripapa",
-                "description": "200 gr de chorizo argentino premium, papas a la francesa crujientes, queso cheddar fundido y tu elección de salsas",
-                "price": 20000,
-                "image": "https://images.unsplash.com/photo-1639024471283-03518883512d?w=400&q=80",
-                "prepTime": "10-12 min",
+                "image": "https://image.pollinations.ai/prompt/Hamburguesa%20Doble%20Carne%20plato%20colombiano%20restaurante%2C%20comida%20apetecible%2C%20fotografia%20de%20comida%2C%20alta%20calidad",
+                "prepTime": "12-18 min",
                 "spiceLevel": 0,
                 "attributes": []
-              },
-              {
-                "id": "papas-cheddar-tocineta",
-                "name": "Papas con Cheddar y Tocineta",
-                "description": "Papas a la francesa cubiertas con queso cheddar fundido, tocineta crujiente, cebollín fresco y crema agria",
-                "price": 22000,
-                "image": "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=400&q=80",
-                "prepTime": "10-12 min",
-                "spiceLevel": 0,
-                "attributes": [
-                  "nuevo",
-                  "recomendado"
-                ]
-              },
-              {
-                "id": "papas-rusticas",
-                "name": "Papas Rústicas con Especias",
-                "description": "Papas en gajos con piel, sazonadas con hierbas aromáticas, servidas con salsa de ajo y perejil",
-                "price": 18000,
-                "image": "https://images.unsplash.com/photo-1518013431117-eb1465fa5752?w=400&q=80",
-                "prepTime": "12-15 min",
-                "spiceLevel": 0,
-                "attributes": [
-                  "nuevo"
-                ]
-              },
-              {
-                "id": "aros-cebolla",
-                "name": "Aros de Cebolla Crujientes",
-                "description": "Aros de cebolla empanizados y fritos hasta dorar, servidos con salsa ranch y BBQ",
-                "price": 16000,
-                "image": "https://images.unsplash.com/photo-1639024471283-03518883512d?w=400&q=80",
-                "prepTime": "8-10 min",
-                "spiceLevel": 0,
-                "attributes": [
-                  "nuevo"
-                ]
-              },
-              {
-                "id": "yuca-frita",
-                "name": "Yuca Frita con Suero",
-                "description": "Yuca dorada y crujiente por fuera, suave por dentro, acompañada de suero costeño y hogao",
-                "price": 18000,
-                "image": "https://images.unsplash.com/photo-1598511726623-d2e9996892f0?w=400&q=80",
-                "prepTime": "10-12 min",
-                "spiceLevel": 0,
-                "attributes": [
-                  "nuevo",
-                  "tradicional"
-                ]
-              }
-            ]
-          },
-          {
-            "id": "menu-infantil",
-            "name": "Menú Infantil",
-            "products": [
-              {
-                "id": "salchipapa-infantil",
-                "name": "Salchipapa Infantil",
-                "description": "Salchicha americana, papas a la francesa, queso mozzarella y salsas. Incluye bebida pequeña y sorpresa",
-                "price": 18000,
-                "image": "https://images.unsplash.com/photo-1625869016774-3a92be2ae2cd?w=400&q=80",
-                "prepTime": "8-10 min",
-                "spiceLevel": 0,
-                "attributes": [
-                  "infantil"
-                ]
-              },
-              {
-                "id": "nuggets-infantil",
-                "name": "Nuggets de Pollo Infantil",
-                "description": "6 nuggets de pollo crujientes, papas a la francesa y salsa BBQ. Incluye bebida pequeña y sorpresa",
-                "price": 18000,
-                "image": "https://images.unsplash.com/photo-1562967914-608f82629710?w=400&q=80",
-                "prepTime": "8-10 min",
-                "spiceLevel": 0,
-                "attributes": [
-                  "infantil",
-                  "nuevo"
-                ]
               }
             ]
           }
         ]
       },
       {
-        "id": "perros",
-        "name": "Perros Gallineral",
+        "id": "perros-calientes",
+        "name": "Perros Calientes",
         "categories": [
           {
-            "id": "hot-dogs",
-            "name": "Hot Dogs Especiales",
+            "id": "perros-calientes-productos",
+            "name": "Productos",
             "products": [
               {
                 "id": "perro-tradicional",
                 "name": "Perro Tradicional",
-                "description": "Salchicha americana premium, queso mozzarella fundido, salsas de la casa, papas chip y vegetales frescos en pan suave",
+                "description": "Salchicha americana con queso mozzarella y salsas tradicionales.",
                 "price": 18000,
-                "image": "https://images.unsplash.com/photo-1612392062798-2c9e6d9e6a9c?w=400&q=80",
-                "prepTime": "8-10 min",
+                "image": "https://image.pollinations.ai/prompt/Perro%20Tradicional%20plato%20colombiano%20restaurante%2C%20comida%20apetecible%2C%20fotografia%20de%20comida%2C%20alta%20calidad",
+                "prepTime": "8-12 min",
                 "spiceLevel": 0,
                 "attributes": []
               },
               {
                 "id": "perro-hawaiano",
                 "name": "Perro Hawaiano",
-                "description": "Salchicha americana, queso mozzarella, piña caramelizada, tocineta crujiente y salsa BBQ dulce",
+                "description": "Salchicha americana con queso mozzarella y piña caramelizada.",
                 "price": 24000,
-                "image": "https://images.unsplash.com/photo-1619894991209-e2ed0a19c2b0?w=400&q=80",
-                "prepTime": "10-12 min",
+                "image": "https://image.pollinations.ai/prompt/Perro%20Hawaiano%20plato%20colombiano%20restaurante%2C%20comida%20apetecible%2C%20fotografia%20de%20comida%2C%20alta%20calidad",
+                "prepTime": "8-12 min",
                 "spiceLevel": 0,
                 "attributes": []
               },
               {
-                "id": "perro-supremo",
-                "name": "Perro Supremo Argentino",
-                "description": "Chorizo argentino premium, queso mozzarella, chimichurri casero, cebolla caramelizada y pimentón asado",
+                "id": "choriperro",
+                "name": "Choriperro",
+                "description": "Chorizo argentino acompañado de queso mozzarella y salsa chimichurri.",
                 "price": 24000,
-                "image": "https://images.unsplash.com/photo-1612392062798-2c9e6d9e6a9c?w=400&q=80",
-                "prepTime": "10-12 min",
-                "spiceLevel": 1,
-                "attributes": [
-                  "recomendado",
-                  "favorito-chef"
-                ]
-              },
-              {
-                "id": "perro-mexicano",
-                "name": "Perro Mexicano Picante",
-                "description": "Salchicha americana, jalapeños, guacamole, queso cheddar, pico de gallo y salsa chipotle picante",
-                "price": 26000,
-                "image": "https://images.unsplash.com/photo-1619894991209-e2ed0a19c2b0?w=400&q=80",
-                "prepTime": "10-12 min",
-                "spiceLevel": 3,
-                "attributes": [
-                  "picante",
-                  "nuevo"
-                ]
-              },
-              {
-                "id": "perro-italiano",
-                "name": "Perro Italiano",
-                "description": "Salchicha italiana con especias, queso mozzarella, pimentones asados, cebolla salteada y salsa marinara",
-                "price": 24000,
-                "image": "https://images.unsplash.com/photo-1612392062798-2c9e6d9e6a9c?w=400&q=80",
-                "prepTime": "10-12 min",
+                "image": "https://image.pollinations.ai/prompt/Choriperro%20plato%20colombiano%20restaurante%2C%20comida%20apetecible%2C%20fotografia%20de%20comida%2C%20alta%20calidad",
+                "prepTime": "8-12 min",
                 "spiceLevel": 0,
-                "attributes": [
-                  "nuevo"
-                ]
+                "attributes": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "francesas-del-gallineral",
+        "name": "Francesas del Gallineral",
+        "categories": [
+          {
+            "id": "francesas-del-gallineral-productos",
+            "name": "Productos",
+            "products": [
+              {
+                "id": "choripapa",
+                "name": "Choripapa",
+                "description": "200 g de chorizo argentino sobre papas a la francesa, acompañadas de queso cheddar y salsas a elección.",
+                "price": 29000,
+                "image": "https://image.pollinations.ai/prompt/Choripapa%20plato%20colombiano%20restaurante%2C%20comida%20apetecible%2C%20fotografia%20de%20comida%2C%20alta%20calidad",
+                "prepTime": "8-12 min",
+                "spiceLevel": 0,
+                "attributes": []
+              },
+              {
+                "id": "salchipapa-infantil",
+                "name": "Salchipapa Infantil",
+                "description": "Salchicha americana con papas a la francesa, queso y salsas. Incluye bebida pequeña y sorpresa.",
+                "price": 18000,
+                "image": "https://image.pollinations.ai/prompt/Salchipapa%20Infantil%20plato%20colombiano%20restaurante%2C%20comida%20apetecible%2C%20fotografia%20de%20comida%2C%20alta%20calidad",
+                "prepTime": "8-12 min",
+                "spiceLevel": 0,
+                "attributes": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "acompanantes",
+        "name": "Acompañantes",
+        "categories": [
+          {
+            "id": "acompanantes-productos",
+            "name": "Productos",
+            "products": [
+              {
+                "id": "deditos-de-queso-x4",
+                "name": "Deditos de Queso x4",
+                "description": "Porción de cuatro deditos de queso fritos.",
+                "price": 8000,
+                "image": "https://image.pollinations.ai/prompt/Deditos%20de%20Queso%20x4%20plato%20colombiano%20restaurante%2C%20comida%20apetecible%2C%20fotografia%20de%20comida%2C%20alta%20calidad",
+                "prepTime": "6-10 min",
+                "spiceLevel": 0,
+                "attributes": []
+              },
+              {
+                "id": "francesas-o-casquitos-de-papa",
+                "name": "Francesas o Casquitos de Papa",
+                "description": "Porción de papas fritas en presentación francesa o tipo casquito.",
+                "price": 6000,
+                "image": "https://image.pollinations.ai/prompt/Francesas%20o%20Casquitos%20de%20Papa%20plato%20colombiano%20restaurante%2C%20comida%20apetecible%2C%20fotografia%20de%20comida%2C%20alta%20calidad",
+                "prepTime": "6-10 min",
+                "spiceLevel": 0,
+                "attributes": []
+              },
+              {
+                "id": "bollo-blanco-con-extra-queso",
+                "name": "Bollo Blanco con Extra Queso",
+                "description": "Bollo blanco acompañado de una porción adicional de queso.",
+                "price": 6000,
+                "image": "https://image.pollinations.ai/prompt/Bollo%20Blanco%20con%20Extra%20Queso%20plato%20colombiano%20restaurante%2C%20comida%20apetecible%2C%20fotografia%20de%20comida%2C%20alta%20calidad",
+                "prepTime": "6-10 min",
+                "spiceLevel": 0,
+                "attributes": []
               }
             ]
           }
