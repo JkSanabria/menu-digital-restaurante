@@ -1,7 +1,14 @@
 # Logs
+# Excel temporales y hojas de trabajo
+~$*.xlsx
+*.xlsx~
+
 logs
 *.log
 npm-debug.log*
+# Excel temporales y hojas de trabajo
+~$*.xlsx
+*.xlsx~
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
