@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useEffect, useRef } from 'react';
+import { BrowserRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import Layout from './layouts/Layout';
 import Home from './pages/Home';
 import SectionView from './pages/SectionView';
@@ -13,6 +14,7 @@ function App() {
     return (
         <CartProvider>
             <BrowserRouter>
+                <RedirectToHomeOnReload />
                 <Routes>
                     <Route path="/" element={<Layout />}>
                         <Route index element={<Home />} />
@@ -33,9 +35,24 @@ function App() {
     );
 }
 
-// Helper to hide floating cart on /cart route
-import { useLocation } from 'react-router-dom';
+// Redirect to home on hard reload
+function RedirectToHomeOnReload() {
+    const location = useLocation();
+    const navigate = useNavigate();
+    const hasRedirected = useRef(false);
 
+    useEffect(() => {
+        if (hasRedirected.current) return;
+        hasRedirected.current = true;
+        if (location.pathname !== '/') {
+            navigate('/', { replace: true });
+        }
+    }, [location.pathname, navigate]);
+
+    return null;
+}
+
+// Helper to hide floating cart on /cart route
 function FloatingCartWrapper() {
     const location = useLocation();
     if (location.pathname === '/cart') return null;

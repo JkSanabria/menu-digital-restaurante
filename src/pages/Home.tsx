@@ -24,6 +24,7 @@ export default function Home() {
 
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
     const [quantity, setQuantity] = useState(1);
+    const [productNote, setProductNote] = useState('');
 
     // Search Logic
     const { matchedProducts, matchedSections } = useMemo(() => {
@@ -83,6 +84,7 @@ export default function Home() {
         setSelectedProduct(product);
         setQuantity(1);
         setSelectedOptions([]);
+        setProductNote('');
 
         // Auto-select first size if available
         if (product.sizes && product.sizes.length > 0) {
@@ -139,7 +141,7 @@ export default function Home() {
 
         // Add the product multiple times based on quantity
         for (let i = 0; i < quantity; i++) {
-            addToCart(productToAdd);
+            addToCart(productToAdd, productNote);
         }
 
         // Reset modal
@@ -147,6 +149,15 @@ export default function Home() {
         setQuantity(1);
         setSelectedOptions([]);
         setSelectedSize('');
+        setProductNote('');
+    };
+
+    const closeModal = () => {
+        setSelectedProduct(null);
+        setQuantity(1);
+        setSelectedOptions([]);
+        setSelectedSize('');
+        setProductNote('');
     };
 
     // Calculate current display price based on size selection
@@ -281,7 +292,7 @@ export default function Home() {
                     ) : (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                             {matchedProducts.map(product => {
-                                const cartItem = items.find(item => item.id === product.id);
+                                const cartItem = items.find(item => item.lineId === product.id);
                                 const itemQuantity = cartItem ? cartItem.quantity : 0;
 
                                 return (
@@ -363,7 +374,7 @@ export default function Home() {
                                 <p className="text-sm text-gray-500">{selectedProduct.description}</p>
                             </div>
                             <button
-                                onClick={() => setSelectedProduct(null)}
+                                onClick={closeModal}
                                 className="p-2 hover:bg-gray-100 rounded-full transition-colors"
                             >
                                 <X size={20} className="text-gray-400" />
@@ -447,6 +458,16 @@ export default function Home() {
                                 )}
                             </div>
                         )}
+
+                        <div className="mb-6">
+                            <label className="block text-sm font-bold text-gray-800 mb-2">Observaciones</label>
+                            <textarea
+                                value={productNote}
+                                onChange={(e) => setProductNote(e.target.value)}
+                                placeholder="Ej: sin cebolla, sin tomate, poco picante"
+                                className="w-full p-3 border border-gray-200 rounded-xl text-sm focus:ring-1 focus:ring-primary focus:border-primary resize-none h-20"
+                            />
+                        </div>
 
                         <div className="flex items-center justify-between bg-gray-50 p-4 rounded-xl mb-6">
                             <span className="text-gray-600 font-medium">Cantidad</span>

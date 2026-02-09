@@ -23,6 +23,7 @@ export default function ProductList() {
     const { addToCart, updateQuantity, total, items } = useCart();
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
     const [quantity, setQuantity] = useState(1);
+    const [productNote, setProductNote] = useState('');
     const [searchTerm, setSearchTerm] = useState('');
 
     const itemCount = items.reduce((sum, item) => sum + item.quantity, 0);
@@ -56,17 +57,25 @@ export default function ProductList() {
 
         // Add the product multiple times based on quantity
         for (let i = 0; i < quantity; i++) {
-            addToCart(selectedProduct);
+            addToCart(selectedProduct, productNote);
         }
 
         // Reset modal
         setSelectedProduct(null);
         setQuantity(1);
+        setProductNote('');
     };
 
     const openModal = (product: Product) => {
         setSelectedProduct(product);
         setQuantity(1);
+        setProductNote('');
+    };
+
+    const closeModal = () => {
+        setSelectedProduct(null);
+        setQuantity(1);
+        setProductNote('');
     };
 
     return (
@@ -134,7 +143,7 @@ export default function ProductList() {
                         {filteredCategories.map((category) => (
                         <div key={category.id} className="scroll-mt-24" id={category.id}>
                             {category.products.map((product) => {
-                                const cartItem = items.find(item => item.id === product.id);
+                                const cartItem = items.find(item => item.lineId === product.id);
                                 const quantity = cartItem ? cartItem.quantity : 0;
 
                                 return (
@@ -221,7 +230,7 @@ export default function ProductList() {
                                 <p className="text-sm text-gray-500">{selectedProduct.description}</p>
                             </div>
                             <button
-                                onClick={() => setSelectedProduct(null)}
+                                onClick={closeModal}
                                 className="p-2 hover:bg-gray-100 rounded-full transition-colors"
                             >
                                 <X size={20} className="text-gray-400" />
@@ -237,6 +246,16 @@ export default function ProductList() {
                                 />
                             </div>
                         )}
+
+                        <div className="mb-6">
+                            <label className="block text-sm font-bold text-gray-800 mb-2">Observaciones</label>
+                            <textarea
+                                value={productNote}
+                                onChange={(e) => setProductNote(e.target.value)}
+                                placeholder="Ej: sin cebolla, sin tomate, poco picante"
+                                className="w-full p-3 border border-gray-200 rounded-xl text-sm focus:ring-1 focus:ring-primary focus:border-primary resize-none h-20"
+                            />
+                        </div>
 
                         <div className="flex items-center justify-between bg-gray-50 p-4 rounded-xl mb-6">
                             <span className="text-gray-600 font-medium">Cantidad</span>

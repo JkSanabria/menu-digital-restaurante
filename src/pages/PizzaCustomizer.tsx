@@ -30,6 +30,7 @@ export default function PizzaMenu() {
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
     const [selectedSize, setSelectedSize] = useState<PizzaSize>('Mediana');
     const [quantity, setQuantity] = useState(1);
+    const [productNote, setProductNote] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
 
     // Builder State
@@ -85,13 +86,14 @@ export default function PizzaMenu() {
         };
 
         for (let i = 0; i < quantity; i++) {
-            addToCart(productToAdd);
+            addToCart(productToAdd, productNote);
         }
 
         // Close modal
         setSelectedProduct(null);
         setQuantity(1);
         setSelectedSize('Mediana');
+        setProductNote('');
     };
 
     const handleMix = () => {
@@ -106,6 +108,14 @@ export default function PizzaMenu() {
         setSelectedProduct(product);
         setSelectedSize('Mediana'); // Reset to default
         setQuantity(1);
+        setProductNote('');
+    };
+
+    const closeModal = () => {
+        setSelectedProduct(null);
+        setQuantity(1);
+        setSelectedSize('Mediana');
+        setProductNote('');
     };
 
     // ------------------------------------------------------------------
@@ -115,9 +125,10 @@ export default function PizzaMenu() {
     // 1. List Item for "Tus Pizzas Seleccionadas" (Minimalist, No Image)
     const renderSelectedPizzaItem = (product: Product) => {
         const itemQuantity = (product as any).quantity || 1;
+        const lineId = (product as any).lineId || product.id;
 
         return (
-            <div key={product.id} className="flex items-center justify-between p-4 bg-white border-b border-gray-100 last:border-0 hover:bg-gray-50 transition-colors animate-in fade-in slide-in-from-bottom-1">
+            <div key={lineId} className="flex items-center justify-between p-4 bg-white border-b border-gray-100 last:border-0 hover:bg-gray-50 transition-colors animate-in fade-in slide-in-from-bottom-1">
                 <div className="flex flex-col gap-0.5">
                     <span className="font-bold text-gray-900 text-sm sm:text-base leading-tight">
                         {product.name.replace('Pizza Combinada', 'Combinada')}
@@ -135,7 +146,7 @@ export default function PizzaMenu() {
 
                     <div className="flex items-center bg-white border border-gray-200 rounded-lg shadow-sm">
                         <button
-                            onClick={() => updateQuantity(product.id, itemQuantity - 1)}
+                            onClick={() => updateQuantity(lineId, itemQuantity - 1)}
                             className="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-red-500 hover:bg-gray-50 rounded-l-lg transition-colors"
                         >
                             <Minus size={14} />
@@ -323,7 +334,7 @@ export default function PizzaMenu() {
                                 <p className="text-sm text-gray-500">{selectedProduct.description}</p>
                             </div>
                             <button
-                                onClick={() => setSelectedProduct(null)}
+                                onClick={closeModal}
                                 className="p-2 hover:bg-gray-100 rounded-full transition-colors"
                             >
                                 <X size={20} className="text-gray-400" />
@@ -362,6 +373,16 @@ export default function PizzaMenu() {
                                     </button>
                                 ))}
                             </div>
+                        </div>
+
+                        <div className="mb-6">
+                            <label className="block text-sm font-bold text-gray-700 mb-2">Observaciones</label>
+                            <textarea
+                                value={productNote}
+                                onChange={(e) => setProductNote(e.target.value)}
+                                placeholder="Ej: sin cebolla, sin tomate, poco picante"
+                                className="w-full p-3 border border-gray-200 rounded-xl text-sm focus:ring-1 focus:ring-primary focus:border-primary resize-none h-20"
+                            />
                         </div>
 
                         {/* Quantity and Total */}
