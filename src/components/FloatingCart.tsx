@@ -87,7 +87,7 @@ export default function FloatingCart() {
                         {/* Main Cart Button */}
                         <button
                             onClick={() => setShowMenu(!showMenu)}
-                            className="bg-primary text-white px-6 py-4 lg:h-16 rounded-full shadow-xl flex items-center gap-3 hover:bg-red-700 active:scale-95 transition-all min-w-[200px] lg:min-w-[240px] justify-between"
+                            className="bg-primary text-white px-4 py-4 lg:h-16 rounded-full shadow-xl flex items-center gap-3 hover:bg-red-700 active:scale-95 transition-all min-w-[150px] sm:min-w-[200px] lg:min-w-[240px] justify-between"
                             aria-label={`Carrito con ${itemCount} productos - ${formatPrice(total)}`}
                             aria-expanded={showMenu}
                             aria-haspopup="true"
