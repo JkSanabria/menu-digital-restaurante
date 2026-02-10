@@ -18,7 +18,8 @@ export default function SectionView() {
     if (!section) return <Navigate to="/" replace />;
 
     return (
-        <div className="container mx-auto px-4 py-8 max-w-lg md:max-w-5xl animate-in fade-in slide-in-from-right-8 duration-300 pb-24">
+        <div className="min-h-screen bg-gradient-to-b from-orange-50/60 via-white to-white">
+            <div className="container mx-auto px-4 py-8 max-w-lg md:max-w-5xl animate-in fade-in slide-in-from-right-8 duration-300 pb-24">
             <div className="flex items-center gap-4 mb-6 md:mb-8 border-b border-gray-200 md:border-b-2 md:border-primary/10 pb-3 md:pb-4">
                 <Link to="/" className="p-2 md:p-3 lg:p-4 -ml-2 hover:bg-gray-100 rounded-full transition-all text-gray-400 hover:text-primary active:scale-95 lg:flex">
                     <ChevronRight className="rotate-180 w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8" />
@@ -46,7 +47,7 @@ export default function SectionView() {
                     <Link
                         key={sub.id}
                         to={`/section/${sectionId}/sub/${sub.id}`}
-                        className="group flex items-center justify-between p-3 md:p-8 bg-white rounded-xl md:rounded-2xl shadow-sm border border-gray-100 hover:border-primary hover:shadow-lg transition-all active:scale-[0.99] relative overflow-hidden"
+                        className="group flex items-center justify-between p-3 md:p-8 bg-white rounded-2xl shadow-sm border border-gray-100 hover:border-primary hover:shadow-md transition-all active:scale-[0.99] relative overflow-hidden"
                     >
                         <div className="absolute right-0 top-0 w-16 h-16 md:w-24 md:h-24 bg-primary/5 rounded-bl-full -mr-6 -mt-6 md:-mr-8 md:-mt-8 transition-transform group-hover:scale-150 duration-500"></div>
 
@@ -56,6 +57,7 @@ export default function SectionView() {
                         </div>
                     </Link>
                 ))}
+            </div>
             </div>
         </div>
     );

@@ -214,13 +214,13 @@ export default function CartPage() {
         return (
             <div className="container mx-auto px-4 py-10 text-center flex flex-col items-center justify-center min-h-[60vh]">
                 <div className="bg-orange-100 p-6 rounded-full mb-6">
-                    <Trash2 size={48} className="text-primary/50" />
+                    <Trash2 size={32} className="text-primary/50" />
                 </div>
-                <h2 className="text-2xl font-heading text-gray-800 mb-2">Tu carrito está vacío</h2>
+                <h2 className="text-xl md:text-2xl font-heading font-bold tracking-tight text-gray-900 mb-2">Tu carrito está vacío</h2>
                 <p className="text-gray-500 mb-8">¡Agrega algunas delicias de nuestro menú!</p>
                 <button
                     onClick={() => navigate('/')}
-                    className="bg-primary text-white px-8 py-3 rounded-lg font-bold hover:bg-red-700 transition"
+                    className="min-h-[44px] px-4 py-3 rounded-xl bg-primary text-white font-bold hover:bg-red-700 transition-all active:scale-[0.98]"
                 >
                     Ir al Menú
                 </button>
@@ -234,24 +234,24 @@ export default function CartPage() {
                 <div className="flex items-center gap-3">
                     <button
                         onClick={() => navigate(-1)}
-                        className="p-2 md:p-3 lg:p-4 -ml-2 hover:bg-gray-100 rounded-full transition-all text-gray-600 hover:text-primary active:scale-95"
+                        className="h-11 w-11 -ml-2 hover:bg-gray-100 rounded-full transition-all text-gray-600 hover:text-primary active:scale-95"
                         aria-label="Volver"
                     >
                         <ArrowLeft className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8" />
                     </button>
-                    <h1 className="text-2xl lg:text-5xl font-heading lg:font-black text-gray-900 lg:uppercase">Tu Pedido</h1>
+                    <h1 className="text-2xl md:text-4xl font-heading font-black tracking-tight text-gray-900">Tu Pedido</h1>
                 </div>
 
                 <div className="flex items-center gap-2">
                     <button
                         onClick={() => navigate('/')}
-                        className="px-3 py-1.5 md:px-4 md:py-2 rounded-full border border-primary/20 text-primary hover:bg-primary hover:text-white transition-all text-xs md:text-sm font-bold"
+                        className="min-h-[44px] px-4 py-3 rounded-xl border border-primary/20 bg-white text-primary hover:bg-primary hover:text-white transition-all text-xs md:text-sm font-bold active:scale-[0.98]"
                     >
                         Seguir comprando
                     </button>
                     <button
                         onClick={() => navigate('/')}
-                        className="p-1.5 hover:bg-gray-100 rounded-full text-gray-600 hover:text-primary transition-colors"
+                        className="h-11 w-11 hover:bg-gray-100 rounded-full text-gray-600 hover:text-primary transition-colors"
                         title="Ir al inicio"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -266,7 +266,7 @@ export default function CartPage() {
                                 navigate('/');
                             }
                         }}
-                        className="p-1.5 hover:bg-red-50 rounded-full text-gray-400 hover:text-red-500 transition-colors"
+                        className="h-11 w-11 hover:bg-red-50 rounded-full text-gray-400 hover:text-red-500 transition-colors"
                         title="Vaciar carrito"
                     >
                         <Trash2 size={20} />
@@ -282,17 +282,17 @@ export default function CartPage() {
                     <div className="bg-white p-3 lg:p-6 rounded-lg lg:rounded-3xl shadow-sm border border-gray-100 mb-4 lg:mb-0 overflow-hidden lg:overflow-visible">
                         <button
                             onClick={() => toggleSection('delivery')}
-                            className="w-full flex items-center justify-between px-3 py-2 text-left lg:hidden"
+                            className="w-full min-h-[44px] px-4 py-3 rounded-xl flex items-center justify-between text-left hover:bg-gray-50 transition-colors lg:hidden"
                         >
-                            <span className="text-sm font-bold text-gray-800">Información de entrega</span>
+                            <span className="text-base font-heading font-bold text-gray-800">Información de entrega</span>
                             <span className="flex items-center gap-2">
-                                <span className={`text-[10px] font-semibold border px-2 py-0.5 rounded-full ${deliveryStatus.className}`}>{deliveryStatus.label}</span>
+                                <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-[10px] font-semibold border ${deliveryStatus.className}`}>{deliveryStatus.label}</span>
                                 <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${openSection === 'delivery' ? 'rotate-180' : ''}`} />
                             </span>
                         </button>
-                        <h3 className="hidden lg:flex font-bold text-gray-800 lg:text-gray-900 mb-2 lg:mb-6 items-center gap-2 text-sm lg:text-xl">
+                        <h3 className="hidden lg:flex text-base md:text-lg font-heading font-bold text-gray-800 mb-2 lg:mb-6 items-center gap-2">
                             <div className="hidden lg:block p-2 bg-primary/10 rounded-full text-primary">
-                                <User size={20} />
+                                <User size={24} />
                             </div>
                             Información de entrega
                         </h3>
@@ -301,7 +301,7 @@ export default function CartPage() {
                             <div className="flex items-center gap-2">
                                 <button
                                     onClick={() => setDeliveryMethod('domicilio')}
-                                    className={`flex-1 py-2 rounded-lg text-xs font-bold border transition-colors ${deliveryMethod === 'domicilio'
+                                    className={`flex-1 min-h-[44px] px-4 py-3 rounded-xl text-xs font-bold border transition-colors ${deliveryMethod === 'domicilio'
                                         ? 'bg-primary text-white border-primary'
                                         : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
                                         }`}
@@ -310,7 +310,7 @@ export default function CartPage() {
                                 </button>
                                 <button
                                     onClick={() => setDeliveryMethod('recoger')}
-                                    className={`flex-1 py-2 rounded-lg text-xs font-bold border transition-colors ${deliveryMethod === 'recoger'
+                                    className={`flex-1 min-h-[44px] px-4 py-3 rounded-xl text-xs font-bold border transition-colors ${deliveryMethod === 'recoger'
                                         ? 'bg-primary text-white border-primary'
                                         : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
                                         }`}
@@ -346,7 +346,7 @@ export default function CartPage() {
 
                             <div>
                                 <label className="block text-xs font-medium text-gray-700 mb-0.5 flex items-center gap-1">
-                                    <MapPin size={12} />
+                                    <MapPin size={16} />
                                     Dirección de entrega {deliveryMethod === 'domicilio' ? '*' : '(solo domicilio)'}
                                 </label>
                                 <input
@@ -366,38 +366,38 @@ export default function CartPage() {
                     <div className="bg-white lg:bg-transparent p-3 lg:p-0 rounded-lg lg:rounded-none shadow-sm lg:shadow-none border border-gray-100 lg:border-0 mb-4 lg:mb-0 overflow-hidden lg:overflow-visible">
                         <button
                             onClick={() => toggleSection('order')}
-                            className="w-full flex items-center justify-between px-3 py-2 text-left lg:hidden"
+                            className="w-full min-h-[44px] px-4 py-3 rounded-xl flex items-center justify-between text-left hover:bg-gray-50 transition-colors lg:hidden"
                         >
-                            <span className="text-sm font-bold text-gray-800">Tu pedido ({itemCount} {itemCount === 1 ? 'ítem' : 'ítems'})</span>
+                            <span className="text-base font-heading font-bold text-gray-800">Tu pedido ({itemCount} {itemCount === 1 ? 'ítem' : 'ítems'})</span>
                             <span className="flex items-center gap-2">
-                                <span className={`text-[10px] font-semibold border px-2 py-0.5 rounded-full ${orderStatus.className}`}>{orderStatus.label}</span>
+                                <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-[10px] font-semibold border ${orderStatus.className}`}>{orderStatus.label}</span>
                                 <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${openSection === 'order' ? 'rotate-180' : ''}`} />
                             </span>
                         </button>
                         <div className={`${openSection === 'order' ? 'flex' : 'hidden'} flex-col gap-3 lg:gap-4 lg:flex`}>
                             {items.map((item) => (
-                                <div key={item.lineId} className="bg-white p-3 lg:p-6 rounded-lg lg:rounded-3xl shadow-sm border border-gray-100 flex items-center justify-between gap-2 lg:gap-4 lg:hover:shadow-md lg:hover:border-primary/20 transition-all">
+                                <div key={item.lineId} className="bg-white p-3 lg:p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center justify-between gap-2 lg:gap-4 lg:hover:shadow-md lg:hover:border-primary/20 transition-all">
                                     <div className="flex-1 min-w-0">
-                                        <h3 className="font-bold text-gray-800 lg:text-gray-900 text-sm lg:text-xl truncate lg:whitespace-normal">{item.name}</h3>
+                                        <h3 className="text-base md:text-lg font-heading font-bold text-gray-800 truncate lg:whitespace-normal">{item.name}</h3>
                                         {item.note && (
                                             <p className="text-[11px] lg:text-sm text-gray-500 mt-0.5 truncate">📝 {item.note}</p>
                                         )}
                                     </div>
 
                                     <div className="flex items-center gap-2 lg:gap-6 shrink-0">
-                                        <div className="flex items-center bg-gray-50 rounded-md lg:rounded-xl border border-gray-200 h-8 lg:h-auto lg:p-1 lg:shadow-inner">
+                                        <div className="flex items-center bg-gray-50 rounded-xl border border-gray-200 min-h-[44px] lg:p-1 lg:shadow-inner">
                                             <button
                                                 onClick={() => updateQuantity(item.lineId, item.quantity - 1)}
-                                                className="px-2 lg:w-10 lg:h-10 h-full lg:bg-white lg:rounded-lg text-gray-500 hover:text-primary hover:bg-gray-100 lg:hover:shadow-sm rounded-l-md lg:rounded-l-lg transition-colors lg:transition-all"
+                                                className="w-11 h-11 flex items-center justify-center bg-white rounded-l-xl text-gray-500 hover:text-primary hover:bg-gray-100 lg:hover:shadow-sm transition-colors lg:transition-all"
                                             >
-                                                <Minus size={14} />
+                                                <Minus size={16} />
                                             </button>
                                             <span className="text-sm lg:text-lg font-bold w-6 lg:w-10 text-center text-gray-900 lg:text-gray-800">{item.quantity}</span>
                                             <button
                                                 onClick={() => updateQuantity(item.lineId, item.quantity + 1)}
-                                                className="px-2 lg:w-10 lg:h-10 h-full lg:bg-white lg:rounded-lg text-gray-500 hover:text-primary hover:bg-gray-100 lg:hover:shadow-sm rounded-r-md lg:rounded-r-lg transition-colors lg:transition-all"
+                                                className="w-11 h-11 flex items-center justify-center bg-white rounded-r-xl text-gray-500 hover:text-primary hover:bg-gray-100 lg:hover:shadow-sm transition-colors lg:transition-all"
                                             >
-                                                <Plus size={14} />
+                                                <Plus size={16} />
                                             </button>
                                         </div>
 
@@ -443,18 +443,18 @@ export default function CartPage() {
                     <div className="bg-white p-3 lg:p-6 rounded-lg lg:rounded-3xl shadow-sm border border-gray-100 mb-4 lg:mb-0 overflow-hidden lg:overflow-visible">
                         <button
                             onClick={() => toggleSection('extras')}
-                            className="w-full flex items-center justify-between px-3 py-2 text-left lg:hidden"
+                            className="w-full min-h-[44px] px-4 py-3 rounded-xl flex items-center justify-between text-left hover:bg-gray-50 transition-colors lg:hidden"
                         >
-                            <span className="text-sm font-bold text-gray-800">Propina y notas para el pedido</span>
+                            <span className="text-base font-heading font-bold text-gray-800">Propina y notas para el pedido</span>
                             <span className="flex items-center gap-2">
-                                <span className={`text-[10px] font-semibold border px-2 py-0.5 rounded-full ${extrasStatus.className}`}>{extrasStatus.label}</span>
+                                <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-[10px] font-semibold border ${extrasStatus.className}`}>{extrasStatus.label}</span>
                                 <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${openSection === 'extras' ? 'rotate-180' : ''}`} />
                             </span>
                         </button>
                         <div className={`${openSection === 'extras' ? 'block' : 'hidden'} lg:block`}>
                             <div className="flex flex-col gap-2">
                                 <div className="hidden lg:flex items-center justify-between gap-2 mb-4">
-                                    <h3 className="font-bold text-gray-800 lg:text-gray-900 text-sm lg:text-base whitespace-nowrap lg:whitespace-normal">Propina <span className="hidden lg:inline">para el Staff ❤️</span></h3>
+                                    <h3 className="text-base md:text-lg font-heading font-bold text-gray-800 whitespace-nowrap lg:whitespace-normal">Propina <span className="hidden lg:inline">para el Staff ❤️</span></h3>
                                 </div>
                                 <div className="flex gap-2 lg:hidden">
                                     {[0, 10, 15].map((pct) => (
@@ -465,7 +465,7 @@ export default function CartPage() {
                                                 setCustomTip(null);
                                                 setCustomTipInput('');
                                             }}
-                                            className={`flex-1 py-1.5 rounded-lg text-xs font-bold border transition-colors ${tipPercentage === pct && customTip === null
+                                            className={`flex-1 min-h-[44px] px-4 py-3 rounded-xl text-xs font-bold border transition-colors ${tipPercentage === pct && customTip === null
                                                 ? 'bg-primary text-white border-primary'
                                                 : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
                                                 }`}
@@ -479,7 +479,7 @@ export default function CartPage() {
                                             setCustomTip(0);
                                             setCustomTipInput('');
                                         }}
-                                        className={`flex-1 py-1.5 rounded-lg text-xs font-bold border transition-colors ${customTip !== null
+                                        className={`flex-1 min-h-[44px] px-4 py-3 rounded-xl text-xs font-bold border transition-colors ${customTip !== null
                                             ? 'bg-primary text-white border-primary'
                                             : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
                                             }`}
@@ -491,9 +491,9 @@ export default function CartPage() {
                                 {/* Desktop Tip Buttons */}
                                 <div className="hidden lg:flex gap-2">
                                     {[0, 10, 15].map((pct) => (
-                                        <button key={pct} onClick={() => { setTipPercentage(pct); setCustomTip(null); setCustomTipInput(''); }} className={`flex-1 py-2 rounded-xl font-bold text-sm transition-all border-2 ${tipPercentage === pct && customTip === null ? 'border-primary bg-primary text-white shadow-md transform scale-105' : 'border-gray-100 bg-white text-gray-600 hover:bg-gray-50'}`}>{pct === 0 ? 'No' : `${pct}%`}</button>
+                                        <button key={pct} onClick={() => { setTipPercentage(pct); setCustomTip(null); setCustomTipInput(''); }} className={`flex-1 min-h-[44px] px-4 py-3 rounded-xl font-bold text-sm transition-all border-2 ${tipPercentage === pct && customTip === null ? 'border-primary bg-primary text-white shadow-md transform scale-105' : 'border-gray-100 bg-white text-gray-600 hover:bg-gray-50'}`}>{pct === 0 ? 'No' : `${pct}%`}</button>
                                     ))}
-                                    <button onClick={() => { setTipPercentage(0); setCustomTip(0); setCustomTipInput(''); }} className={`flex-1 py-2 rounded-xl font-bold text-sm transition-all border-2 ${customTip !== null ? 'border-primary bg-primary text-white shadow-md' : 'border-gray-100 bg-white text-gray-600 hover:bg-gray-50'}`}>Otro</button>
+                                    <button onClick={() => { setTipPercentage(0); setCustomTip(0); setCustomTipInput(''); }} className={`flex-1 min-h-[44px] px-4 py-3 rounded-xl font-bold text-sm transition-all border-2 ${customTip !== null ? 'border-primary bg-primary text-white shadow-md' : 'border-gray-100 bg-white text-gray-600 hover:bg-gray-50'}`}>Otro</button>
                                 </div>
                             </div>
 
@@ -529,7 +529,7 @@ export default function CartPage() {
                                 <div className="mb-4 bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
                                     <button
                                         onClick={() => setShowNote(true)}
-                                        className="w-full text-left font-bold text-primary hover:text-primary/80 flex items-center gap-2 transition-colors py-2"
+                                        className="w-full min-h-[44px] px-4 py-3 rounded-xl text-left font-bold text-primary hover:bg-primary/10 transition-colors flex items-center gap-2"
                                     >
                                         <span className="text-xl">📝</span>
                                         <div className="flex-1">
@@ -551,7 +551,7 @@ export default function CartPage() {
                                                 setNote("");
                                                 setShowNote(false);
                                             }}
-                                            className="text-xs text-red-500 font-normal hover:text-red-700"
+                                            className="min-h-[44px] px-3 py-2 rounded-full text-xs text-red-500 font-normal hover:bg-red-50 hover:text-red-700 transition-colors"
                                         >
                                             Cancelar
                                         </button>
@@ -577,21 +577,21 @@ export default function CartPage() {
                     <div className="bg-white p-2 lg:p-6 rounded-lg lg:rounded-3xl shadow-sm border border-gray-100 mb-4 lg:mb-0 overflow-hidden lg:overflow-visible">
                         <button
                             onClick={() => toggleSection('payment')}
-                            className="w-full flex items-center justify-between px-3 py-2 text-left lg:hidden"
+                            className="w-full min-h-[44px] px-4 py-3 rounded-xl flex items-center justify-between text-left hover:bg-gray-50 transition-colors lg:hidden"
                         >
-                            <span className="text-sm font-bold text-gray-800">Método de pago</span>
+                            <span className="text-base font-heading font-bold text-gray-800">Método de pago</span>
                             <span className="flex items-center gap-2">
-                                <span className={`text-[10px] font-semibold border px-2 py-0.5 rounded-full ${paymentStatus.className}`}>{paymentStatus.label}</span>
+                                <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-[10px] font-semibold border ${paymentStatus.className}`}>{paymentStatus.label}</span>
                                 <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${openSection === 'payment' ? 'rotate-180' : ''}`} />
                             </span>
                         </button>
                         <div className={`${openSection === 'payment' ? 'block' : 'hidden'} lg:block`}>
                             {/* Mobile: Compact Row */}
-                            <div className="flex items-center gap-2 h-9 lg:hidden">
+                            <div className="flex items-center gap-2 min-h-[44px] lg:hidden">
                             {/* Col 1: Cash */}
                             <button
                                 onClick={() => handlePaymentSelection('efectivo')}
-                                className={`px-3 h-full rounded-md text-xs font-bold border flex items-center gap-1 transition-colors ${paymentMethod === 'efectivo'
+                                className={`min-h-[44px] px-4 py-3 rounded-xl text-xs font-bold border flex items-center gap-1 transition-colors ${paymentMethod === 'efectivo'
                                     ? 'bg-primary text-white border-primary'
                                     : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
                                     }`}
@@ -602,7 +602,7 @@ export default function CartPage() {
                             {/* Col 2: Transfer */}
                             <button
                                 onClick={() => handlePaymentSelection('transferencia')}
-                                className={`px-3 h-full rounded-md text-xs font-bold border flex items-center gap-1 transition-colors ${paymentMethod === 'transferencia'
+                                className={`min-h-[44px] px-4 py-3 rounded-xl text-xs font-bold border flex items-center gap-1 transition-colors ${paymentMethod === 'transferencia'
                                     ? 'bg-primary text-white border-primary'
                                     : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
                                     }`}
@@ -611,7 +611,7 @@ export default function CartPage() {
                             </button>
 
                             {/* Col 3: Details (The "Third Space") */}
-                            <div className="flex-1 h-full bg-gray-50 rounded-md border border-gray-100 flex items-center justify-center px-2 text-[10px] text-gray-500 text-center leading-tight overflow-hidden">
+                            <div className="flex-1 min-h-[44px] bg-gray-50 rounded-xl border border-gray-100 flex items-center justify-center px-2 text-[10px] text-gray-500 text-center leading-tight overflow-hidden">
                                 {paymentMethod === 'efectivo' && (
                                     <span className="font-medium text-gray-700 truncate w-full">
                                         {paymentDetails.needsChange
@@ -630,13 +630,13 @@ export default function CartPage() {
 
                             {/* Desktop: Card Grid */}
                             <div className="hidden lg:block">
-                            <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                            <h3 className="text-base md:text-lg font-heading font-bold text-gray-900 mb-4 flex items-center gap-2">
                                 <span className="bg-green-100 text-green-600 p-1.5 rounded-lg text-lg">💳</span>
                                 Método de Pago
                             </h3>
                             <div className="grid grid-cols-2 gap-3 mb-4">
-                                <button onClick={() => handlePaymentSelection('efectivo')} className={`p-4 rounded-2xl flex flex-col items-center gap-2 border-2 transition-all ${paymentMethod === 'efectivo' ? 'border-primary bg-primary/5 text-primary' : 'border-gray-100 bg-gray-50 text-gray-500 hover:border-gray-200'}`}><span className="text-2xl">💵</span><span className="font-bold text-sm">Efectivo</span></button>
-                                <button onClick={() => handlePaymentSelection('transferencia')} className={`p-4 rounded-2xl flex flex-col items-center gap-2 border-2 transition-all ${paymentMethod === 'transferencia' ? 'border-primary bg-primary/5 text-primary' : 'border-gray-100 bg-gray-50 text-gray-500 hover:border-gray-200'}`}><span className="text-2xl">📱</span><span className="font-bold text-sm">Transf.</span></button>
+                                <button onClick={() => handlePaymentSelection('efectivo')} className={`min-h-[44px] px-4 py-3 rounded-xl flex flex-col items-center gap-2 border-2 transition-all ${paymentMethod === 'efectivo' ? 'border-primary bg-primary/5 text-primary' : 'border-gray-100 bg-gray-50 text-gray-500 hover:border-gray-200'}`}><span className="text-2xl">💵</span><span className="font-bold text-sm">Efectivo</span></button>
+                                <button onClick={() => handlePaymentSelection('transferencia')} className={`min-h-[44px] px-4 py-3 rounded-xl flex flex-col items-center gap-2 border-2 transition-all ${paymentMethod === 'transferencia' ? 'border-primary bg-primary/5 text-primary' : 'border-gray-100 bg-gray-50 text-gray-500 hover:border-gray-200'}`}><span className="text-2xl">📱</span><span className="font-bold text-sm">Transf.</span></button>
                             </div>
                             <div className="bg-gray-50 p-3 rounded-xl border border-gray-100 text-center text-sm text-gray-600 font-medium">
                                 {paymentMethod === 'efectivo' && (paymentDetails.needsChange ? `Cambio de: ${formatPrice(paymentDetails.billAmount || 0)}` : 'Pago Exacto')}
@@ -667,7 +667,7 @@ export default function CartPage() {
                             </div>
                         </div>
 
-                        <button onClick={handleWhatsAppOrder} className="w-full bg-organic hover:bg-green-700 text-white font-bold py-4 rounded-xl shadow-xl shadow-green-200 flex items-center justify-center gap-3 transition-transform hover:scale-[1.02] active:scale-[0.98] group">
+                        <button onClick={handleWhatsAppOrder} className="w-full min-h-[44px] px-4 py-3 rounded-xl bg-organic hover:bg-green-700 text-white font-bold shadow-sm flex items-center justify-center gap-3 transition-transform hover:scale-[1.02] active:scale-[0.98] group">
                             <span className="p-1 bg-white/20 rounded-full group-hover:rotate-12 transition-transform"><Send size={20} /></span>
                             <span className="text-lg">Enviar Pedido por WhatsApp</span>
                         </button>
@@ -696,9 +696,9 @@ export default function CartPage() {
 
                     <button
                         onClick={handleWhatsAppOrder}
-                        className="w-full bg-organic hover:bg-green-700 text-white font-bold py-3 rounded-lg shadow-lg flex items-center justify-center gap-2 transition-transform active:scale-[0.98]"
+                        className="w-full min-h-[44px] px-4 py-3 rounded-xl bg-organic hover:bg-green-700 text-white font-bold shadow-sm flex items-center justify-center gap-2 transition-transform active:scale-[0.98]"
                     >
-                        <Send size={18} />
+                        <Send size={20} />
                         <span>Enviar Pedido por WhatsApp</span>
                     </button>
                 </div>
@@ -707,29 +707,29 @@ export default function CartPage() {
             {/* Confirmation Modal - Standardized padding and border radius */}
             {showConfirmation && (
                 <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 animate-in fade-in duration-200">
-                    <div className="bg-white rounded-xl max-w-md lg:max-w-4xl w-full max-h-[90vh] overflow-y-auto lg:max-h-none lg:overflow-visible animate-in zoom-in slide-in-from-bottom-8 duration-300">
+                    <div className="bg-white rounded-2xl shadow-xl max-w-md lg:max-w-4xl w-full max-h-[90vh] overflow-y-auto lg:max-h-none lg:overflow-visible animate-in zoom-in slide-in-from-bottom-8 duration-300">
                         {/* Header */}
-                        <div className="bg-gradient-to-r from-primary to-red-600 text-white p-4 lg:p-5 rounded-t-xl text-center">
-                            <h2 className="text-xl lg:text-2xl font-heading font-black tracking-tight">Confirma tu pedido</h2>
+                        <div className="bg-gradient-to-r from-primary to-red-600 text-white p-6 rounded-t-2xl text-center">
+                            <h2 className="text-xl md:text-2xl font-heading font-bold tracking-tight">Confirma tu pedido</h2>
                             <p className="text-white/95 text-xs lg:text-sm mt-2 font-semibold">
-                                <span className="inline-flex items-center gap-2 bg-white/15 border border-white/20 px-3 py-1 rounded-full">
+                                <span className="inline-flex items-center gap-2 rounded-full px-2.5 py-0.5 text-[10px] md:text-xs font-semibold border border-white/20 bg-white/15">
                                     Revisa los detalles antes de enviar tu pedido
                                 </span>
                             </p>
                         </div>
 
                         {/* Order Summary */}
-                        <div className="p-4 space-y-3">
+                        <div className="p-6 space-y-3">
                             {/* Accordion */}
                             <div className="space-y-2">
                                 <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
                                     <button
                                         onClick={() => toggleSection('delivery')}
-                                        className="w-full flex items-center justify-between px-3 py-2 text-left"
+                                        className="w-full min-h-[44px] px-4 py-3 rounded-xl flex items-center justify-between text-left hover:bg-gray-50 transition-colors"
                                     >
-                                        <span className="text-sm lg:text-base font-bold text-gray-800">Datos de entrega</span>
+                                        <span className="text-base md:text-lg font-heading font-bold text-gray-800">Datos de entrega</span>
                                         <span className="flex items-center gap-2">
-                                            <span className={`text-[10px] lg:text-xs font-semibold border px-2 py-0.5 rounded-full ${deliveryStatus.className}`}>{deliveryStatus.label}</span>
+                                            <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-[10px] lg:text-xs font-semibold border ${deliveryStatus.className}`}>{deliveryStatus.label}</span>
                                             <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${openSection === 'delivery' ? 'rotate-180' : ''}`} />
                                         </span>
                                     </button>
@@ -738,7 +738,7 @@ export default function CartPage() {
                                             <div className="flex items-center gap-2">
                                                 <button
                                                     onClick={() => setDeliveryMethod('domicilio')}
-                                                    className={`flex-1 py-2 rounded-lg text-xs lg:text-sm font-bold border transition-colors ${deliveryMethod === 'domicilio'
+                                                    className={`flex-1 min-h-[44px] px-4 py-3 rounded-xl text-xs lg:text-sm font-bold border transition-colors ${deliveryMethod === 'domicilio'
                                                         ? 'bg-primary text-white border-primary'
                                                         : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
                                                         }`}
@@ -747,7 +747,7 @@ export default function CartPage() {
                                                 </button>
                                                 <button
                                                     onClick={() => setDeliveryMethod('recoger')}
-                                                    className={`flex-1 py-2 rounded-lg text-xs lg:text-sm font-bold border transition-colors ${deliveryMethod === 'recoger'
+                                                    className={`flex-1 min-h-[44px] px-4 py-3 rounded-xl text-xs lg:text-sm font-bold border transition-colors ${deliveryMethod === 'recoger'
                                                         ? 'bg-primary text-white border-primary'
                                                         : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
                                                         }`}
@@ -784,7 +784,7 @@ export default function CartPage() {
                                             </div>
                                             <div>
                                                 <label className="block text-xs lg:text-sm font-semibold text-gray-600 mb-1 flex items-center gap-1">
-                                                    <MapPin size={12} />
+                                                    <MapPin size={16} />
                                                     Dirección de entrega {deliveryMethod === 'domicilio' ? '*' : '(solo domicilio)'}
                                                 </label>
                                                 <input
@@ -806,11 +806,11 @@ export default function CartPage() {
                                 <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
                                     <button
                                         onClick={() => toggleSection('payment')}
-                                        className="w-full flex items-center justify-between px-3 py-2 text-left"
+                                        className="w-full min-h-[44px] px-4 py-3 rounded-xl flex items-center justify-between text-left hover:bg-gray-50 transition-colors"
                                     >
-                                        <span className="text-sm lg:text-base font-bold text-gray-800">Método de pago</span>
+                                        <span className="text-base md:text-lg font-heading font-bold text-gray-800">Método de pago</span>
                                         <span className="flex items-center gap-2">
-                                            <span className={`text-[10px] lg:text-xs font-semibold border px-2 py-0.5 rounded-full ${paymentStatus.className}`}>{paymentStatus.label}</span>
+                                            <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-[10px] lg:text-xs font-semibold border ${paymentStatus.className}`}>{paymentStatus.label}</span>
                                             <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${openSection === 'payment' ? 'rotate-180' : ''}`} />
                                         </span>
                                     </button>
@@ -819,7 +819,7 @@ export default function CartPage() {
                                             <div className="flex items-center gap-2">
                                                 <button
                                                     onClick={() => handlePaymentSelection('efectivo')}
-                                                    className={`flex-1 py-2 rounded-lg text-xs lg:text-sm font-bold border transition-colors ${paymentMethod === 'efectivo'
+                                                    className={`flex-1 min-h-[44px] px-4 py-3 rounded-xl text-xs lg:text-sm font-bold border transition-colors ${paymentMethod === 'efectivo'
                                                         ? 'bg-primary text-white border-primary'
                                                         : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
                                                         }`}
@@ -828,7 +828,7 @@ export default function CartPage() {
                                                 </button>
                                                 <button
                                                     onClick={() => handlePaymentSelection('transferencia')}
-                                                    className={`flex-1 py-2 rounded-lg text-xs lg:text-sm font-bold border transition-colors ${paymentMethod === 'transferencia'
+                                                    className={`flex-1 min-h-[44px] px-4 py-3 rounded-xl text-xs lg:text-sm font-bold border transition-colors ${paymentMethod === 'transferencia'
                                                         ? 'bg-primary text-white border-primary'
                                                         : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
                                                         }`}
@@ -846,7 +846,7 @@ export default function CartPage() {
                                                                 setPaymentStep('change_q');
                                                                 setShowPaymentModal(true);
                                                             }}
-                                                            className="text-primary font-bold text-[11px] hover:underline"
+                                                            className="min-h-[44px] px-3 py-2 rounded-full text-primary font-bold text-[11px] hover:bg-primary/10 transition-all"
                                                         >
                                                             Editar
                                                         </button>
@@ -868,7 +868,7 @@ export default function CartPage() {
                                                                 setPaymentStep('bank');
                                                                 setShowPaymentModal(true);
                                                             }}
-                                                            className="text-primary font-bold text-[11px] hover:underline"
+                                                            className="min-h-[44px] px-3 py-2 rounded-full text-primary font-bold text-[11px] hover:bg-primary/10 transition-all"
                                                         >
                                                             Cambiar banco
                                                         </button>
@@ -891,11 +891,11 @@ export default function CartPage() {
                                 <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
                                     <button
                                         onClick={() => toggleSection('extras')}
-                                        className="w-full flex items-center justify-between px-3 py-2 text-left"
+                                        className="w-full min-h-[44px] px-4 py-3 rounded-xl flex items-center justify-between text-left hover:bg-gray-50 transition-colors"
                                     >
-                                        <span className="text-sm lg:text-base font-bold text-gray-800">Propina y notas para el pedido</span>
+                                        <span className="text-base md:text-lg font-heading font-bold text-gray-800">Propina y notas para el pedido</span>
                                         <span className="flex items-center gap-2">
-                                            <span className={`text-[10px] lg:text-xs font-semibold border px-2 py-0.5 rounded-full ${extrasStatus.className}`}>{extrasStatus.label}</span>
+                                            <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-[10px] lg:text-xs font-semibold border ${extrasStatus.className}`}>{extrasStatus.label}</span>
                                             <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${openSection === 'extras' ? 'rotate-180' : ''}`} />
                                         </span>
                                     </button>
@@ -911,7 +911,7 @@ export default function CartPage() {
                                                                 setCustomTip(null);
                                                                 setCustomTipInput('');
                                                             }}
-                                                            className={`flex-1 py-2 rounded-lg text-xs lg:text-sm font-bold border transition-colors ${tipPercentage === pct && customTip === null
+                                                            className={`flex-1 min-h-[44px] px-4 py-3 rounded-xl text-xs lg:text-sm font-bold border transition-colors ${tipPercentage === pct && customTip === null
                                                                 ? 'bg-primary text-white border-primary'
                                                                 : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
                                                                 }`}
@@ -925,7 +925,7 @@ export default function CartPage() {
                                                             setCustomTip(0);
                                                             setCustomTipInput('');
                                                         }}
-                                                        className={`flex-1 py-2 rounded-lg text-xs lg:text-sm font-bold border transition-colors ${customTip !== null
+                                                        className={`flex-1 min-h-[44px] px-4 py-3 rounded-xl text-xs lg:text-sm font-bold border transition-colors ${customTip !== null
                                                             ? 'bg-primary text-white border-primary'
                                                             : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
                                                             }`}
@@ -968,17 +968,17 @@ export default function CartPage() {
                                 <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
                                     <button
                                         onClick={() => toggleSection('order')}
-                                        className="w-full flex items-center justify-between px-3 py-2 text-left"
+                                        className="w-full min-h-[44px] px-4 py-3 rounded-xl flex items-center justify-between text-left hover:bg-gray-50 transition-colors"
                                     >
-                                        <span className="text-sm lg:text-base font-bold text-gray-800">Resumen del pedido</span>
+                                        <span className="text-base md:text-lg font-heading font-bold text-gray-800">Resumen del pedido</span>
                                         <span className="flex items-center gap-2">
-                                            <span className={`text-[10px] lg:text-xs font-semibold border px-2 py-0.5 rounded-full ${orderStatus.className}`}>{orderStatus.label}</span>
+                                            <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-[10px] lg:text-xs font-semibold border ${orderStatus.className}`}>{orderStatus.label}</span>
                                             <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${openSection === 'order' ? 'rotate-180' : ''}`} />
                                         </span>
                                     </button>
                                     {openSection === 'order' && (
                                         <div className="px-3 pb-3 space-y-2">
-                                            <h3 className="font-bold text-gray-800 text-sm lg:text-base">Tu pedido ({itemCount} {itemCount === 1 ? 'ítem' : 'ítems'})</h3>
+                                            <h3 className="text-base md:text-lg font-heading font-bold text-gray-800">Tu pedido ({itemCount} {itemCount === 1 ? 'ítem' : 'ítems'})</h3>
                                             <div className="space-y-1.5">
                                                 {items.map((item) => (
                                                     <div key={item.lineId} className="flex justify-between items-center text-xs lg:text-sm bg-gray-50 p-2 rounded-lg">
@@ -1018,12 +1018,12 @@ export default function CartPage() {
                         </div>
 
                         {/* Actions */}
-                            <div className="p-4 bg-gray-50 rounded-b-xl space-y-3">
+                        <div className="p-6 bg-gray-50 rounded-b-2xl space-y-3">
                                 <button
                                     onClick={confirmAndSend}
-                                    className="w-full bg-organic hover:bg-green-700 text-white font-bold py-3 rounded-lg shadow-lg flex items-center justify-center gap-2 transition-all active:scale-[0.98]"
+                                    className="w-full min-h-[44px] px-4 py-3 rounded-xl bg-organic hover:bg-green-700 text-white font-bold shadow-sm flex items-center justify-center gap-2 transition-all active:scale-[0.98]"
                                 >
-                                <Send size={18} />
+                                <Send size={20} />
                                 <span>Confirmar y Enviar</span>
                             </button>
 
@@ -1032,7 +1032,7 @@ export default function CartPage() {
                                     setShowConfirmation(false);
                                     navigate('/');
                                 }}
-                                className="w-full bg-white hover:bg-gray-50 text-primary font-bold py-2.5 rounded-lg border border-primary text-sm transition-all active:scale-[0.98]"
+                                className="w-full min-h-[44px] px-4 py-3 rounded-xl bg-white hover:bg-primary hover:text-white text-primary font-bold border border-primary/20 text-sm transition-all active:scale-[0.98]"
                             >
                                 Seguir comprando
                             </button>
@@ -1040,7 +1040,7 @@ export default function CartPage() {
                             <div className="flex gap-2">
                                 <button
                                     onClick={() => setShowConfirmation(false)}
-                                    className="flex-1 bg-white hover:bg-gray-50 text-gray-700 font-bold py-2.5 rounded-lg border border-gray-300 text-sm transition-all active:scale-[0.98]"
+                                    className="flex-1 min-h-[44px] px-4 py-3 rounded-xl bg-white hover:bg-gray-50 text-gray-700 font-bold border border-gray-300 text-sm transition-all active:scale-[0.98]"
                                 >
                                     Corregir
                                 </button>
@@ -1049,7 +1049,7 @@ export default function CartPage() {
                                         setShowConfirmation(false);
                                         navigate('/');
                                     }}
-                                    className="flex-1 bg-white hover:bg-gray-50 text-primary font-bold py-2.5 rounded-lg border border-primary text-sm transition-all active:scale-[0.98]"
+                                    className="flex-1 min-h-[44px] px-4 py-3 rounded-xl bg-white hover:bg-primary hover:text-white text-primary font-bold border border-primary/20 text-sm transition-all active:scale-[0.98]"
                                 >
                                     + Agregar
                                 </button>
@@ -1062,7 +1062,7 @@ export default function CartPage() {
             {showPaymentModal && (
                 <div className="fixed inset-0 bg-black/60 z-[60] flex items-center justify-center p-4 animate-in fade-in duration-200">
                     <div className="bg-white rounded-xl max-w-sm w-full p-5 shadow-xl animate-in zoom-in-95 duration-200">
-                        <h3 className="text-lg font-heading font-bold text-gray-900 mb-4 text-center">
+                        <h3 className="text-base md:text-lg font-heading font-bold text-gray-900 mb-4 text-center">
                             {paymentStep === 'bank' && 'Selecciona tu Banco'}
                             {paymentStep === 'change_q' && '¿Necesitas vueltas?'}
                             {paymentStep === 'change_bill' && '¿Con qué billete pagas?'}
@@ -1075,7 +1075,7 @@ export default function CartPage() {
                                     <button
                                         key={bank}
                                         onClick={() => confirmPaymentDetails({ bank })}
-                                        className="p-3 text-left rounded-lg bg-gray-50 hover:bg-primary/10 hover:text-primary font-medium transition-colors"
+                                        className="min-h-[44px] px-4 py-3 rounded-xl bg-gray-50 hover:bg-primary/10 hover:text-primary font-medium transition-colors text-left"
                                     >
                                         {bank}
                                     </button>
@@ -1088,13 +1088,13 @@ export default function CartPage() {
                             <div className="grid grid-cols-2 gap-3">
                                 <button
                                     onClick={() => confirmPaymentDetails({ needsChange: false })}
-                                    className="p-4 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold"
+                                    className="min-h-[44px] px-4 py-3 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold"
                                 >
                                     No, tengo exacto
                                 </button>
                                 <button
                                     onClick={() => setPaymentStep('change_bill')}
-                                    className="p-4 rounded-xl bg-primary text-white hover:bg-red-700 font-bold"
+                                    className="min-h-[44px] px-4 py-3 rounded-xl bg-primary text-white hover:bg-red-700 font-bold"
                                 >
                                     Sí, necesito cambio
                                 </button>
@@ -1115,7 +1115,7 @@ export default function CartPage() {
                                         <button
                                             key={bill}
                                             onClick={() => confirmPaymentDetails({ needsChange: true, billAmount: bill })}
-                                            className="p-3 rounded-xl bg-gray-50 border border-gray-200 hover:border-primary hover:bg-primary/5 hover:text-primary font-bold transition-all text-sm flex flex-col items-center justify-center"
+                                            className="min-h-[44px] px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 hover:border-primary hover:bg-primary/5 hover:text-primary font-bold transition-all text-sm flex flex-col items-center justify-center"
                                         >
                                             <span>{formatPrice(bill)}</span>
                                             <span className="text-[10px] text-gray-400 font-normal">Vuelto: {formatPrice(bill - finalTotal)}</span>
@@ -1149,7 +1149,7 @@ export default function CartPage() {
                                                 }
                                             }}
                                             disabled={!customPaymentInput || customPaymentValue <= finalTotal}
-                                            className="bg-primary text-white px-4 rounded-lg font-bold text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                                            className="min-h-[44px] px-4 py-3 rounded-xl bg-primary text-white font-bold text-sm disabled:opacity-50 disabled:cursor-not-allowed"
                                         >
                                             OK
                                         </button>
@@ -1165,7 +1165,7 @@ export default function CartPage() {
 
                         <button
                             onClick={() => setShowPaymentModal(false)}
-                            className="mt-6 w-full py-2 text-gray-400 text-sm hover:text-gray-600 border-t border-gray-100"
+                            className="mt-6 w-full min-h-[44px] px-4 py-3 rounded-xl text-gray-500 text-sm hover:text-gray-700 hover:bg-gray-50 transition-colors"
                         >
                             Cancelar
                         </button>
