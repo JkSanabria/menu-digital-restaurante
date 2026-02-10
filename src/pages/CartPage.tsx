@@ -279,16 +279,22 @@ export default function CartPage() {
                 <div className="lg:col-span-2 space-y-4 lg:space-y-8">
 
                     {/* Customer Info Section */}
-                    <div className="bg-white p-3 lg:p-6 rounded-lg lg:rounded-3xl shadow-sm border border-gray-100 mb-4 lg:mb-0">
-                        <h3 className="font-bold text-gray-800 lg:text-gray-900 mb-2 lg:mb-6 flex items-center gap-2 text-sm lg:text-xl">
-                            <User size={16} className="text-primary lg:hidden" />
+                    <div className="bg-white p-3 lg:p-6 rounded-lg lg:rounded-3xl shadow-sm border border-gray-100 mb-4 lg:mb-0 overflow-hidden lg:overflow-visible">
+                        <button
+                            onClick={() => toggleSection('delivery')}
+                            className="w-full flex items-center justify-between px-3 py-2 text-left lg:hidden"
+                        >
+                            <span className="text-sm font-bold text-gray-800">Información de entrega</span>
+                            <span className={`text-[10px] font-semibold border px-2 py-0.5 rounded-full ${deliveryStatus.className}`}>{deliveryStatus.label}</span>
+                        </button>
+                        <h3 className="hidden lg:flex font-bold text-gray-800 lg:text-gray-900 mb-2 lg:mb-6 items-center gap-2 text-sm lg:text-xl">
                             <div className="hidden lg:block p-2 bg-primary/10 rounded-full text-primary">
                                 <User size={20} />
                             </div>
                             Información de entrega
                         </h3>
 
-                        <div className="space-y-3">
+                        <div className={`${openSection === 'delivery' ? 'block' : 'hidden'} lg:block space-y-3`}>
                             <div className="flex items-center gap-2">
                                 <button
                                     onClick={() => setDeliveryMethod('domicilio')}
@@ -323,9 +329,7 @@ export default function CartPage() {
                                     </select>
                                 </div>
                             )}
-                        </div>
-
-                        <div className="space-y-2 lg:grid lg:grid-cols-2 lg:gap-6">
+                            <div className="space-y-2 lg:grid lg:grid-cols-2 lg:gap-6">
                             <div>
                                 <label className="block text-xs font-medium text-gray-700 mb-0.5">Nombre completo *</label>
                                 <input
@@ -352,50 +356,76 @@ export default function CartPage() {
                                 />
                             </div>
                         </div>
+                        </div>
                     </div>
 
                     {/* Cart Items */}
-                    <div className="flex flex-col gap-3 lg:gap-4 mb-4 lg:mb-0">
-                        {items.map((item) => (
-                            <div key={item.lineId} className="bg-white p-3 lg:p-6 rounded-lg lg:rounded-3xl shadow-sm border border-gray-100 flex items-center justify-between gap-2 lg:gap-4 lg:hover:shadow-md lg:hover:border-primary/20 transition-all">
-                                <div className="flex-1 min-w-0">
-                                    <h3 className="font-bold text-gray-800 lg:text-gray-900 text-sm lg:text-xl truncate lg:whitespace-normal">{item.name}</h3>
-                                    {item.note && (
-                                        <p className="text-[11px] lg:text-sm text-gray-500 mt-0.5 truncate">📝 {item.note}</p>
-                                    )}
-                                </div>
-
-                                <div className="flex items-center gap-2 lg:gap-6 shrink-0">
-                                    <div className="flex items-center bg-gray-50 rounded-md lg:rounded-xl border border-gray-200 h-8 lg:h-auto lg:p-1 lg:shadow-inner">
-                                        <button
-                                            onClick={() => updateQuantity(item.lineId, item.quantity - 1)}
-                                            className="px-2 lg:w-10 lg:h-10 h-full lg:bg-white lg:rounded-lg text-gray-500 hover:text-primary hover:bg-gray-100 lg:hover:shadow-sm rounded-l-md lg:rounded-l-lg transition-colors lg:transition-all"
-                                        >
-                                            <Minus size={14} />
-                                        </button>
-                                        <span className="text-sm lg:text-lg font-bold w-6 lg:w-10 text-center text-gray-900 lg:text-gray-800">{item.quantity}</span>
-                                        <button
-                                            onClick={() => updateQuantity(item.lineId, item.quantity + 1)}
-                                            className="px-2 lg:w-10 lg:h-10 h-full lg:bg-white lg:rounded-lg text-gray-500 hover:text-primary hover:bg-gray-100 lg:hover:shadow-sm rounded-r-md lg:rounded-r-lg transition-colors lg:transition-all"
-                                        >
-                                            <Plus size={14} />
-                                        </button>
+                    <div className="bg-white lg:bg-transparent p-3 lg:p-0 rounded-lg lg:rounded-none shadow-sm lg:shadow-none border border-gray-100 lg:border-0 mb-4 lg:mb-0 overflow-hidden lg:overflow-visible">
+                        <button
+                            onClick={() => toggleSection('order')}
+                            className="w-full flex items-center justify-between px-3 py-2 text-left lg:hidden"
+                        >
+                            <span className="text-sm font-bold text-gray-800">Tu pedido ({itemCount} {itemCount === 1 ? 'ítem' : 'ítems'})</span>
+                            <span className={`text-[10px] font-semibold border px-2 py-0.5 rounded-full ${orderStatus.className}`}>{orderStatus.label}</span>
+                        </button>
+                        <div className={`${openSection === 'order' ? 'flex' : 'hidden'} flex-col gap-3 lg:gap-4 lg:flex`}>
+                            {items.map((item) => (
+                                <div key={item.lineId} className="bg-white p-3 lg:p-6 rounded-lg lg:rounded-3xl shadow-sm border border-gray-100 flex items-center justify-between gap-2 lg:gap-4 lg:hover:shadow-md lg:hover:border-primary/20 transition-all">
+                                    <div className="flex-1 min-w-0">
+                                        <h3 className="font-bold text-gray-800 lg:text-gray-900 text-sm lg:text-xl truncate lg:whitespace-normal">{item.name}</h3>
+                                        {item.note && (
+                                            <p className="text-[11px] lg:text-sm text-gray-500 mt-0.5 truncate">📝 {item.note}</p>
+                                        )}
                                     </div>
 
-                                    <span className="font-bold text-primary text-sm lg:text-xl lg:font-black w-[70px] lg:w-[80px] text-right whitespace-nowrap">
-                                        {formatPrice(item.price * item.quantity)}
-                                    </span>
+                                    <div className="flex items-center gap-2 lg:gap-6 shrink-0">
+                                        <div className="flex items-center bg-gray-50 rounded-md lg:rounded-xl border border-gray-200 h-8 lg:h-auto lg:p-1 lg:shadow-inner">
+                                            <button
+                                                onClick={() => updateQuantity(item.lineId, item.quantity - 1)}
+                                                className="px-2 lg:w-10 lg:h-10 h-full lg:bg-white lg:rounded-lg text-gray-500 hover:text-primary hover:bg-gray-100 lg:hover:shadow-sm rounded-l-md lg:rounded-l-lg transition-colors lg:transition-all"
+                                            >
+                                                <Minus size={14} />
+                                            </button>
+                                            <span className="text-sm lg:text-lg font-bold w-6 lg:w-10 text-center text-gray-900 lg:text-gray-800">{item.quantity}</span>
+                                            <button
+                                                onClick={() => updateQuantity(item.lineId, item.quantity + 1)}
+                                                className="px-2 lg:w-10 lg:h-10 h-full lg:bg-white lg:rounded-lg text-gray-500 hover:text-primary hover:bg-gray-100 lg:hover:shadow-sm rounded-r-md lg:rounded-r-lg transition-colors lg:transition-all"
+                                            >
+                                                <Plus size={14} />
+                                            </button>
+                                        </div>
 
-                                    <button
-                                        onClick={() => removeFromCart(item.lineId)}
-                                        className="p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-full transition-colors ml-1"
-                                        title="Eliminar"
-                                    >
-                                        <Trash2 size={16} className="lg:w-[20px] lg:h-[20px]" />
-                                    </button>
+                                        <span className="font-bold text-primary text-sm lg:text-xl lg:font-black w-[70px] lg:w-[80px] text-right whitespace-nowrap">
+                                            {formatPrice(item.price * item.quantity)}
+                                        </span>
+
+                                        <button
+                                            onClick={() => removeFromCart(item.lineId)}
+                                            className="p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-full transition-colors ml-1"
+                                            title="Eliminar"
+                                        >
+                                            <Trash2 size={16} className="lg:w-[20px] lg:h-[20px]" />
+                                        </button>
+                                    </div>
                                 </div>
+                            ))}
+                        </div>
+                        <div className={`${openSection === 'order' ? 'block' : 'hidden'} lg:hidden mt-3 border-t border-gray-200 pt-3 space-y-1.5`}>
+                            <div className="flex justify-between text-xs text-gray-600">
+                                <span>Subtotal</span>
+                                <span>{formatPrice(total)}</span>
                             </div>
-                        ))}
+                            {tipAmount > 0 && (
+                                <div className="flex justify-between text-xs text-green-600">
+                                    <span>{customTip !== null ? "Propina (Voluntaria)" : `Propina (${tipPercentage}%)`}</span>
+                                    <span>{formatPrice(tipAmount)}</span>
+                                </div>
+                            )}
+                            <div className="flex justify-between text-base font-bold text-gray-900 pt-2 border-t border-dashed">
+                                <span>Total</span>
+                                <span className="text-primary">{formatPrice(finalTotal)}</span>
+                            </div>
+                        </div>
                     </div>
 
                 </div> {/* Close lg:col-span-2 for left column */}
@@ -404,11 +434,20 @@ export default function CartPage() {
                 <div className="lg:col-span-1 lg:sticky lg:top-24 space-y-4 lg:space-y-6">
 
                     {/* Tipping Section */}
-                    <div className="bg-white p-3 lg:p-6 rounded-lg lg:rounded-3xl shadow-sm border border-gray-100 mb-4 lg:mb-0">
-                        <div className="flex flex-col gap-2">
-                            <div className="flex items-center justify-between gap-2 mb-0 lg:mb-4">
-                                <h3 className="font-bold text-gray-800 lg:text-gray-900 text-sm lg:text-base whitespace-nowrap lg:whitespace-normal">Propina <span className="lg:hidden">❤️</span><span className="hidden lg:inline">para el Staff ❤️</span></h3>
-                                <div className="flex gap-2 flex-1 lg:hidden">
+                    <div className="bg-white p-3 lg:p-6 rounded-lg lg:rounded-3xl shadow-sm border border-gray-100 mb-4 lg:mb-0 overflow-hidden lg:overflow-visible">
+                        <button
+                            onClick={() => toggleSection('extras')}
+                            className="w-full flex items-center justify-between px-3 py-2 text-left lg:hidden"
+                        >
+                            <span className="text-sm font-bold text-gray-800">Propina y notas para el pedido</span>
+                            <span className={`text-[10px] font-semibold border px-2 py-0.5 rounded-full ${extrasStatus.className}`}>{extrasStatus.label}</span>
+                        </button>
+                        <div className={`${openSection === 'extras' ? 'block' : 'hidden'} lg:block`}>
+                            <div className="flex flex-col gap-2">
+                                <div className="hidden lg:flex items-center justify-between gap-2 mb-4">
+                                    <h3 className="font-bold text-gray-800 lg:text-gray-900 text-sm lg:text-base whitespace-nowrap lg:whitespace-normal">Propina <span className="hidden lg:inline">para el Staff ❤️</span></h3>
+                                </div>
+                                <div className="flex gap-2 lg:hidden">
                                     {[0, 10, 15].map((pct) => (
                                         <button
                                             key={pct}
@@ -473,70 +512,8 @@ export default function CartPage() {
                         </div>
                     </div>
 
-                    {/* Payment Method Section */}
-                    <div className="bg-white p-2 lg:p-6 rounded-lg lg:rounded-3xl shadow-sm border border-gray-100 mb-4 lg:mb-0">
-                        {/* Mobile: Compact Row */}
-                        <div className="flex items-center gap-2 h-9 lg:hidden">
-                            {/* Col 1: Cash */}
-                            <button
-                                onClick={() => handlePaymentSelection('efectivo')}
-                                className={`px-3 h-full rounded-md text-xs font-bold border flex items-center gap-1 transition-colors ${paymentMethod === 'efectivo'
-                                    ? 'bg-primary text-white border-primary'
-                                    : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
-                                    }`}
-                            >
-                                <span>💵</span> Efectivo
-                            </button>
-
-                            {/* Col 2: Transfer */}
-                            <button
-                                onClick={() => handlePaymentSelection('transferencia')}
-                                className={`px-3 h-full rounded-md text-xs font-bold border flex items-center gap-1 transition-colors ${paymentMethod === 'transferencia'
-                                    ? 'bg-primary text-white border-primary'
-                                    : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
-                                    }`}
-                            >
-                                <span>📱</span> Transf.
-                            </button>
-
-                            {/* Col 3: Details (The "Third Space") */}
-                            <div className="flex-1 h-full bg-gray-50 rounded-md border border-gray-100 flex items-center justify-center px-2 text-[10px] text-gray-500 text-center leading-tight overflow-hidden">
-                                {paymentMethod === 'efectivo' && (
-                                    <span className="font-medium text-gray-700 truncate w-full">
-                                        {paymentDetails.needsChange
-                                            ? `Cambio de: ${formatPrice(paymentDetails.billAmount || 0)}`
-                                            : 'Pago Exacto'}
-                                    </span>
-                                )}
-                                {paymentMethod === 'transferencia' && (
-                                    <span className="font-medium text-gray-700 truncate w-full">
-                                        {paymentDetails.bank || 'Selecciona Banco'}
-                                    </span>
-                                )}
-                                {!paymentMethod && <span>Selecciona método</span>}
-                            </div>
-                        </div>
-
-                        {/* Desktop: Card Grid */}
-                        <div className="hidden lg:block">
-                            <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
-                                <span className="bg-green-100 text-green-600 p-1.5 rounded-lg text-lg">💳</span>
-                                Método de Pago
-                            </h3>
-                            <div className="grid grid-cols-2 gap-3 mb-4">
-                                <button onClick={() => handlePaymentSelection('efectivo')} className={`p-4 rounded-2xl flex flex-col items-center gap-2 border-2 transition-all ${paymentMethod === 'efectivo' ? 'border-primary bg-primary/5 text-primary' : 'border-gray-100 bg-gray-50 text-gray-500 hover:border-gray-200'}`}><span className="text-2xl">💵</span><span className="font-bold text-sm">Efectivo</span></button>
-                                <button onClick={() => handlePaymentSelection('transferencia')} className={`p-4 rounded-2xl flex flex-col items-center gap-2 border-2 transition-all ${paymentMethod === 'transferencia' ? 'border-primary bg-primary/5 text-primary' : 'border-gray-100 bg-gray-50 text-gray-500 hover:border-gray-200'}`}><span className="text-2xl">📱</span><span className="font-bold text-sm">Transf.</span></button>
-                            </div>
-                            <div className="bg-gray-50 p-3 rounded-xl border border-gray-100 text-center text-sm text-gray-600 font-medium">
-                                {paymentMethod === 'efectivo' && (paymentDetails.needsChange ? `Cambio de: ${formatPrice(paymentDetails.billAmount || 0)}` : 'Pago Exacto')}
-                                {paymentMethod === 'transferencia' && (paymentDetails.bank || 'Selecciona Banco')}
-                                {!paymentMethod && 'Selecciona un método para continuar'}
-                            </div>
-                        </div>
-                    </div>
-
                     {/* Note Section */}
-                    <div className="mb-24 lg:mb-0">
+                    <div className={`mb-4 lg:mb-0 ${openSection === 'extras' ? 'block' : 'hidden'} lg:block`}>
                         {/* Mobile: Collapsible */}
                         <div className="lg:hidden">
                             {!showNote && (
@@ -584,6 +561,77 @@ export default function CartPage() {
                         {/* Desktop: Always Visible */}
                         <div className="hidden lg:block">
                             <textarea value={note} onChange={(e) => setNote(e.target.value)} placeholder="Notas adicionales para el pedido..." className="w-full p-4 bg-white border border-gray-200 rounded-2xl text-sm focus:border-primary focus:ring-1 focus:ring-primary/20 min-h-[100px] resize-none"></textarea>
+                        </div>
+                    </div>
+
+                    {/* Payment Method Section */}
+                    <div className="bg-white p-2 lg:p-6 rounded-lg lg:rounded-3xl shadow-sm border border-gray-100 mb-4 lg:mb-0 overflow-hidden lg:overflow-visible">
+                        <button
+                            onClick={() => toggleSection('payment')}
+                            className="w-full flex items-center justify-between px-3 py-2 text-left lg:hidden"
+                        >
+                            <span className="text-sm font-bold text-gray-800">Método de pago</span>
+                            <span className={`text-[10px] font-semibold border px-2 py-0.5 rounded-full ${paymentStatus.className}`}>{paymentStatus.label}</span>
+                        </button>
+                        <div className={`${openSection === 'payment' ? 'block' : 'hidden'} lg:block`}>
+                            {/* Mobile: Compact Row */}
+                            <div className="flex items-center gap-2 h-9 lg:hidden">
+                            {/* Col 1: Cash */}
+                            <button
+                                onClick={() => handlePaymentSelection('efectivo')}
+                                className={`px-3 h-full rounded-md text-xs font-bold border flex items-center gap-1 transition-colors ${paymentMethod === 'efectivo'
+                                    ? 'bg-primary text-white border-primary'
+                                    : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
+                                    }`}
+                            >
+                                <span>💵</span> Efectivo
+                            </button>
+
+                            {/* Col 2: Transfer */}
+                            <button
+                                onClick={() => handlePaymentSelection('transferencia')}
+                                className={`px-3 h-full rounded-md text-xs font-bold border flex items-center gap-1 transition-colors ${paymentMethod === 'transferencia'
+                                    ? 'bg-primary text-white border-primary'
+                                    : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
+                                    }`}
+                            >
+                                <span>📱</span> Transf.
+                            </button>
+
+                            {/* Col 3: Details (The "Third Space") */}
+                            <div className="flex-1 h-full bg-gray-50 rounded-md border border-gray-100 flex items-center justify-center px-2 text-[10px] text-gray-500 text-center leading-tight overflow-hidden">
+                                {paymentMethod === 'efectivo' && (
+                                    <span className="font-medium text-gray-700 truncate w-full">
+                                        {paymentDetails.needsChange
+                                            ? `Cambio de: ${formatPrice(paymentDetails.billAmount || 0)}`
+                                            : 'Pago Exacto'}
+                                    </span>
+                                )}
+                                {paymentMethod === 'transferencia' && (
+                                    <span className="font-medium text-gray-700 truncate w-full">
+                                        {paymentDetails.bank || 'Selecciona Banco'}
+                                    </span>
+                                )}
+                                {!paymentMethod && <span>Selecciona método</span>}
+                            </div>
+                        </div>
+
+                            {/* Desktop: Card Grid */}
+                            <div className="hidden lg:block">
+                            <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                                <span className="bg-green-100 text-green-600 p-1.5 rounded-lg text-lg">💳</span>
+                                Método de Pago
+                            </h3>
+                            <div className="grid grid-cols-2 gap-3 mb-4">
+                                <button onClick={() => handlePaymentSelection('efectivo')} className={`p-4 rounded-2xl flex flex-col items-center gap-2 border-2 transition-all ${paymentMethod === 'efectivo' ? 'border-primary bg-primary/5 text-primary' : 'border-gray-100 bg-gray-50 text-gray-500 hover:border-gray-200'}`}><span className="text-2xl">💵</span><span className="font-bold text-sm">Efectivo</span></button>
+                                <button onClick={() => handlePaymentSelection('transferencia')} className={`p-4 rounded-2xl flex flex-col items-center gap-2 border-2 transition-all ${paymentMethod === 'transferencia' ? 'border-primary bg-primary/5 text-primary' : 'border-gray-100 bg-gray-50 text-gray-500 hover:border-gray-200'}`}><span className="text-2xl">📱</span><span className="font-bold text-sm">Transf.</span></button>
+                            </div>
+                            <div className="bg-gray-50 p-3 rounded-xl border border-gray-100 text-center text-sm text-gray-600 font-medium">
+                                {paymentMethod === 'efectivo' && (paymentDetails.needsChange ? `Cambio de: ${formatPrice(paymentDetails.billAmount || 0)}` : 'Pago Exacto')}
+                                {paymentMethod === 'transferencia' && (paymentDetails.bank || 'Selecciona Banco')}
+                                {!paymentMethod && 'Selecciona un método para continuar'}
+                            </div>
+                            </div>
                         </div>
                     </div>
 
