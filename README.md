@@ -34,6 +34,12 @@ Un menú digital completo que permite a los clientes:
 - Transiciones suaves entre pantallas
 - Carrito persistente (no se pierde al cerrar la página)
 
+### 🍕 Combinación de Sabores
+- Botón "Combina dos sabores" en el modal de detalle
+- Solo disponible en tamaños Mediana y Familiar
+- Selector dedicado con búsqueda de sabores
+- Al cerrar el selector, vuelve al detalle del producto
+
 ### 💬 Integración WhatsApp
 - Genera automáticamente el mensaje del pedido
 - Incluye todos los detalles (productos, total, dirección)

@@ -172,6 +172,13 @@ menu-digital-restaurante/
 - Resumen del carrito actual (si ya tienes productos)
 - Botón grande "Agregar al pedido"
 
+**Cómo funciona la combinación**:
+- Botón "Combina dos sabores" dentro del modal
+- Solo disponible en tamaños Mediana y Familiar
+- Si seleccionas tamaño Personal, el botón se deshabilita
+- Al elegir combinar, se abre un modal para seleccionar dos sabores
+- Si cierras el modal de combinación, vuelve al detalle del producto
+
 **Qué puedes hacer**:
 - Cambiar la cantidad (cuántos quieres)
 - Agregar al carrito
@@ -798,6 +805,6 @@ Si tuvieras que recrear esta aplicación desde cero, este sería el orden:
 
 ---
 
-**Última actualización**: 8 de Febrero de 2026  
+**Última actualización**: 10 de Febrero de 2026  
 **Versión**: 1.0.0  
 **Autor**: Equipo de Desarrollo Napoli

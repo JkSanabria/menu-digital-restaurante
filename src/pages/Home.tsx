@@ -202,46 +202,58 @@ export default function Home() {
 
 
             {!searchTerm ? (
-                /* Menu Sections - High Contrast Wide Grid */
-                <nav className="grid grid-cols-2 gap-3 lg:gap-6" aria-label="Menú principal">
-                    {[
-                        { section: comidasSection, path: `/section/${comidasSection?.id}`, label: '' },
-                        { section: bebidasSection, path: `/section/${bebidasSection?.id}`, label: '' },
-                        { section: especialidadesSection, path: `/section/${especialidadesSection?.id}`, label: 'de la Casa' },
-                        { section: pizzasSection, path: '/pizzas', label: 'Tradicionales y Combinadas' }, // Custom path for Pizzas
-                        { section: entradasSection, path: `/section/${entradasSection?.id}`, label: '' },
-                        { section: postresSection, path: `/section/${postresSection?.id}`, label: '' }
-                    ].map(({ section, path, label }) => {
-                        if (!section) return null;
-                        return (
-                            <Link
-                                key={section.id}
-                                to={path}
-                                className="group relative h-24 md:h-32 rounded-xl overflow-hidden bg-gray-100 shadow-sm border border-gray-200 hover:shadow-lg hover:border-primary/20 transition-all duration-300 active:scale-[0.98]"
-                            >
-                                <img
-                                    src={section.image}
-                                    alt=""
-                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-90"
-                                    loading="lazy"
-                                />
-                                {/* Stronger Gradient for Readability */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                <>
+                    {/* Menu Sections - High Contrast Wide Grid */}
+                    <nav className="grid grid-cols-2 gap-3 lg:gap-6" aria-label="Menú principal">
+                        {[
+                            { section: comidasSection, path: `/section/${comidasSection?.id}`, label: '' },
+                            { section: bebidasSection, path: `/section/${bebidasSection?.id}`, label: '' },
+                            { section: especialidadesSection, path: `/section/${especialidadesSection?.id}`, label: 'de la Casa' },
+                            { section: pizzasSection, path: '/pizzas', label: 'Tradicionales y Combinadas' }, // Custom path for Pizzas
+                            { section: entradasSection, path: `/section/${entradasSection?.id}`, label: '' },
+                            { section: postresSection, path: `/section/${postresSection?.id}`, label: '' }
+                        ].map(({ section, path, label }) => {
+                            if (!section) return null;
+                            return (
+                                <Link
+                                    key={section.id}
+                                    to={path}
+                                    className="group relative h-24 md:h-32 rounded-xl overflow-hidden bg-gray-100 shadow-sm border border-gray-200 hover:shadow-lg hover:border-primary/20 transition-all duration-300 active:scale-[0.98]"
+                                >
+                                    <img
+                                        src={section.image}
+                                        alt=""
+                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-90"
+                                        loading="lazy"
+                                    />
+                                    {/* Stronger Gradient for Readability */}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
 
-                                <div className="absolute inset-0 flex flex-col items-center justify-center p-2 text-center z-10">
-                                    <span className="text-white font-heading text-2xl md:text-4xl font-black tracking-tight uppercase drop-shadow-lg leading-none mb-1 group-hover:-translate-y-1 transition-transform duration-300">
-                                        {section.name}
-                                    </span>
-                                    {label && (
-                                        <span className="text-orange-200 text-[10px] md:text-xs font-bold tracking-widest uppercase bg-black/40 px-2 py-0.5 rounded-full backdrop-blur-sm border border-white/10 group-hover:-translate-y-1 transition-transform duration-300 delay-75">
-                                            {label}
+                                    <div className="absolute inset-0 flex flex-col items-center justify-center p-2 text-center z-10">
+                                        <span className="text-white font-heading text-2xl md:text-4xl font-black tracking-tight uppercase drop-shadow-lg leading-none mb-1 group-hover:-translate-y-1 transition-transform duration-300">
+                                            {section.name}
                                         </span>
-                                    )}
-                                </div>
-                            </Link>
-                        );
-                    })}
-                </nav>
+                                        {label && (
+                                            <span className="text-orange-200 text-[10px] md:text-xs font-bold tracking-widest uppercase bg-black/40 px-2 py-0.5 rounded-full backdrop-blur-sm border border-white/10 group-hover:-translate-y-1 transition-transform duration-300 delay-75">
+                                                {label}
+                                            </span>
+                                        )}
+                                    </div>
+                                </Link>
+                            );
+                        })}
+                    </nav>
+                    <div className="mt-4">
+                        <div className="relative overflow-hidden rounded-2xl border border-orange-200/80 bg-gradient-to-r from-orange-50 via-amber-50 to-red-50 px-5 py-4 text-center shadow-md">
+                            <div className="absolute -right-6 -top-6 h-20 w-20 rounded-full bg-orange-100/70 blur-2xl"></div>
+                            <div className="relative flex items-center justify-center gap-2 text-base md:text-lg font-bold text-gray-800">
+                                <span className="text-xl md:text-2xl animate-bounce">🎉</span>
+                                <span className="drop-shadow-sm">Pide por aquí y el domicilio va por la casa.</span>
+                                <span className="text-xl md:text-2xl">🚚</span>
+                            </div>
+                        </div>
+                    </div>
+                </>
             ) : (
                 /* Search Results */
                 <div className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-300">

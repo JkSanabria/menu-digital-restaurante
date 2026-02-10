@@ -12,6 +12,10 @@ export default function CartPage() {
     const [note, setNote] = useState("");
     const [showNote, setShowNote] = useState(false);
     const [showConfirmation, setShowConfirmation] = useState(false);
+    const [showModalValidation, setShowModalValidation] = useState(false);
+    const branches = ['Crespo', 'Manga', 'Los Alpes'];
+    const [deliveryMethod, setDeliveryMethod] = useState<'domicilio' | 'recoger'>('domicilio');
+    const [selectedBranch, setSelectedBranch] = useState(branches[0]);
 
     // Payment State
     const [paymentMethod, setPaymentMethod] = useState<'efectivo' | 'transferencia' | null>(null);
@@ -86,16 +90,7 @@ export default function CartPage() {
     };
 
     const handleWhatsAppOrder = () => {
-        if (!customerName.trim()) {
-            alert("Por favor ingresa tu nombre");
-            return;
-        }
-        if (!customerAddress.trim()) {
-            alert("Por favor ingresa tu dirección de entrega");
-            return;
-        }
-
-        // Show confirmation modal instead of sending directly
+        setShowModalValidation(false);
         setShowConfirmation(true);
     };
 
@@ -117,8 +112,12 @@ export default function CartPage() {
     };
 
     const confirmAndSend = () => {
-        if (!paymentMethod) {
-            alert("Por favor selecciona un método de pago");
+        const missingName = !customerName.trim();
+        const missingAddress = deliveryMethod === 'domicilio' && !customerAddress.trim();
+        const missingPayment = !paymentMethod;
+
+        if (missingName || missingAddress || missingPayment) {
+            setShowModalValidation(true);
             return;
         }
 
@@ -126,7 +125,12 @@ export default function CartPage() {
 
         message += `*CLIENTE*\n`;
         message += `Nombre: ${customerName}\n`;
-        message += `Dir: ${customerAddress}\n\n`;
+        message += `Entrega: ${deliveryMethod === 'recoger' ? `Recoger en restaurante (${selectedBranch})` : 'Domicilio'}\n`;
+        if (deliveryMethod === 'domicilio') {
+            message += `Dir: ${customerAddress}\n\n`;
+        } else {
+            message += `Sede: ${selectedBranch}\n\n`;
+        }
 
         message += `*PEDIDO*\n`;
         items.forEach(item => {
@@ -252,6 +256,43 @@ export default function CartPage() {
                             Información de entrega
                         </h3>
 
+                        <div className="space-y-3">
+                            <div className="flex items-center gap-2">
+                                <button
+                                    onClick={() => setDeliveryMethod('domicilio')}
+                                    className={`flex-1 py-2 rounded-lg text-xs font-bold border transition-colors ${deliveryMethod === 'domicilio'
+                                        ? 'bg-primary text-white border-primary'
+                                        : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
+                                        }`}
+                                >
+                                    🚚 Domicilio
+                                </button>
+                                <button
+                                    onClick={() => setDeliveryMethod('recoger')}
+                                    className={`flex-1 py-2 rounded-lg text-xs font-bold border transition-colors ${deliveryMethod === 'recoger'
+                                        ? 'bg-primary text-white border-primary'
+                                        : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
+                                        }`}
+                                >
+                                    🏪 Recoger
+                                </button>
+                            </div>
+                            {deliveryMethod === 'recoger' && branches.length > 1 && (
+                                <div>
+                                    <label className="block text-xs font-medium text-gray-700 mb-0.5">Selecciona sede *</label>
+                                    <select
+                                        value={selectedBranch}
+                                        onChange={(e) => setSelectedBranch(e.target.value)}
+                                        className="w-full p-2 lg:p-4 border border-gray-300 lg:bg-gray-50 lg:border-gray-100 rounded-lg lg:rounded-2xl focus:ring-1 focus:ring-primary focus:border-transparent text-sm lg:text-base"
+                                    >
+                                        {branches.map((branch) => (
+                                            <option key={branch} value={branch}>{branch}</option>
+                                        ))}
+                                    </select>
+                                </div>
+                            )}
+                        </div>
+
                         <div className="space-y-2 lg:grid lg:grid-cols-2 lg:gap-6">
                             <div>
                                 <label className="block text-xs font-medium text-gray-700 mb-0.5">Nombre completo *</label>
@@ -267,14 +308,15 @@ export default function CartPage() {
                             <div>
                                 <label className="block text-xs font-medium text-gray-700 mb-0.5 flex items-center gap-1">
                                     <MapPin size={12} />
-                                    Dirección de entrega *
+                                    Dirección de entrega {deliveryMethod === 'domicilio' ? '*' : '(solo domicilio)'}
                                 </label>
                                 <input
                                     type="text"
                                     value={customerAddress}
                                     onChange={(e) => setCustomerAddress(e.target.value)}
-                                    placeholder="Ej: Calle 123 #45-67, Apto 301"
+                                    placeholder={deliveryMethod === 'domicilio' ? "Ej: Calle 123 #45-67, Apto 301" : "No aplica al recoger"}
                                     className="w-full p-2 lg:p-4 border border-gray-300 lg:bg-gray-50 lg:border-gray-100 rounded-lg lg:rounded-2xl focus:ring-1 focus:ring-primary focus:border-transparent text-sm lg:text-base"
+                                    disabled={deliveryMethod === 'recoger'}
                                 />
                             </div>
                         </div>
@@ -583,13 +625,208 @@ export default function CartPage() {
                         {/* Order Summary */}
                         <div className="p-4 space-y-3">
                             {/* Customer Info */}
-                            <div className="bg-gray-50 p-3 rounded-lg">
+                            <div className="bg-gray-50 p-3 rounded-lg space-y-2">
                                 <h3 className="font-bold text-gray-800 mb-1 flex items-center gap-2 text-sm">
                                     <User size={14} className="text-primary" />
                                     Información de Entrega
                                 </h3>
-                                <p className="text-xs text-gray-600"><strong>Nombre:</strong> {customerName}</p>
-                                <p className="text-xs text-gray-600"><strong>Dirección:</strong> {customerAddress}</p>
+                                <div className="flex items-center gap-2">
+                                    <button
+                                        onClick={() => setDeliveryMethod('domicilio')}
+                                        className={`flex-1 py-2 rounded-lg text-xs font-bold border transition-colors ${deliveryMethod === 'domicilio'
+                                            ? 'bg-primary text-white border-primary'
+                                            : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
+                                            }`}
+                                    >
+                                        🚚 Domicilio
+                                    </button>
+                                    <button
+                                        onClick={() => setDeliveryMethod('recoger')}
+                                        className={`flex-1 py-2 rounded-lg text-xs font-bold border transition-colors ${deliveryMethod === 'recoger'
+                                            ? 'bg-primary text-white border-primary'
+                                            : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
+                                            }`}
+                                    >
+                                        🏪 Recoger
+                                    </button>
+                                </div>
+                                {deliveryMethod === 'recoger' && branches.length > 1 && (
+                                    <div>
+                                        <label className="block text-[11px] font-semibold text-gray-600 mb-1">Selecciona sede *</label>
+                                        <select
+                                            value={selectedBranch}
+                                            onChange={(e) => setSelectedBranch(e.target.value)}
+                                            className="w-full p-2 border border-gray-200 rounded-lg text-xs bg-white focus:ring-1 focus:ring-primary focus:border-primary"
+                                        >
+                                            {branches.map((branch) => (
+                                                <option key={branch} value={branch}>{branch}</option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                )}
+                                <div>
+                                    <label className="block text-[11px] font-semibold text-gray-600 mb-1">Nombre completo *</label>
+                                    <input
+                                        type="text"
+                                        value={customerName}
+                                        onChange={(e) => setCustomerName(e.target.value)}
+                                        placeholder="Ej: Juan Pérez"
+                                        className={`w-full p-2 border rounded-lg text-xs focus:ring-1 focus:ring-primary focus:border-primary ${showModalValidation && !customerName.trim() ? 'border-red-500 bg-red-50/60 ring-2 ring-red-200' : 'border-gray-200 bg-white'}`}
+                                    />
+                                    {showModalValidation && !customerName.trim() && (
+                                        <p className="text-[10px] text-red-600 font-semibold mt-1">Falta tu nombre para enviar el pedido.</p>
+                                    )}
+                                </div>
+                                <div>
+                                    <label className="block text-[11px] font-semibold text-gray-600 mb-1 flex items-center gap-1">
+                                        <MapPin size={12} />
+                                        Dirección de entrega {deliveryMethod === 'domicilio' ? '*' : '(solo domicilio)'}
+                                    </label>
+                                    <input
+                                        type="text"
+                                        value={customerAddress}
+                                        onChange={(e) => setCustomerAddress(e.target.value)}
+                                        placeholder={deliveryMethod === 'domicilio' ? "Ej: Calle 123 #45-67, Apto 301" : "No aplica al recoger"}
+                                        className={`w-full p-2 border rounded-lg text-xs focus:ring-1 focus:ring-primary focus:border-primary ${showModalValidation && deliveryMethod === 'domicilio' && !customerAddress.trim() ? 'border-red-500 bg-red-50/60 ring-2 ring-red-200' : 'border-gray-200 bg-white'}`}
+                                        disabled={deliveryMethod === 'recoger'}
+                                    />
+                                    {showModalValidation && deliveryMethod === 'domicilio' && !customerAddress.trim() && (
+                                        <p className="text-[10px] text-red-600 font-semibold mt-1">Agrega tu dirección para continuar.</p>
+                                    )}
+                                </div>
+                            </div>
+
+                            {/* Payment Method */}
+                            <div className={`bg-gray-50 p-3 rounded-lg space-y-2 ${showModalValidation && !paymentMethod ? 'ring-2 ring-red-200' : ''}`}>
+                                <h3 className="font-bold text-gray-800 mb-1 flex items-center gap-2 text-sm">
+                                    <span className="text-primary">💳</span>
+                                    Método de Pago
+                                </h3>
+                                <div className="flex items-center gap-2">
+                                    <button
+                                        onClick={() => handlePaymentSelection('efectivo')}
+                                        className={`flex-1 py-2 rounded-lg text-xs font-bold border transition-colors ${paymentMethod === 'efectivo'
+                                            ? 'bg-primary text-white border-primary'
+                                            : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
+                                            }`}
+                                    >
+                                        💵 Efectivo
+                                    </button>
+                                    <button
+                                        onClick={() => handlePaymentSelection('transferencia')}
+                                        className={`flex-1 py-2 rounded-lg text-xs font-bold border transition-colors ${paymentMethod === 'transferencia'
+                                            ? 'bg-primary text-white border-primary'
+                                            : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
+                                            }`}
+                                    >
+                                        📱 Transf.
+                                    </button>
+                                </div>
+
+                                {paymentMethod === 'efectivo' && (
+                                    <div className="bg-white rounded-lg border border-gray-200 px-2 py-2 text-[11px] text-gray-700">
+                                        <div className="flex items-center justify-between">
+                                            <span className="font-semibold">Vueltas</span>
+                                            <button
+                                                onClick={() => {
+                                                    setPaymentStep('change_q');
+                                                    setShowPaymentModal(true);
+                                                }}
+                                                className="text-primary font-bold text-[11px] hover:underline"
+                                            >
+                                                Editar
+                                            </button>
+                                        </div>
+                                        <p className="mt-1 font-semibold">
+                                            {paymentDetails.needsChange
+                                                ? `Cambio de: ${formatPrice(paymentDetails.billAmount || 0)}`
+                                                : 'Pago Exacto'}
+                                        </p>
+                                    </div>
+                                )}
+
+                                {paymentMethod === 'transferencia' && (
+                                    <div className="bg-white rounded-lg border border-gray-200 px-2 py-2 text-[11px] text-gray-700">
+                                        <div className="flex items-center justify-between">
+                                            <span className="font-semibold">Transferencia</span>
+                                            <button
+                                                onClick={() => {
+                                                    setPaymentStep('bank');
+                                                    setShowPaymentModal(true);
+                                                }}
+                                                className="text-primary font-bold text-[11px] hover:underline"
+                                            >
+                                                Cambiar banco
+                                            </button>
+                                        </div>
+                                        <p className="mt-1 font-semibold">{paymentDetails.bank || 'Selecciona Banco'}</p>
+                                    </div>
+                                )}
+
+                                {!paymentMethod && (
+                                    <p className="text-[11px] text-gray-500 font-semibold">Selecciona un método para continuar.</p>
+                                )}
+
+                                {showModalValidation && !paymentMethod && (
+                                    <p className="text-[10px] text-red-600 font-semibold">Elige el método de pago para enviar.</p>
+                                )}
+                            </div>
+
+                            <div className="bg-gray-50 p-3 rounded-lg space-y-2">
+                                <h3 className="font-bold text-gray-800 mb-1 flex items-center gap-2 text-sm">
+                                    <span className="text-primary">❤️</span>
+                                    Propina
+                                </h3>
+                                <div className="flex gap-2">
+                                    {[0, 10, 15].map((pct) => (
+                                        <button
+                                            key={pct}
+                                            onClick={() => {
+                                                setTipPercentage(pct);
+                                                setCustomTip(null);
+                                                setCustomTipInput('');
+                                            }}
+                                            className={`flex-1 py-2 rounded-lg text-xs font-bold border transition-colors ${tipPercentage === pct && customTip === null
+                                                ? 'bg-primary text-white border-primary'
+                                                : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
+                                                }`}
+                                        >
+                                            {pct === 0 ? 'No' : `${pct}%`}
+                                        </button>
+                                    ))}
+                                    <button
+                                        onClick={() => {
+                                            setTipPercentage(0);
+                                            setCustomTip(0);
+                                            setCustomTipInput('');
+                                        }}
+                                        className={`flex-1 py-2 rounded-lg text-xs font-bold border transition-colors ${customTip !== null
+                                            ? 'bg-primary text-white border-primary'
+                                            : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
+                                            }`}
+                                    >
+                                        Otro
+                                    </button>
+                                </div>
+                                {customTip !== null && (
+                                    <div className="relative">
+                                        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-xs">$</span>
+                                        <input
+                                            type="text"
+                                            inputMode="numeric"
+                                            pattern="[0-9.]*"
+                                            value={customTipInput}
+                                            onChange={(e) => {
+                                                const { numeric, formatted } = getCurrencyInputState(e.target.value);
+                                                setCustomTipInput(formatted);
+                                                setCustomTip(numeric);
+                                            }}
+                                            placeholder="Ingresa el valor"
+                                            className="w-full p-2 pl-6 border border-gray-200 rounded-lg text-xs focus:ring-1 focus:ring-primary focus:border-primary text-center font-semibold"
+                                            autoFocus
+                                        />
+                                    </div>
+                                )}
                             </div>
 
                             {/* Items */}
@@ -630,20 +867,23 @@ export default function CartPage() {
                                 </div>
                             </div>
 
-                            {note.trim() && (
-                                <div className="bg-yellow-50 p-2 rounded-lg border border-yellow-200">
-                                    <p className="text-xs font-bold text-yellow-800 mb-0.5">📝 Nota:</p>
-                                    <p className="text-xs text-yellow-700">{note}</p>
-                                </div>
-                            )}
+                            <div className="bg-gray-50 p-3 rounded-lg">
+                                <label className="block text-xs font-bold text-gray-700 mb-1">📝 Notas adicionales</label>
+                                <textarea
+                                    value={note}
+                                    onChange={(e) => setNote(e.target.value)}
+                                    placeholder="Ej: Casa esquinera puerta blanca... o Sin cebolla en la hamburguesa..."
+                                    className="w-full p-2 border border-gray-200 rounded-lg text-xs focus:ring-1 focus:ring-primary focus:border-primary resize-none h-20 placeholder:text-gray-400"
+                                />
+                            </div>
                         </div>
 
                         {/* Actions */}
-                        <div className="p-4 bg-gray-50 rounded-b-xl space-y-3">
-                            <button
-                                onClick={confirmAndSend}
-                                className="w-full bg-organic hover:bg-green-700 text-white font-bold py-3 rounded-lg shadow-lg flex items-center justify-center gap-2 transition-all active:scale-[0.98]"
-                            >
+                            <div className="p-4 bg-gray-50 rounded-b-xl space-y-3">
+                                <button
+                                    onClick={confirmAndSend}
+                                    className="w-full bg-organic hover:bg-green-700 text-white font-bold py-3 rounded-lg shadow-lg flex items-center justify-center gap-2 transition-all active:scale-[0.98]"
+                                >
                                 <Send size={18} />
                                 <span>Confirmar y Enviar</span>
                             </button>
