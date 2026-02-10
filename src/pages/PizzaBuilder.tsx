@@ -1,7 +1,7 @@
 
 import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Check, Plus, Minus, X, Home } from 'lucide-react';
+import { ArrowLeft, Check, Plus, Minus, X, Home, Search } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import menuData from '../data/menu.json';
 import { Product, MenuData } from '../types/menu';
@@ -9,8 +9,10 @@ import { Product, MenuData } from '../types/menu';
 // Type definitions
 type PizzaSize = 'Mediana' | 'Familiar';
 
+type CloseReason = 'cancel' | 'success';
+
 interface PizzaBuilderModalProps {
-    onClose: () => void;
+    onClose: (reason?: CloseReason) => void;
     initialFlavor?: Product;
 }
 
@@ -28,9 +30,10 @@ export default function PizzaBuilderModal({ onClose, initialFlavor }: PizzaBuild
     const { addToCart } = useCart();
 
     // Initial State - COMBINED ONLY
-    const [selectedSize, setSelectedSize] = useState<PizzaSize>('Mediana');
+    const [selectedSize] = useState<PizzaSize>('Mediana');
     const [selectedFlavors, setSelectedFlavors] = useState<Product[]>(initialFlavor ? [initialFlavor] : []);
     const [quantity, setQuantity] = useState(1);
+    const [searchQuery, setSearchQuery] = useState('');
 
     // UX States
     const [showSuccess, setShowSuccess] = useState(false);
@@ -40,6 +43,13 @@ export default function PizzaBuilderModal({ onClose, initialFlavor }: PizzaBuild
     const pizzaSection = data.find(s => s.id === 'pizzas');
     const traditionalPizzas = pizzaSection?.subcategories.find(s => s.id === 'pizzas-tradicionales')?.categories.flatMap(c => c.products) || [];
     const availableFlavors = traditionalPizzas;
+    const filteredFlavors = useMemo(() => {
+        const query = searchQuery.trim().toLowerCase();
+        if (!query) return availableFlavors;
+        return availableFlavors.filter((product) =>
+            product.name.toLowerCase().includes(query)
+        );
+    }, [availableFlavors, searchQuery]);
 
     // Calculate Dynamic Price
     const currentPrice = useMemo(() => {
@@ -92,7 +102,7 @@ export default function PizzaBuilderModal({ onClose, initialFlavor }: PizzaBuild
 
         setShowSuccess(true);
         setTimeout(() => {
-            onClose();
+            onClose('success');
         }, 800);
     };
 
@@ -104,7 +114,7 @@ export default function PizzaBuilderModal({ onClose, initialFlavor }: PizzaBuild
 
                 {/* Header */}
                 <div className="flex items-center justify-between p-4 border-b border-gray-100 bg-white z-10 shrink-0">
-                    <button onClick={onClose} className="p-2 md:p-3 lg:p-4 hover:bg-gray-100 rounded-full transition-all hover:text-primary active:scale-95 md:flex">
+                    <button onClick={() => onClose('cancel')} className="p-2 md:p-3 lg:p-4 hover:bg-gray-100 rounded-full transition-all hover:text-primary active:scale-95 md:flex">
                         <ArrowLeft className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8" />
                     </button>
                     <h2 className="text-xl font-heading font-bold text-gray-900 flex-1 text-center md:text-left md:ml-4">
@@ -118,7 +128,7 @@ export default function PizzaBuilderModal({ onClose, initialFlavor }: PizzaBuild
                         >
                             <Home className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8" />
                         </button>
-                        <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-full transition-colors" aria-label="Cerrar">
+                        <button onClick={() => onClose('cancel')} className="p-2 hover:bg-gray-100 rounded-full transition-colors" aria-label="Cerrar">
                             <X size={24} className="text-gray-500" />
                         </button>
                     </div>
@@ -139,35 +149,11 @@ export default function PizzaBuilderModal({ onClose, initialFlavor }: PizzaBuild
                         </div>
                     )}
 
-                    {/* Step 1: Tamaños */}
-                    <section className="mb-8 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                        <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
-                            <span className="bg-primary text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">1</span>
-                            Elige el Tamaño
-                        </h3>
-                        <div className="flex gap-4 max-w-lg">
-                            {(['Mediana', 'Familiar'] as PizzaSize[]).map((size) => (
-                                <button
-                                    key={size}
-                                    onClick={() => setSelectedSize(size)}
-                                    className={`
-                                        flex-1 py-4 rounded-xl font-bold text-sm transition-all border-2
-                                        ${selectedSize === size
-                                            ? 'border-primary bg-primary text-white shadow-lg transform scale-[1.02]'
-                                            : 'border-gray-200 bg-white text-gray-600 hover:bg-gray-50'}
-                                    `}
-                                >
-                                    {size}
-                                </button>
-                            ))}
-                        </div>
-                    </section>
-
-                    {/* Step 2: Sabores */}
+                    {/* Step 1: Sabores */}
                     <section className="mb-8">
                         <div className="sticky top-0 bg-gray-50/95 backdrop-blur z-10 py-3 flex items-center justify-between border-b border-transparent">
                             <h3 className="text-xs font-black text-gray-400 uppercase tracking-widest flex items-center gap-2">
-                                <span className="bg-gray-800 text-white w-5 h-5 rounded-full flex items-center justify-center text-[10px] shadow-sm">2</span>
+                                <span className="bg-gray-800 text-white w-5 h-5 rounded-full flex items-center justify-center text-[10px] shadow-sm">1</span>
                                 Elige tus Sabores
                             </h3>
                             <div className={`text-xs font-bold px-2 py-1 rounded-md transition-colors ${selectedFlavors.length === 2 ? 'bg-green-100 text-green-700' : 'bg-orange-100 text-orange-700'}`}>
@@ -175,8 +161,35 @@ export default function PizzaBuilderModal({ onClose, initialFlavor }: PizzaBuild
                             </div>
                         </div>
 
+                        <div className="mt-4 mb-4">
+                            <div className="relative">
+                                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+                                <input
+                                    type="text"
+                                    placeholder="Buscar sabores..."
+                                    value={searchQuery}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                    className="w-full pl-10 pr-10 py-3 rounded-xl border border-gray-200 bg-white text-sm font-medium text-gray-800 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20"
+                                />
+                                {searchQuery && (
+                                    <button
+                                        onClick={() => setSearchQuery('')}
+                                        className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors p-1.5"
+                                        aria-label="Limpiar busqueda"
+                                    >
+                                        <X size={16} />
+                                    </button>
+                                )}
+                            </div>
+                        </div>
+
                         <div className="bg-white rounded-xl shadow-sm border border-gray-100 divide-y divide-gray-100">
-                            {availableFlavors.map(product => {
+                            {filteredFlavors.length === 0 && (
+                                <div className="p-6 text-center text-sm text-gray-500">
+                                    No encontramos sabores con ese nombre.
+                                </div>
+                            )}
+                            {filteredFlavors.map(product => {
                                 const isSelected = selectedFlavors.some(p => p.id === product.id);
                                 const isDisabled = !isSelected && selectedFlavors.length >= 2;
                                 const specificPrice = product.sizePrices?.[selectedSize] || product.price;

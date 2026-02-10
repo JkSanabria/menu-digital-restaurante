@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronRight, Plus, Minus, X, Spline, ArrowLeft, GitMerge, Search, Home } from 'lucide-react';
 import { useCart } from '../context/CartContext';
@@ -61,6 +61,40 @@ export default function PizzaMenu() {
         return traditionalPizzaIds.some(baseId => item.id.startsWith(`${baseId}-`));
     });
 
+    const isCombinedProduct = (product?: Product | null) => Boolean(
+        product?.id?.startsWith('custom-pizza-combined-') ||
+        product?.description === 'Mitad y Mitad' ||
+        product?.name?.toLowerCase().includes('combinada')
+    );
+
+    const getCombinedTitle = (product: Product) => {
+        const flavors = (product.attributes || []).filter(Boolean);
+        if (flavors.length >= 2) {
+            return `Combinada: ${flavors.join(' / ')}`;
+        }
+
+        const name = product.name || '';
+        const match = name.match(/:\s*(.+)$/i);
+        if (match?.[1]) {
+            return `Combinada: ${match[1].trim()}`;
+        }
+
+        const cleanedName = name.replace(/combinada\s*/i, '').trim();
+        return `Combinada: ${cleanedName || name}`;
+    };
+
+    const isCombinedSelection = isCombinedProduct(selectedProduct);
+
+    const sizeOptions: PizzaSize[] = isCombinedSelection
+        ? ['Mediana', 'Familiar']
+        : ['Personal', 'Mediana', 'Familiar'];
+
+    useEffect(() => {
+        if (selectedProduct && isCombinedSelection && selectedSize === 'Personal') {
+            setSelectedSize('Mediana');
+        }
+    }, [selectedProduct, isCombinedSelection, selectedSize]);
+
     // Calculate dynamic price based on size for Modal
     const currentPrice = selectedProduct
         ? (selectedProduct.sizePrices?.[selectedSize] || selectedProduct.price)
@@ -106,7 +140,15 @@ export default function PizzaMenu() {
     const openModal = (product: Product) => {
         setBuilderInitialFlavor(undefined); // Reset specific start flavor
         setSelectedProduct(product);
-        setSelectedSize('Mediana'); // Reset to default
+        const productSize = product.size as PizzaSize | undefined;
+        const isCombined = isCombinedProduct(product);
+        const allowedSizes: PizzaSize[] = isCombined
+            ? ['Mediana', 'Familiar']
+            : ['Personal', 'Mediana', 'Familiar'];
+        const nextSize = productSize && allowedSizes.includes(productSize)
+            ? productSize
+            : 'Mediana';
+        setSelectedSize(nextSize);
         setQuantity(1);
         setProductNote('');
     };
@@ -116,6 +158,14 @@ export default function PizzaMenu() {
         setQuantity(1);
         setSelectedSize('Mediana');
         setProductNote('');
+    };
+
+    const closeBuilderModal = (reason?: 'cancel' | 'success') => {
+        const initialFlavor = builderInitialFlavor;
+        setShowBuilder(false);
+        if (reason === 'cancel' && initialFlavor) {
+            openModal(initialFlavor);
+        }
     };
 
     // ------------------------------------------------------------------
@@ -315,7 +365,7 @@ export default function PizzaMenu() {
             {/* Builder Modal */}
             {showBuilder && (
                 <PizzaBuilderModal
-                    onClose={() => setShowBuilder(false)}
+                    onClose={closeBuilderModal}
                     initialFlavor={builderInitialFlavor}
                 />
             )}
@@ -329,7 +379,9 @@ export default function PizzaMenu() {
                         <div className="flex justify-between items-start mb-4">
                             <div className="flex-1 pr-4">
                                 <h3 className="font-heading text-2xl text-gray-900 leading-tight mb-1">
-                                    {selectedProduct.name}
+                                    {isCombinedSelection
+                                        ? getCombinedTitle(selectedProduct)
+                                        : selectedProduct.name}
                                 </h3>
                                 <p className="text-sm text-gray-500">{selectedProduct.description}</p>
                             </div>
@@ -341,32 +393,43 @@ export default function PizzaMenu() {
                             </button>
                         </div>
 
-                        {/* Image */}
-                        <div className="mb-6 rounded-xl overflow-hidden aspect-video shadow-sm bg-gray-100 relative group">
-                            <img src={selectedProduct.image} alt={selectedProduct.name} className="w-full h-full object-cover" />
-
-                            {/* Mix Button Overlay */}
+                        <div className="mb-5">
                             <button
                                 onClick={handleMix}
-                                className="absolute bottom-4 right-4 bg-white/90 backdrop-blur text-gray-900 px-4 py-2 rounded-lg font-bold text-xs shadow-lg flex items-center gap-2 hover:bg-gray-900 hover:text-white transition-all transform active:scale-95 border border-white/20 z-10"
+                                disabled={selectedSize === 'Personal'}
+                                className={`w-full px-4 py-3 rounded-xl font-bold text-sm shadow-lg flex items-center justify-center gap-2 transition-all transform animate-in fade-in zoom-in-95 duration-300
+                                    ${selectedSize === 'Personal'
+                                        ? 'bg-gray-200 text-gray-400 cursor-not-allowed shadow-none'
+                                        : 'bg-primary text-white hover:brightness-110 active:scale-[0.98]'}
+                                `}
                             >
-                                <GitMerge size={14} /> Combinar / Mitad y Mitad
+                                <GitMerge size={16} /> Combina dos sabores
                             </button>
+                            {selectedSize === 'Personal' && (
+                                <p className="mt-2 text-xs text-gray-400 text-center">Solo disponible en Mediana y Familiar</p>
+                            )}
+                        </div>
+
+                        {/* Image */}
+                        <div className="mb-4 rounded-xl overflow-hidden shadow-sm bg-gray-100 h-32 sm:h-36">
+                            <img src={selectedProduct.image} alt={selectedProduct.name} className="w-full h-full object-cover" />
                         </div>
 
                         {/* Size Selection */}
                         <div className="mb-6">
-                            <label className="block text-sm font-bold text-gray-700 mb-2">Elige el tamaño</label>
-                            <div className="grid grid-cols-3 gap-2">
-                                {(['Personal', 'Mediana', 'Familiar'] as PizzaSize[]).map((size) => (
+                            <div className="w-full bg-primary/15 text-primary/90 px-4 py-2 rounded-xl text-sm font-bold text-center mb-3">
+                                Elige el tamaño
+                            </div>
+                            <div className={`grid gap-2 ${isCombinedSelection ? 'grid-cols-2' : 'grid-cols-3'}`}>
+                                {sizeOptions.map((size) => (
                                     <button
                                         key={size}
                                         onClick={() => setSelectedSize(size)}
                                         className={`
-                                            py-3 rounded-lg text-sm font-bold border transition-all
+                                            py-3 rounded-xl text-sm font-bold border transition-all
                                             ${selectedSize === size
                                                 ? 'border-primary bg-primary text-white shadow-md'
-                                                : 'border-gray-200 bg-white text-gray-600 hover:bg-gray-50'}
+                                                : 'border-gray-200 bg-white text-gray-700 hover:border-primary hover:text-primary'}
                                         `}
                                     >
                                         {size}
