@@ -16,6 +16,7 @@ export default function CartPage() {
     const branches = ['Crespo', 'Manga', 'Los Alpes'];
     const [deliveryMethod, setDeliveryMethod] = useState<'domicilio' | 'recoger'>('domicilio');
     const [selectedBranch, setSelectedBranch] = useState(branches[0]);
+    const [openSection, setOpenSection] = useState<'delivery' | 'payment' | 'extras' | 'order' | null>('delivery');
 
     // Payment State
     const [paymentMethod, setPaymentMethod] = useState<'efectivo' | 'transferencia' | null>(null);
@@ -28,6 +29,37 @@ export default function CartPage() {
     const itemCount = items.reduce((sum, item) => sum + item.quantity, 0);
     const tipAmount = customTip !== null ? customTip : total * (tipPercentage / 100);
     const finalTotal = total + tipAmount;
+    const deliveryMissingCount = (customerName.trim() ? 0 : 1) + (deliveryMethod === 'domicilio' && !customerAddress.trim() ? 1 : 0);
+    const paymentMissingCount = !paymentMethod ? 1 : (paymentMethod === 'transferencia' && !paymentDetails.bank ? 1 : 0);
+
+    const getSectionStatus = (missingCount: number) => {
+        if (missingCount === 0) {
+            return { label: 'Sección diligenciada', className: 'bg-green-50 text-green-700 border-green-200' };
+        }
+        return { label: `Faltan ${missingCount} ${missingCount === 1 ? 'dato' : 'datos'}`, className: 'bg-amber-50 text-amber-700 border-amber-200' };
+    };
+
+    const getFirstIncompleteSection = () => {
+        if (deliveryMissingCount > 0) return 'delivery';
+        if (paymentMissingCount > 0) return 'payment';
+        return 'order';
+    };
+
+    useEffect(() => {
+        if (!showConfirmation) return;
+        setOpenSection(getFirstIncompleteSection());
+    }, [showConfirmation, deliveryMissingCount, paymentMissingCount]);
+
+    const deliveryStatus = getSectionStatus(deliveryMissingCount);
+    const paymentStatus = getSectionStatus(paymentMissingCount);
+    const extrasFilled = tipAmount > 0 || !!note.trim();
+    const extrasStatus = extrasFilled
+        ? { label: 'Sección diligenciada', className: 'bg-green-50 text-green-700 border-green-200' }
+        : { label: 'Opcional', className: 'bg-gray-50 text-gray-600 border-gray-200' };
+    const orderStatus = getSectionStatus(0);
+    const toggleSection = (section: 'delivery' | 'payment' | 'extras' | 'order') => {
+        setOpenSection((current) => (current === section ? null : section));
+    };
 
     useEffect(() => {
         const storedNote = localStorage.getItem("cartNote") || '';
@@ -615,267 +647,298 @@ export default function CartPage() {
             {/* Confirmation Modal - Standardized padding and border radius */}
             {showConfirmation && (
                 <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 animate-in fade-in duration-200">
-                    <div className="bg-white rounded-xl max-w-md w-full max-h-[90vh] overflow-y-auto animate-in zoom-in slide-in-from-bottom-8 duration-300">
+                    <div className="bg-white rounded-xl max-w-md lg:max-w-4xl w-full max-h-[90vh] overflow-y-auto lg:max-h-none lg:overflow-visible animate-in zoom-in slide-in-from-bottom-8 duration-300">
                         {/* Header */}
-                        <div className="bg-gradient-to-r from-primary to-red-600 text-white p-4 rounded-t-xl">
-                            <h2 className="text-xl font-heading mb-1">¡Confirma tu Pedido!</h2>
-                            <p className="text-white/90 text-xs">Revisa los detalles antes de enviar</p>
+                        <div className="bg-gradient-to-r from-primary to-red-600 text-white p-5 lg:p-6 rounded-t-xl text-center">
+                            <h2 className="text-2xl lg:text-3xl font-heading font-black tracking-tight">Confirma tu pedido</h2>
+                            <p className="text-white/85 text-xs lg:text-sm mt-1">Revisa los detalles antes de enviar tu pedido</p>
                         </div>
 
                         {/* Order Summary */}
                         <div className="p-4 space-y-3">
-                            {/* Customer Info */}
-                            <div className="bg-gray-50 p-3 rounded-lg space-y-2">
-                                <h3 className="font-bold text-gray-800 mb-1 flex items-center gap-2 text-sm">
-                                    <User size={14} className="text-primary" />
-                                    Información de Entrega
-                                </h3>
-                                <div className="flex items-center gap-2">
+                            {/* Accordion */}
+                            <div className="space-y-2">
+                                <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
                                     <button
-                                        onClick={() => setDeliveryMethod('domicilio')}
-                                        className={`flex-1 py-2 rounded-lg text-xs font-bold border transition-colors ${deliveryMethod === 'domicilio'
-                                            ? 'bg-primary text-white border-primary'
-                                            : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
-                                            }`}
+                                        onClick={() => toggleSection('delivery')}
+                                        className="w-full flex items-center justify-between px-3 py-2 text-left"
                                     >
-                                        🚚 Domicilio
+                                        <span className="text-sm lg:text-base font-bold text-gray-800">Datos de entrega</span>
+                                        <span className={`text-[10px] lg:text-xs font-semibold border px-2 py-0.5 rounded-full ${deliveryStatus.className}`}>{deliveryStatus.label}</span>
                                     </button>
-                                    <button
-                                        onClick={() => setDeliveryMethod('recoger')}
-                                        className={`flex-1 py-2 rounded-lg text-xs font-bold border transition-colors ${deliveryMethod === 'recoger'
-                                            ? 'bg-primary text-white border-primary'
-                                            : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
-                                            }`}
-                                    >
-                                        🏪 Recoger
-                                    </button>
-                                </div>
-                                {deliveryMethod === 'recoger' && branches.length > 1 && (
-                                    <div>
-                                        <label className="block text-[11px] font-semibold text-gray-600 mb-1">Selecciona sede *</label>
-                                        <select
-                                            value={selectedBranch}
-                                            onChange={(e) => setSelectedBranch(e.target.value)}
-                                            className="w-full p-2 border border-gray-200 rounded-lg text-xs bg-white focus:ring-1 focus:ring-primary focus:border-primary"
-                                        >
-                                            {branches.map((branch) => (
-                                                <option key={branch} value={branch}>{branch}</option>
-                                            ))}
-                                        </select>
-                                    </div>
-                                )}
-                                <div>
-                                    <label className="block text-[11px] font-semibold text-gray-600 mb-1">Nombre completo *</label>
-                                    <input
-                                        type="text"
-                                        value={customerName}
-                                        onChange={(e) => setCustomerName(e.target.value)}
-                                        placeholder="Ej: Juan Pérez"
-                                        className={`w-full p-2 border rounded-lg text-xs focus:ring-1 focus:ring-primary focus:border-primary ${showModalValidation && !customerName.trim() ? 'border-red-500 bg-red-50/60 ring-2 ring-red-200' : 'border-gray-200 bg-white'}`}
-                                    />
-                                    {showModalValidation && !customerName.trim() && (
-                                        <p className="text-[10px] text-red-600 font-semibold mt-1">Falta tu nombre para enviar el pedido.</p>
-                                    )}
-                                </div>
-                                <div>
-                                    <label className="block text-[11px] font-semibold text-gray-600 mb-1 flex items-center gap-1">
-                                        <MapPin size={12} />
-                                        Dirección de entrega {deliveryMethod === 'domicilio' ? '*' : '(solo domicilio)'}
-                                    </label>
-                                    <input
-                                        type="text"
-                                        value={customerAddress}
-                                        onChange={(e) => setCustomerAddress(e.target.value)}
-                                        placeholder={deliveryMethod === 'domicilio' ? "Ej: Calle 123 #45-67, Apto 301" : "No aplica al recoger"}
-                                        className={`w-full p-2 border rounded-lg text-xs focus:ring-1 focus:ring-primary focus:border-primary ${showModalValidation && deliveryMethod === 'domicilio' && !customerAddress.trim() ? 'border-red-500 bg-red-50/60 ring-2 ring-red-200' : 'border-gray-200 bg-white'}`}
-                                        disabled={deliveryMethod === 'recoger'}
-                                    />
-                                    {showModalValidation && deliveryMethod === 'domicilio' && !customerAddress.trim() && (
-                                        <p className="text-[10px] text-red-600 font-semibold mt-1">Agrega tu dirección para continuar.</p>
-                                    )}
-                                </div>
-                            </div>
-
-                            {/* Payment Method */}
-                            <div className={`bg-gray-50 p-3 rounded-lg space-y-2 ${showModalValidation && !paymentMethod ? 'ring-2 ring-red-200' : ''}`}>
-                                <h3 className="font-bold text-gray-800 mb-1 flex items-center gap-2 text-sm">
-                                    <span className="text-primary">💳</span>
-                                    Método de Pago
-                                </h3>
-                                <div className="flex items-center gap-2">
-                                    <button
-                                        onClick={() => handlePaymentSelection('efectivo')}
-                                        className={`flex-1 py-2 rounded-lg text-xs font-bold border transition-colors ${paymentMethod === 'efectivo'
-                                            ? 'bg-primary text-white border-primary'
-                                            : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
-                                            }`}
-                                    >
-                                        💵 Efectivo
-                                    </button>
-                                    <button
-                                        onClick={() => handlePaymentSelection('transferencia')}
-                                        className={`flex-1 py-2 rounded-lg text-xs font-bold border transition-colors ${paymentMethod === 'transferencia'
-                                            ? 'bg-primary text-white border-primary'
-                                            : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
-                                            }`}
-                                    >
-                                        📱 Transf.
-                                    </button>
-                                </div>
-
-                                {paymentMethod === 'efectivo' && (
-                                    <div className="bg-white rounded-lg border border-gray-200 px-2 py-2 text-[11px] text-gray-700">
-                                        <div className="flex items-center justify-between">
-                                            <span className="font-semibold">Vueltas</span>
-                                            <button
-                                                onClick={() => {
-                                                    setPaymentStep('change_q');
-                                                    setShowPaymentModal(true);
-                                                }}
-                                                className="text-primary font-bold text-[11px] hover:underline"
-                                            >
-                                                Editar
-                                            </button>
-                                        </div>
-                                        <p className="mt-1 font-semibold">
-                                            {paymentDetails.needsChange
-                                                ? `Cambio de: ${formatPrice(paymentDetails.billAmount || 0)}`
-                                                : 'Pago Exacto'}
-                                        </p>
-                                    </div>
-                                )}
-
-                                {paymentMethod === 'transferencia' && (
-                                    <div className="bg-white rounded-lg border border-gray-200 px-2 py-2 text-[11px] text-gray-700">
-                                        <div className="flex items-center justify-between">
-                                            <span className="font-semibold">Transferencia</span>
-                                            <button
-                                                onClick={() => {
-                                                    setPaymentStep('bank');
-                                                    setShowPaymentModal(true);
-                                                }}
-                                                className="text-primary font-bold text-[11px] hover:underline"
-                                            >
-                                                Cambiar banco
-                                            </button>
-                                        </div>
-                                        <p className="mt-1 font-semibold">{paymentDetails.bank || 'Selecciona Banco'}</p>
-                                    </div>
-                                )}
-
-                                {!paymentMethod && (
-                                    <p className="text-[11px] text-gray-500 font-semibold">Selecciona un método para continuar.</p>
-                                )}
-
-                                {showModalValidation && !paymentMethod && (
-                                    <p className="text-[10px] text-red-600 font-semibold">Elige el método de pago para enviar.</p>
-                                )}
-                            </div>
-
-                            <div className="bg-gray-50 p-3 rounded-lg space-y-2">
-                                <h3 className="font-bold text-gray-800 mb-1 flex items-center gap-2 text-sm">
-                                    <span className="text-primary">❤️</span>
-                                    Propina
-                                </h3>
-                                <div className="flex gap-2">
-                                    {[0, 10, 15].map((pct) => (
-                                        <button
-                                            key={pct}
-                                            onClick={() => {
-                                                setTipPercentage(pct);
-                                                setCustomTip(null);
-                                                setCustomTipInput('');
-                                            }}
-                                            className={`flex-1 py-2 rounded-lg text-xs font-bold border transition-colors ${tipPercentage === pct && customTip === null
-                                                ? 'bg-primary text-white border-primary'
-                                                : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
-                                                }`}
-                                        >
-                                            {pct === 0 ? 'No' : `${pct}%`}
-                                        </button>
-                                    ))}
-                                    <button
-                                        onClick={() => {
-                                            setTipPercentage(0);
-                                            setCustomTip(0);
-                                            setCustomTipInput('');
-                                        }}
-                                        className={`flex-1 py-2 rounded-lg text-xs font-bold border transition-colors ${customTip !== null
-                                            ? 'bg-primary text-white border-primary'
-                                            : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
-                                            }`}
-                                    >
-                                        Otro
-                                    </button>
-                                </div>
-                                {customTip !== null && (
-                                    <div className="relative">
-                                        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-xs">$</span>
-                                        <input
-                                            type="text"
-                                            inputMode="numeric"
-                                            pattern="[0-9.]*"
-                                            value={customTipInput}
-                                            onChange={(e) => {
-                                                const { numeric, formatted } = getCurrencyInputState(e.target.value);
-                                                setCustomTipInput(formatted);
-                                                setCustomTip(numeric);
-                                            }}
-                                            placeholder="Ingresa el valor"
-                                            className="w-full p-2 pl-6 border border-gray-200 rounded-lg text-xs focus:ring-1 focus:ring-primary focus:border-primary text-center font-semibold"
-                                            autoFocus
-                                        />
-                                    </div>
-                                )}
-                            </div>
-
-                            {/* Items */}
-                            <div>
-                                <h3 className="font-bold text-gray-800 mb-2 text-sm">Tu Pedido ({itemCount} items)</h3>
-                                <div className="space-y-1.5">
-                                    {items.map((item) => (
-                                        <div key={item.lineId} className="flex justify-between items-center text-xs bg-gray-50 p-2 rounded-lg">
-                                            <span className="flex-1">
-                                                <strong>{item.quantity}x</strong> {item.name}
-                                                {item.note && (
-                                                    <span className="block text-[10px] text-gray-500 mt-0.5">📝 {item.note}</span>
+                                    {openSection === 'delivery' && (
+                                        <div className="px-3 pb-3 space-y-2">
+                                            <div className="flex items-center gap-2">
+                                                <button
+                                                    onClick={() => setDeliveryMethod('domicilio')}
+                                                    className={`flex-1 py-2 rounded-lg text-xs lg:text-sm font-bold border transition-colors ${deliveryMethod === 'domicilio'
+                                                        ? 'bg-primary text-white border-primary'
+                                                        : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
+                                                        }`}
+                                                >
+                                                    🚚 Domicilio
+                                                </button>
+                                                <button
+                                                    onClick={() => setDeliveryMethod('recoger')}
+                                                    className={`flex-1 py-2 rounded-lg text-xs lg:text-sm font-bold border transition-colors ${deliveryMethod === 'recoger'
+                                                        ? 'bg-primary text-white border-primary'
+                                                        : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
+                                                        }`}
+                                                >
+                                                    🏪 Recoger
+                                                </button>
+                                            </div>
+                                            {deliveryMethod === 'recoger' && branches.length > 1 && (
+                                                <div>
+                                                    <label className="block text-xs lg:text-sm font-semibold text-gray-600 mb-1">Selecciona sede *</label>
+                                                    <select
+                                                        value={selectedBranch}
+                                                        onChange={(e) => setSelectedBranch(e.target.value)}
+                                                        className="w-full p-2 border border-gray-200 rounded-lg text-xs lg:text-sm bg-white focus:ring-1 focus:ring-primary focus:border-primary"
+                                                    >
+                                                        {branches.map((branch) => (
+                                                            <option key={branch} value={branch}>{branch}</option>
+                                                        ))}
+                                                    </select>
+                                                </div>
+                                            )}
+                                            <div>
+                                                <label className="block text-xs lg:text-sm font-semibold text-gray-600 mb-1">Nombre completo *</label>
+                                                <input
+                                                    type="text"
+                                                    value={customerName}
+                                                    onChange={(e) => setCustomerName(e.target.value)}
+                                                    placeholder="Ej: Juan Pérez"
+                                                    className={`w-full p-2 border rounded-lg text-xs lg:text-sm focus:ring-1 focus:ring-primary focus:border-primary ${showModalValidation && !customerName.trim() ? 'border-red-500 bg-red-50/60 ring-2 ring-red-200' : 'border-gray-200 bg-white'}`}
+                                                />
+                                                {showModalValidation && !customerName.trim() && (
+                                                    <p className="text-[10px] text-red-600 font-semibold mt-1">Falta tu nombre para enviar el pedido.</p>
                                                 )}
-                                            </span>
-                                            <span className="font-bold text-primary">
-                                                {formatPrice(item.price * item.quantity)}
-                                            </span>
+                                            </div>
+                                            <div>
+                                                <label className="block text-xs lg:text-sm font-semibold text-gray-600 mb-1 flex items-center gap-1">
+                                                    <MapPin size={12} />
+                                                    Dirección de entrega {deliveryMethod === 'domicilio' ? '*' : '(solo domicilio)'}
+                                                </label>
+                                                <input
+                                                    type="text"
+                                                    value={customerAddress}
+                                                    onChange={(e) => setCustomerAddress(e.target.value)}
+                                                    placeholder={deliveryMethod === 'domicilio' ? "Ej: Calle 123 #45-67, Apto 301" : "No aplica al recoger"}
+                                                    className={`w-full p-2 border rounded-lg text-xs lg:text-sm focus:ring-1 focus:ring-primary focus:border-primary ${showModalValidation && deliveryMethod === 'domicilio' && !customerAddress.trim() ? 'border-red-500 bg-red-50/60 ring-2 ring-red-200' : 'border-gray-200 bg-white'}`}
+                                                    disabled={deliveryMethod === 'recoger'}
+                                                />
+                                                {showModalValidation && deliveryMethod === 'domicilio' && !customerAddress.trim() && (
+                                                    <p className="text-[10px] text-red-600 font-semibold mt-1">Agrega tu dirección para continuar.</p>
+                                                )}
+                                            </div>
                                         </div>
-                                    ))}
+                                    )}
+                                </div>
+
+                                <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+                                    <button
+                                        onClick={() => toggleSection('payment')}
+                                        className="w-full flex items-center justify-between px-3 py-2 text-left"
+                                    >
+                                        <span className="text-sm lg:text-base font-bold text-gray-800">Método de pago</span>
+                                        <span className={`text-[10px] lg:text-xs font-semibold border px-2 py-0.5 rounded-full ${paymentStatus.className}`}>{paymentStatus.label}</span>
+                                    </button>
+                                    {openSection === 'payment' && (
+                                        <div className={`px-3 pb-3 space-y-2 ${showModalValidation && !paymentMethod ? 'ring-2 ring-red-200 rounded-lg' : ''}`}>
+                                            <div className="flex items-center gap-2">
+                                                <button
+                                                    onClick={() => handlePaymentSelection('efectivo')}
+                                                    className={`flex-1 py-2 rounded-lg text-xs lg:text-sm font-bold border transition-colors ${paymentMethod === 'efectivo'
+                                                        ? 'bg-primary text-white border-primary'
+                                                        : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
+                                                        }`}
+                                                >
+                                                    💵 Efectivo
+                                                </button>
+                                                <button
+                                                    onClick={() => handlePaymentSelection('transferencia')}
+                                                    className={`flex-1 py-2 rounded-lg text-xs lg:text-sm font-bold border transition-colors ${paymentMethod === 'transferencia'
+                                                        ? 'bg-primary text-white border-primary'
+                                                        : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
+                                                        }`}
+                                                >
+                                                    📱 Transf.
+                                                </button>
+                                            </div>
+
+                                            {paymentMethod === 'efectivo' && (
+                                                <div className="bg-white rounded-lg border border-gray-200 px-2 py-2 text-[11px] lg:text-sm text-gray-700">
+                                                    <div className="flex items-center justify-between">
+                                                        <span className="font-semibold">Vueltas</span>
+                                                        <button
+                                                            onClick={() => {
+                                                                setPaymentStep('change_q');
+                                                                setShowPaymentModal(true);
+                                                            }}
+                                                            className="text-primary font-bold text-[11px] hover:underline"
+                                                        >
+                                                            Editar
+                                                        </button>
+                                                    </div>
+                                                    <p className="mt-1 font-semibold">
+                                                        {paymentDetails.needsChange
+                                                            ? `Cambio de: ${formatPrice(paymentDetails.billAmount || 0)}`
+                                                            : 'Pago Exacto'}
+                                                    </p>
+                                                </div>
+                                            )}
+
+                                            {paymentMethod === 'transferencia' && (
+                                                <div className="bg-white rounded-lg border border-gray-200 px-2 py-2 text-[11px] lg:text-sm text-gray-700">
+                                                    <div className="flex items-center justify-between">
+                                                        <span className="font-semibold">Transferencia</span>
+                                                        <button
+                                                            onClick={() => {
+                                                                setPaymentStep('bank');
+                                                                setShowPaymentModal(true);
+                                                            }}
+                                                            className="text-primary font-bold text-[11px] hover:underline"
+                                                        >
+                                                            Cambiar banco
+                                                        </button>
+                                                    </div>
+                                                    <p className="mt-1 font-semibold">{paymentDetails.bank || 'Selecciona Banco'}</p>
+                                                </div>
+                                            )}
+
+                                            {!paymentMethod && (
+                                            <p className="text-[11px] lg:text-sm text-gray-500 font-semibold">Selecciona un método para continuar.</p>
+                                            )}
+
+                                            {showModalValidation && !paymentMethod && (
+                                                <p className="text-[10px] text-red-600 font-semibold">Elige el método de pago para enviar.</p>
+                                            )}
+                                        </div>
+                                    )}
+                                </div>
+
+                                <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+                                    <button
+                                        onClick={() => toggleSection('extras')}
+                                        className="w-full flex items-center justify-between px-3 py-2 text-left"
+                                    >
+                                        <span className="text-sm lg:text-base font-bold text-gray-800">Propina y notas para el pedido</span>
+                                        <span className={`text-[10px] lg:text-xs font-semibold border px-2 py-0.5 rounded-full ${extrasStatus.className}`}>{extrasStatus.label}</span>
+                                    </button>
+                                    {openSection === 'extras' && (
+                                        <div className="px-3 pb-3 space-y-3">
+                                            <div className="space-y-2">
+                                                <div className="flex gap-2">
+                                                    {[0, 10, 15].map((pct) => (
+                                                        <button
+                                                            key={pct}
+                                                            onClick={() => {
+                                                                setTipPercentage(pct);
+                                                                setCustomTip(null);
+                                                                setCustomTipInput('');
+                                                            }}
+                                                            className={`flex-1 py-2 rounded-lg text-xs lg:text-sm font-bold border transition-colors ${tipPercentage === pct && customTip === null
+                                                                ? 'bg-primary text-white border-primary'
+                                                                : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
+                                                                }`}
+                                                        >
+                                                            {pct === 0 ? 'No' : `${pct}%`}
+                                                        </button>
+                                                    ))}
+                                                    <button
+                                                        onClick={() => {
+                                                            setTipPercentage(0);
+                                                            setCustomTip(0);
+                                                            setCustomTipInput('');
+                                                        }}
+                                                        className={`flex-1 py-2 rounded-lg text-xs lg:text-sm font-bold border transition-colors ${customTip !== null
+                                                            ? 'bg-primary text-white border-primary'
+                                                            : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
+                                                            }`}
+                                                    >
+                                                        Otro
+                                                    </button>
+                                                </div>
+                                                {customTip !== null && (
+                                                    <div className="relative">
+                                                        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-xs">$</span>
+                                                        <input
+                                                            type="text"
+                                                            inputMode="numeric"
+                                                            pattern="[0-9.]*"
+                                                            value={customTipInput}
+                                                            onChange={(e) => {
+                                                                const { numeric, formatted } = getCurrencyInputState(e.target.value);
+                                                                setCustomTipInput(formatted);
+                                                                setCustomTip(numeric);
+                                                            }}
+                                                            placeholder="Ingresa el valor"
+                                                        className="w-full p-2 pl-6 border border-gray-200 rounded-lg text-xs lg:text-sm focus:ring-1 focus:ring-primary focus:border-primary text-center font-semibold"
+                                                        />
+                                                    </div>
+                                                )}
+                                            </div>
+                                            <div>
+                                            <label className="block text-xs lg:text-sm font-bold text-gray-700 mb-1">📝 Notas adicionales</label>
+                                                <textarea
+                                                    value={note}
+                                                    onChange={(e) => setNote(e.target.value)}
+                                                    placeholder="Ej: Casa esquinera puerta blanca... o Sin cebolla en la hamburguesa..."
+                                                className="w-full p-2 border border-gray-200 rounded-lg text-xs lg:text-sm focus:ring-1 focus:ring-primary focus:border-primary resize-none h-20 placeholder:text-gray-400"
+                                                />
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+
+                                <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+                                    <button
+                                        onClick={() => toggleSection('order')}
+                                        className="w-full flex items-center justify-between px-3 py-2 text-left"
+                                    >
+                                        <span className="text-sm lg:text-base font-bold text-gray-800">Resumen del pedido</span>
+                                        <span className={`text-[10px] lg:text-xs font-semibold border px-2 py-0.5 rounded-full ${orderStatus.className}`}>{orderStatus.label}</span>
+                                    </button>
+                                    {openSection === 'order' && (
+                                        <div className="px-3 pb-3 space-y-2">
+                                            <h3 className="font-bold text-gray-800 text-sm lg:text-base">Tu pedido ({itemCount} {itemCount === 1 ? 'ítem' : 'ítems'})</h3>
+                                            <div className="space-y-1.5">
+                                                {items.map((item) => (
+                                                    <div key={item.lineId} className="flex justify-between items-center text-xs lg:text-sm bg-gray-50 p-2 rounded-lg">
+                                                        <span className="flex-1">
+                                                            <strong>{item.quantity}x</strong> {item.name}
+                                                            {item.note && (
+                                                                <span className="block text-[10px] text-gray-500 mt-0.5">📝 {item.note}</span>
+                                                            )}
+                                                        </span>
+                                                        <span className="font-bold text-primary">
+                                                            {formatPrice(item.price * item.quantity)}
+                                                        </span>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                            <div className="border-t border-gray-200 pt-3 space-y-1.5">
+                                                <div className="flex justify-between text-xs lg:text-sm text-gray-600">
+                                                    <span>Subtotal</span>
+                                                    <span>{formatPrice(total)}</span>
+                                                </div>
+                                                {tipAmount > 0 && (
+                                                    <div className="flex justify-between text-xs lg:text-sm text-green-600">
+                                                        <span>{customTip !== null ? "Propina (Voluntaria)" : `Propina (${tipPercentage}%)`}</span>
+                                                        <span>{formatPrice(tipAmount)}</span>
+                                                    </div>
+                                                )}
+                                                <div className="flex justify-between text-lg font-bold text-gray-900 pt-2 border-t border-dashed">
+                                                    <span>Total</span>
+                                                    <span className="text-primary">{formatPrice(finalTotal)}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
 
-                            {/* Totals */}
-                            <div className="border-t border-gray-200 pt-3 space-y-1.5">
-                                <div className="flex justify-between text-xs text-gray-600">
-                                    <span>Subtotal</span>
-                                    <span>{formatPrice(total)}</span>
-                                </div>
-                                {tipAmount > 0 && (
-                                    <div className="flex justify-between text-xs text-green-600">
-                                        <span>{customTip !== null ? "Propina (Voluntaria)" : `Propina (${tipPercentage}%)`}</span>
-                                        <span>{formatPrice(tipAmount)}</span>
-                                    </div>
-                                )}
-                                <div className="flex justify-between text-lg font-bold text-gray-900 pt-2 border-t border-dashed">
-                                    <span>Total</span>
-                                    <span className="text-primary">{formatPrice(finalTotal)}</span>
-                                </div>
-                            </div>
-
-                            <div className="bg-gray-50 p-3 rounded-lg">
-                                <label className="block text-xs font-bold text-gray-700 mb-1">📝 Notas adicionales</label>
-                                <textarea
-                                    value={note}
-                                    onChange={(e) => setNote(e.target.value)}
-                                    placeholder="Ej: Casa esquinera puerta blanca... o Sin cebolla en la hamburguesa..."
-                                    className="w-full p-2 border border-gray-200 rounded-lg text-xs focus:ring-1 focus:ring-primary focus:border-primary resize-none h-20 placeholder:text-gray-400"
-                                />
-                            </div>
                         </div>
 
                         {/* Actions */}
