@@ -6,27 +6,31 @@ description: Skill para optimizar la experiencia de usuario en dispositivos móv
 # `menu-ui-mobile` Skill
 
 ## Propósito
-Esta skill asegura que la aplicación web se comporte y se sienta como una aplicación móvil nativa. Se enfoca en la usabilidad táctil, las transiciones suaves y la eliminación de fricción típica de la web (zoom, scroll elástico, delays).
+Optimizar la experiencia mobile-first para React + Tailwind, con tactilidad, feedback inmediato y transiciones suaves tipo app nativa.
 
 ## Responsabilidades
-1.  **Optimización Viewport**: Prevenir el zoom accidental y asegurar que la escala sea 1:1.
-2.  **Touch Feedback**: Implementar estados `:active` visuales inmediatos para emular la respuesta nativa.
-3.  **Transiciones de Vista**: Animar el cambio entre niveles jerárquicos (slide in/out o fade) para dar contexto espacial.
-4.  **Scroll Restoration**: Recordar la posición del scroll al volver atrás en la navegación.
-5.  **Sticky Elements**: Mantener la barra de navegación y los breadcrumbs siempre visibles y accesibles.
+1. **Touch Targets**: Tamaño minimo 44x44px en botones e iconos interactivos.
+2. **Feedback Tactil**: Usar `active:scale-[0.98]` y cambios de color inmediatos.
+3. **Estados Hover**: Solo en desktop con `lg:hover:*`.
+4. **Elementos Sticky**: Header y CTA flotante accesibles sin bloquear contenido.
+5. **Transiciones**: `transition-all duration-200` y animaciones de entrada suaves para modales.
+6. **Scroll**: Evitar scroll horizontal y usar `overflow-hidden` en contenedores criticos.
 
-## Métodos Públicos
+## Reglas Practicas (Tailwind)
 
-### `init()`
-Inicializa los listeners globales para la gestión de scroll y touch events.
+- Botones: `py-3 px-4` o `w-10 h-10` como minimo
+- Inputs: `text-sm` en mobile y `md:text-base`
+- Acciones flotantes: `rounded-full`, sombra y borde suave
+- Hover solo desktop: `lg:hover:shadow-lg`, `lg:hover:border-primary/20`
 
-### `animatePageTransition(direction)`
-Ejecuta una animación CSS en el contenedor principal antes de cambiar el contenido.
--   `direction`: 'forward' (avanzar nivel) o 'backward' (retroceder).
+## Integracion
 
-### `restoreScrollPosition(level)`
-Restaura la posición del scroll guardada para un nivel específico al regresar.
+- **Con `menu-visual-system`**: Esta skill hereda tokens y patrones visuales.
+- **Con `responsive-design-testing`**: Validar en 375px, 768px y 1280px.
 
-## Integración
--   Debe ser invocado por `menu-hierarchy.js` antes y después de `renderCurrentLevel`.
--   Requiere ajustes en `styles.css` para propiedades como `touch-action`, `-webkit-tap-highlight-color`, etc.
+## Checklist Mobile
+
+- [ ] Botones tactiles (>=44px)
+- [ ] Texto legible en mobile (>= `text-sm`)
+- [ ] Sin hover en mobile
+- [ ] Modal visible sin overflow horizontal

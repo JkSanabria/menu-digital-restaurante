@@ -6,32 +6,30 @@ description: Skill para gestionar la lógica de navegación jerárquica del men�
 # `menu-hierarchy` Skill
 
 ## Propósito
-Este skill encapsula toda la lógica relacionada con la estructura de árbol del menú del restaurante, asegurando una navegación fluida entre los tres niveles jerárquicos definidos sin recargas de página (SPA feeling).
+Definir la estructura jerarquica del menu (Seccion > Subcategoria > Categoria/Productos) y su mapeo a rutas en React Router, asegurando navegacion coherente y consistente.
 
 ## Responsabilidades
-1.  **Carga de Estructura**: Leer y validar el JSON de configuración del menú.
-2.  **Estado de Navegación**: Mantener el rastro de dónde se encuentra el usuario (Breadcrumbs).
-3.  **Filtrado por Nivel**:
-    -   **Nivel 1 (Home)**: Mostrar solo Secciones Principales (ej: Comidas, Bebidas).
-    -   **Nivel 2 (Subcategoría)**: Al seleccionar una Sección, mostrar sus Subcategorías (ej: Bebidas -> Calientes, Frías).
-    -   **Nivel 3 (Listado)**: Al seleccionar una Subcategoría, mostrar la Categoría Final con sus Productos.
-4.  **UI Rendering**: Generar dinámicamente el HTML de las tarjetas de navegación basado en el nivel actual.
+1. **Estructura de Datos**: Validar la forma del JSON del menu.
+2. **Rutas y Jerarquia**:
+   - Home: listado de Secciones
+   - Seccion: listado de Subcategorias
+   - Subcategoria: listado de Productos
+3. **Breadcrumbs/Contexto**: Definir etiquetas y ruta visible para el usuario.
+4. **Consistencia Visual**: Usar los patrones de tarjetas definidos en `menu-visual-system`.
 
-## Métodos Públicos (Interfaz)
+## Reglas de Navegacion
 
-### `initMenu(containerId, dataUrl)`
-Inicializa el menú cargando datos desde `dataUrl` y renderizando el Nivel 1 en `containerId`.
+- La jerarquia no debe romperse con saltos directos sin contexto.
+- Los labels deben ser consistentes con el nombre real de la seccion/subcategoria.
+- Si una seccion redirige (ej: pizzas), documentar la excepcion.
 
-### `navigateTo(level, id)`
-Cambia la vista actual al nivel especificado, filtrando por el ID padre seleccionado.
--   `level`: 1 (Secciones), 2 (Subcategorías), 3 (Productos).
--   `id`: Identificador del padre seleccionado (null para Nivel 1).
+## Integracion
 
-### `goBack()`
-Regresa al nivel inmediatamente anterior en la pila de navegación.
+- **React Router**: rutas claras y predecibles.
+- **menu-visual-system**: cards y headers deben seguir el sistema visual.
 
-### `getBreadcrumbs()`
-Retorna un array con la ruta actual para mostrar la barra de navegación (ej: ["Inicio", "Bebidas", "Calientes"]).
+## Nota
+Esta skill no define render HTML ni estilos; define la arquitectura de navegacion.
 
 ## Estructura de Datos Esperada (JSON)
 

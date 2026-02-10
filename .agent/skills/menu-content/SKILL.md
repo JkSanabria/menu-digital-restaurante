@@ -6,28 +6,28 @@ description: Skill para gestionar y enriquecer el contenido de los productos (pr
 # `menu-content` Skill
 
 ## Propósito
-Este skill se encarga de la lógica de presentación y manipulación de los datos específicos de cada producto. Su objetivo es transformar los datos crudos del JSON en una experiencia de usuario rica y detallada.
+Gestionar la presentacion de datos del producto en React + Tailwind, asegurando consistencia visual y contenido enriquecido sin logica de render directo.
 
 ## Responsabilidades
-1.  **Formato de Precios**: Convertir números crudos (4500) en formatos de moneda localizables ($4,500).
-2.  **Gestión de Disponibilidad**: Manejar estados como "Agotado" o "Stock Limitado".
-3.  **Visualización de Atributos**: Renderizar íconos visuales para características especiales (Picante, Vegano, Gluten-Free) basados en etiquetas.
-4.  **Enriquecimiento de Descripción**: Procesar arrays de ingredientes o descripciones largas para su correcta visualización (truncado/expandido).
-5.  **Optimización de Imágenes**: Manejo de fallbacks si una imagen no carga.
+1. **Formato de Precios**: Usar un unico formateador (COP) para todo el proyecto.
+2. **Disponibilidad**: Definir estados (disponible, agotado) y su representacion visual.
+3. **Atributos**: Mapear etiquetas (picante, vegano, etc.) a badges/iconeo consistente.
+4. **Descripcion**: Truncado/expandido con reglas claras.
+5. **Imagenes**: Fallback visual y manejo de imagenes faltantes.
 
-## Métodos Públicos
+## Reglas de Visualizacion
 
-### `formatPrice(price)`
-Retorna el precio formateado con separadores de miles y símbolo de moneda (COP por defecto).
+- Precios siempre en negrita y color de marca.
+- Estados de disponibilidad usan badges con borde y color consistente.
+- Atributos se muestran como chips o iconos segun el sistema visual.
 
-### `renderProductList(productsContainer, productsArray)`
-Renderiza la lista completa de tarjetas de producto enriquecidas dentro del contenedor dado. Reemplaza el renderizado básico de `menu-hierarchy`.
+## Integracion
 
-### `getProductStatus(product)`
-Retorna un objeto con la clase CSS y texto del estado del producto (ej: `{ class: 'text-danger', text: 'Agotado' }`).
+- **menu-visual-system**: patrones de cards, badges e iconos.
+- **menu-hierarchy**: jerarquia determina que productos se muestran.
 
-### `renderAttributeIcons(attributes)`
-Genera el HTML de los badges/íconos para atributos como "Picante" o "Vegano".
+## Nota
+Esta skill no define HTML ni depende de librerias externas (ej: FontAwesome).
 
 ## Estructura de Datos (Producto)
 El skill espera objetos de producto con esta forma:
