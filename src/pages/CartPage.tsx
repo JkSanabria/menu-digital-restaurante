@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useCart } from '../context/CartContext';
-import { Trash2, Plus, Minus, Send, User, MapPin, ArrowLeft } from 'lucide-react';
+import { Trash2, Plus, Minus, Send, User, MapPin, ArrowLeft, ChevronDown } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 export default function CartPage() {
@@ -285,7 +285,10 @@ export default function CartPage() {
                             className="w-full flex items-center justify-between px-3 py-2 text-left lg:hidden"
                         >
                             <span className="text-sm font-bold text-gray-800">Información de entrega</span>
-                            <span className={`text-[10px] font-semibold border px-2 py-0.5 rounded-full ${deliveryStatus.className}`}>{deliveryStatus.label}</span>
+                            <span className="flex items-center gap-2">
+                                <span className={`text-[10px] font-semibold border px-2 py-0.5 rounded-full ${deliveryStatus.className}`}>{deliveryStatus.label}</span>
+                                <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${openSection === 'delivery' ? 'rotate-180' : ''}`} />
+                            </span>
                         </button>
                         <h3 className="hidden lg:flex font-bold text-gray-800 lg:text-gray-900 mb-2 lg:mb-6 items-center gap-2 text-sm lg:text-xl">
                             <div className="hidden lg:block p-2 bg-primary/10 rounded-full text-primary">
@@ -366,7 +369,10 @@ export default function CartPage() {
                             className="w-full flex items-center justify-between px-3 py-2 text-left lg:hidden"
                         >
                             <span className="text-sm font-bold text-gray-800">Tu pedido ({itemCount} {itemCount === 1 ? 'ítem' : 'ítems'})</span>
-                            <span className={`text-[10px] font-semibold border px-2 py-0.5 rounded-full ${orderStatus.className}`}>{orderStatus.label}</span>
+                            <span className="flex items-center gap-2">
+                                <span className={`text-[10px] font-semibold border px-2 py-0.5 rounded-full ${orderStatus.className}`}>{orderStatus.label}</span>
+                                <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${openSection === 'order' ? 'rotate-180' : ''}`} />
+                            </span>
                         </button>
                         <div className={`${openSection === 'order' ? 'flex' : 'hidden'} flex-col gap-3 lg:gap-4 lg:flex`}>
                             {items.map((item) => (
@@ -440,7 +446,10 @@ export default function CartPage() {
                             className="w-full flex items-center justify-between px-3 py-2 text-left lg:hidden"
                         >
                             <span className="text-sm font-bold text-gray-800">Propina y notas para el pedido</span>
-                            <span className={`text-[10px] font-semibold border px-2 py-0.5 rounded-full ${extrasStatus.className}`}>{extrasStatus.label}</span>
+                            <span className="flex items-center gap-2">
+                                <span className={`text-[10px] font-semibold border px-2 py-0.5 rounded-full ${extrasStatus.className}`}>{extrasStatus.label}</span>
+                                <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${openSection === 'extras' ? 'rotate-180' : ''}`} />
+                            </span>
                         </button>
                         <div className={`${openSection === 'extras' ? 'block' : 'hidden'} lg:block`}>
                             <div className="flex flex-col gap-2">
@@ -571,7 +580,10 @@ export default function CartPage() {
                             className="w-full flex items-center justify-between px-3 py-2 text-left lg:hidden"
                         >
                             <span className="text-sm font-bold text-gray-800">Método de pago</span>
-                            <span className={`text-[10px] font-semibold border px-2 py-0.5 rounded-full ${paymentStatus.className}`}>{paymentStatus.label}</span>
+                            <span className="flex items-center gap-2">
+                                <span className={`text-[10px] font-semibold border px-2 py-0.5 rounded-full ${paymentStatus.className}`}>{paymentStatus.label}</span>
+                                <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${openSection === 'payment' ? 'rotate-180' : ''}`} />
+                            </span>
                         </button>
                         <div className={`${openSection === 'payment' ? 'block' : 'hidden'} lg:block`}>
                             {/* Mobile: Compact Row */}
@@ -697,9 +709,13 @@ export default function CartPage() {
                 <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 animate-in fade-in duration-200">
                     <div className="bg-white rounded-xl max-w-md lg:max-w-4xl w-full max-h-[90vh] overflow-y-auto lg:max-h-none lg:overflow-visible animate-in zoom-in slide-in-from-bottom-8 duration-300">
                         {/* Header */}
-                        <div className="bg-gradient-to-r from-primary to-red-600 text-white p-5 lg:p-6 rounded-t-xl text-center">
-                            <h2 className="text-2xl lg:text-3xl font-heading font-black tracking-tight">Confirma tu pedido</h2>
-                            <p className="text-white/85 text-xs lg:text-sm mt-1">Revisa los detalles antes de enviar tu pedido</p>
+                        <div className="bg-gradient-to-r from-primary to-red-600 text-white p-4 lg:p-5 rounded-t-xl text-center">
+                            <h2 className="text-xl lg:text-2xl font-heading font-black tracking-tight">Confirma tu pedido</h2>
+                            <p className="text-white/95 text-xs lg:text-sm mt-2 font-semibold">
+                                <span className="inline-flex items-center gap-2 bg-white/15 border border-white/20 px-3 py-1 rounded-full">
+                                    Revisa los detalles antes de enviar tu pedido
+                                </span>
+                            </p>
                         </div>
 
                         {/* Order Summary */}
@@ -712,7 +728,10 @@ export default function CartPage() {
                                         className="w-full flex items-center justify-between px-3 py-2 text-left"
                                     >
                                         <span className="text-sm lg:text-base font-bold text-gray-800">Datos de entrega</span>
-                                        <span className={`text-[10px] lg:text-xs font-semibold border px-2 py-0.5 rounded-full ${deliveryStatus.className}`}>{deliveryStatus.label}</span>
+                                        <span className="flex items-center gap-2">
+                                            <span className={`text-[10px] lg:text-xs font-semibold border px-2 py-0.5 rounded-full ${deliveryStatus.className}`}>{deliveryStatus.label}</span>
+                                            <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${openSection === 'delivery' ? 'rotate-180' : ''}`} />
+                                        </span>
                                     </button>
                                     {openSection === 'delivery' && (
                                         <div className="px-3 pb-3 space-y-2">
@@ -790,7 +809,10 @@ export default function CartPage() {
                                         className="w-full flex items-center justify-between px-3 py-2 text-left"
                                     >
                                         <span className="text-sm lg:text-base font-bold text-gray-800">Método de pago</span>
-                                        <span className={`text-[10px] lg:text-xs font-semibold border px-2 py-0.5 rounded-full ${paymentStatus.className}`}>{paymentStatus.label}</span>
+                                        <span className="flex items-center gap-2">
+                                            <span className={`text-[10px] lg:text-xs font-semibold border px-2 py-0.5 rounded-full ${paymentStatus.className}`}>{paymentStatus.label}</span>
+                                            <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${openSection === 'payment' ? 'rotate-180' : ''}`} />
+                                        </span>
                                     </button>
                                     {openSection === 'payment' && (
                                         <div className={`px-3 pb-3 space-y-2 ${showModalValidation && !paymentMethod ? 'ring-2 ring-red-200 rounded-lg' : ''}`}>
@@ -872,7 +894,10 @@ export default function CartPage() {
                                         className="w-full flex items-center justify-between px-3 py-2 text-left"
                                     >
                                         <span className="text-sm lg:text-base font-bold text-gray-800">Propina y notas para el pedido</span>
-                                        <span className={`text-[10px] lg:text-xs font-semibold border px-2 py-0.5 rounded-full ${extrasStatus.className}`}>{extrasStatus.label}</span>
+                                        <span className="flex items-center gap-2">
+                                            <span className={`text-[10px] lg:text-xs font-semibold border px-2 py-0.5 rounded-full ${extrasStatus.className}`}>{extrasStatus.label}</span>
+                                            <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${openSection === 'extras' ? 'rotate-180' : ''}`} />
+                                        </span>
                                     </button>
                                     {openSection === 'extras' && (
                                         <div className="px-3 pb-3 space-y-3">
@@ -946,7 +971,10 @@ export default function CartPage() {
                                         className="w-full flex items-center justify-between px-3 py-2 text-left"
                                     >
                                         <span className="text-sm lg:text-base font-bold text-gray-800">Resumen del pedido</span>
-                                        <span className={`text-[10px] lg:text-xs font-semibold border px-2 py-0.5 rounded-full ${orderStatus.className}`}>{orderStatus.label}</span>
+                                        <span className="flex items-center gap-2">
+                                            <span className={`text-[10px] lg:text-xs font-semibold border px-2 py-0.5 rounded-full ${orderStatus.className}`}>{orderStatus.label}</span>
+                                            <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${openSection === 'order' ? 'rotate-180' : ''}`} />
+                                        </span>
                                     </button>
                                     {openSection === 'order' && (
                                         <div className="px-3 pb-3 space-y-2">
