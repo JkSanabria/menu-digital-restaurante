@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useCart } from '../context/CartContext';
-import { Trash2, Plus, Minus, Send, User, MapPin, ArrowLeft, ChevronDown, Check, AlertCircle } from 'lucide-react';
+import { Trash2, Plus, Minus, Send, User, ArrowLeft, ChevronDown, Check, AlertCircle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 export default function CartPage() {
@@ -65,6 +65,22 @@ export default function CartPage() {
         if (tone === 'complete') return 'bg-emerald-50 text-emerald-700 border-emerald-200';
         if (tone === 'optional') return 'bg-gray-50 text-gray-600 border-gray-200';
         return 'bg-accent/15 text-orange-700 border-accent/40';
+    };
+
+    const formatPrice = (price: number) => {
+        return new Intl.NumberFormat('es-CO', {
+            style: 'currency',
+            currency: 'COP',
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0,
+        }).format(price);
+    };
+
+    const getCurrencyInputState = (value: string) => {
+        const digits = value.replace(/\D/g, '');
+        const numeric = digits ? Number(digits) : 0;
+        const formatted = digits ? new Intl.NumberFormat('es-CO').format(numeric) : '';
+        return { numeric, formatted };
     };
 
     const getSectionContainerClass = (isOpen: boolean, isIncomplete: boolean) => {
@@ -189,21 +205,6 @@ export default function CartPage() {
     }, [paymentMethod, paymentDetails]);
 
 
-    const formatPrice = (price: number) => {
-        return new Intl.NumberFormat('es-CO', {
-            style: 'currency',
-            currency: 'COP',
-            minimumFractionDigits: 0,
-            maximumFractionDigits: 0,
-        }).format(price);
-    };
-
-    const getCurrencyInputState = (value: string) => {
-        const digits = value.replace(/\D/g, '');
-        const numeric = digits ? Number(digits) : 0;
-        const formatted = digits ? new Intl.NumberFormat('es-CO').format(numeric) : '';
-        return { numeric, formatted };
-    };
 
 
     const normalizeAddressValue = (value: string) => value.trim().toLowerCase();
