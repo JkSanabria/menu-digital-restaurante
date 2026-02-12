@@ -141,10 +141,26 @@ Para una guía detallada del proyecto, incluyendo:
 - Explicación completa de cada funcionalidad
 - Flujo de uso paso a paso
 - Decisiones de diseño y arquitectura
+- Gobernanza del sistema visual
 - Guía de reconstrucción del sistema
 - Solución a problemas comunes
 
 👉 **[Ver Documentación Completa](./DOCUMENTACION_PROYECTO.md)**
+
+---
+
+## 🎛️ Sistema Visual
+
+Este proyecto aplica un sistema visual gobernado para mantener consistencia:
+- Cards: `rounded-2xl` + `shadow-sm`
+- Botones: `min-h-[44px]`, `px-4 py-3`, `rounded-xl`
+- Iconos: tamaños `16 / 20 / 24 / 32`
+- Badges: `rounded-full`, `px-2.5 py-0.5`, `text-[10px]`
+- Modales: overlay `bg-black/60`, contenedor `rounded-2xl`, `p-6`
+- Fondos: `bg-gradient-to-b from-orange-50/60 via-white to-white`
+- Espaciado: `gap-2`, `gap-4`, `gap-6`
+
+Más detalle en la [Documentación Completa](./DOCUMENTACION_PROYECTO.md).
 
 ---
 

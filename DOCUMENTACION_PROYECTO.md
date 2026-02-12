@@ -294,6 +294,15 @@ menu-digital-restaurante/
 - **Hover effects**: Los elementos cambian al pasar el mouse
 - **Active states**: Los botones se "hunden" al tocarlos
 
+### Sistema Visual (Gobernanza):
+- **Cards**: Radio base `rounded-2xl`, sombra base `shadow-sm`.
+- **Botones**: Altura mínima táctil `min-h-[44px]`, padding `px-4 py-3`, radio `rounded-xl`.
+- **Iconografía**: Tamaños permitidos `16 / 20 / 24 / 32` según rol.
+- **Badges**: Estilo base con `rounded-full`, `px-2.5 py-0.5`, `text-[10px]`.
+- **Modales**: Overlay `bg-black/60`, contenedor `rounded-2xl` con `p-6` en header/body/footer.
+- **Fondos**: Fondo base `bg-gradient-to-b from-orange-50/60 via-white to-white`.
+- **Espaciado**: Gaps permitidos `gap-2`, `gap-4`, `gap-6`.
+
 ---
 
 ## 📊 ¿Cómo se guardan los datos?
