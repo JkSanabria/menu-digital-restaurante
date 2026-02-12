@@ -12,6 +12,7 @@ const data: MenuData = menuData as unknown as MenuData;
 
 // Type definitions
 type PizzaSize = 'Personal' | 'Mediana' | 'Familiar';
+type CombinedPizzaSize = 'Mediana' | 'Familiar';
 
 const formatPrice = (price: number) => {
     return new Intl.NumberFormat('es-CO', {
@@ -37,7 +38,7 @@ export default function PizzaMenu() {
     const [showBuilder, setShowBuilder] = useState(false);
     const [builderInitialFlavor, setBuilderInitialFlavor] = useState<Product | undefined>(undefined);
     const [builderInitialFlavors, setBuilderInitialFlavors] = useState<Product[] | undefined>(undefined);
-    const [builderInitialSize, setBuilderInitialSize] = useState<PizzaSize | undefined>(undefined);
+    const [builderInitialSize, setBuilderInitialSize] = useState<CombinedPizzaSize | undefined>(undefined);
     const [builderInitialQuantity, setBuilderInitialQuantity] = useState<number | undefined>(undefined);
     const [builderEditingLineId, setBuilderEditingLineId] = useState<string | undefined>(undefined);
 
@@ -145,7 +146,7 @@ export default function PizzaMenu() {
         if (!selectedProduct) return;
         setBuilderInitialFlavor(selectedProduct);
         setBuilderInitialFlavors(undefined);
-        setBuilderInitialSize(selectedSize);
+        setBuilderInitialSize(selectedSize === 'Personal' ? 'Mediana' : selectedSize);
         setBuilderInitialQuantity(quantity);
         setBuilderEditingLineId(undefined);
         setSelectedProduct(null); // Close traditional modal
@@ -187,7 +188,7 @@ export default function PizzaMenu() {
 
         setBuilderInitialFlavor(undefined);
         setBuilderInitialFlavors(initialFlavors);
-        setBuilderInitialSize(product.size as PizzaSize | undefined);
+        setBuilderInitialSize(product.size as CombinedPizzaSize | undefined);
         setBuilderInitialQuantity(itemQuantity);
         setBuilderEditingLineId(lineId);
         setSelectedProduct(null);
