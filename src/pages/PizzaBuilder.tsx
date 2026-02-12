@@ -14,6 +14,10 @@ type CloseReason = 'cancel' | 'success';
 interface PizzaBuilderModalProps {
     onClose: (reason?: CloseReason) => void;
     initialFlavor?: Product;
+    initialFlavors?: Product[];
+    initialSize?: PizzaSize;
+    initialQuantity?: number;
+    editingLineId?: string;
 }
 
 const formatPrice = (price: number) => {
@@ -25,14 +29,21 @@ const formatPrice = (price: number) => {
     }).format(price);
 };
 
-export default function PizzaBuilderModal({ onClose, initialFlavor }: PizzaBuilderModalProps) {
+export default function PizzaBuilderModal({
+    onClose,
+    initialFlavor,
+    initialFlavors,
+    initialSize,
+    initialQuantity,
+    editingLineId,
+}: PizzaBuilderModalProps) {
     const navigate = useNavigate();
-    const { addToCart } = useCart();
+    const { addToCart, replaceCartItem } = useCart();
 
     // Initial State - COMBINED ONLY
-    const [selectedSize] = useState<PizzaSize>('Mediana');
-    const [selectedFlavors, setSelectedFlavors] = useState<Product[]>(initialFlavor ? [initialFlavor] : []);
-    const [quantity, setQuantity] = useState(1);
+    const [selectedSize, setSelectedSize] = useState<PizzaSize>(initialSize || 'Mediana');
+    const [selectedFlavors, setSelectedFlavors] = useState<Product[]>(initialFlavors?.length ? initialFlavors : (initialFlavor ? [initialFlavor] : []));
+    const [quantity, setQuantity] = useState(initialQuantity || 1);
     const [searchQuery, setSearchQuery] = useState('');
 
     // UX States
@@ -96,13 +107,17 @@ export default function PizzaBuilderModal({ onClose, initialFlavor }: PizzaBuild
             attributes: selectedFlavors.map(f => f.name)
         };
 
-        for (let i = 0; i < quantity; i++) {
-            addToCart(productToAdd);
+        if (editingLineId) {
+            replaceCartItem(editingLineId, productToAdd, undefined, quantity);
+        } else {
+            for (let i = 0; i < quantity; i++) {
+                addToCart(productToAdd);
+            }
         }
 
         setShowSuccess(true);
         setTimeout(() => {
-            onClose('success');
+            setShowSuccess(false);
         }, 800);
     };
 
@@ -149,11 +164,42 @@ export default function PizzaBuilderModal({ onClose, initialFlavor }: PizzaBuild
                         </div>
                     )}
 
-                    {/* Step 1: Sabores */}
+                    {/* Step 1: Tamano */}
                     <section className="mb-8">
                         <div className="sticky top-0 bg-gray-50/95 backdrop-blur z-10 py-3 flex items-center justify-between border-b border-transparent">
                             <h3 className="text-xs font-black text-gray-400 uppercase tracking-widest flex items-center gap-2">
                                 <span className="bg-gray-800 text-white w-5 h-5 rounded-full flex items-center justify-center text-[10px] shadow-sm">1</span>
+                                Elige el tamano
+                            </h3>
+                            <div className="text-xs font-bold px-2 py-1 rounded-md bg-primary/10 text-primary">
+                                {selectedSize}
+                            </div>
+                        </div>
+
+                        <div className="mt-4 grid grid-cols-2 gap-2">
+                            {(['Mediana', 'Familiar'] as PizzaSize[]).map(size => (
+                                <button
+                                    key={size}
+                                    onClick={() => setSelectedSize(size)}
+                                    className={
+                                        `py-3 rounded-xl text-sm font-bold border transition-all ${
+                                            selectedSize === size
+                                                ? 'border-primary bg-primary text-white shadow-md'
+                                                : 'border-gray-200 bg-white text-gray-700 hover:border-primary hover:text-primary'
+                                        }`
+                                    }
+                                >
+                                    {size}
+                                </button>
+                            ))}
+                        </div>
+                    </section>
+
+                    {/* Step 2: Sabores */}
+                    <section className="mb-8">
+                        <div className="sticky top-0 bg-gray-50/95 backdrop-blur z-10 py-3 flex items-center justify-between border-b border-transparent">
+                            <h3 className="text-xs font-black text-gray-400 uppercase tracking-widest flex items-center gap-2">
+                                <span className="bg-gray-800 text-white w-5 h-5 rounded-full flex items-center justify-center text-[10px] shadow-sm">2</span>
                                 Elige tus Sabores
                             </h3>
                             <div className={`text-xs font-bold px-2 py-1 rounded-md transition-colors ${selectedFlavors.length === 2 ? 'bg-green-100 text-green-700' : 'bg-orange-100 text-orange-700'}`}>
@@ -261,7 +307,7 @@ export default function PizzaBuilderModal({ onClose, initialFlavor }: PizzaBuild
                                     : 'bg-gray-200 text-gray-400 cursor-not-allowed'}
                             `}
                         >
-                            <span>Agregar Combinación</span>
+                            <span>{editingLineId ? 'Guardar cambios' : 'Agregar Combinación'}</span>
                             {isValid && <Check size={20} strokeWidth={3} />}
                         </button>
                     </div>

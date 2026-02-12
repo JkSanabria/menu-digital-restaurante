@@ -10,6 +10,7 @@ export interface CartItem extends Product {
 interface CartContextType {
     items: CartItem[];
     addToCart: (product: Product, note?: string) => void;
+    replaceCartItem: (targetLineId: string, product: Product, note?: string, quantity?: number) => void;
     removeFromCart: (targetId: string) => void;
     updateQuantity: (targetId: string, quantity: number) => void;
     clearCart: () => void;
@@ -77,9 +78,14 @@ export function CartProvider({ children }: { children: ReactNode }) {
         }
     }, [customerAddress, storageLoaded]);
 
+    const buildLineId = (product: Product, note?: string) => {
+        const normalizedNote = note?.trim() || '';
+        return normalizedNote ? `${product.id}::note:${normalizedNote}` : product.id;
+    };
+
     const addToCart = (product: Product, note?: string) => {
         const normalizedNote = note?.trim() || '';
-        const lineId = normalizedNote ? `${product.id}::note:${normalizedNote}` : product.id;
+        const lineId = buildLineId(product, normalizedNote);
 
         setItems((prev) => {
             const existing = prev.find((item) => item.lineId === lineId);
@@ -91,6 +97,26 @@ export function CartProvider({ children }: { children: ReactNode }) {
                 );
             }
             return [...prev, { ...product, quantity: 1, lineId, note: normalizedNote || undefined }];
+        });
+    };
+
+    const replaceCartItem = (targetLineId: string, product: Product, note?: string, quantity = 1) => {
+        const normalizedNote = note?.trim() || '';
+        const lineId = buildLineId(product, normalizedNote);
+
+        setItems((prev) => {
+            const filtered = prev.filter(item => item.lineId !== targetLineId);
+            const existing = filtered.find(item => item.lineId === lineId);
+
+            if (existing) {
+                return filtered.map(item =>
+                    item.lineId === lineId
+                        ? { ...item, quantity: item.quantity + quantity }
+                        : item
+                );
+            }
+
+            return [...filtered, { ...product, quantity, lineId, note: normalizedNote || undefined }];
         });
     };
 
@@ -128,6 +154,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
             value={{
                 items,
                 addToCart,
+                replaceCartItem,
                 removeFromCart,
                 updateQuantity,
                 clearCart,

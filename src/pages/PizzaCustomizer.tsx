@@ -24,7 +24,7 @@ const formatPrice = (price: number) => {
 
 export default function PizzaMenu() {
     const navigate = useNavigate();
-    const { addToCart, updateQuantity, items } = useCart();
+    const { addToCart, updateQuantity, items, replaceCartItem } = useCart();
 
     // State
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -36,6 +36,12 @@ export default function PizzaMenu() {
     // Builder State
     const [showBuilder, setShowBuilder] = useState(false);
     const [builderInitialFlavor, setBuilderInitialFlavor] = useState<Product | undefined>(undefined);
+    const [builderInitialFlavors, setBuilderInitialFlavors] = useState<Product[] | undefined>(undefined);
+    const [builderInitialSize, setBuilderInitialSize] = useState<PizzaSize | undefined>(undefined);
+    const [builderInitialQuantity, setBuilderInitialQuantity] = useState<number | undefined>(undefined);
+    const [builderEditingLineId, setBuilderEditingLineId] = useState<string | undefined>(undefined);
+
+    const [editingLineId, setEditingLineId] = useState<string | null>(null);
 
     // Data Extraction
     const pizzaSection = data.find(s => s.id === 'pizzas');
@@ -119,8 +125,12 @@ export default function PizzaMenu() {
             size: selectedSize,
         };
 
-        for (let i = 0; i < quantity; i++) {
-            addToCart(productToAdd, productNote);
+        if (editingLineId) {
+            replaceCartItem(editingLineId, productToAdd, productNote, quantity);
+        } else {
+            for (let i = 0; i < quantity; i++) {
+                addToCart(productToAdd, productNote);
+            }
         }
 
         // Close modal
@@ -128,17 +138,26 @@ export default function PizzaMenu() {
         setQuantity(1);
         setSelectedSize('Mediana');
         setProductNote('');
+        setEditingLineId(null);
     };
 
     const handleMix = () => {
         if (!selectedProduct) return;
         setBuilderInitialFlavor(selectedProduct);
+        setBuilderInitialFlavors(undefined);
+        setBuilderInitialSize(selectedSize);
+        setBuilderInitialQuantity(quantity);
+        setBuilderEditingLineId(undefined);
         setSelectedProduct(null); // Close traditional modal
         setShowBuilder(true); // Open builder modal
     }
 
     const openModal = (product: Product) => {
         setBuilderInitialFlavor(undefined); // Reset specific start flavor
+        setBuilderInitialFlavors(undefined);
+        setBuilderInitialSize(undefined);
+        setBuilderInitialQuantity(undefined);
+        setBuilderEditingLineId(undefined);
         setSelectedProduct(product);
         const productSize = product.size as PizzaSize | undefined;
         const isCombined = isCombinedProduct(product);
@@ -151,6 +170,7 @@ export default function PizzaMenu() {
         setSelectedSize(nextSize);
         setQuantity(1);
         setProductNote('');
+        setEditingLineId(null);
     };
 
     const closeModal = () => {
@@ -158,11 +178,43 @@ export default function PizzaMenu() {
         setQuantity(1);
         setSelectedSize('Mediana');
         setProductNote('');
+        setEditingLineId(null);
+    };
+
+    const handleEditCombined = (product: Product, lineId: string, itemQuantity: number) => {
+        const flavorNames = (product.attributes || []).filter(Boolean);
+        const initialFlavors = allTraditionalPizzas.filter(p => flavorNames.includes(p.name));
+
+        setBuilderInitialFlavor(undefined);
+        setBuilderInitialFlavors(initialFlavors);
+        setBuilderInitialSize(product.size as PizzaSize | undefined);
+        setBuilderInitialQuantity(itemQuantity);
+        setBuilderEditingLineId(lineId);
+        setSelectedProduct(null);
+        setShowBuilder(true);
+    };
+
+    const handleEditTraditional = (product: Product, lineId: string, itemQuantity: number, note?: string) => {
+        const sizeOptions = ['Personal', 'Mediana', 'Familiar'];
+        const baseProduct = allTraditionalPizzas.find(p =>
+            sizeOptions.some(size => product.id === `${p.id}-${size}`)
+        ) || product;
+
+        openModal(baseProduct);
+        setEditingLineId(lineId);
+        setQuantity(itemQuantity);
+        setSelectedSize((product.size as PizzaSize) || 'Mediana');
+        setProductNote(note || '');
     };
 
     const closeBuilderModal = (reason?: 'cancel' | 'success') => {
         const initialFlavor = builderInitialFlavor;
         setShowBuilder(false);
+        setBuilderInitialFlavor(undefined);
+        setBuilderInitialFlavors(undefined);
+        setBuilderInitialSize(undefined);
+        setBuilderInitialQuantity(undefined);
+        setBuilderEditingLineId(undefined);
         if (reason === 'cancel' && initialFlavor) {
             openModal(initialFlavor);
         }
@@ -176,6 +228,8 @@ export default function PizzaMenu() {
     const renderSelectedPizzaItem = (product: Product) => {
         const itemQuantity = (product as any).quantity || 1;
         const lineId = (product as any).lineId || product.id;
+        const note = (product as any).note as string | undefined;
+        const combined = isCombinedProduct(product);
 
         return (
             <div key={lineId} className="flex items-center justify-between p-4 bg-white border-b border-gray-100 last:border-0 hover:bg-gray-50 transition-colors animate-in fade-in slide-in-from-bottom-1">
@@ -187,6 +241,15 @@ export default function PizzaMenu() {
                     <span className="text-xs text-gray-500 font-medium bg-gray-100 px-2 py-0.5 rounded-full w-fit">
                         {product.size || 'Único'}
                     </span>
+                    <button
+                        onClick={() => combined
+                            ? handleEditCombined(product, lineId, itemQuantity)
+                            : handleEditTraditional(product, lineId, itemQuantity, note)
+                        }
+                        className="mt-1 text-xs font-bold text-primary hover:underline w-fit"
+                    >
+                        Cambia sabor o tamaño
+                    </button>
                 </div>
 
                 <div className="flex items-center gap-4 sm:gap-6">
@@ -300,7 +363,14 @@ export default function PizzaMenu() {
                 <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden mb-8">
                     {/* Special Item: Combinar */}
                     <div
-                        onClick={() => { setBuilderInitialFlavor(undefined); setShowBuilder(true); }}
+                        onClick={() => {
+                            setBuilderInitialFlavor(undefined);
+                            setBuilderInitialFlavors(undefined);
+                            setBuilderInitialSize(undefined);
+                            setBuilderInitialQuantity(undefined);
+                            setBuilderEditingLineId(undefined);
+                            setShowBuilder(true);
+                        }}
                         className="p-4 mb-6 bg-white border border-gray-100 border-l-4 border-l-primary shadow-sm rounded-xl cursor-pointer hover:shadow-md hover:bg-gray-50 transition-all flex items-center justify-between group"
                     >
                         <div className="flex items-center gap-4">
@@ -367,6 +437,10 @@ export default function PizzaMenu() {
                 <PizzaBuilderModal
                     onClose={closeBuilderModal}
                     initialFlavor={builderInitialFlavor}
+                    initialFlavors={builderInitialFlavors}
+                    initialSize={builderInitialSize}
+                    initialQuantity={builderInitialQuantity}
+                    editingLineId={builderEditingLineId}
                 />
             )}
 
@@ -477,7 +551,7 @@ export default function PizzaMenu() {
                                 onClick={handleAddToCart}
                                 className="w-full bg-primary hover:bg-red-700 text-white font-bold py-4 rounded-xl shadow-lg transition-all active:scale-[0.98] flex items-center justify-center gap-2"
                             >
-                                <span>Agregar al Pedido</span>
+                                <span>{editingLineId ? 'Guardar cambios' : 'Agregar al Pedido'}</span>
                                 <span className="bg-white/20 px-2 py-0.5 rounded text-sm font-medium">
                                     {formatPrice(currentPrice * quantity)}
                                 </span>

@@ -22,6 +22,7 @@ Realizar la estandarizacion del modelo de producto hasta el Nivel 2 (variantes e
 3. UI sin cambios visuales hasta que existan multiples variantes activas.
 4. Utilidades compartidas en `src/utils`.
 5. Tipos TypeScript como fuente de verdad.
+6. Etiquetas visibles/funcionales para clasificar y facilitar busqueda.
 
 ## Plan por fases
 
@@ -37,6 +38,7 @@ Realizar la estandarizacion del modelo de producto hasta el Nivel 2 (variantes e
 - Unificar productos bajo una estructura con variantes y modificadores.
 - Mantener datos compatibles con el render actual cuando solo hay una variante.
 - Validar que todos los productos cumplen el contrato base.
+- Agregar `tags` para busqueda, filtros y futuras badges.
 
 ### Fase 3 - Utilidades
 - Centralizar `formatPrice` en `src/utils/format.ts`.
@@ -50,6 +52,7 @@ Realizar la estandarizacion del modelo de producto hasta el Nivel 2 (variantes e
 - Unificar el modal de producto para todas las secciones.
 - Mantener el diseno actual, habilitando selecciones solo por condiciones del modelo.
 - Regla de navegacion condicional: si una seccion tiene 1 subcategoria y 1 categoria, saltar directo al listado de productos.
+- Listado general de productos como estructura interna (no visible), consumido por buscador y filtros.
 
 ### Fase 5 - Persistencia y validacion
 - Consolidar lectura/escritura de carrito y preferencias en un solo modulo.
