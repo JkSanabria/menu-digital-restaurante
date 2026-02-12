@@ -1,5 +1,5 @@
-import { useState, useMemo } from 'react';
-import { useParams, Navigate, Link } from 'react-router-dom';
+import { useState, useMemo, useEffect } from 'react';
+import { useParams, Navigate, Link, useLocation, useNavigate } from 'react-router-dom';
 import menuData from '../data/menu.json';
 import { MenuData, Product } from '../types/menu';
 import { useCart } from '../context/CartContext';
@@ -20,6 +20,8 @@ const formatPrice = (price: number) => {
 
 export default function ProductList() {
     const { sectionId, subId } = useParams();
+    const location = useLocation();
+    const navigate = useNavigate();
     const { addToCart, updateQuantity, total, items } = useCart();
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
     const [quantity, setQuantity] = useState(1);
@@ -30,8 +32,17 @@ export default function ProductList() {
 
     const section = data.find(s => s.id === sectionId);
     const subcategory = section?.subcategories.find(sub => sub.id === subId);
+    const isSingleSubcategory = Boolean(section && section.subcategories.length === 1);
+    const backTarget = isSingleSubcategory ? '/' : `/section/${sectionId}`;
 
     if (!section || !subcategory) return <Navigate to="/" replace />;
+
+    const cameFromSingleSub = Boolean((location.state as { fromSingleSubcategory?: boolean } | null)?.fromSingleSubcategory);
+
+    useEffect(() => {
+        if (!cameFromSingleSub || !sectionId || !subId) return;
+        navigate(`/section/${sectionId}/sub/${subId}`, { replace: true, state: { fromSingleSubcategory: false } });
+    }, [cameFromSingleSub, navigate, sectionId, subId]);
 
     const filteredCategories = useMemo(() => {
         if (!searchTerm.trim()) return subcategory.categories;
@@ -83,7 +94,7 @@ export default function ProductList() {
             <div className="container mx-auto px-4 py-8 max-w-lg md:max-w-5xl animate-in fade-in slide-in-from-right-8 duration-300 pb-32">
                 {/* Header Compacto */}
                 <div className="flex items-center gap-4 mb-6 md:mb-8 border-b border-gray-200 md:border-b-2 md:border-primary/10 pb-3 md:pb-4">
-                    <Link to={`/section/${sectionId}`} className="p-2 md:p-3 lg:p-4 -ml-2 hover:bg-gray-100 rounded-full transition-all text-gray-400 hover:text-primary active:scale-95">
+                    <Link to={backTarget} className="p-2 md:p-3 lg:p-4 -ml-2 hover:bg-gray-100 rounded-full transition-all text-gray-400 hover:text-primary active:scale-95">
                         <ChevronRight className="rotate-180 w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8" />
                     </Link>
                     <div className="flex-1">

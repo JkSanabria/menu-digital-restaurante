@@ -17,6 +17,16 @@ export default function SectionView() {
 
     if (!section) return <Navigate to="/" replace />;
 
+    if (section.subcategories.length === 1) {
+        return (
+            <Navigate
+                to={`/section/${sectionId}/sub/${section.subcategories[0].id}`}
+                state={{ fromSingleSubcategory: true }}
+                replace
+            />
+        );
+    }
+
     return (
         <div className="min-h-screen bg-gradient-to-b from-orange-50/60 via-white to-white">
             <div className="container mx-auto px-4 py-8 max-w-lg md:max-w-5xl animate-in fade-in slide-in-from-right-8 duration-300 pb-24">
