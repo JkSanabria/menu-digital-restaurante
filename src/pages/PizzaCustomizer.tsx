@@ -7,12 +7,11 @@ import menuData from '../data/menu.json';
 import { MenuData, Product } from '../types/menu';
 import PizzaBuilderModal from './PizzaBuilder';
 import { matchesSearch } from '../utils/searchUtils';
+import { PizzaSize, CombinedPizzaSize } from '../types/pizza';
 
 const data: MenuData = menuData as unknown as MenuData;
 
 // Type definitions
-type PizzaSize = 'Personal' | 'Mediana' | 'Familiar';
-type CombinedPizzaSize = 'Mediana' | 'Familiar';
 
 const formatPrice = (price: number) => {
     return new Intl.NumberFormat('es-CO', {

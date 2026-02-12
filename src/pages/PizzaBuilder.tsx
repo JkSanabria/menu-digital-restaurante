@@ -5,9 +5,7 @@ import { ArrowLeft, Check, Plus, Minus, X, Home, Search } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import menuData from '../data/menu.json';
 import { Product, MenuData } from '../types/menu';
-
-// Type definitions
-type PizzaSize = 'Mediana' | 'Familiar';
+import { CombinedPizzaSize } from '../types/pizza';
 
 type CloseReason = 'cancel' | 'success';
 
@@ -15,7 +13,7 @@ interface PizzaBuilderModalProps {
     onClose: (reason?: CloseReason) => void;
     initialFlavor?: Product;
     initialFlavors?: Product[];
-    initialSize?: PizzaSize;
+    initialSize?: CombinedPizzaSize;
     initialQuantity?: number;
     editingLineId?: string;
 }
@@ -41,7 +39,7 @@ export default function PizzaBuilderModal({
     const { addToCart, replaceCartItem } = useCart();
 
     // Initial State - COMBINED ONLY
-    const [selectedSize, setSelectedSize] = useState<PizzaSize>(initialSize || 'Mediana');
+    const [selectedSize, setSelectedSize] = useState<CombinedPizzaSize>(initialSize || 'Mediana');
     const [selectedFlavors, setSelectedFlavors] = useState<Product[]>(initialFlavors?.length ? initialFlavors : (initialFlavor ? [initialFlavor] : []));
     const [quantity, setQuantity] = useState(initialQuantity || 1);
     const [searchQuery, setSearchQuery] = useState('');
@@ -177,7 +175,7 @@ export default function PizzaBuilderModal({
                         </div>
 
                         <div className="mt-4 grid grid-cols-2 gap-2">
-                            {(['Mediana', 'Familiar'] as PizzaSize[]).map(size => (
+                            {(['Mediana', 'Familiar'] as CombinedPizzaSize[]).map(size => (
                                 <button
                                     key={size}
                                     onClick={() => setSelectedSize(size)}
