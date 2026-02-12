@@ -494,12 +494,12 @@
   },
   {
     "id": "especialidades",
-    "name": "Especialidad",
+    "name": "Recomendaciones",
     "image": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80",
     "subcategories": [
       {
         "id": "especialidades-casa",
-        "name": "Especialidades de la Casa",
+        "name": "Recomendaciones",
         "categories": [
           {
             "id": "platos-estrella",

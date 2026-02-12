@@ -16,6 +16,39 @@ Realizar la estandarizacion del modelo de producto hasta el Nivel 2 (variantes e
 - Busqueda y formatPrice estan duplicados en varias pantallas.
 - Persistencia local en `localStorage` y cookies de respaldo.
 
+## Nombres mas intuitivos (propuesta)
+- Secciones -> Categorias
+- Subcategorias -> Subcategorias
+- Productos -> Productos
+
+Objetivo: mantener tres niveles incluyendo productos (Categoria -> Subcategoria -> Producto).
+
+Ejemplo de estructura:
+```json
+{
+  "categorias": [
+    {
+      "id": "comidas",
+      "name": "Comidas",
+      "subcategorias": [
+        {
+          "id": "desgranados",
+          "name": "Desgranados",
+          "productos": [
+            {
+              "id": "desgranado-supremo",
+              "name": "Desgranado Supremo",
+              "features": ["Costillitas", "Pollo", "Butifarra"],
+              "tags": ["recomendado"]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
 ## Principios de estandarizacion
 1. Un solo formato de producto base.
 2. Reglas de variaciones declarativas en datos (no hardcode en UI).
