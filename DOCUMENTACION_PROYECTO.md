@@ -1,4 +1,4 @@
-# 📱 Menú Digital de Restaurante Napoli
+# 📱 Menú Digital de Restaurante
 
 ## 🎯 ¿Qué es este proyecto?
 
@@ -16,8 +16,9 @@ Este es un **menú digital interactivo** para un restaurante, diseñado para que
 - Personas que prefieren ver fotos y precios antes de decidir
 
 ### Usuarios Secundarios (Dueños del Restaurante):
-- El restaurante puede actualizar el menú cambiando un archivo de texto
+- El restaurante puede actualizar el menú cambiando un archivo de datos (`menu.json`)
 - No necesitan saber programar para cambiar precios o productos
+- Las imágenes pueden venir de `public/` o de URLs externas
 
 ---
 
@@ -74,17 +75,27 @@ Este es un **menú digital interactivo** para un restaurante, diseñado para que
 ```
 menu-digital-restaurante/
 ├── src/                          (Donde vive el código)
-│   ├── pages/                    (Las diferentes pantallas)
+│   ├── pages/                    (Pantallas principales)
 │   │   ├── Home.tsx             (Pantalla principal con categorías)
 │   │   ├── SectionView.tsx      (Pantalla de subcategorías)
-│   │   ├── ProductList.tsx      (Pantalla con lista de productos)
-│   │   └── CartPage.tsx         (Pantalla del carrito de compras)
+│   │   ├── ProductList.tsx      (Lista de productos por subcategoría)
+│   │   ├── PizzaCustomizer.tsx  (Menú de pizzas con tamaños y combos)
+│   │   ├── PizzaBuilder.tsx     (Modal para pizza combinada mitad y mitad)
+│   │   └── CartPage.tsx         (Pantalla del carrito y checkout)
+│   │
+│   ├── components/               (UI reutilizable)
+│   │   ├── FloatingCart.tsx     (Botón flotante del carrito)
+│   │   ├── FloatingNavigation.tsx (Navegación flotante)
+│   │   └── Header.tsx           (Encabezado)
 │   │
 │   ├── context/                  (Memoria compartida de la app)
 │   │   └── CartContext.tsx      (Recuerda qué productos agregaste)
 │   │
 │   ├── data/                     (Información del menú)
 │   │   └── menu.json            (Archivo con todos los productos)
+│   │
+│   ├── utils/                    (Utilidades)
+│   │   └── searchUtils.ts       (Búsqueda sin acentos)
 │   │
 │   ├── types/                    (Definiciones de estructura)
 │   │   └── menu.ts              (Cómo debe verse cada producto)
@@ -104,11 +115,12 @@ menu-digital-restaurante/
 **Qué ves**:
 - Un buscador arriba (como Google)
 - Un banner de ofertas (opcional)
-- 4 categorías grandes con fotos:
+- Categorías grandes con fotos (según el menú cargado):
   - Comidas
   - Bebidas
   - Especialidades
-  - Recomendaciones
+  - Pizzas
+  - Entradas / Postres (si existen en el menú)
 
 **Qué puedes hacer**:
 - Buscar un producto por nombre
@@ -162,6 +174,21 @@ menu-digital-restaurante/
 
 ---
 
+### 3️⃣.1️⃣ **Pantalla de Pizzas (PizzaCustomizer)**
+
+**Qué ves**:
+- Catálogo de pizzas tradicionales
+- Botón para armar pizza combinada (mitad y mitad)
+- Buscador específico para pizzas
+- Modal para elegir tamaño y observaciones
+
+**Qué puedes hacer**:
+- Elegir tamaño (Personal/Mediana/Familiar)
+- Armar una pizza combinada con 2 sabores
+- Agregar pizzas directamente al carrito
+
+---
+
 ### 4️⃣ **Ventana de Detalles del Producto (Modal)**
 
 **Qué ves cuando tocas un producto**:
@@ -192,13 +219,13 @@ menu-digital-restaurante/
 - Título: "Tu Pedido"
 - Formulario para tus datos:
   - Nombre
-  - Dirección de entrega
+  - Dirección de entrega (domicilio) o sede (recoger)
 - Lista de productos que agregaste:
   - Nombre, cantidad, precio
   - Botones para aumentar/disminuir cantidad
   - Botón de basura para eliminar
 - Sección de propina (opcional)
-- Método de pago (Efectivo, Nequi, Daviplata, etc.)
+- Método de pago (Efectivo o Transferencia)
 - Notas especiales (opcional)
 - Resumen del total
 - Botón grande "Enviar Pedido por WhatsApp"
@@ -207,7 +234,9 @@ menu-digital-restaurante/
 - Modificar cantidades
 - Eliminar productos
 - Agregar propina
-- Seleccionar método de pago
+- Seleccionar método de pago y detalles (banco o cambio)
+- Elegir si es domicilio o recoger
+- Administrar direcciones guardadas
 - Escribir notas especiales
 - Enviar el pedido por WhatsApp
 
@@ -249,6 +278,7 @@ menu-digital-restaurante/
 - **Qué es**: Una barra de búsqueda en la pantalla principal
 - **Qué hace**: Busca productos por nombre o descripción
 - **Cómo funciona**: Mientras escribes, va filtrando los resultados
+- **Extra**: No diferencia acentos ("Jamón" = "Jamon")
 
 ### 3. **Tarjeta de Producto (Product Card)**
 - **Qué es**: Una caja que muestra un producto
@@ -339,10 +369,12 @@ Menú
 }
 ```
 
-### Carrito de Compras (En la Memoria del Navegador):
+### Carrito y preferencias (En la Memoria del Navegador):
 - Se guarda en el navegador (localStorage)
 - Persiste aunque cierres la pestaña
 - Se borra si limpias el caché del navegador
+- Nombre y dirección también se guardan en cookies de respaldo
+- Direcciones guardadas, método de pago y notas se persisten localmente
 
 ---
 
@@ -408,7 +440,8 @@ Usuario solo toca "Enviar" en WhatsApp
 7. **Enviar pedido por WhatsApp**: Genera mensaje automático
 8. **Guardar el carrito**: Persiste aunque cierres la página
 9. **Responsive**: Se adapta a celulares, tablets y computadoras
-10. **Ofertas**: Muestra productos en promoción (opcional)
+10. **Pizzas combinadas**: Mitad y mitad con selector de sabores
+11. **Direcciones guardadas**: Reutiliza direcciones y guías
 
 ### ❌ Lo que NO hace:
 1. **No procesa pagos**: Solo envía el pedido por WhatsApp
@@ -513,37 +546,37 @@ npm run build
 
 ### Dependencias Principales (Necesarias para que funcione):
 
-1. **react** (^18.3.1)
+1. **react** (^18.2.0)
    - Qué hace: Crea la interfaz de usuario
    - Por qué: Es la base de toda la aplicación
 
-2. **react-dom** (^18.3.1)
+2. **react-dom** (^18.2.0)
    - Qué hace: Conecta React con el navegador
    - Por qué: Permite que React se muestre en la página
 
-3. **react-router-dom** (^7.1.3)
+3. **react-router-dom** (^7.13.0)
    - Qué hace: Maneja la navegación entre páginas
    - Por qué: Permite cambiar de pantalla sin recargar
 
-4. **lucide-react** (^0.468.0)
+4. **lucide-react** (^0.368.0)
    - Qué hace: Proporciona íconos bonitos
    - Por qué: Para mostrar íconos de carrito, búsqueda, etc.
 
 ### Dependencias de Desarrollo (Solo para programar):
 
-1. **vite** (^6.0.11)
+1. **vite** (^5.2.0)
    - Qué hace: Servidor de desarrollo y constructor
    - Por qué: Hace que la app cargue rápido
 
-2. **typescript** (~5.7.2)
+2. **typescript** (^5.2.2)
    - Qué hace: Lenguaje de programación mejorado
    - Por qué: Previene errores
 
-3. **tailwindcss** (^3.4.17)
+3. **tailwindcss** (^3.4.3)
    - Qué hace: Framework de estilos CSS
    - Por qué: Facilita el diseño visual
 
-4. **@vitejs/plugin-react** (^4.3.4)
+4. **@vitejs/plugin-react** (^4.2.1)
    - Qué hace: Conecta Vite con React
    - Por qué: Necesario para que funcionen juntos
 
@@ -814,6 +847,6 @@ Si tuvieras que recrear esta aplicación desde cero, este sería el orden:
 
 ---
 
-**Última actualización**: 10 de Febrero de 2026  
-**Versión**: 1.0.0  
-**Autor**: Equipo de Desarrollo Napoli
+**Última actualización**: 11 de Febrero de 2026  
+**Versión**: 1.1.0  
+**Autor**: Equipo de Desarrollo

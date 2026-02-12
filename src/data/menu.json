@@ -1,8 +1,8 @@
 [
   {
     "id": "comidas",
-    "name": "EL GALLINERAL",
-    "image": "/images/Gallineral_Perfil_Principal.jpg",
+    "name": null,
+    "image": "/images/El Gallineral.jpg",
     "subcategories": [
       {
         "id": "desgranado",
@@ -249,7 +249,7 @@
   {
     "id": "bebidas",
     "name": "Bebidas",
-    "image": "https://images.unsplash.com/photo-1544145945-f90425340c7e?w=800&q=80",
+    "image": "/images/Bebidas.png",
     "subcategories": [
       {
         "id": "jugos-naturales",
@@ -426,6 +426,17 @@
         ]
       },
       {
+        "id": "bebidas-1-5-litros",
+        "name": "Bebidas de 1.5 Litros",
+        "categories": [
+          {
+            "id": "bebidas-1-5-litros-productos",
+            "name": "Productos",
+            "products": []
+          }
+        ]
+      },
+      {
         "id": "cervezas",
         "name": "Cervezas",
         "categories": [
@@ -474,117 +485,6 @@
                   "nacional",
                   "premium"
                 ]
-              },
-              {
-                "id": "poker",
-                "name": "Póker",
-                "description": "Cerveza colombiana tradicional",
-                "price": 6000,
-                "image": "https://images.unsplash.com/photo-1608270586620-248524c67de9?w=400&q=80",
-                "sizes": [
-                  "Botella 330ml",
-                  "Lata 355ml"
-                ],
-                "attributes": [
-                  "nacional",
-                  "tradicional"
-                ]
-              }
-            ]
-          },
-          {
-            "id": "cervezas-artesanales",
-            "name": "Cervezas Artesanales",
-            "products": [
-              {
-                "id": "bbc-monserrate",
-                "name": "BBC Monserrate",
-                "description": "Cerveza artesanal colombiana tipo Lager",
-                "price": 10000,
-                "image": "https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=400&q=80",
-                "sizes": [
-                  "Botella 330ml"
-                ],
-                "attributes": [
-                  "artesanal",
-                  "premium"
-                ]
-              },
-              {
-                "id": "bbc-negra",
-                "name": "BBC Negra",
-                "description": "Cerveza artesanal oscura con notas de café",
-                "price": 10000,
-                "image": "https://images.unsplash.com/photo-1618885472179-5e474019f2a9?w=400&q=80",
-                "sizes": [
-                  "Botella 330ml"
-                ],
-                "attributes": [
-                  "artesanal",
-                  "premium"
-                ]
-              },
-              {
-                "id": "3-cordilleras",
-                "name": "3 Cordilleras",
-                "description": "Cerveza artesanal colombiana",
-                "price": 10000,
-                "image": "https://images.unsplash.com/photo-1608270586620-248524c67de9?w=400&q=80",
-                "sizes": [
-                  "Botella 330ml"
-                ],
-                "attributes": [
-                  "artesanal",
-                  "premium"
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id": "cocteles",
-        "name": "Cócteles Sin Alcohol",
-        "categories": [
-          {
-            "id": "mocktails",
-            "name": "Mocktails",
-            "products": [
-              {
-                "id": "mojito-sin-alcohol",
-                "name": "Mojito Sin Alcohol",
-                "description": "Refrescante mezcla de limón, hierbabuena, azúcar y soda",
-                "price": 12000,
-                "image": "https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=400&q=80",
-                "attributes": [
-                  "sin-alcohol",
-                  "refrescante",
-                  "nuevo"
-                ]
-              },
-              {
-                "id": "piña-colada-virgen",
-                "name": "Piña Colada Virgen",
-                "description": "Cremosa mezcla de piña y coco",
-                "price": 14000,
-                "image": "https://images.unsplash.com/photo-1546171753-97d7676e4602?w=400&q=80",
-                "attributes": [
-                  "sin-alcohol",
-                  "cremoso",
-                  "nuevo"
-                ]
-              },
-              {
-                "id": "michelada-sin-alcohol",
-                "name": "Michelada Sin Alcohol",
-                "description": "Bebida refrescante con limón, sal, salsa y especias",
-                "price": 10000,
-                "image": "https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?w=400&q=80",
-                "attributes": [
-                  "sin-alcohol",
-                  "refrescante",
-                  "nuevo"
-                ]
               }
             ]
           }
@@ -620,17 +520,99 @@
                 ]
               },
               {
-                "id": "hamburguesa-doble-carne-esp",
-                "name": "Hamburguesa Doble Carne",
-                "description": "Doble carne de res (400 gr total), doble queso mozzarella, tocineta ahumada, cebolla caramelizada y salsa BBQ en pan brioche",
-                "price": 34000,
-                "image": "https://images.unsplash.com/photo-1550547660-d9450f859349?w=400&q=80",
-                "prepTime": "15-18 min",
+                "id": "desgranado-master-del-gallineral",
+                "name": "Desgranado Master del Gallineral",
+                "description": "50 g de costillitas BBQ, 100 g de pollo y 100 g de tocineta ahumada, acompañados de papas fritas y maíz.",
+                "price": 40000,
+                "image": "https://image.pollinations.ai/prompt/Desgranado%20Master%20del%20Gallineral%20plato%20colombiano%20restaurante%2C%20comida%20apetecible%2C%20fotografia%20de%20comida%2C%20alta%20calidad",
+                "prepTime": "15-20 min",
                 "spiceLevel": 0,
+                "attributes": []
+              },
+              {
+                "id": "pizza-5-carnes",
+                "name": "Pizza 5 Carnes",
+                "price": 75000,
+                "description": "Exquisita combinación de carnes selectas. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
                 "attributes": [
-                  "recomendado",
-                  "favorito-chef"
-                ]
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 40000,
+                  "Mediana": 75000,
+                  "Familiar": 95000
+                }
+              },
+              {
+                "id": "pizza-hawaiana-especial",
+                "name": "Pizza Hawaiana Especial",
+                "price": 59000,
+                "description": "Clásica combinación de jamón y piña. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 30000,
+                  "Mediana": 59000,
+                  "Familiar": 73000
+                }
+              },
+              {
+                "id": "pizza-bocadillo-tocineta",
+                "name": "Pizza Bocadillo-Tocineta",
+                "price": 55000,
+                "description": "Pizza artesanal con ingredientes frescos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 25000,
+                  "Mediana": 55000,
+                  "Familiar": 69000
+                }
+              },
+              {
+                "id": "pizza-napoli-especial",
+                "name": "Pizza Napoli Especial",
+                "price": 68000,
+                "description": "Pizza artesanal con ingredientes frescos. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 35000,
+                  "Mediana": 68000,
+                  "Familiar": 82000
+                }
+              },
+              {
+                "id": "pizza-cebolla-tocineta-pepperoni",
+                "name": "Pizza Cebolla-Tocineta-Pepperoni",
+                "price": 68000,
+                "description": "Tradicional pizza con pepperoni premium. Disponible en tres tamaños.",
+                "image": "https://pacciolo-legal-autos.s3.us-east-1.amazonaws.com/imagenes_proyectos/Napoli_Pizza_Generica.jpg",
+                "attributes": [
+                  "Masa artesanal",
+                  "Ingredientes frescos"
+                ],
+                "prepTime": "25-30 min",
+                "sizePrices": {
+                  "Personal": 35000,
+                  "Mediana": 68000,
+                  "Familiar": 82000
+                }
               }
             ]
           }
@@ -641,7 +623,7 @@
   {
     "id": "pizzas",
     "name": "Pizzas",
-    "image": "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&q=80",
+    "image": "/images/Pizzas.png",
     "subcategories": [
       {
         "id": "pizzas-tradicionales",
@@ -1763,99 +1745,42 @@
     "image": "https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=800&q=80",
     "subcategories": [
       {
-        "id": "ensaladas",
-        "name": "Ensaladas",
+        "id": "acompanantes",
+        "name": "Acompañantes",
         "categories": [
           {
-            "id": "ensaladas-frescas",
-            "name": "Ensaladas Frescas",
+            "id": "acompanantes-productos",
+            "name": "Productos",
             "products": [
               {
-                "id": "ensalada-cesar",
-                "name": "Ensalada César",
-                "description": "Lechuga romana fresca, crutones artesanales, queso parmesano, pollo a la parrilla y aderezo césar casero",
-                "price": 18000,
-                "image": "https://images.unsplash.com/photo-1546793665-c74683f339c1?w=400&q=80",
-                "prepTime": "8-10 min",
+                "id": "deditos-de-queso-x4",
+                "name": "Deditos de Queso x4",
+                "description": "Porción de cuatro deditos de queso fritos.",
+                "price": 8000,
+                "image": "https://image.pollinations.ai/prompt/Deditos%20de%20Queso%20x4%20plato%20colombiano%20restaurante%2C%20comida%20apetecible%2C%20fotografia%20de%20comida%2C%20alta%20calidad",
+                "prepTime": "6-10 min",
                 "spiceLevel": 0,
-                "attributes": [
-                  "saludable"
-                ]
+                "attributes": []
               },
               {
-                "id": "ensalada-mediterranea",
-                "name": "Ensalada Mediterránea",
-                "description": "Mix de lechugas, tomate cherry, pepino, aceitunas negras, queso feta, cebolla morada y vinagreta balsámica",
-                "price": 16000,
-                "image": "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=400&q=80",
-                "prepTime": "8-10 min",
+                "id": "francesas-o-casquitos-de-papa",
+                "name": "Francesas o Casquitos de Papa",
+                "description": "Porción de papas fritas en presentación francesa o tipo casquito.",
+                "price": 6000,
+                "image": "https://image.pollinations.ai/prompt/Francesas%20o%20Casquitos%20de%20Papa%20plato%20colombiano%20restaurante%2C%20comida%20apetecible%2C%20fotografia%20de%20comida%2C%20alta%20calidad",
+                "prepTime": "6-10 min",
                 "spiceLevel": 0,
-                "attributes": [
-                  "vegetariano",
-                  "saludable"
-                ]
+                "attributes": []
               },
               {
-                "id": "ensalada-napoli",
-                "name": "Ensalada Napoli Especial",
-                "description": "Mezcla de lechugas gourmet, tomate, aguacate, maíz tierno, queso mozzarella, pollo o atún y aderezo de la casa",
-                "price": 20000,
-                "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&q=80",
-                "prepTime": "10-12 min",
+                "id": "bollo-blanco-con-extra-queso",
+                "name": "Bollo Blanco con Extra Queso",
+                "description": "Bollo blanco acompañado de una porción adicional de queso.",
+                "price": 6000,
+                "image": "https://image.pollinations.ai/prompt/Bollo%20Blanco%20con%20Extra%20Queso%20plato%20colombiano%20restaurante%2C%20comida%20apetecible%2C%20fotografia%20de%20comida%2C%20alta%20calidad",
+                "prepTime": "6-10 min",
                 "spiceLevel": 0,
-                "attributes": [
-                  "recomendado",
-                  "saludable"
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id": "sopas",
-        "name": "Sopas",
-        "categories": [
-          {
-            "id": "sopas-calientes",
-            "name": "Sopas Calientes",
-            "products": [
-              {
-                "id": "sopa-pollo",
-                "name": "Sopa de Pollo Casera",
-                "description": "Caldo de pollo con verduras frescas, papa, zanahoria, apio y trozos de pollo deshilachado",
-                "price": 12000,
-                "image": "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400&q=80",
-                "prepTime": "5-8 min",
-                "spiceLevel": 0,
-                "attributes": [
-                  "reconfortante"
-                ]
-              },
-              {
-                "id": "crema-tomate",
-                "name": "Crema de Tomate",
-                "description": "Suave crema de tomate con albahaca fresca, crutones y un toque de crema de leche",
-                "price": 14000,
-                "image": "https://images.unsplash.com/photo-1547592180-85f173990554?w=400&q=80",
-                "prepTime": "5-8 min",
-                "spiceLevel": 0,
-                "attributes": [
-                  "vegetariano"
-                ]
-              },
-              {
-                "id": "sancocho-napoli",
-                "name": "Sancocho Napoli",
-                "description": "Sancocho tradicional con costilla de res, pollo, yuca, plátano, papa criolla y mazorca. Servido con arroz y aguacate",
-                "price": 22000,
-                "image": "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=400&q=80",
-                "prepTime": "8-10 min",
-                "spiceLevel": 1,
-                "attributes": [
-                  "recomendado",
-                  "favorito-chef"
-                ]
+                "attributes": []
               }
             ]
           }
@@ -1969,6 +1894,36 @@
                 "attributes": [
                   "favorito-chef"
                 ]
+              },
+              {
+                "id": "alfajor-argentina",
+                "name": "Alfajor Argentina",
+                "description": "Alfajor clásico con dulce de leche y coco rallado",
+                "price": 5000,
+                "image": "https://images.unsplash.com/photo-1505253216365-1dce10136a39?w=400&q=80",
+                "prepTime": "2-4 min",
+                "spiceLevel": 0,
+                "attributes": []
+              },
+              {
+                "id": "alfajor-helado",
+                "name": "Alfajor con Helado",
+                "description": "Alfajor relleno con helado cremoso y salsa de chocolate",
+                "price": 10000,
+                "image": "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=400&q=80",
+                "prepTime": "3-5 min",
+                "spiceLevel": 0,
+                "attributes": []
+              },
+              {
+                "id": "postre-temporada",
+                "name": "Postre de Temporada",
+                "description": "Postre especial según disponibilidad del día",
+                "price": 7000,
+                "image": "https://images.unsplash.com/photo-1495147466023-ac5c588e2e94?w=400&q=80",
+                "prepTime": "2-4 min",
+                "spiceLevel": 0,
+                "attributes": []
               }
             ]
           }

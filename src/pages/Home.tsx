@@ -210,7 +210,7 @@ export default function Home() {
                             { section: comidasSection, path: `/section/${comidasSection?.id}`, label: '' },
                             { section: bebidasSection, path: `/section/${bebidasSection?.id}`, label: '' },
                             { section: especialidadesSection, path: `/section/${especialidadesSection?.id}`, label: 'de la Casa' },
-                            { section: pizzasSection, path: '/pizzas', label: 'Tradicionales y Combinadas' }, // Custom path for Pizzas
+                            { section: pizzasSection, path: '/pizzas', label: 'Combínalas a tu gusto' }, // Custom path for Pizzas
                             { section: entradasSection, path: `/section/${entradasSection?.id}`, label: '' },
                             { section: postresSection, path: `/section/${postresSection?.id}`, label: '' }
                         ].map(({ section, path, label }) => {
@@ -249,7 +249,7 @@ export default function Home() {
                             <div className="absolute -right-6 -top-6 h-20 w-20 rounded-full bg-orange-100/70 blur-2xl"></div>
                             <div className="relative flex items-center justify-center gap-4 text-base md:text-lg font-bold text-gray-800">
                                 <span className="text-xl md:text-2xl animate-bounce">🎉</span>
-                                <span className="drop-shadow-sm">Pide por aquí y el domicilio va por la casa.</span>
+                                <span className="drop-shadow-sm">🏍️ Domicilio GRATIS al pedir por esta APP. ¡Ordena Ahora! 🍕🔥</span>
                                 <span className="text-xl md:text-2xl">🚚</span>
                             </div>
                         </div>

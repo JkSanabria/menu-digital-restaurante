@@ -2,7 +2,9 @@
  * Normaliza texto eliminando acentos y diacríticos
  * Ejemplo: "Jamón" -> "jamon"
  */
-export const normalizeText = (text: string): string => {
+export const normalizeText = (text: string | null | undefined): string => {
+    if (!text) return '';
+
     return text
         .toLowerCase()
         .normalize('NFD') // Descompone caracteres con acentos
@@ -15,7 +17,7 @@ export const normalizeText = (text: string): string => {
  * - No diferencia acentos (jamón = jamon)
  * - Busca todas las palabras ingresadas
  */
-export const matchesSearch = (text: string, searchQuery: string): boolean => {
+export const matchesSearch = (text: string | null | undefined, searchQuery: string): boolean => {
     if (!searchQuery.trim()) return true;
 
     const searchWords = normalizeText(searchQuery).trim().split(/\s+/);
